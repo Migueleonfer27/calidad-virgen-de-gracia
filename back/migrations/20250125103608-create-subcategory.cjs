@@ -7,13 +7,18 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       name: {
         type: Sequelize.STRING
       },
       id_category: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT,
+        primaryKey: true,
+        model: {
+          tableName: 'categories'
+        },
+        key: 'id'
       },
       createdAt: {
         allowNull: false,
@@ -22,7 +27,11 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      deletedAt: {
+        type: Sequelize.DATE, // Para el softdelete
+        allowNull: true,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
