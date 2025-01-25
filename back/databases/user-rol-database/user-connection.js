@@ -1,4 +1,4 @@
-import { Users, Roles } from "../models/associations.js";
+import { Users, Roles } from "../../models/associations.js";
 import bcrypt from "bcrypt";
 
 class UserConnection {
@@ -45,7 +45,8 @@ class UserConnection {
 
     async updateUser(id, user) {
         try {
-            return await Users.update(user, { where: { id } });
+            const password = await bcrypt.hash(user.password, 10);
+            return await Users.update({ ...user, password }, { where: { id } });
         } catch (error) {
             throw error;
         }

@@ -1,5 +1,5 @@
 import { response } from "express";
-import { UserConnection } from "../databases/user-connection.js";
+import { UserConnection } from "../databases/user-rol-database/user-connection.js";
 import messages from "../helpers/messages.js";
 
 const userConnection = new UserConnection();

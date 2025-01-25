@@ -1,4 +1,4 @@
-import { Roles } from "../models/associations.js";
+import { Roles } from "../../models/associations.js";
 
 class RoleConnection {
   async getRoles() {
