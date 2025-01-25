@@ -13,17 +13,17 @@ module.exports = {
             updatedAt: new Date(),
           },
           {
-            name: "Directora",
+            name: "Director",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "Jefa de departamento de informática",
+            name: "Jefe de departamento de informática",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
           {
-            name: "Jefa de Calidad",
+            name: "Jefe de Calidad",
             createdAt: new Date(),
             updatedAt: new Date(),
           },
