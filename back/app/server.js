@@ -1,10 +1,14 @@
 import express from "express";
 import cors from "cors";
 import fileUpload from 'express-fileupload';
+import { router as userRoutes } from "../routes/user-routes.js";
+
 class Server {
   constructor() {
     this.app = express();
+    this.usersPath = '/api/users';
     this.middlewares();
+    this.routes();
   }
 
   middlewares() {
@@ -18,7 +22,7 @@ class Server {
   }
 
   routes() {
-    
+    this.app.use(this.usersPath, userRoutes);
   }
 
   listen() {
