@@ -28,6 +28,38 @@ const messages = {
       "La fecha de nacimiento debe tener el formato YYYY-MM-DD (ejemplo: 2000-01-01).",
     gender: "El género debe ser Male, Female o Other.",
   },
+
+  role: {
+    success: {
+      index: "Roles obtenidos correctamente.",
+      show: "Rol obtenido correctamente.",
+      create: "Rol creado correctamente.",
+      update: "Rol actualizado correctamente.",
+      delete: "Rol eliminado correctamente.",
+    },
+    error: {
+      index: "Error al obtener los roles.",
+      show: "Error al obtener el rol.",
+      create: "Error al crear el rol.",
+      update: "Error al actualizar el rol.",
+      delete: "Error al eliminar el rol.",
+    },
+  },
+
+  roleMiddleware: {
+    name: "El nombre del rol debe tener al menos 2 caracteres.",
+  },
+
+  userRole: {
+    success: {
+      add: "Rol de usuario agregado correctamente.",
+      delete: "Rol de usuario eliminado correctamente.",
+    },
+    error: {
+      add: "Error al agregar el rol de usuario.",
+      delete: "Error al eliminar el rol de usuario.",
+    },
+  },
 };
 
 export default messages;

@@ -83,9 +83,10 @@ const genderMiddleware = (req, res, next) => {
 
 export {
   dniMiddleware,
-  emailMiddleware,
   nameMiddleware,
   lastNameMiddleware,
+  emailMiddleware,
+  passwordMiddleware,
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
