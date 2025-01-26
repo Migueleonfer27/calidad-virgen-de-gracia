@@ -1,4 +1,4 @@
-const messages = {
+export const messages = {
   user: {
     success: {
       index: "Usuarios obtenidos correctamente.",
@@ -43,6 +43,23 @@ const messages = {
       delete: "Error al eliminar el rol de usuario.",
     },
   },
+
+  category: {
+    success: {
+      index: "Categorías obtenidas correctamente.",
+      show: "Categoría obtenida correctamente.",
+      create: "Categoría creada correctamente.",
+      update: "Categoría actualizada correctamente.",
+      delete: "Categoría eliminada correctamente.",
+    },
+    error: {
+      index: "Error al obtener las categorías.",
+      show: "Error al obtener la categoría.",
+      create: "Error al crear la categoría.",
+      update: "Error al actualizar la categoría.",
+      delete: "Error al eliminar la categoría.",
+    },
+  }
 };
 
 export default messages;

@@ -1,12 +1,22 @@
-
+// Gema Rubio y Daniel Cruz
 
 import mysql from 'mysql2';
-import {Category} from '../../models/category.js'
+// import { Category } from '../../models/category.js';
+import { Category } from '../../models/associations.js';
 import { Sequelize, QueryTypes, Op } from 'sequelize';
 
 
 export class CategoryConnect{
    
+    getCategories = async () => {
+        let resultado = [];
+        resultado = await Category.findAll();
+        
+        if (!resultado) {
+            throw error;
+        }
+        return resultado;
+    }
 
     insertCategory = async(category) => {
        const newCategory=new Category()

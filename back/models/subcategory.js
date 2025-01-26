@@ -1,6 +1,6 @@
 'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import {db as conexion}   from '../databases/conexion.js'
+import {db as conexion}   from '../databases/connection.js'
 class Subcategory extends Model{
   /**
    * Helper method for defining associations.
@@ -32,6 +32,6 @@ Subcategory.init({
   deletedAt: 'deletedAt',
   timestamps: true, 
 });
-return Subcategory;
+// return Subcategory;
 
 export default Subcategory;

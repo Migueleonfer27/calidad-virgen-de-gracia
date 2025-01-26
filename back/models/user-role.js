@@ -1,7 +1,7 @@
 "use strict";
 
 import { DataTypes, Model } from "sequelize";
-import sequelize from "../databases/connetion.js";
+import sequelize from "../databases/connection.js";
 
 class UserRole extends Model {
   static associate(models) {}

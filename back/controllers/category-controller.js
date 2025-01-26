@@ -1,9 +1,20 @@
-import {response,request} from 'express';
-import {CategoryConnect} from '../databases/connection-categories/category-connect.js'
-import {messages as msg} from '../helpers/messages.js'
-const connection= new CategoryConnect()
+// Gema Rubio y Daniel Cruz
+import { response, request } from 'express';
+import { CategoryConnect } from '../databases/categories-connection/category-connection.js'
+import { messages as msg } from '../helpers/messages-controllers.js';
+const connection = new CategoryConnect()
 
 export const categoryController = {
+
+    get: (req, res = response) => {
+      connection.getCategories()
+        .then(data => {
+            res.status(200).json({
+                'msg': msg.category.success.index,
+                'data': data
+            });
+        })  
+    },
 
     insert:   (req = request, res = response) => {
         let result

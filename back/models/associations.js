@@ -1,6 +1,8 @@
 import Users from "./user.js";
 import Roles from "./role.js";
 import UsersRoles from "./user-role.js";
+import Category from "./category.js";
+import Subcategory from "./subcategory.js";
 
 Users.belongsToMany(Roles, {
   through: UsersRoles,
@@ -14,4 +16,16 @@ Roles.belongsToMany(Users, {
   otherKey: "user_id",
 });
 
-export { Users, Roles, UsersRoles };
+// Relación: Una categoría tiene una o muchas subcategorías
+Category.hasMany(Subcategory, {
+  as: 'subcategories',
+  foreignKey: 'id_category'
+});
+
+// Relación: Una subcategoría pertenece a una categoría
+Subcategory.belongsTo(Category, {
+  as: 'category',
+  foreignKey: 'id_category'
+})
+
+export { Users, Roles, UsersRoles, Category, Subcategory };
