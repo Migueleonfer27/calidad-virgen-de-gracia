@@ -1,10 +1,18 @@
 import express from "express";
 import cors from "cors";
 import fileUpload from 'express-fileupload';
+import {router as categoryRoutes} from '../routes/categoryRoutes.js'
 class Server {
   constructor() {
     this.app = express();
     this.middlewares();
+    this.categoriesPath='/api/categories'
+
+    this.middlewares();
+
+    this.routes();
+
+  
   }
 
   middlewares() {
@@ -18,7 +26,7 @@ class Server {
   }
 
   routes() {
-    
+    this.app.use(this.categoriesPath, categoryRoutes);
   }
 
   listen() {

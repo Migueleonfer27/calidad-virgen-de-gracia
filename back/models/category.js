@@ -1,7 +1,7 @@
 'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
-
-class Category extends Model{
+import {db as conexion}   from '../databases/conexion.js'
+export class Category extends Model{
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -20,13 +20,13 @@ class Category extends Model{
     name: DataTypes.STRING,
 
   }, {
-    Sequelize,
+    sequelize:conexion,
     modelName: 'Category',
     paranoid: true, // Por si hacemos softdelete
     deletedAt: 'deletedAt',
     timestamps: true, 
   });
-  return Category;
+ 
 
   export default Category;
 

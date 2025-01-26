@@ -1,6 +1,6 @@
 'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
-
+import {db as conexion}   from '../databases/conexion.js'
 class Subcategory extends Model{
   /**
    * Helper method for defining associations.
@@ -26,7 +26,7 @@ Subcategory.init({
     }
   }
 }, {
-  Sequelize,
+   sequelize:conexion,
   modelName: 'Subcategory',
   paranoid: true, // Por si hacemos softdelete
   deletedAt: 'deletedAt',
