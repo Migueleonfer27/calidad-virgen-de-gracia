@@ -17,3 +17,9 @@ router.get('/getByName/:name',
         check('name', 'El nombre debe debe ser una cadena de texto.').isString().notEmpty(),
         validarCampos
     ], subcategoryController.getByName);
+
+router.get('/getByCategoryId/:id',
+     [
+        check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(), 
+        validarCampos
+     ], subcategoryController.getByCategoryId);

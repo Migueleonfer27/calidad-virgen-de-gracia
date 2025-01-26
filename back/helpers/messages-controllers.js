@@ -55,7 +55,7 @@ export const messages = {
     error: {
       index: "Error al obtener las categorías.",
       show: "Error al obtener la categoría.",
-      notMatch: 'No se encontraron categorías disponibles.',
+      notFound: 'No se encontraron categorías disponibles.',
       create: "Error al crear la categoría.",
       update: "Error al actualizar la categoría.",
       delete: "Error al eliminar la categoría.",
@@ -73,7 +73,7 @@ export const messages = {
     error: {
       index: "Error al obtener las subcategorías.",
       show: "Error al obtener la subcategoría.",
-      notMatch: 'No se encontraron subcategorías disponibles.',
+      notFound: 'No se encontraron subcategorías disponibles.',
       create: "Error al crear la subcategoría.",
       update: "Error al actualizar la subcategoría.",
       delete: "Error al eliminar la subcategoría.",

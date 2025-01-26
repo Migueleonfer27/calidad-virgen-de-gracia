@@ -17,7 +17,7 @@ export const categoryController = {
                 });
             } else {
                 res.status(404).json({
-                    'msg': msg.category.error.notMatch
+                    'msg': msg.category.error.notFound
                 })
             }
         }) 
@@ -55,7 +55,7 @@ export const categoryController = {
                     })
                 } else {
                     res.status(404).json({
-                        'msg': msg.category.error.notMatch
+                        'msg': msg.category.error.notFound
                     })
                 }
             })

@@ -17,7 +17,7 @@ export const subcategoryController = {
                     });
                 } else {
                     res.status(404).json({
-                        'msg': msg.subcategory.error.notMatch
+                        'msg': msg.subcategory.error.notFound
                     })
                 }
             })
@@ -55,7 +55,7 @@ export const subcategoryController = {
                     })
                 } else {
                     res.status(404).json({
-                        'msg': msg.subcategory.error.notMatch
+                        'msg': msg.subcategory.error.notFound
                     })
                 }
             })
@@ -64,5 +64,28 @@ export const subcategoryController = {
                     'msg': msg.subcategory.error.show
                 })
             })
+    },
+
+    getByCategoryId: (req = request, res = response) => {
+        const categoryId = req.params.id;
+        connection.getSubcategoriesFromCategory(categoryId)
+            .then(data => {
+                if (data.length > 0) {
+                    res.status(200).json({
+                        'msg': msg.subcategory.success.index,
+                        'data': data
+                    })
+                } else {
+                    res.status(404).json({
+                        'msg': msg.subcategory.error.notFound
+                    })
+                }
+            })
+            .catch( err => {
+                res.status(500).json({
+                    'msg': msg.subcategory.error.show
+                })
+            })
+
     }
 }
