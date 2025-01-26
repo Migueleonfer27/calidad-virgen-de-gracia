@@ -6,11 +6,11 @@ export const router = Router();
 
 router.get('/', subcategoryController.get);
 
-// router.get('/getById/:id', 
-//     [
-//         check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(), 
-//         validarCampos
-//     ], categoryController.getById);
+router.get('/getById/:id', 
+    [
+        check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(), 
+        validarCampos
+    ], subcategoryController.getById);
 
 // router.get('/getByName/:name', 
 //     [

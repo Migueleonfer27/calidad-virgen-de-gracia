@@ -26,5 +26,21 @@ export const subcategoryController = {
                     'msg': msg.subcategory.error.index
                 })
             })
-    }
+    },
+    
+    getById: (req = request, res = response) => {
+        const id = req.params.id;
+        connection.getSubcategoryById(id)
+            .then(data => {
+                res.status(200).json({
+                    'msg': msg.subcategory.success.show,
+                    'data': data
+                })
+            })
+            .catch( err => {
+                res.status(500).json({
+                    'msg': msg.subcategory.error.show
+                })
+            });
+    },
 }

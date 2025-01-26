@@ -13,6 +13,16 @@ export class SubcategoryConnection {
         }
         return resultado;
     }
+
+    getSubcategoryById = async (id) => {
+            let resultado = [];
+            resultado = await Subcategory.findByPk(id);
+    
+            if (!resultado){
+                throw error;
+            }
+            return resultado;
+        }
 }
 
 export default SubcategoryConnection;
