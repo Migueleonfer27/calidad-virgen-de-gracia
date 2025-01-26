@@ -3,7 +3,7 @@ import { Op } from 'sequelize';
 import { Category } from '../../models/associations.js';
 
 
-export class CategoryConnect{
+export class CategoryConnection{
    
     getCategories = async () => {
         let resultado = [];
@@ -89,4 +89,4 @@ export class CategoryConnect{
     }
 }
 
-export default CategoryConnect
+export default CategoryConnection;

@@ -1,19 +1,25 @@
 // Gema Rubio y Daniel Cruz
 import { response, request } from 'express';
-import { CategoryConnect } from '../databases/categories-connection/category-connection.js'
+import { CategoryConnection as Connection } from '../databases/categories-connection/category-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
 
-const connection = new CategoryConnect()
+const connection = new Connection();
 
 export const categoryController = {
 
     get: (req, res = response) => {
       connection.getCategories()
         .then(data => {
-            res.status(200).json({
-                'msg': msg.category.success.index,
-                'data': data
-            });
+            if (data.length > 0) {
+                res.status(200).json({
+                    'msg': msg.category.success.index,
+                    'data': data
+                });
+            } else {
+                res.status(404).json({
+                    'msg': msg.category.error.notMatch
+                })
+            }
         }) 
         .catch( err => {
             res.status(500).json({
