@@ -1,6 +1,6 @@
 import { response } from "express";
 import { UserRoleConnection } from "../databases/user-rol-database/user-role-connection.js";
-import messages from "../helpers/messages.js";
+import messages from "../helpers/messages-controllers.js";
 
 const userRoleConnection = new UserRoleConnection();
 
@@ -23,8 +23,8 @@ const UserRoleController = {
   deleteUserRole: async (req, res = response) => {
     try {
       const userRole = await userRoleConnection.deleteUserRole(
-        req.params.idUser,
-        req.params.idRole
+        req.params.user_id,
+        req.params.role_id
       );
       res.status(200).json({
         message: messages.userRole.success.delete,

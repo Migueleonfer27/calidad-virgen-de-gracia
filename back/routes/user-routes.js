@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { UserController } from "../controllers/user-controller.js";
 import {
+  isIdIntMiddleware,
   dniMiddleware,
   nameMiddleware,
   lastNameMiddleware,
@@ -14,7 +15,7 @@ import {
 export const router = Router();
 
 router.get("/", UserController.indexUsers);
-router.get("/:id", UserController.showUser);
+router.get("/:id", isIdIntMiddleware, UserController.showUser);
 router.post(
   "/",
   dniMiddleware,
@@ -29,6 +30,7 @@ router.post(
 );
 router.put(
   "/:id",
+  isIdIntMiddleware,
   dniMiddleware,
   nameMiddleware,
   lastNameMiddleware,
@@ -39,4 +41,4 @@ router.put(
   genderMiddleware,
   UserController.updateUser
 );
-router.delete("/:id", UserController.deleteUser);
+router.delete("/:id", isIdIntMiddleware, UserController.deleteUser);

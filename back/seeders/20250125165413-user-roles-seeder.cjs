@@ -5,8 +5,14 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const { Users, Roles } = await import("../models/associations.js");
 
-    const users = await Users.findAll({ attributes: ["id"] });
-    const roles = await Roles.findAll({ attributes: ["id"] });
+    const users = await Users.findAll({
+      attributes: ["id"],
+      where: { id: { [Sequelize.Op.ne]: 1 } },
+    });
+    const roles = await Roles.findAll({
+      attributes: ["id"],
+      where: { id: { [Sequelize.Op.ne]: 1 } },
+    });
 
     const userRoles = users.map((user) => ({
       user_id: user.id,

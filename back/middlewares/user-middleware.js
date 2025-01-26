@@ -1,4 +1,13 @@
-import messages from "../helpers/messages.js";
+import messages from "../helpers/messages-middlewares.js";
+
+const isIdIntMiddleware = (req, res, next) => {
+  if (!req.params.id || isNaN(parseInt(req.params.id, 10))) {
+    return res.status(400).json({
+      message: messages.userMiddleware.isInt,
+    });
+  }
+  next();
+};
 
 const dniMiddleware = (req, res, next) => {
   if (!/^\d{8}[A-Z]$/.test(req.body.dni)) {
@@ -6,7 +15,6 @@ const dniMiddleware = (req, res, next) => {
       message: messages.userMiddleware.dni,
     });
   }
-
   next();
 };
 
@@ -82,6 +90,7 @@ const genderMiddleware = (req, res, next) => {
 };
 
 export {
+  isIdIntMiddleware,
   dniMiddleware,
   nameMiddleware,
   lastNameMiddleware,
