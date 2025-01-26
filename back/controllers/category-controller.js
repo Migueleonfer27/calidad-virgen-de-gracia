@@ -55,8 +55,7 @@ export const categoryController = {
                     })
                 } else {
                     res.status(404).json({
-                        'msg': msg.category.error.notMatch,
-                        'data': data
+                        'msg': msg.category.error.notMatch
                     })
                 }
             })

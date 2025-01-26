@@ -15,14 +15,30 @@ export class SubcategoryConnection {
     }
 
     getSubcategoryById = async (id) => {
-            let resultado = [];
-            resultado = await Subcategory.findByPk(id);
-    
-            if (!resultado){
-                throw error;
-            }
-            return resultado;
+        let resultado = [];
+        resultado = await Subcategory.findByPk(id);
+
+        if (!resultado){
+            throw error;
         }
+        return resultado;
+    }
+
+    getSubcategoryByName = async (name) => {
+        let resultado = [];
+        resultado = await Subcategory.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
 }
 
 export default SubcategoryConnection;
