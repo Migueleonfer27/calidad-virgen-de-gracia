@@ -13,7 +13,28 @@ export const categoryController = {
                 'msg': msg.category.success.index,
                 'data': data
             });
-        })  
+        }) 
+        .catch( err => {
+            res.status(203).json({
+                'msg': msg.category.error.index
+            })
+        }); 
+    },
+
+    getById: (req = request, res = response) => {
+        const id = req.params.id
+        connection.getCategoryById(id)
+            .then(data => {
+                res.status(200).json({
+                    'msg': msg.category.success.show,
+                    'data': data
+                })
+            })
+            .catch( err => {
+                res.status(203).json({
+                    'msg': msg.category.error.show
+                })
+            });
     },
 
     insert:   (req = request, res = response) => {

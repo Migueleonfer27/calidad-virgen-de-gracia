@@ -10,3 +10,4 @@ router.post('/insert',[check('name', 'El nombre es obligatorio').not().isEmpty()
 router.delete('/delete/:id',categoryController.delete);
 router.put('/update',categoryController.update);
 router.get('/', categoryController.get);
+router.get('/:id', categoryController.getById);

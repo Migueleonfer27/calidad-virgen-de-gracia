@@ -1,5 +1,4 @@
 // Gema Rubio y Daniel Cruz
-
 import mysql from 'mysql2';
 // import { Category } from '../../models/category.js';
 import { Category } from '../../models/associations.js';
@@ -11,8 +10,18 @@ export class CategoryConnect{
     getCategories = async () => {
         let resultado = [];
         resultado = await Category.findAll();
-        
+
         if (!resultado) {
+            throw error;
+        }
+        return resultado;
+    }
+
+    getCategoryById = async (id) => {
+        let resultado = [];
+        resultado = await Category.findByPk(id);
+
+        if (!resultado){
             throw error;
         }
         return resultado;
