@@ -2,6 +2,7 @@
 import { response, request } from 'express';
 import { CategoryConnect } from '../databases/categories-connection/category-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
+
 const connection = new CategoryConnect()
 
 export const categoryController = {
@@ -15,14 +16,14 @@ export const categoryController = {
             });
         }) 
         .catch( err => {
-            res.status(203).json({
+            res.status(500).json({
                 'msg': msg.category.error.index
             })
         }); 
     },
 
     getById: (req = request, res = response) => {
-        const id = req.params.id
+        const id = req.params.id;
         connection.getCategoryById(id)
             .then(data => {
                 res.status(200).json({
@@ -31,10 +32,33 @@ export const categoryController = {
                 })
             })
             .catch( err => {
-                res.status(203).json({
+                res.status(500).json({
                     'msg': msg.category.error.show
                 })
             });
+    },
+
+    getByName: (req = request, res = response) => {
+        const name = req.params.name;
+        connection.getCategoryByName(name)
+            .then(data => {
+                if (data.length > 0) {
+                    res.status(200).json({
+                        'msg': msg.category.success.show,
+                        'data': data
+                    })
+                } else {
+                    res.status(404).json({
+                        'msg': msg.category.error.notMatch,
+                        'data': data
+                    })
+                }
+            })
+            .catch( err => {
+                res.status(500).json({
+                    'msg': msg.category.error.show
+                })
+            })
     },
 
     insert:   (req = request, res = response) => {

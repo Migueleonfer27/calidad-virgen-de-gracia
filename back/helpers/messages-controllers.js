@@ -55,6 +55,7 @@ export const messages = {
     error: {
       index: "Error al obtener las categorías.",
       show: "Error al obtener la categoría.",
+      notMatch: 'No se encontraron categorías que coincidan con la búsqueda.',
       create: "Error al crear la categoría.",
       update: "Error al actualizar la categoría.",
       delete: "Error al eliminar la categoría.",

@@ -1,8 +1,6 @@
 // Gema Rubio y Daniel Cruz
-import mysql from 'mysql2';
-// import { Category } from '../../models/category.js';
+import { Op } from 'sequelize';
 import { Category } from '../../models/associations.js';
-import { Sequelize, QueryTypes, Op } from 'sequelize';
 
 
 export class CategoryConnect{
@@ -21,6 +19,23 @@ export class CategoryConnect{
         let resultado = [];
         resultado = await Category.findByPk(id);
 
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
+    
+    getCategoryByName = async (name) => {
+        let resultado = [];
+        resultado = await Category.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        
         if (!resultado){
             throw error;
         }
