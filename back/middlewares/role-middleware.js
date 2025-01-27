@@ -9,13 +9,31 @@ const isIdIntMiddleware = (req, res, next) => {
   next();
 };
 
-const nameMiddleware = (req, res, next) => {
-  if (req.body.name.length < 2) {
+const positionMiddleware = (req, res, next) => {
+  if (req.body.position.length < 2) {
     return res.status(400).json({
-      message: messages.roleMiddleware.name,
+      message: messages.roleMiddleware.position,
     });
   }
   next();
 };
 
-export { nameMiddleware, isIdIntMiddleware };
+const codeMiddleware = (req, res, next) => {
+  if (req.body.code.length < 2) {
+    return res.status(400).json({
+      message: messages.roleMiddleware.code,
+    });
+  }
+  next();
+};
+
+const yearMiddleware = (req, res, next) => {
+  if (!/^\d{4}$/.test(req.body.year)) {
+    return res.status(400).json({
+      message: messages.roleMiddleware.year,
+    });
+  }
+  next();
+};
+
+export { positionMiddleware, codeMiddleware, yearMiddleware, isIdIntMiddleware };

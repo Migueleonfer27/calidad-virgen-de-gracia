@@ -2,6 +2,7 @@
 
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../databases/connection.js";
+
 class Role extends Model {
   static associate(models) {}
 }
@@ -12,10 +13,18 @@ Role.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    code: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    year: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    position: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {

@@ -13,20 +13,89 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    dni: {
+    code: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    first_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    nrp: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    dni: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    abbreviation: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    birth_date: {
+      type: DataTypes.DATE,
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    postal_code: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    province: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phone_rp: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    specialty: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    body: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    department: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    admission_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    leave_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
     email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    corporate_email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -38,17 +107,6 @@ User.init(
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    birth_date: {
-      type: DataTypes.DATE,
-    },
-    gender: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    profile_picture: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
   },
   {
