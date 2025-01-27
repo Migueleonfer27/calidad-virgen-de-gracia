@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {subcategoryController} from '../controllers/subCategoryController.js'
+import {subcategoryController} from '../controllers/subcategory-controller.js'
 import { check } from 'express-validator';
 import { categoryExist } from '../helpers/db-validator.js';
 import { validarCampos } from '../middlewares/validar-campos.js';

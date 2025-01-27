@@ -15,10 +15,13 @@ module.exports = {
       id_category: {
         type: Sequelize.BIGINT,
         primaryKey: true,
-        model: {
-          tableName: 'categories'
+        
+        references: {
+          model: 'categories',
+          key: 'id'
         },
-        key: 'id'
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

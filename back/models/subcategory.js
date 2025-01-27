@@ -1,6 +1,6 @@
 'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import {db as conexion}   from '../databases/connetion.js'
+import {db as conexion}   from '../databases/connection.js'
 export class Subcategory extends Model{
   /**
    * Helper method for defining associations.
@@ -23,7 +23,9 @@ Subcategory.init({
     references: {
       model: 'Category',
       key: 'id'
-    }
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
   }
 }, {
    sequelize:conexion,

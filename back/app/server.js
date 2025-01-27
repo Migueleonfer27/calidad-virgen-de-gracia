@@ -4,8 +4,8 @@ import fileUpload from 'express-fileupload';
 import { router as userRoutes } from "../routes/user-routes.js";
 import { router as roleRoutes } from "../routes/role-routes.js";
 import { router as usersRolesRoutes } from "../routes/user-role-routes.js";
-import {router as categoryRoutes} from '../routes/categoryRoutes.js'
-import {router as subcategoryRoutes} from '../routes/subCategoryRoutes.js';
+import {router as categoryRoutes} from '../routes/category-routes.js'
+import {router as subcategoryRoutes} from '../routes/subcategory-routes.js';
 class Server {
   constructor() {
     this.app = express();

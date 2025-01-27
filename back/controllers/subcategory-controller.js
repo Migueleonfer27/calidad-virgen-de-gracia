@@ -1,20 +1,21 @@
 import {response,request} from 'express';
-import {CategoryConnect} from '../databases/connection-categories/category-connect.js'
-import {messages as msg} from '../helpers/messages.js'
-const connection= new CategoryConnect()
+import {SubcategoryConnection} from '../databases/categories-connection/subcategory-connection.js'
 
-export const categoryController = {
+const connection= new SubcategoryConnection()
+
+export const subcategoryController = {
 
     insert:   (req = request, res = response) => {
         let result
-        connection.insertCategory(req.body)    
+        connection.insertSubcategory(req.body)    
             .then( data => {
                 result=1
                 console.log('Categoría insertada correctamente!');
                 res.status(201).json({cod:result,
                                         data:{
                                           id:data.id,
-                                          name:req.body.name}
+                                          name:req.body.name,
+                                          id_category:req.body.id_category}
                                         });
             })
             .catch( err => {
@@ -31,7 +32,7 @@ export const categoryController = {
 
     delete: (req = request, res=response)=>{
         let result
-        connection.deleteCategory(req.params.id)    
+        connection.deleteSubcategory(req.params.id)    
         .then( data => {
             result=1
             console.log('Categoría borrada correctamente!');
@@ -39,7 +40,7 @@ export const categoryController = {
                                 data:data});
         })
         .catch( err => {
-            console.log('sin resultados!');
+            console.log(err);
             result=0
             res.status(203).json({cod:result,
                                     error:err  
@@ -48,7 +49,8 @@ export const categoryController = {
     },
     update: (req = request, res=response)=>{
         let result
-        connection.updateCategory(req.body)   
+        console.log(req.body)
+        connection.updateSubcategory(req.body)   
         
         .then( data => {
             result=1
@@ -66,4 +68,4 @@ export const categoryController = {
     }
 }
 
-export default categoryController
+export default subcategoryController

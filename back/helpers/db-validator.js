@@ -1,8 +1,8 @@
-import {CategoryConnect} from '../databases/connection-categories/category-connect.js'
+import {CategoryConnection} from '../databases/categories-connection/category-connection.js'
 
 export const categoryExist = (id) => {
     return new Promise((resolve, reject) => {
-      const conx = new CategoryConnect();
+      const conx = new CategoryConnection();
       conx.categoryExist(id)
         .then(msg => {
           console.log('Existe');

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {categoryController} from '../controllers/categoryController.js'
+import {categoryController} from '../controllers/category-controller.js'
 import { check } from 'express-validator';
 import { validarCampos } from '../middlewares/validar-campos.js';
 export const router = Router();

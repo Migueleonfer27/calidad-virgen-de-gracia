@@ -1,20 +1,21 @@
 
 
 import mysql from 'mysql2';
-import {Category} from '../../models/category.js'
+import { Category, Subcategory } from '../../models/associations.js'
 import { Sequelize, QueryTypes, Op } from 'sequelize';
 
 
-export class CategoryConnect{
+export class SubcategoryConnection{
    
 
-    insertCategory = async(category) => {
-       const newCategory=new Category()
-       newCategory.name=category.name
+    insertSubcategory = async(subcategory) => {
+       const newSubcategory=new Subcategory()
+       newSubcategory.name=subcategory.name
+       newSubcategory.id_category=subcategory.id_category
         let result = 0;
         try {
                
-               result=await newCategory.save();
+               result=await newSubcategory.save();
               
                } catch (error) {
                    result=error.errors[0].message
@@ -25,10 +26,10 @@ export class CategoryConnect{
     }
    //Preguntar a Fernando si hacer softdelete o tambien incluir el borrado total
 
-    deleteCategory= async (id)=>{
+    deleteSubcategory= async (id)=>{
         let result = [];
         
-            result = await Category.findByPk(id)
+            result = await Subcategory.findByPk(id)
          
             if(result==null){
                 throw error
@@ -40,11 +41,11 @@ export class CategoryConnect{
     
     }
 
-    updateCategory= async (body)=>{
+    updateSubcategory= async (body)=>{
       
         let result = [];
         
-        result = await Category.findByPk(body.id)
+        result = await Subcategory.findByPk(body.id)
       
         if(result==null){
             throw error
@@ -53,20 +54,6 @@ export class CategoryConnect{
        
     return result;
     }
-
-    categoryExist= async (id)=>{
-      
-        let result = [];
-        
-        result = await Category.findByPk(id)
-      
-        if(result==null){
-            throw error
-        }
-       
-       
-    return result;
-    }
 }
 
-export default CategoryConnect
+export default SubcategoryConnection
