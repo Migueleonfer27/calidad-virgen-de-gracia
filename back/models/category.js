@@ -1,6 +1,7 @@
 'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
-import {db as conexion}   from '../databases/connection.js'
+import {db as conexion}   from '../databases/connection.js';
+
 export class Category extends Model{
     /**
      * Helper method for defining associations.

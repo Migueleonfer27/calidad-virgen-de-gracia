@@ -1,12 +1,48 @@
-
+// Gema Rubio y Daniel Cruz
 import { Category,Subcategory} from '../../models/associations.js';
-import mysql from 'mysql2';
-import { Sequelize, QueryTypes, Op } from 'sequelize';
-//import Subcategory from '../../models/subcategory.js';
+import { Op } from 'sequelize';
+
 
 
 export class CategoryConnection{
    
+    getCategories = async () => {
+        let resultado = [];
+        resultado = await Category.findAll();
+
+        if (!resultado) {
+            throw error;
+        }
+        return resultado;
+    }
+
+    getCategoryById = async (id) => {
+        let resultado = [];
+        resultado = await Category.findByPk(id);
+
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
+    
+    getCategoryByName = async (name) => {
+        let resultado = [];
+        resultado = await Category.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
 
     insertCategory = async(category) => {
        const newCategory=new Category()
@@ -23,11 +59,11 @@ export class CategoryConnection{
                }
                return result;
     }
-   //Preguntar a Fernando si hacer softdelete o tambien incluir el borrado total
+
 
     deleteCategory= async (id)=>{
-       
-        
+
+           
             const category=await Category.findByPk(id)
             
             const subCategory=await Subcategory.destroy({
@@ -37,6 +73,7 @@ export class CategoryConnection{
 
        
         return {category,subCategory};
+   
     
     }
 
@@ -54,6 +91,7 @@ export class CategoryConnection{
     return result;
     }
 
+
     categoryExist= async (id)=>{
       
         let result = [];
@@ -70,3 +108,4 @@ export class CategoryConnection{
 }
 
 export default CategoryConnection
+

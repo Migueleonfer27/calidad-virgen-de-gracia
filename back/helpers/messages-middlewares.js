@@ -15,7 +15,9 @@ const messages = {
 
   roleMiddleware: {
     isInt: "El ID es requerido y debe ser un número entero.",
-    name: "El nombre del rol debe tener al menos 2 caracteres.",
+    position: "El nombre del rol debe tener al menos 2 caracteres.",
+    code: "El código del rol debe tener al menos 2 caracteres.",
+    year: "El año del rol debe tener al menos 4 dígitos.",
   },
 
   userRoleMiddleware: {

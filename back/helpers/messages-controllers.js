@@ -1,4 +1,4 @@
-const messages = {
+export const messages = {
   user: {
     success: {
       index: "Usuarios obtenidos correctamente.",
@@ -43,6 +43,42 @@ const messages = {
       delete: "Error al eliminar el rol de usuario.",
     },
   },
+
+  category: {
+    success: {
+      index: "Categorías obtenidas correctamente.",
+      show: "Categoría obtenida correctamente.",
+      create: "Categoría creada correctamente.",
+      update: "Categoría actualizada correctamente.",
+      delete: "Categoría eliminada correctamente.",
+    },
+    error: {
+      index: "Error al obtener las categorías.",
+      show: "Error al obtener la categoría.",
+      notFound: 'No se encontraron categorías disponibles.',
+      create: "Error al crear la categoría.",
+      update: "Error al actualizar la categoría.",
+      delete: "Error al eliminar la categoría.",
+    },
+  },
+
+  subcategory: {
+    success: {
+      index: "Subcategorías obtenidas correctamente.",
+      show: "Subcategoría obtenida correctamente.",
+      create: "Subcategoría creada correctamente.",
+      update: "Subcategoría actualizada correctamente.",
+      delete: "Subcategoría eliminada correctamente.",
+    },
+    error: {
+      index: "Error al obtener las subcategorías.",
+      show: "Error al obtener la subcategoría.",
+      notFound: 'No se encontraron subcategorías disponibles.',
+      create: "Error al crear la subcategoría.",
+      update: "Error al actualizar la subcategoría.",
+      delete: "Error al eliminar la subcategoría.",
+    },
+  }
 };
 
 export default messages;

@@ -19,18 +19,15 @@ Roles.belongsToMany(Users, {
 // Relación: Una categoría tiene una o muchas subcategorías
 Category.hasMany(Subcategory, {
   as: 'subcategories',
-  foreignKey: 'id_category',
-  onDelete:'CASCADE'
+  foreignKey: 'id_category'
+
 });
 
 // Relación: Una subcategoría pertenece a una categoría
 Subcategory.belongsTo(Category, {
   as: 'category',
-  foreignKey: 'id_category',
-   onDelete:'CASCADE'
+  foreignKey: 'id_category'
 })
 
 export { Users, Roles, UsersRoles, Category, Subcategory };
-
-
 

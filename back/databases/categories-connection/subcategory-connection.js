@@ -1,14 +1,71 @@
 
 
-import mysql from 'mysql2';
-import { Category, Subcategory } from '../../models/associations.js'
-import { Sequelize, QueryTypes, Op } from 'sequelize';
 
+// Gema Rubio y Daniel Cruz
+import { Op } from 'sequelize';
+import { Category, Subcategory } from '../../models/associations.js';
 
-export class SubcategoryConnection{
-   
+export class SubcategoryConnection {
+    
+    getSubcategories = async () => {
+        let resultado = [];
+        resultado = await Subcategory.findAll();
 
-    insertSubcategory = async(subcategory) => {
+        if (!resultado) {
+            throw error;
+        }
+        return resultado;
+    }
+
+    getSubcategoryById = async (id) => {
+        let resultado = [];
+        resultado = await Subcategory.findByPk(id);
+
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
+    getSubcategoryByName = async (name) => {
+        let resultado = [];
+        resultado = await Subcategory.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
+    getSubcategoriesFromCategory = async (categoryId) => {
+        let resultado = [];
+        resultado = await Subcategory.findAll({
+            where: {
+                id_category: {
+                    [Op.eq]: categoryId
+                }
+            },
+            include: [
+                {
+                    model: Category,
+                    as: 'category',
+                    attributes: ['id', 'name']
+                }
+            ]
+        })
+
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+     insertSubcategory = async(subcategory) => {
        const newSubcategory=new Subcategory()
        newSubcategory.name=subcategory.name
        newSubcategory.id_category=subcategory.id_category
@@ -24,7 +81,7 @@ export class SubcategoryConnection{
                }
                return result;
     }
-   //Preguntar a Fernando si hacer softdelete o tambien incluir el borrado total
+
 
     deleteSubcategory= async (id)=>{
         let result = [];
@@ -56,4 +113,5 @@ export class SubcategoryConnection{
     }
 }
 
-export default SubcategoryConnection
+export default SubcategoryConnection;
+

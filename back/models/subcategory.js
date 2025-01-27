@@ -1,7 +1,9 @@
 'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
 import {db as conexion}   from '../databases/connection.js'
+
 export class Subcategory extends Model{
+
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
