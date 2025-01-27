@@ -1,3 +1,4 @@
+// Gema Rubio y Daniel Cruz
 import { Router } from 'express';
 import {categoryController} from '../controllers/category-controller.js'
 import { check } from 'express-validator';

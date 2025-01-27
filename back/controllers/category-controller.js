@@ -1,9 +1,9 @@
 // Gema Rubio y Daniel Cruz
 import { response, request } from 'express';
-import { CategoryConnection as Connection } from '../databases/categories-connection/category-connection.js'
+import { CategoryConnection } from '../databases/categories-connection/category-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
 
-const connection = new Connection();
+const connection = new CategoryConnection();
 
 export const categoryController = {
 

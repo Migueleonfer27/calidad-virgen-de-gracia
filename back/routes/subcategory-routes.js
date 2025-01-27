@@ -1,3 +1,4 @@
+// Gema Rubio y Daniel Cruz
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { validarCampos } from '../middlewares/validar-campos.js';
