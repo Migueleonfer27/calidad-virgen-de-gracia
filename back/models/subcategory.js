@@ -1,7 +1,9 @@
 'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
 import {db as conexion}   from '../databases/connection.js'
-class Subcategory extends Model{
+
+export class Subcategory extends Model{
+
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -23,7 +25,9 @@ Subcategory.init({
     references: {
       model: 'Category',
       key: 'id'
-    }
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
   }
 }, {
    sequelize:conexion,
@@ -32,6 +36,6 @@ Subcategory.init({
   deletedAt: 'deletedAt',
   timestamps: true, 
 });
-// return Subcategory;
+
 
 export default Subcategory;

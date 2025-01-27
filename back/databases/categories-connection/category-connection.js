@@ -1,6 +1,7 @@
 // Gema Rubio y Daniel Cruz
+import { Category,Subcategory} from '../../models/associations.js';
 import { Op } from 'sequelize';
-import { Category } from '../../models/associations.js';
+
 
 
 export class CategoryConnection{
@@ -42,6 +43,7 @@ export class CategoryConnection{
         return resultado;
     }
 
+
     insertCategory = async(category) => {
        const newCategory=new Category()
        newCategory.name=category.name
@@ -57,20 +59,21 @@ export class CategoryConnection{
                }
                return result;
     }
-   //Preguntar a Fernando si hacer softdelete o tambien incluir el borrado total
+
 
     deleteCategory= async (id)=>{
-        let result = [];
-        
-            result = await Category.findByPk(id)
-         
-            if(result==null){
-                throw error
-            }
-            result=result.destroy()
+
+           
+            const category=await Category.findByPk(id)
+            
+            const subCategory=await Subcategory.destroy({
+                where: {id_category:{[Op.eq]:id}}
+            })
+            category.destroy()
 
        
-        return result;
+        return {category,subCategory};
+   
     
     }
 
@@ -87,6 +90,22 @@ export class CategoryConnection{
        
     return result;
     }
+
+
+    categoryExist= async (id)=>{
+      
+        let result = [];
+        
+        result = await Category.findByPk(id)
+      
+        if(result==null){
+            throw error
+        }
+       
+       
+    return result;
+    }
 }
 
-export default CategoryConnection;
+export default CategoryConnection
+

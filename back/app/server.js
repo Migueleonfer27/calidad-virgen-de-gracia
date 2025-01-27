@@ -7,6 +7,7 @@ import { router as usersRolesRoutes } from "../routes/user-role-routes.js";
 import { router as categoryRoutes } from '../routes/category-routes.js'
 import { router as subcategoryRoutes } from "../routes/subcategory-routes.js";
 
+
 class Server {
   constructor() {
     this.app = express();
@@ -35,6 +36,7 @@ class Server {
     this.app.use(this.usersRolesPath, usersRolesRoutes);
     this.app.use(this.categoriesPath, categoryRoutes);
     this.app.use(this.subcategoriesPath, subcategoryRoutes);
+
   }
 
   listen() {
