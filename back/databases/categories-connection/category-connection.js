@@ -1,12 +1,46 @@
+// Gema Rubio y Daniel Cruz
+import { Op } from 'sequelize';
+import { Category } from '../../models/associations.js';
 
 
-import mysql from 'mysql2';
-import {Category} from '../../models/category.js'
-import { Sequelize, QueryTypes, Op } from 'sequelize';
-
-
-export class CategoryConnect{
+export class CategoryConnection{
    
+    getCategories = async () => {
+        let resultado = [];
+        resultado = await Category.findAll();
+
+        if (!resultado) {
+            throw error;
+        }
+        return resultado;
+    }
+
+    getCategoryById = async (id) => {
+        let resultado = [];
+        resultado = await Category.findByPk(id);
+
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
+    
+    getCategoryByName = async (name) => {
+        let resultado = [];
+        resultado = await Category.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
 
     insertCategory = async(category) => {
        const newCategory=new Category()
@@ -55,4 +89,4 @@ export class CategoryConnect{
     }
 }
 
-export default CategoryConnect
+export default CategoryConnection;
