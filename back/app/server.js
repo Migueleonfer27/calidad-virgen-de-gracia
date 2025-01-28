@@ -6,6 +6,7 @@ import { router as roleRoutes } from "../routes/role-routes.js";
 import { router as usersRolesRoutes } from "../routes/user-role-routes.js";
 import { router as categoryRoutes } from '../routes/category-routes.js'
 import { router as subcategoryRoutes } from "../routes/subcategory-routes.js";
+import { router as authRoutes } from "../routes/auth-routes.js";
 
 
 class Server {
@@ -16,6 +17,7 @@ class Server {
     this.usersRolesPath = '/api/users/roles';
     this.categoriesPath= '/api/categories';
     this.subcategoriesPath= '/api/subcategories'; 
+    this.authPath = '/api/auth';
     this.middlewares();
     this.routes();
   }
@@ -36,6 +38,7 @@ class Server {
     this.app.use(this.usersRolesPath, usersRolesRoutes);
     this.app.use(this.categoriesPath, categoryRoutes);
     this.app.use(this.subcategoriesPath, subcategoryRoutes);
+    this.app.use(this.authPath, authRoutes);
 
   }
 
