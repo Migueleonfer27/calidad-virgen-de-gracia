@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import {blacklistedTokens} from '../controllers/auth-controller.js'
 
 const validateJWT = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1]

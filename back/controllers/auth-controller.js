@@ -3,9 +3,8 @@ import { response, request } from "express"
 import bcrypt from 'bcrypt'
 import { AuthConnection } from "../databases/auth-connection/auth-connection.js"
 import { generateJWT_roles } from "../helpers/generate-jwt.js"
-import jwt from 'jsonwebtoken'
 
-export const authConnection = new AuthConnection()
+export const connection = new AuthConnection()
 
 let blacklistedTokens = []
 
@@ -15,18 +14,21 @@ const AuthController = {
     },
     login: async (req = request, res = response) => {
         const { email, password } = req.body
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email y contraseña son requeridos' })
+        }
         try {
-            const user = await authConnection.getUserRegistered(email, password)
+            const user = await connection.getUserRegistered(email, password)
             if (!user) {
                 return res.status(400).json({ message: 'Email incorrecto' })
             }
 
             const validPassword = await bcrypt.compare(password, user.password)
             if (!validPassword) {
-                return res.status(400).json({ message: 'Contraseña incorrecto' })
+                return res.status(400).json({ message: 'Contraseña incorrecta' })
             }
 
-            const roles = await authConnection.getUserRoles(user.id)
+            const roles = await connection.getUserRoles(user.id)
             const token = await generateJWT_roles(user.id, roles)
             return res.status(200).json({ message: 'Login exitoso', user, token })
         } catch (error) {
@@ -34,14 +36,20 @@ const AuthController = {
         }
     },
     logout: async (req = request, res = response) => {
-        const user = req.params.id
         try {
-            AuthController.revokeUserTokens(user)
-            return res.status(200).json({ message: 'Logout exitoso' })
+            const token = req.headers.authorization?.split(' ')[1]; 
+            if (!token) {
+                return res.status(400).json({ message: 'Token no proporcionado' });
+            }
+            AuthController.revokeUserTokens(token);
+            return res.status(200).json({ message: 'Logout exitoso' });
         } catch (error) {
-            return res.status(500).json({ message: error.message })
+            return res.status(500).json({ message: error.message });
         }
-    }
+    },
+    recoverPassword: async (req = request, res = response) => {
+        
+    },
 }
 
-export { AuthController }
+export { blacklistedTokens, AuthController }
