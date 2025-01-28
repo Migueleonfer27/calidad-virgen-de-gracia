@@ -1,0 +1,25 @@
+h1 {
+  text-transform: uppercase;
+  filter: drop-shadow(5px 5px 3px black);
+  font-family: 'Merriweather', serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 1px;
+}
+
+img {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(5px 5px 3px black);
+}
+
+.header {
+  background: linear-gradient(to top left, #689CE8, #030e23);
+  border-bottom: 5px solid #943232;
+}
+
+.logo-section:hover {
+  cursor: pointer;
+}
+
+

@@ -1,0 +1,28 @@
+<header class="header container-fluid d-flex justify-content-between align-items-center py-4 px-5 shadow">
+
+  <div class="logo-section d-flex align-items-center" routerLink="/">
+    <img src="/img/001-logo-cifpvdg.png" alt="Logo-CIFP-VirgenDeGracia" title="CIFP Virgen de Gracia">
+    <h1 class="mx-4 text-light">Departamento de Calidad</h1>
+  </div>
+
+  <div class="login-section">
+    <button mat-fab extended *ngIf="!isUserLoggedIn()" routerLink="/login">
+      <mat-icon>login</mat-icon>
+      Iniciar sesión
+    </button>
+
+    <div *ngIf="isUserLoggedIn()">
+      <button mat-raised-button [matMenuTriggerFor]="userMenu">
+        Mi cuenta
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item routerLink="/profile">
+          Ver perfil
+        </button>
+        <button mat-menu-item (click)="logout()">
+          Cerrar sesión
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</header>
