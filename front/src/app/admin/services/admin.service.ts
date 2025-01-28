@@ -17,19 +17,19 @@ export class AdminService {
     return this.http.get<ApiResponse>(this.urlUsers);
   }
 
-  getUser(id: number): Observable<UserList[]> {
-    return this.http.get<UserList[]>(`${this.urlUsers}/${id}`);
+  getUser(id: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${this.urlUsers}/${id}`);
   }
 
-  postUser(user: User): Observable<UserList[]> {
-    return this.http.post<UserList[]>(this.urlUsers, user);
+  postUser(user: User): Observable<User> {
+    return this.http.post<User>(this.urlUsers, user);
   }
 
-  updateUser(user: User): Observable<ApiResponse> {
-    return this.http.put<ApiResponse>(`${this.urlUsers}/${user.id}`, user);
+  updateUser(id: number, user: User): Observable<User> {
+    return this.http.put<User>(`${this.urlUsers}/${user.id}`, user);
   }
 
-  deleteUser(id: number): Observable<ApiResponse> {
-    return this.http.delete<ApiResponse>(`${this.urlUsers}/${id}`);
+  deleteUser(id: number): Observable<UserList> {
+    return this.http.delete<UserList>(`${this.urlUsers}/${id}`);
   }
 }

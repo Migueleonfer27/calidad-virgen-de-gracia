@@ -54,5 +54,5 @@ export interface ApiResponseDelete {
 
 export interface ApiResponseUpdate {
   message: string;
-  data: number;
+  data: User;
 }
