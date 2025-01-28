@@ -1,0 +1,34 @@
+.footer {
+  background-color: #030e23;
+}
+
+.footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+i {
+  color: #000;
+  transition: color 0.3s;
+}
+
+a.x:hover i {
+  color: #757575;
+}
+
+a.facebook:hover i {
+  color: #3470d8;
+}
+
+a.youtube:hover i {
+  color: #ff0000;
+}
+
+a.instagram:hover i {
+  color: #f501a4;
+}
+
+a.feed:hover i {
+  color: #f59c01;
+}
+

@@ -8,7 +8,11 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
-    path: 'login',
+    path: 'iniciar-sesion',
+    component: HomePageComponent
+  },
+  {
+    path: 'encuesta',
     component: HomePageComponent
   }
 ];
