@@ -4,3 +4,24 @@
   <app-categories-table></app-categories-table>
 </div>
 
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center bg-secondary p-2 rounded-3">
+      <h1 class="text-white">Usuarios</h1>
+      <div class="d-flex gap-2">
+        <button mat-raised-button color="primary">
+          <mat-icon>add</mat-icon>
+          Crear usuario
+      </button>
+      <button mat-raised-button color="primary">
+        <mat-icon>file_download</mat-icon>
+        Importar usuarios
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mt-3">
+      <app-user-list></app-user-list>
+    </div>
+  </div>
+</div>

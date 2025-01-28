@@ -1,0 +1,53 @@
+<mat-form-field appearance="outline" class="w-100">
+  <mat-label>Buscador</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+  <mat-icon matSuffix class="text-primary">search</mat-icon>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center"> # </th>
+      <td mat-cell *matCellDef="let row"> {{ row.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Genero </th>
+      <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roles">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.Roles[0].position }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Acciones </th>
+      <td mat-cell *matCellDef="let row" class="text-center">
+        <button (click)="editUser(row.id)" mat-icon-button matSuffix>
+          <mat-icon class="text-primary">edit</mat-icon>
+        </button>
+        <button (click)="deleteUser(row.id)" mat-icon-button matSuffix>
+          <mat-icon class="text-danger">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
