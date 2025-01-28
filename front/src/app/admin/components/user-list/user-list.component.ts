@@ -6,6 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApiResponse, UserList } from '../../interfaces/user.interfaces';
 import { AdminService } from '../../services/admin.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 
 @Component({
   selector: 'app-user-list',
@@ -22,7 +25,7 @@ export class UserListComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['id', 'first_name', 'gender', 'roles', 'actions'];
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, public dialog: MatDialog) {
     this.adminService.getUsers().subscribe(
       (response) => {
         if (response.data) {
@@ -46,18 +49,40 @@ export class UserListComponent implements AfterViewInit {
   }
 
   editUser(id: number) {
+    console.log('ID del usuario:', id);
 
+    const dialogRef = this.dialog.open(EditUserDialogComponent, {
+      width: '500px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: { id, message: '¿Estás seguro de que deseas editar este usuario?' }
+    });
+
+    dialogRef.afterClosed().subscribe((user) => {
+      if (user) {
+        console.log('Datos del usuario:', user);
+        this.adminService.updateUser(id, user).subscribe(() => {
+          this.dataSource.data = this.dataSource.data.map(u => u.id === id ? { ...u, ...user } : u);
+        });
+      }
+    });
   }
 
   deleteUser(id: number) {
-    this.adminService.deleteUser(id).subscribe(
-      (response) => {
-        if (response.data) {
-          this.dataSource.data = this.dataSource.data.filter(user => user.id !== id);
-        } else {
-          console.log(response);
-        }
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: { message: '¿Estás seguro de que deseas eliminar este usuario?' }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        this.adminService.deleteUser(id).subscribe(() => {
+            this.dataSource.data = this.dataSource.data.filter(user => user.id !== id);
+          }
+        );
       }
-    );
+    });
   }
 }

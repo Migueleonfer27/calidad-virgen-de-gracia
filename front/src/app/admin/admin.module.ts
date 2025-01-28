@@ -13,6 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     AdminRoutingModule,
     HttpClientModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   exports: [
     AdminPageComponent
