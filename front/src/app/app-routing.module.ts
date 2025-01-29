@@ -12,6 +12,10 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
+    path: 'perfil',
+    component: HomePageComponent
+  },
+  {
     path: 'encuesta',
     component: HomePageComponent
   }

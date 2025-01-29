@@ -1,25 +1,39 @@
-h1 {
+.title-text {
   text-transform: uppercase;
   filter: drop-shadow(5px 5px 3px black);
   font-family: 'Merriweather', serif;
   font-weight: 500;
+  font-size: 2rem;
   font-style: normal;
   letter-spacing: 1px;
 }
 
-img {
-  width: 7rem;
-  height: auto;
+.logo-img {
+  height: 70px;
+  width: auto;
   filter: drop-shadow(5px 5px 3px black);
 }
 
 .header {
+  width: 100%;
   background: linear-gradient(to top left, #689CE8, #030e23);
-  border-bottom: 5px solid #943232;
+  /* border-bottom: 5px solid #943232; */
 }
 
 .logo-section:hover {
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 40px;
+  }
+  .title-text {
+    font-size: 1rem;
+  }
+  .login-btn {
+    font-size: 0.8rem;
+  }
 }
 
 

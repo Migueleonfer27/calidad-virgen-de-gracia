@@ -10,6 +10,6 @@ app-root {
   min-height: 100vh;
 }
 
-home-page {
+.main {
   flex: 1;
 }
