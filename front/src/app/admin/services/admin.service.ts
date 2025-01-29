@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { UserList, ApiResponse, User } from '../interfaces/user.interfaces';
+import { UserList, ApiResponse, User, Role, ApiResponseRoles } from '../interfaces/user.interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 export class AdminService {
 
   private urlUsers: string = `${environment.apiUrl}/users`;
+  private urlRoles: string = `${environment.apiUrl}/roles`;
+  private urlUserRoles: string = `${environment.apiUrl}/users/roles`;
 
   constructor(private http: HttpClient) { }
 
@@ -26,10 +28,22 @@ export class AdminService {
   }
 
   updateUser(id: number, user: User): Observable<User> {
-    return this.http.put<User>(`${this.urlUsers}/${user.id}`, user);
+    return this.http.put<User>(`${this.urlUsers}/${id}`, user);
   }
 
   deleteUser(id: number): Observable<UserList> {
     return this.http.delete<UserList>(`${this.urlUsers}/${id}`);
+  }
+
+  getRoles(): Observable<ApiResponseRoles> {
+    return this.http.get<ApiResponseRoles>(this.urlRoles);
+  }
+
+  addRole(id: number, role: Role): Observable<Role> {
+    return this.http.post<Role>(`${this.urlUserRoles}`, role);
+  }
+
+  removeAssignedRole(user_id: number, role_id: number): Observable<Role> {
+    return this.http.delete<Role>(`${this.urlUserRoles}/${user_id}/${role_id}`);
   }
 }

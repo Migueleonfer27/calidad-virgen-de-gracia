@@ -85,4 +85,21 @@ export class UserListComponent implements AfterViewInit {
       }
     });
   }
+
+  removeAssignedRole(user_id: number, role_id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: { message: '¿Estás seguro de que deseas desasignar este rol?' }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        this.adminService.removeAssignedRole(user_id, role_id).subscribe(() => {
+          this.dataSource.data = this.dataSource.data.filter(user => user.id !== user_id);
+        });
+      }
+    });
+  }
 }
