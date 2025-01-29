@@ -39,8 +39,8 @@ export class AdminService {
     return this.http.get<ApiResponseRoles>(this.urlRoles);
   }
 
-  addRole(id: number, role: Role): Observable<Role> {
-    return this.http.post<Role>(`${this.urlUserRoles}`, role);
+  addRole(user_id: number, role_id: number): Observable<Role> {
+    return this.http.post<Role>(`${this.urlUserRoles}`, { user_id, role_id });
   }
 
   removeAssignedRole(user_id: number, role_id: number): Observable<Role> {

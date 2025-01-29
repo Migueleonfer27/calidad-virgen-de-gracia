@@ -4,7 +4,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ApiResponse, UserList } from '../../interfaces/user.interfaces';
+import { ApiResponse, Role, UserList } from '../../interfaces/user.interfaces';
 import { AdminService } from '../../services/admin.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,7 +23,7 @@ export class UserListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['id', 'first_name', 'gender', 'roles', 'actions'];
+  displayedColumns: string[] = ['#', 'dni', 'first_name', 'gender', 'corporate_email', 'roles', 'actions'];
 
   constructor(private adminService: AdminService, public dialog: MatDialog) {
     this.adminService.getUsers().subscribe(
@@ -49,8 +49,6 @@ export class UserListComponent implements AfterViewInit {
   }
 
   editUser(id: number) {
-    console.log('ID del usuario:', id);
-
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
       width: '500px',
       enterAnimationDuration: '300ms',
@@ -60,10 +58,11 @@ export class UserListComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((user) => {
       if (user) {
-        console.log('Datos del usuario:', user);
         this.adminService.updateUser(id, user).subscribe(() => {
           this.dataSource.data = this.dataSource.data.map(u => u.id === id ? { ...u, ...user } : u);
         });
+
+        if (user.roles) this.addRole(id, user.roles);
       }
     });
   }
@@ -79,10 +78,24 @@ export class UserListComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
         this.adminService.deleteUser(id).subscribe(() => {
-            this.dataSource.data = this.dataSource.data.filter(user => user.id !== id);
-          }
-        );
+          this.dataSource.data = this.dataSource.data.filter(user => user.id !== id);
+        });
       }
+    });
+  }
+
+  addRole(user_id: number, role_id: number) {
+    this.adminService.addRole(user_id, role_id).subscribe((newRole: Role) => {
+      this.adminService.getRoles().subscribe((rolesResponse) => {
+        const roleObj = rolesResponse.data.find((r: Role) => r.id === role_id);
+
+        if (roleObj) {
+          this.dataSource.data = this.dataSource.data.map(user => {
+            if (user.id === user_id) return { ...user, Roles: [...user.Roles, roleObj] };
+            return user;
+          });
+        }
+      });
     });
   }
 
@@ -97,9 +110,13 @@ export class UserListComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
         this.adminService.removeAssignedRole(user_id, role_id).subscribe(() => {
-          this.dataSource.data = this.dataSource.data.filter(user => user.id !== user_id);
+          this.dataSource.data = this.dataSource.data.map(user => {
+          if (user.id === user_id) return { ...user, Roles: user.Roles.filter(role => role.id !== role_id) };
+            return user;
+          });
         });
       }
     });
   }
 }
+
