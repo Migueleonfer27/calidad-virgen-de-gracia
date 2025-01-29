@@ -46,14 +46,14 @@ export class EditUserDialogComponent {
       corporate_email: [''],
       password: ['', Validators.required],
       phone: [''],
-      profile_picture: ['']
+      profile_picture: [''],
+      roles: [[]]
     });
   }
 
   ngOnInit(): void {
     this.adminService.getUser(this.data.id).subscribe((user) => {
       this.user = user;
-      console.log(this.user.data);
       this.userForm.patchValue(this.user.data);
     });
     this.adminService.getRoles().subscribe((roles) => {
