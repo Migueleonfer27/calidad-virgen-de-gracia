@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdminService } from '../../services/admin.service';
-import { ApiResponse } from '../../interfaces/user.interfaces';
+import { ApiResponse, Role } from '../../interfaces/user.interfaces';
 
 @Component({
   selector: 'app-edit-user-dialog',
@@ -14,6 +14,7 @@ import { ApiResponse } from '../../interfaces/user.interfaces';
 export class EditUserDialogComponent {
   userForm: FormGroup;
   user: ApiResponse = {} as ApiResponse;
+  roles: Role[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +23,7 @@ export class EditUserDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.userForm = this.fb.group({
-      code: ['', Validators.required],
+      code: ['', Validators.required,],
       last_name: ['', Validators.required],
       first_name: ['', Validators.required],
       nrp: [''],
@@ -54,6 +55,9 @@ export class EditUserDialogComponent {
       this.user = user;
       console.log(this.user.data);
       this.userForm.patchValue(this.user.data);
+    });
+    this.adminService.getRoles().subscribe((roles) => {
+      this.roles = roles.data;
     });
   }
 

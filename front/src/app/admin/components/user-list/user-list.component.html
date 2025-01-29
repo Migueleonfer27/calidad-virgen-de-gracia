@@ -25,7 +25,12 @@
     <ng-container matColumnDef="roles">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles </th>
       <td mat-cell *matCellDef="let row">
-        {{ row.Roles[0].position }}
+        <div class="d-flex align-items-center">
+          {{ row.Roles[0].position }}
+          <button mat-icon-button matSuffix>
+            <mat-icon class="text-danger" (click)="removeAssignedRole(row.id, row.Roles[0].id)">remove</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 

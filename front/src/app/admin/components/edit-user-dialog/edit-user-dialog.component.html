@@ -55,7 +55,7 @@
       <mat-label>Género</mat-label>
       <mat-select formControlName="gender">
         <mat-option value="M">Masculino</mat-option>
-        <mat-option value="F">Femenino</mat-option>
+        <mat-option value="H">Femenino</mat-option>
         <mat-option value="O">Otro</mat-option>
       </mat-select>
       <mat-error *ngIf="userForm.get('gender')?.hasError('required')">
@@ -137,9 +137,16 @@
       <mat-label>Fecha de salida</mat-label>
       <input type="date" matInput formControlName="leave_date">
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Roles</mat-label>
+      <mat-select formControlName="roles">
+        <mat-option *ngFor="let role of roles" [value]="role.id">{{ role.position }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-dialog-content>
 </form>
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancelar</button>
-  <button mat-button color="primary" class="text-primary" (click)="save()">Editar</button>
+  <button mat-button color="primary" class="text-primary" (click)="save()" [disabled]="userForm.invalid" [ngClass]="{'text-danger': userForm.invalid}">Editar</button>
 </div>

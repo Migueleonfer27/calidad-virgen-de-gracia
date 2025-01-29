@@ -56,3 +56,8 @@ export interface ApiResponseUpdate {
   message: string;
   data: User;
 }
+
+export interface ApiResponseRoles {
+  message: string;
+  data: Role[];
+}
