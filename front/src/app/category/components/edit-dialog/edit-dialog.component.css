@@ -1,0 +1,42 @@
+.dialog-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text-center {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.action-button {
+  flex: 1; /* Los botones se redimensionarán en pantallas pequeñas */
+  max-width: 150px; /* Tamaño máximo para mantener el diseño en pantallas grandes */
+}
+
+@media screen and (max-width: 600px) {
+  .dialog-container {
+    padding: 12px;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center; /* Centra los botones */
+    gap: 12px; 
+  }
+
+  .action-button {
+    max-width: none; /* Permitir que los botones ocupen todo el ancho */
+  }
+}
