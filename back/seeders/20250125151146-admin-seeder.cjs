@@ -22,7 +22,7 @@ module.exports = {
         password: await bcrypt.hash("12345", 10),
         phone: "123456789",
         birth_date: new Date("1980-01-01"),
-        gender: "Other",
+        gender: "O",
         title: "Admin",
         address: "123 Admin Street",
         city: "Admin City",

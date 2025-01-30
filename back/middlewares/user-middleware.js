@@ -78,9 +78,9 @@ const birthDateMiddleware = (req, res, next) => {
 
 const genderMiddleware = (req, res, next) => {
   if (
-    req.body.gender !== "Male" &&
-    req.body.gender !== "Female" &&
-    req.body.gender !== "Other"
+    req.body.gender !== "H" &&
+    req.body.gender !== "M" &&
+    req.body.gender !== "O"
   ) {
     return res.status(400).json({
       message: messages.userMiddleware.gender,

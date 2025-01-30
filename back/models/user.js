@@ -89,6 +89,7 @@ User.init(
     leave_date: {
       type: DataTypes.DATE,
       allowNull: true,
+      defaultValue: null,
     },
     email: {
       type: DataTypes.STRING,
