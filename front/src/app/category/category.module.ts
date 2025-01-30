@@ -4,11 +4,13 @@ import {MatCardModule} from '@angular/material/card';
 
 import { CategoryRoutingModule } from './category-routing.module';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
+import { CategoryCardListComponent } from './components/category-card-list/category-card-list.component';
 
 
 @NgModule({
   declarations: [
-    CategoryCardComponent
+    CategoryCardComponent,
+    CategoryCardListComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { CategoryCardComponent } from './components/category-card/category-card.
     MatCardModule
   ],
   exports: [
-    CategoryCardComponent
+    CategoryCardComponent,
+    CategoryCardListComponent
   ]
 })
 export class CategoryModule { }

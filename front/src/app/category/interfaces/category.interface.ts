@@ -4,9 +4,9 @@ export interface Result {
 }
 
 export interface Category {
-  id:        number;
+  id?:        number;
   name:      string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: null;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: null;
 }

@@ -11,5 +11,5 @@ import { Category } from '../../interfaces/category.interface';
 export class CategoryCardComponent {
 
   @Input()
-  public categories: Category[] = [];
+  public category!: Category;
 }

@@ -1,3 +1,9 @@
+.header {
+  width: 100%;
+  background: linear-gradient(to bottom right, #193e7a, #021026);
+  border-bottom: 5px solid #FFE1E1;
+}
+
 .title-text {
   text-transform: uppercase;
   filter: drop-shadow(5px 5px 3px black);
@@ -14,14 +20,13 @@
   filter: drop-shadow(5px 5px 3px black);
 }
 
-.header {
-  width: 100%;
-  background: linear-gradient(to top left, #689CE8, #030e23);
-  /* border-bottom: 5px solid #943232; */
-}
-
 .logo-section:hover {
   cursor: pointer;
+}
+
+.login-btn {
+  color: #12408c !important;
+  border-radius: 15px;
 }
 
 @media (max-width: 768px) {

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, delay, Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Result, Category } from '../interfaces/category.interface';
 import { environment } from '../../../environments/environment.development';
+import { Result } from '../interfaces/category.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,6 @@ export class CategoryService {
 
   getCategories(): Observable<Result> {
     const url = this._categoryUrl+this._categoryPath;
-    return this.http.get<Result>(url);
+    return this.http.get<Result>(url)
   }
 }
