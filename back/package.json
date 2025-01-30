@@ -17,7 +17,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-fileupload": "^1.5.1",
-    "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.12.0",
     "nodemon": "^3.1.9",
@@ -25,10 +24,5 @@
     "sequelize-cli": "^6.6.2",
     "socket.io": "^4.8.1",
     "uuid": "^11.0.5"
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^9.4.0",
-    "uuid": "^11.0.5",
-    "validator": "^13.12.0"
   }
 }

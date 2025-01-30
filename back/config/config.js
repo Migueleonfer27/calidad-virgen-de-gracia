@@ -24,4 +24,4 @@ export default {
     host: process.env.HOST,
     dialect: process.env.DB_DIALECT,
   },
-};
+}
