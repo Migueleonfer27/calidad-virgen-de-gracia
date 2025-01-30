@@ -11,7 +11,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { EditUserDialogComponent } from './components/edit-user-dialog/edit-user-dialog.component';
+import { FormUserDialogComponent } from './components/form-user-dialog/form-user-dialog.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
   declarations: [
     AdminPageComponent,
     UserListComponent,
-    EditUserDialogComponent,
+    FormUserDialogComponent,
     ConfirmDialogComponent,
   ],
   imports: [

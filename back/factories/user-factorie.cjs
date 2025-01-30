@@ -14,7 +14,7 @@ const generateUsers = async (count) => {
       dni: fakerES.string.numeric(8) + fakerES.string.alpha({ length: 1, casing: 'upper' }),
       abbreviation: fakerES.string.alpha({ length: 3, casing: 'upper' }),
       birth_date: fakerES.date.past({ years: 30 }).toISOString().split('T')[0],
-      gender: fakerES.helpers.arrayElement(['Male', 'Female', 'Other']),
+      gender: fakerES.helpers.arrayElement(['H', 'M', 'O']),
       title: fakerES.person.jobTitle(),
       address: fakerES.location.streetAddress(),
       city: fakerES.location.city(),
