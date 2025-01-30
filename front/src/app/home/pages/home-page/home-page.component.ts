@@ -22,7 +22,6 @@ export class HomePageComponent implements OnInit {
   getAllCategories() {
     this.categoryService.getCategories()
       .subscribe( categories => {
-        console.log(categories.data)
         this.categories = categories.data;
       })
   }

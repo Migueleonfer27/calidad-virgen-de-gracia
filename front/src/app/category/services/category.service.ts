@@ -10,10 +10,10 @@ import { Result } from '../interfaces/category.interface';
 })
 export class CategoryService {
 
-  constructor(private http: HttpClient) { }
-
   private _categoryUrl: string = environment.apiUrl;
   private _categoryPath: string = '/categories';
+
+  constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Result> {
     const url = this._categoryUrl+this._categoryPath;

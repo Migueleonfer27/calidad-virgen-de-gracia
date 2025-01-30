@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
+import { CategoryModule } from '../category/category.module';
+import { SubcategoryModule } from '../subcategory/subcategory.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { CategoryDetailsComponent } from './components/category-details/category-details.component';
-import { CategoryModule } from '../category/category.module';
+import { CategoryDetailsComponent } from './pages/category-details/category-details.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { CategoryModule } from '../category/category.module';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    CategoryModule
+    MatButtonModule,
+    MatIconModule,
+    CategoryModule,
+    SubcategoryModule
   ],
   exports: [
     HomePageComponent,
