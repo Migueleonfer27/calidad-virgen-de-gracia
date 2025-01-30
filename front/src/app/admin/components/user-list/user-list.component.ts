@@ -23,7 +23,7 @@ export class UserListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['#', 'dni', 'first_name', 'gender', 'corporate_email', 'roles', 'actions'];
+  displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'gender', 'corporate_email', 'roles', 'actions'];
 
   constructor(private adminService: AdminService, public dialog: MatDialog) {
     this.adminService.getUsers().subscribe(

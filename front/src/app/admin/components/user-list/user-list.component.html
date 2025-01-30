@@ -25,6 +25,13 @@
       <td mat-cell *matCellDef="let row; let index = index">{{ index + 1 }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="photo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Foto </th>
+      <td mat-cell *matCellDef="let row">
+        <img [src]="'img-user.png'" alt="Foto de {{ row.first_name }}" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="dni">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
       <td mat-cell *matCellDef="let row"> {{row.dni}} </td>
