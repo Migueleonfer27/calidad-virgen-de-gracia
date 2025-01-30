@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 dotenv.config();
 
-export let db;
+let db;
 
 if (!db) {
   console.log("Conexión establecida correctamente.");
