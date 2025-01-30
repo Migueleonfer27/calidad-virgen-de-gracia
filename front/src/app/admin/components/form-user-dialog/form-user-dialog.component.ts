@@ -8,17 +8,17 @@ import { ApiResponse, Role } from '../../interfaces/user.interfaces';
   selector: 'app-edit-user-dialog',
   standalone: false,
 
-  templateUrl: './edit-user-dialog.component.html',
-  styleUrl: './edit-user-dialog.component.css'
+  templateUrl: './form-user-dialog.component.html',
+  styleUrl: './form-user-dialog.component.css'
 })
-export class EditUserDialogComponent {
+export class FormUserDialogComponent {
   userForm: FormGroup;
   user: ApiResponse = {} as ApiResponse;
   roles: Role[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<EditUserDialogComponent>,
+    private dialogRef: MatDialogRef<FormUserDialogComponent>,
     private adminService: AdminService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -30,22 +30,22 @@ export class EditUserDialogComponent {
       dni: ['', Validators.required],
       abbreviation: [''],
       birth_date: ['', Validators.required],
-      gender: [''],
+      gender: ['', Validators.required],
       title: [''],
       address: [''],
-      city: [''],
-      postal_code: [''],
-      province: [''],
+      city: ['', Validators.required],
+      postal_code: ['', Validators.required],
+      province: ['', Validators.required],
       phone_rp: [''],
       specialty: [''],
       body: [''],
       department: [''],
-      admission_date: [''],
+      admission_date: ['', Validators.required],
       leave_date: [''],
       email: ['', [Validators.required, Validators.email]],
-      corporate_email: [''],
+      corporate_email: ['', [Validators.required]],
       password: ['', Validators.required],
-      phone: [''],
+      phone: ['', Validators.required],
       profile_picture: [''],
       roles: [[]]
     });
@@ -56,14 +56,17 @@ export class EditUserDialogComponent {
       this.user = user;
       this.userForm.patchValue(this.user.data);
     });
-    this.adminService.getRoles().subscribe((roles) => {
-      this.roles = roles.data;
+    this.adminService.getRoles().subscribe((roleList) => {
+      this.roles = roleList.data;
     });
   }
 
   save() {
     if (this.userForm.valid) {
-      this.dialogRef.close(this.userForm.value);
+      let userData = this.userForm.value;
+      userData.admission_date = userData.admission_date ? new Date(userData.admission_date).toISOString().split('T')[0] : null;
+      userData.leave_date = userData.leave_date ? new Date(userData.leave_date).toISOString().split('T')[0] : null;
+      this.dialogRef.close(userData);
     }
   }
 

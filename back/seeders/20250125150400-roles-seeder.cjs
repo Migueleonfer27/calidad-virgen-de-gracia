@@ -33,28 +33,7 @@ module.exports = {
           {
             code: faker.number.int({ min: 10000, max: 999999 }),
             year: new Date().getFullYear(),
-            position: "JEFE/A DE DEPARTAMENTO",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          },
-          {
-            code: faker.number.int({ min: 10000, max: 999999 }),
-            year: new Date().getFullYear(),
-            position: "JEFE/A DE DEPARTAMENTO",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          },
-          {
-            code: faker.number.int({ min: 10000, max: 999999 }),
-            year: new Date().getFullYear(),
             position: "JEFE/A DE ESTUDIOS ADJUNTO",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          },
-          {
-            code: faker.number.int({ min: 10000, max: 999999 }),
-            year: new Date().getFullYear(),
-            position: "JEFE/A DE DEPARTAMENTO",
             createdAt: new Date(),
             updatedAt: new Date(),
           },

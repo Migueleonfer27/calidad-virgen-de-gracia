@@ -8,7 +8,7 @@ import { ApiResponse, Role, UserList } from '../../interfaces/user.interfaces';
 import { AdminService } from '../../services/admin.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
+import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
 
 @Component({
   selector: 'app-user-list',
@@ -48,12 +48,30 @@ export class UserListComponent implements AfterViewInit {
     if (this.dataSource.paginator) this.dataSource.paginator.firstPage();
   }
 
-  editUser(id: number) {
-    const dialogRef = this.dialog.open(EditUserDialogComponent, {
+  createUser() {
+    const dialogRef = this.dialog.open(FormUserDialogComponent, {
       width: '500px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { id, message: '¿Estás seguro de que deseas editar este usuario?' }
+      data: { id: null, title: 'Crear usuario', button: 'Crear', message: 'Complete el formulario para crear un nuevo usuario.' }
+    });
+
+    dialogRef.afterClosed().subscribe((user) => {
+      if (user) {
+        this.adminService.postUser(user).subscribe((user) => {
+          this.dataSource.data = [...this.dataSource.data, user];
+          this.refreshUsers();
+        });
+      }
+    });
+  }
+
+  editUser(id: number) {
+    const dialogRef = this.dialog.open(FormUserDialogComponent, {
+      width: '500px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: { id, title: 'Editar usuario', button: 'Editar', message: '¿Estás seguro de que deseas editar este usuario?' }
     });
 
     dialogRef.afterClosed().subscribe((user) => {
@@ -116,6 +134,12 @@ export class UserListComponent implements AfterViewInit {
           });
         });
       }
+    });
+  }
+
+  refreshUsers() {
+    this.adminService.getUsers().subscribe((response) => {
+      this.dataSource.data = response.data;
     });
   }
 }

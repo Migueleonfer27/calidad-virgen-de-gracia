@@ -86,6 +86,7 @@ module.exports = {
       leave_date: {
         type: Sequelize.DATE,
         allowNull: true,
+        defaultValue: null,
       },
       email: {
         type: Sequelize.STRING,

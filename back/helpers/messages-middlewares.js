@@ -10,7 +10,7 @@ const messages = {
     phone: "El teléfono debe tener al menos 9 caracteres.",
     birthDate:
       "La fecha de nacimiento debe tener el formato YYYY-MM-DD (ejemplo: 2000-01-01).",
-    gender: "El género debe ser Male, Female o Other.",
+    gender: "El género debe ser H, M o O.",
   },
 
   roleMiddleware: {
