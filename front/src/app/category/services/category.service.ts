@@ -1,17 +1,26 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay, map, Observable, of, tap } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Category, Result, ResultInsert } from '../interfaces/category';
 import { environment } from '../../../environments/environment.development';
+import { Category, Result, ResultInsert } from '../interfaces/category';
+
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesService {
+export class CategoryService {
 
-private _categoriesList:Category[]=[]
- public categoriesUrl: string="/categories"
+  private _categoryUrl: string = environment.apiUrl;
+  private _categoryPath: string = '/categories';
+  public categoriesUrl: string="/categories";
+  private _categoriesList:Category[]=[]
+
   constructor(private http: HttpClient) { }
 
+  getCategories(): Observable<Result> {
+    const url = this._categoryUrl+this._categoryPath;
+    return this.http.get<Result>(url)
+  }
+  
   get categoriesList():Category[] {
     return this._categoriesList
   }

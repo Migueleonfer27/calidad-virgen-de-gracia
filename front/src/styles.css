@@ -1,12 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.snack {
-  background-color: rgb(0, 64, 255) ;
-  color: aliceblue ;
-  font-weight: bold;
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
+.main {
+  flex: 1;
+}
+
 .main-snackbar{
   background-color:red !important;
 }

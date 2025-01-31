@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatCardModule} from '@angular/material/card';
+import { CategoryRoutingModule } from './category-routing.module';
+import { CategoryCardComponent } from './components/category-card/category-card.component';
+import { CategoryCardListComponent } from './components/category-card-list/category-card-list.component';
+import { RouterModule } from '@angular/router';
 import { CategoryRoutingModule } from './category-routing.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule,MatSort } from '@angular/material/sort';
@@ -18,17 +23,20 @@ import { CategoriesComponent } from './components/categoriesTable/categories-tab
 import {MatPaginator} from '@angular/material/paginator';
 
 
+
 @NgModule({
   declarations: [
     CategoriesComponent,
     EditDialogComponent,
-      AddCategoryComponent
-
-
+    AddCategoryComponent
+    CategoryCardComponent,
+    CategoryCardListComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     CategoryRoutingModule,
+    MatCardModule,
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
@@ -41,10 +49,11 @@ import {MatPaginator} from '@angular/material/paginator';
     MatTableModule
   ],
   exports: [
-    MatIcon,
     CategoriesComponent,
     EditDialogComponent,
     AddCategoryComponent
+    CategoryCardComponent,
+    CategoryCardListComponent
   ]
 })
 export class CategoryModule { }
