@@ -26,7 +26,7 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null;
-  Roles: Role [];
+  Roles: Role[];
 }
 
 export interface UserList {
