@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +16,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { CategoryModule } from '../category/category.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
     ConfirmDialogComponent,
   ],
   imports: [
+    CategoryModule,
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -39,8 +41,13 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatSelectModule
   ],
-  exports: [
-    AdminPageComponent
+  exports:[
+    AdminPageComponent,
+    UserListComponent,
+    ConfirmDialogComponent,
+    FormUserDialogComponent,
+
   ]
+
 })
 export class AdminModule { }
