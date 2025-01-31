@@ -1,4 +1,7 @@
-
+.subnav-admin{
+  background-color: #A5B8DB;
+  color:#294270;
+}
 
 table {
   width: 100%;
@@ -27,13 +30,4 @@ td, th {
   background-color:#193e7a;
   color:white;
 }
-.subnav-admin{
-  background-color: #A5B8DB;
-  color:#294270;
-}
-
-
-
-
-
 

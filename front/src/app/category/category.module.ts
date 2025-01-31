@@ -19,16 +19,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { CategoriesComponent } from './components/categoriesTable/categories-table.component';
-
-
-
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     CategoriesComponent,
     EditDialogComponent,
     CategoryCardComponent,
-    CategoryCardListComponent
+    CategoryCardListComponent,
+
   ],
   imports: [
     CommonModule,
@@ -45,6 +44,7 @@ import { CategoriesComponent } from './components/categoriesTable/categories-tab
     MatDialogModule,
     MatSnackBarModule,
     MatTableModule,
+    MatRippleModule
 
   ],
   exports: [

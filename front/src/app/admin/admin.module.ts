@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryModule } from '../category/category.module';
 import { RouterModule } from '@angular/router';
+import { SubcategoryModule } from '../subcategory/subcategory.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MatSelectModule,
     RouterModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+      SubcategoryModule
   ],
   exports:[
     AdminPageComponent,
