@@ -9,6 +9,7 @@ import { AdminService } from '../../services/admin.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-list',
@@ -25,7 +26,7 @@ export class UserListComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'gender', 'corporate_email', 'roles', 'actions'];
 
-  constructor(private adminService: AdminService, public dialog: MatDialog) {
+  constructor(private adminService: AdminService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.adminService.getUsers().subscribe(
       (response) => {
         if (response.data) {
@@ -58,9 +59,15 @@ export class UserListComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((user) => {
       if (user) {
-        this.adminService.postUser(user).subscribe((user) => {
-          this.dataSource.data = [...this.dataSource.data, user];
-          this.refreshUsers();
+        this.adminService.postUser(user).subscribe({
+          next: (user) => {
+            this.dataSource.data = [...this.dataSource.data, user];
+            this.refreshUsers();
+            this.snackBar.open('Usuario creado correctamente', 'Cerrar', { duration: 3000 });
+          },
+          error: (error) => {
+            this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
+          }
         });
       }
     });
@@ -76,8 +83,14 @@ export class UserListComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((user) => {
       if (user) {
-        this.adminService.updateUser(id, user).subscribe(() => {
-          this.dataSource.data = this.dataSource.data.map(u => u.id === id ? { ...u, ...user } : u);
+        this.adminService.updateUser(id, user).subscribe({
+          next: () => {
+            this.dataSource.data = this.dataSource.data.map(u => u.id === id ? { ...u, ...user } : u);
+            this.snackBar.open('Usuario actualizado correctamente', 'Cerrar', { duration: 3000 });
+          },
+          error: (error) => {
+            this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
+          }
         });
 
         if (user.roles) this.addRole(id, user.roles);
@@ -95,17 +108,24 @@ export class UserListComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
-        this.adminService.deleteUser(id).subscribe(() => {
-          this.dataSource.data = this.dataSource.data.filter(user => user.id !== id);
+        this.adminService.deleteUser(id).subscribe({
+          next: () => {
+            this.dataSource.data = this.dataSource.data.filter(user => user.id !== id);
+            this.snackBar.open('Usuario eliminado correctamente', 'Cerrar', { duration: 3000 });
+          },
+          error: (error) => {
+            this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
+          }
         });
       }
     });
   }
 
   addRole(user_id: number, role_id: number) {
-    this.adminService.addRole(user_id, role_id).subscribe((newRole: Role) => {
-      this.adminService.getRoles().subscribe((rolesResponse) => {
-        const roleObj = rolesResponse.data.find((r: Role) => r.id === role_id);
+    this.adminService.addRole(user_id, role_id).subscribe({
+      next: (newRole: Role) => {
+        this.adminService.getRoles().subscribe((rolesResponse) => {
+          const roleObj = rolesResponse.data.find((r: Role) => r.id === role_id);
 
         if (roleObj) {
           this.dataSource.data = this.dataSource.data.map(user => {
@@ -113,7 +133,11 @@ export class UserListComponent implements AfterViewInit {
             return user;
           });
         }
-      });
+        });
+      },
+      error: (error) => {
+        this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
+      }
     });
   }
 
@@ -127,11 +151,17 @@ export class UserListComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe((confirmed) => {
       if (confirmed) {
-        this.adminService.removeAssignedRole(user_id, role_id).subscribe(() => {
-          this.dataSource.data = this.dataSource.data.map(user => {
-          if (user.id === user_id) return { ...user, Roles: user.Roles.filter(role => role.id !== role_id) };
-            return user;
-          });
+        this.adminService.removeAssignedRole(user_id, role_id).subscribe({
+          next: () => {
+            this.dataSource.data = this.dataSource.data.map(user => {
+              if (user.id === user_id) return { ...user, Roles: user.Roles.filter(role => role.id !== role_id) };
+              return user;
+            });
+            this.snackBar.open('Rol desasignado correctamente', 'Cerrar', { duration: 3000 });
+          },
+          error: (error) => {
+            this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
+          }
         });
       }
     });

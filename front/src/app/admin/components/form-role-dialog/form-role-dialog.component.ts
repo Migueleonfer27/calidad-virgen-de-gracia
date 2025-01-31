@@ -9,8 +9,8 @@ import { Role } from '../../interfaces/user.interfaces';
   selector: 'app-form-role',
   standalone: false,
 
-  templateUrl: './form-role.component.html',
-  styleUrl: './form-role.component.css'
+  templateUrl: './form-role-dialog.component.html',
+  styleUrl: './form-role-dialog.component.css'
 })
 export class FormRoleComponent {
   roleForm: FormGroup;

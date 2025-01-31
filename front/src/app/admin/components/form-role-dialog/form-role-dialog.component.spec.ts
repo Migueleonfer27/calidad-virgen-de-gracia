@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormRoleComponent } from './form-role.component';
+import { FormRoleComponent } from './form-role-dialog.component';
 
 describe('FormRoleComponent', () => {
   let component: FormRoleComponent;
