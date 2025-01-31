@@ -47,9 +47,6 @@ const AuthController = {
             return res.status(500).json({ message: error.message });
         }
     },
-    recoverPassword: async (req = request, res = response) => {
-        
-    },
 }
 
 export { blacklistedTokens, AuthController }
