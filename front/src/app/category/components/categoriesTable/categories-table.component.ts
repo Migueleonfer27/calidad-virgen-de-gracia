@@ -72,13 +72,13 @@ export class CategoriesComponent implements AfterViewInit{
         if( result) {
             this.categoriesService.editCategory(category).subscribe((result)=>{
 
-               /*  this.dataSource.data.map(row =>
+                 this.dataSource.data.map(row =>
                   row.id == category.id ?  row=category : row
-                );*/
-                for (let index = 0; index < this.dataSource.data.length; index++) {
+                );
+                /*for (let index = 0; index < this.dataSource.data.length; index++) {
                     this.dataSource.data[index]=category
 
-                }
+                }*/
 
             })
         }
