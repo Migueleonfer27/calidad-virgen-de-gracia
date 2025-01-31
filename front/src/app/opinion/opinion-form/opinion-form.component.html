@@ -1,0 +1,13 @@
+//Javier
+<div>
+  <h2>Valora nuestra página</h2>
+  <form (ngSubmit)="submitForm()">
+    <label for="score">Calificación (1-5):</label>
+    <input type="number" id="score" (ngModel)="score" name="score" required min="1" max="5" />
+
+    <label for="comment">Comentario:</label>
+    <textarea id="comment" (ngModel)="comment" name="comment"></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
+</div>
