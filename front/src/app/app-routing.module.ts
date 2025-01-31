@@ -21,7 +21,7 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
-    path: 'perfil',
+    path: 'admin',
     component: HomePageComponent
   },
   {
