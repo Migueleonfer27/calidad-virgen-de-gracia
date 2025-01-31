@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminPageComponent
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'encuesta',
