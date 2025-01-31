@@ -46,8 +46,8 @@ import { MatSelectModule } from '@angular/material/select';
   exports:[
     AdminPageComponent,
     UserListComponent,
-    EditUserDialogComponent,
     ConfirmDialogComponent,
+    FormUserDialogComponent,
   ]
 
 })
