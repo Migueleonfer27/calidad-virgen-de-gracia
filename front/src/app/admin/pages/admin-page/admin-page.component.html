@@ -1,5 +1,21 @@
 
-<h1>Administrador</h1>
+
+<div class="d-flex nav-admin justify-content-between align-items-center p-3 rounded-3 mb-3">
+  <h1 class="text-white title-text">Administrador</h1>
+  <div class="d-flex gap-2">
+    <button mat-raised-button color="primary" [routerLink]="['/admin', 'usersList']">
+      <mat-icon>person</mat-icon>
+      Gestion Usurios
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/admin', 'categories']">
+      <mat-icon>category</mat-icon>
+      Gestión de Categorías
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+<!--
 <div class="container">
 
   <app-categories-table></app-categories-table>
@@ -13,3 +29,4 @@
     </div>
   </div>
 </div>
+-->
