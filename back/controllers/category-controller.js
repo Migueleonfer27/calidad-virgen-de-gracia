@@ -1,3 +1,5 @@
+
+
 // Gema Rubio y Daniel Cruz
 import { response, request } from 'express';
 import { CategoryConnection } from '../databases/categories-connection/category-connection.js'
@@ -100,7 +102,8 @@ export const categoryController = {
                                 data:data});
         })
         .catch( err => {
-            console.log('sin resultados!');
+            console.log(err);
+
             result=0
             res.status(203).json({cod:result,
                                     error:err  

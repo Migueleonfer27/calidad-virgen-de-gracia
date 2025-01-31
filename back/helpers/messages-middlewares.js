@@ -10,12 +10,14 @@ const messages = {
     phone: "El teléfono debe tener al menos 9 caracteres.",
     birthDate:
       "La fecha de nacimiento debe tener el formato YYYY-MM-DD (ejemplo: 2000-01-01).",
-    gender: "El género debe ser Male, Female o Other.",
+    gender: "El género debe ser H, M o O.",
   },
 
   roleMiddleware: {
     isInt: "El ID es requerido y debe ser un número entero.",
-    name: "El nombre del rol debe tener al menos 2 caracteres.",
+    position: "El nombre del rol debe tener al menos 2 caracteres.",
+    code: "El código del rol debe tener al menos 2 caracteres.",
+    year: "El año del rol debe tener al menos 4 dígitos.",
   },
 
   userRoleMiddleware: {

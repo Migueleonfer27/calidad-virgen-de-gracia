@@ -8,18 +8,33 @@ module.exports = {
     try {
       const { Roles, Users } = await import("../models/associations.js");
       const adminRole = await Roles.findOne({
-        where: { name: "Administrador" },
+        where: { position: "ADMINISTRADOR" },
       });
 
       const adminUser = {
+        code: "A001",
         dni: "12345678A",
         first_name: "Admin",
         last_name: "User",
+        nrp: "NRP001",
+        abbreviation: "ADM",
         email: "admin@example.com",
         password: await bcrypt.hash("12345", 10),
         phone: "123456789",
         birth_date: new Date("1980-01-01"),
-        gender: "Other",
+        gender: "O",
+        title: "Admin",
+        address: "123 Admin Street",
+        city: "Admin City",
+        postal_code: "12345",
+        province: "Admin Province",
+        phone_rp: "987654321",
+        specialty: "Admin Specialty",
+        body: "Admin Body",
+        department: "Admin Department",
+        admission_date: new Date("2000-01-01"),
+        leave_date: null,
+        corporate_email: "admin.corporate@example.com",
         profile_picture: null,
         createdAt: new Date(),
         updatedAt: new Date(),

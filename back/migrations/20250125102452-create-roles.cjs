@@ -9,10 +9,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      code: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
+      },
+      year: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      position: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

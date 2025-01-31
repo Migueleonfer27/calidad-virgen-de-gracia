@@ -9,6 +9,7 @@ import { router as subcategoryRoutes } from "../routes/subcategory-routes.js";
 import { router as authRoutes } from "../routes/auth-routes.js";
 import { router as mailRoutes } from "../routes/mail-routes.js";
 
+
 class Server {
   constructor() {
     this.app = express();

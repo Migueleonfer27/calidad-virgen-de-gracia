@@ -20,6 +20,7 @@ Roles.belongsToMany(Users, {
 Category.hasMany(Subcategory, {
   as: 'subcategories',
   foreignKey: 'id_category'
+
 });
 
 // Relación: Una subcategoría pertenece a una categoría
@@ -29,3 +30,4 @@ Subcategory.belongsTo(Category, {
 })
 
 export { Users, Roles, UsersRoles, Category, Subcategory };
+

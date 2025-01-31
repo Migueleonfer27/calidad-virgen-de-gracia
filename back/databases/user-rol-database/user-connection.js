@@ -10,7 +10,7 @@ class UserConnection {
                     through: {
                         attributes: []
                     },
-                    attributes: ['name']
+                    attributes: ['id', 'position']
                 }]
             });
         } catch (error) {
@@ -26,7 +26,7 @@ class UserConnection {
                     through: {
                         attributes: []
                     },
-                    attributes: ['name']
+                    attributes: ['id', 'position']
                 }]
             });
         } catch (error) {
