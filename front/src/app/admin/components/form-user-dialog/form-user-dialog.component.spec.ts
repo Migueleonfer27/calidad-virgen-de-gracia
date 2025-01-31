@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminPageComponent } from './admin-page.component';
+import { FormUserDialogComponent } from './form-user-dialog.component';
 
-describe('AdminPageComponent', () => {
-  let component: AdminPageComponent;
-  let fixture: ComponentFixture<AdminPageComponent>;
+describe('FormUserDialogComponent', () => {
+  let component: FormUserDialogComponent;
+  let fixture: ComponentFixture<FormUserDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminPageComponent]
+      declarations: [FormUserDialogComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdminPageComponent);
+    fixture = TestBed.createComponent(FormUserDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

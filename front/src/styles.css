@@ -13,3 +13,7 @@ app-root {
 .main {
   flex: 1;
 }
+
+.main-snackbar{
+  background-color:red !important;
+}
