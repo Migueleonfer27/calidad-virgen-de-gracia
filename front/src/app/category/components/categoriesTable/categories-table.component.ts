@@ -3,7 +3,7 @@ import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import { CategoriesService } from '../../services/category.service';
+import { CategoryService } from '../../services/category.service';
 import { Category, ResultInsert } from '../../interfaces/category';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogActions } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
@@ -30,7 +30,7 @@ export class CategoriesComponent implements AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private categoriesService: CategoriesService,private dialog: MatDialog, private snackBar:MatSnackBar) {
+  constructor(private categoriesService: CategoryService, private dialog: MatDialog, private snackBar:MatSnackBar) {
 
   }
 

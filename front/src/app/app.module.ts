@@ -17,7 +17,7 @@ import { provideHttpClient } from '@angular/common/http';
     AppRoutingModule,
     SharedModule,
     HomeModule,
-    AdminModule
+   // AdminModule
   ],
   providers: [
     provideAnimationsAsync(),
