@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryModule } from '../category/category.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { CategoryModule } from '../category/category.module';
     MatButtonModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    RouterModule,
+    AdminRoutingModule
   ],
   exports:[
     AdminPageComponent,

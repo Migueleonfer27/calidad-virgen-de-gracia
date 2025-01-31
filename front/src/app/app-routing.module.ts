@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home/pages/home-page/home-page.component';
 import { CategoryDetailsComponent } from './home/pages/category-details/category-details.component';
+import { AdminPageComponent } from './admin/pages/admin-page/admin-page.component';
+import { CategoriesComponent } from './category/components/categoriesTable/categories-table.component';
+import { UserListComponent } from './admin/components/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -22,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: HomePageComponent
+    component: AdminPageComponent
   },
   {
     path: 'encuesta',
@@ -31,7 +34,8 @@ const routes: Routes = [
   {
     path: '**',
     component: HomePageComponent
-  }
+  },
+
 ];
 
 @NgModule({
