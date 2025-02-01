@@ -1,0 +1,32 @@
+.subnav-admin{
+  background-color: #A5B8DB;
+  color:#294270;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 30%;
+}
+
+td, th {
+  width: 10%;
+}
+.main-snackbar{
+  background-color:red !important;
+}
+
+.addCategoryBtn{
+  display:flex;
+  align-items:center;
+  white-space:nowrap;
+
+}
+.color-primary{
+  background-color:#193e7a;
+  color:white;
+}
+

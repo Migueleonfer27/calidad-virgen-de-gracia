@@ -1,0 +1,11 @@
+<h2>Categorías</h2>
+<hr>
+<ul class="list-group">
+  <li
+  *ngFor="let category of categories"
+  [routerLink]="['/category', category.id]"
+  routerLinkActive="active"
+  class="list-group-item">
+    {{ category.name }}
+  </li>
+</ul>

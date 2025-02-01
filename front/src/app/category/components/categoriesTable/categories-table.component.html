@@ -1,0 +1,58 @@
+<div class="container d-flex flex-column justify-content-center p-0">
+  <div
+    class=" mb-3 subnav-admin w-100  container d-flex justify-content-between align-items-center text-align-center  p-3 rounded-3 mb-3">
+    <h1>Categorías</h1>
+    <button class="p-3 addCategoryBtn" mat-raised-button matSuffix aria-label="Añadir Categoría" (click)="add()">
+      <mat-icon class="text-primary ">add</mat-icon>Añadir Categoría
+    </button>
+
+  </div>
+  <div class="mat-elevation-z8 w-100 mx-auto">
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Nombre" #input>
+      <mat-icon matSuffix class="text-primary">search</mat-icon>
+    </mat-form-field>
+    <table class=" w-50" mat-table [dataSource]="dataSource" matSort >
+
+        <ng-container matColumnDef="name">
+          <th class=" w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td class="w-50 " mat-cell *matCellDef="let row" >  {{ row.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="star" stickyEnd>
+          <th class="text-end" mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
+          <td class="text-end w-25 " mat-cell *matCellDef="let row" >
+            <button class="border-0 bg-light" mat-icon-button matSuffix [routerLink]="['/admin/subcategory-table', row.id, row.name]" title="Ver detalle">
+              <mat-icon class="text-secondary">info</mat-icon>
+            </button>
+            <button class="border-0 bg-light" mat-icon-button matSuffix (click)="edit(row)" title="Editar categoría">
+              <mat-icon class="text-primary">edit</mat-icon>
+            </button>
+            <button class="border-0 bg-light" mat-icon-button matSuffix (click)="delet(row)" title="Borrar categoría">
+              <mat-icon class="text-danger">delete</mat-icon>
+            </button>
+
+
+          </td>
+        </ng-container>
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (mouseenter)="hoveredRow = row"
+      (mouseleave)="hoveredRow = null"
+      [ngClass]="{'hovered-row': hoveredRow === row}"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row " *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+</div>

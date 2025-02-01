@@ -1,0 +1,45 @@
+
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 30%;
+}
+
+td, th {
+  width: 10%;
+}
+
+.addCategoryBtn{
+  display:flex;
+  align-items:center;
+
+  white-space:nowrap;
+  /*padding: 8px 16px;*/
+}
+.color-primary{
+  background-color:#193e7a;
+  color:white;
+}
+.subnav-admin{
+  background-color: #A5B8DB;
+  color:#294270;
+}
+.hovered-row {
+  background-color: #697C9F !important;
+  color:antiquewhite;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+a{
+  all: unset;
+  cursor: pointer;
+}
+
+
+
+
