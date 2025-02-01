@@ -45,7 +45,7 @@ export class RoleListComponent {
 
   createRole() {
     const dialogRef = this.dialog.open(FormRoleComponent, {
-      width: '300px',
+      width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
       data: { id: null, title: 'Crear rol', button: 'Crear', message: 'Complete el formulario para crear un nuevo rol.' }
