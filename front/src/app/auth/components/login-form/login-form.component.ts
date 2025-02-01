@@ -33,7 +33,7 @@ export class LoginFormComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value)
         .subscribe({
-          next: () => this.router.navigate(['/admin']),
+          next: () => this.router.navigate(['/auth/login']),
           error: (err) => this.errorMessage = err.error.message
         })
     }
