@@ -31,4 +31,8 @@ export class SubcategoryService {
 
       return subCat
   }
+
+  deleteSubcategory(id:number){
+      return this.http.delete<ResultEditSubcategory>(`${environment.apiUrl+this._subcategoryPath}/delete/${id}`)
+  }
 }

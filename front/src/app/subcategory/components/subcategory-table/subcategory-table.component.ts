@@ -77,7 +77,7 @@ export class SubcategoryTableComponent {
                     .subscribe((resultInsert)=>{
                       this.dataSource.data = [...this.dataSource.data, resultInsert.data];
 
-                      this.snackBar.open(`La categoría ${subcategory.name} ha sido insertada correctamente`,'Cerrar',{
+                      this.snackBar.open(`La Subcategoría ${subcategory.name} ha sido insertada correctamente`,'Cerrar',{
                          duration:2000,
                           panelClass: ['main-snackbar'],
                           verticalPosition: 'top'
@@ -120,4 +120,18 @@ export class SubcategoryTableComponent {
       }
     )
   }
+
+  deletSubcategory(subcategory:Subcategory){
+
+      this.subcategoryService.deleteSubcategory(subcategory.id!).subscribe((result) => {
+
+        this.dataSource.data=this.dataSource.data.filter((cat)=>cat.id!=subcategory.id)
+        this.snackBar.open(`La categoría ${subcategory.name} ha sido borrada correctamente`,'Cerrar',{
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: '.snack'
+        })
+        })
+    }
 }
