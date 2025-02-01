@@ -41,6 +41,7 @@ export const messages = {
     error: {
       add: "Error al agregar el rol de usuario.",
       delete: "Error al eliminar el rol de usuario.",
+      alreadyHave: "El usuario ya tiene este rol.",
     },
   },
 

@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryModule } from '../category/category.module';
 import { RouterModule } from '@angular/router';
+import { RoleListComponent } from './components/role-list/role-list.component';
+import { FormRoleComponent } from './components/form-role-dialog/form-role-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { RouterModule } from '@angular/router';
     UserListComponent,
     FormUserDialogComponent,
     ConfirmDialogComponent,
+    RoleListComponent,
+    FormRoleComponent,
   ],
   imports: [
     CategoryModule,
