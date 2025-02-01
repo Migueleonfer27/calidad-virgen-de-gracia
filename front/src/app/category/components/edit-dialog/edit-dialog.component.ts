@@ -27,8 +27,9 @@ validate(): boolean {
 }
 init() {
 if(this.validate()){
-  this.dialogRef.close(true);
+  this.dialogRef.close(this.category);
 }
+
 
 }
 

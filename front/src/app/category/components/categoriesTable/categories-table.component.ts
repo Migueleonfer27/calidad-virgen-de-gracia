@@ -60,30 +60,26 @@ export class CategoriesComponent implements AfterViewInit{
   }
 
   edit(category:Category){
-    const dialog = this.dialog.open( EditDialogComponent, {
+    const dialog = this.dialog.open(EditDialogComponent, {
       width: '250px',
-      data: category,
-      enterAnimationDuration:'400ms',
-      exitAnimationDuration:'400ms'
+      data: { ...category },
+      enterAnimationDuration: '400ms',
+      exitAnimationDuration: '400ms'
     });
 
-    dialog.afterClosed().subscribe(
-      (result) => {
-        if( result) {
-            this.categoriesService.editCategory(category).subscribe((result)=>{
+    dialog.afterClosed().subscribe((result) => {
+      if (!result) return;
 
-                 this.dataSource.data.map(row =>
-                  row.id == category.id ?  row=category : row
-                );
-                /*for (let index = 0; index < this.dataSource.data.length; index++) {
-                    this.dataSource.data[index]=category
+      this.categoriesService.editCategory(result).subscribe((response) => {
 
-                }*/
+        this.dataSource.data = this.dataSource.data.map(row =>
+          row.id === response.data.id ? response.data : row
+        );
 
-            })
-        }
-      }
-    )
+      
+        this.dataSource.data = [...this.dataSource.data];
+      });
+    });
   }
 
   delet(category:Category){
