@@ -95,32 +95,31 @@ export class SubcategoryTableComponent {
   }
 
   editSubcategory(subcategory:SubcategoryIns) {
-    const dialog = this.dialog.open( EditSubcategoryDialogComponent, {
+    const dialog = this.dialog.open(EditSubcategoryDialogComponent, {
       width: '250px',
-      data: subcategory,
-      enterAnimationDuration:'400ms',
-      exitAnimationDuration:'400ms'
+      data: { ...subcategory },
+      enterAnimationDuration: '400ms',
+      exitAnimationDuration: '400ms'
     });
 
-    dialog.afterClosed().subscribe(
-      (result) => {
-        if( result) {
+    dialog.afterClosed().subscribe((result) => {
+      if (!result) return;
 
-            this.subcategoryService.editSubcategory(subcategory).subscribe((result)=>{
-                console.log(result)
-               if(result.data.id_category!=this.id){
-                this.dataSource.data=this.dataSource.data.filter((cat)=>cat.id!=subcategory.id)
-               }else{
-                this.dataSource.data.map(row =>
+      this.subcategoryService.editSubcategory(result).subscribe((response) => {
+        if (response.data.id_category !== this.id) {
 
-                  row.id == result.data.id ?  row=result.data : row
-                );
-               }
+          this.dataSource.data = this.dataSource.data.filter((cat) => cat.id !== subcategory.id);
+        } else {
 
-            })
+          this.dataSource.data = this.dataSource.data.map(row =>
+            row.id === response.data.id ? response.data : row
+          );
+
+        
+          this.dataSource.data = [...this.dataSource.data];
         }
-      }
-    )
+      });
+    });
   }
 
   deletSubcategory(subcategory:Subcategory){

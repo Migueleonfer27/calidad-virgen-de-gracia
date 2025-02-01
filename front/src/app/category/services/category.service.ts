@@ -20,7 +20,7 @@ export class CategoryService {
     const url = this._categoryUrl+this._categoryPath;
     return this.http.get<Result>(url)
   }
-  
+
   get categoriesList():Category[] {
     return this._categoriesList
   }
@@ -43,9 +43,12 @@ export class CategoryService {
     return this.http.delete<Result>(`${environment.apiUrl+this.categoriesUrl}/delete/${id}`)
   }
 
-  editCategory(category: Category){
-    return this.http.put<Result>(`${environment.apiUrl+this.categoriesUrl}/update`,category)
-  }
+   editCategory(category:ResultInsert){
+
+      const subCat= this.http.put<ResultInsert>(`${environment.apiUrl+this.categoriesUrl}/update`,category)
+
+        return subCat
+    }
 
   addCategory(category: Category){
     return this.http.post<ResultInsert>(`${environment.apiUrl+this.categoriesUrl}/insert`,category)

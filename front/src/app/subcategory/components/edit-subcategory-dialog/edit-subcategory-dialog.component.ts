@@ -33,12 +33,12 @@ validate(): boolean {
   return this.subcategory.name.length>0
 }
 init() {
-if(this.validate()){
-  this.subcategory.id_category=this.catselected!
+  if (this.validate()) {
+    this.subcategory.id_category = this.catselected!;
 
-  this.dialogRef.close(true);
-  console.log({"cat modificada:":this.subcategory})
-}
+    this.dialogRef.close(this.subcategory);  
+    console.log({ "cat modificada:": this.subcategory });
+  }
 
 }
 
