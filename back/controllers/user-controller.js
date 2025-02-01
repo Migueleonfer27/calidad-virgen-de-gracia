@@ -22,7 +22,12 @@ const UserController = {
 
   showUser: async (req, res = response) => {
     try {
-      const user = await userConnection.getUserById(req.params.id);
+      let user = await userConnection.getUserById(req.params.id);
+      if (!user) return res.status(404).json({ message: messages.user.error.show, data: null });
+      user = user.get({ plain: true });
+      if (user.birth_date) user.birth_date = new Date(user.birth_date).toISOString().split('T')[0];
+      if (user.admission_date) user.admission_date = new Date(user.admission_date).toISOString().split('T')[0];
+      if (user.leave_date) user.leave_date = new Date(user.leave_date).toISOString().split('T')[0];
       res.status(200).json({
         message: messages.user.success.show,
         data: user,
@@ -33,7 +38,7 @@ const UserController = {
         error: error.message,
       });
     }
-  },
+  },  
 
   storeUser: async (req, res = response) => {
     try {

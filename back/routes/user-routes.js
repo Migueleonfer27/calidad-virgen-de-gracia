@@ -35,7 +35,6 @@ router.put(
   nameMiddleware,
   lastNameMiddleware,
   emailMiddleware,
-  passwordMiddleware,
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,

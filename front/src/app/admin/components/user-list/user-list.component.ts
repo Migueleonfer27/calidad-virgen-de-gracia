@@ -69,6 +69,7 @@ export class UserListComponent implements AfterViewInit {
             this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
           }
         });
+        if (user.roles) this.addRole(user.id, user.roles);
       }
     });
   }
@@ -92,7 +93,6 @@ export class UserListComponent implements AfterViewInit {
             this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
           }
         });
-
         if (user.roles) this.addRole(id, user.roles);
       }
     });
@@ -127,12 +127,12 @@ export class UserListComponent implements AfterViewInit {
         this.adminService.getRoles().subscribe((rolesResponse) => {
           const roleObj = rolesResponse.data.find((r: Role) => r.id === role_id);
 
-        if (roleObj) {
-          this.dataSource.data = this.dataSource.data.map(user => {
-            if (user.id === user_id) return { ...user, Roles: [...user.Roles, roleObj] };
-            return user;
-          });
-        }
+          if (roleObj) {
+            this.dataSource.data = this.dataSource.data.map(user => {
+              if (user.id === user_id) return { ...user, Roles: [...user.Roles, roleObj] };
+              return user;
+            });
+          }
         });
       },
       error: (error) => {
