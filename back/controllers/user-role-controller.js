@@ -7,6 +7,11 @@ const userRoleConnection = new UserRoleConnection();
 const UserRoleController = {
   addUserRole: async (req, res = response) => {
     try {
+      if (await userRoleConnection.haveRole(req.body.user_id, req.body.role_id)) {
+        return res.status(400).json({
+          message: messages.userRole.error.alreadyHave,
+        });
+      }
       const userRole = await userRoleConnection.addUserRole(req.body);
       res.status(201).json({
         message: messages.userRole.success.add,

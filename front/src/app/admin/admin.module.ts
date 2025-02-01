@@ -19,6 +19,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { CategoryModule } from '../category/category.module';
 import { RouterModule } from '@angular/router';
 import { SubcategoryModule } from '../subcategory/subcategory.module';
+import { RoleListComponent } from './components/role-list/role-list.component';
+import { FormRoleComponent } from './components/form-role-dialog/form-role-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { SubcategoryModule } from '../subcategory/subcategory.module';
     UserListComponent,
     FormUserDialogComponent,
     ConfirmDialogComponent,
+    RoleListComponent,
+    FormRoleComponent,
   ],
   imports: [
     CategoryModule,

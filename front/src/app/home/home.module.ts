@@ -8,12 +8,14 @@ import { SubcategoryModule } from '../subcategory/subcategory.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { CategoryDetailsComponent } from './pages/category-details/category-details.component';
+import { CategorySidebarComponent } from './components/category-sidebar/category-sidebar.component';
 
 
 @NgModule({
   declarations: [
     HomePageComponent,
-    CategoryDetailsComponent
+    CategoryDetailsComponent,
+    CategorySidebarComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { CategoryDetailsComponent } from './pages/category-details/category-deta
   ],
   exports: [
     HomePageComponent,
-    CategoryDetailsComponent
+    CategoryDetailsComponent,
+    CategorySidebarComponent
   ]
 })
 export class HomeModule { }

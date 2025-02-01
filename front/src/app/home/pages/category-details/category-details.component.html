@@ -1,6 +1,8 @@
 <div class="row">
-  <button mat-raised-button (click)="goBack()" class="back-btn">
-    <mat-icon>arrow_back</mat-icon> Volver
-  </button>
-  <subcategory-card-list *ngIf="subcategories.length > 0" [subcategories]="subcategories"></subcategory-card-list>
+  <div class="col-3">
+    <category-sidebar *ngIf="categories.length > 0" [categories]="categories"></category-sidebar>
+  </div>
+  <div class="col">
+    <subcategory-card-list *ngIf="subcategories.length > 0" [subcategories]="subcategories"></subcategory-card-list>
+  </div>
 </div>

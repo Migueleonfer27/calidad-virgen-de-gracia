@@ -4,7 +4,14 @@
 </div>
 <form [formGroup]="userForm">
   <mat-dialog-content class="d-flex flex-wrap gap-2 justify-content-center">
-    <mat-form-field>
+    <mat-form-field *ngIf="data.id" class="w-100">
+      <mat-label class="text-primary">Roles</mat-label>
+      <mat-select formControlName="roles">
+        <mat-option *ngFor="let role of roles" [value]="role.id">{{ role.position }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
       <mat-label>Código</mat-label>
       <input matInput formControlName="code">
       <mat-error *ngIf="userForm.get('code')?.hasError('required')">
@@ -12,7 +19,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Nombre</mat-label>
       <input type="text" matInput formControlName="first_name">
       <mat-error *ngIf="userForm.get('first_name')?.hasError('required')">
@@ -20,7 +27,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Apellido</mat-label>
       <input type="text" matInput formControlName="last_name">
       <mat-error *ngIf="userForm.get('last_name')?.hasError('required')">
@@ -28,12 +35,12 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>NPR</mat-label>
       <input type="text" matInput formControlName="nrp">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>DNI</mat-label>
       <input type="text" matInput formControlName="dni">
       <mat-error *ngIf="userForm.get('dni')?.hasError('required')">
@@ -41,12 +48,12 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Abreviatura</mat-label>
       <input type="text" matInput formControlName="abbreviation">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Fecha de nacimiento</mat-label>
       <input type="date" matInput formControlName="birth_date">
       <mat-error *ngIf="userForm.get('birth_date')?.hasError('required')">
@@ -54,7 +61,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Género</mat-label>
       <mat-select formControlName="gender">
         <mat-option value="M">Masculino</mat-option>
@@ -66,17 +73,17 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Título</mat-label>
       <input type="text" matInput formControlName="title">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Dirección</mat-label>
       <input type="text" matInput formControlName="address">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Ciudad</mat-label>
       <input type="text" matInput formControlName="city">
       <mat-error *ngIf="userForm.get('city')?.hasError('required')">
@@ -84,7 +91,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Código postal</mat-label>
       <input type="number" matInput formControlName="postal_code">
       <mat-error *ngIf="userForm.get('postal_code')?.hasError('required')">
@@ -92,7 +99,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Provincia</mat-label>
       <input type="text" matInput formControlName="province">
       <mat-error *ngIf="userForm.get('province')?.hasError('required')">
@@ -100,7 +107,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Email</mat-label>
       <input type="email" matInput formControlName="email">
       <mat-error *ngIf="userForm.get('email')?.hasError('required')">
@@ -108,27 +115,27 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Teléfono RP</mat-label>
       <input type="tel" matInput formControlName="phone_rp">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Especialidad</mat-label>
       <input type="text" matInput formControlName="specialty">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Cuerpo</mat-label>
       <input type="text" matInput formControlName="body">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Departamento</mat-label>
       <input type="text" matInput formControlName="department">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Email Corporativo</mat-label>
       <input type="email" matInput formControlName="corporate_email">
       <mat-error *ngIf="userForm.get('corporate_email')?.hasError('required')">
@@ -136,20 +143,24 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Teléfono</mat-label>
       <input type="tel" matInput formControlName="phone">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Contraseña</mat-label>
-      <input type="password" matInput formControlName="password">
+      <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
+      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
       <mat-error *ngIf="userForm.get('password')?.hasError('required')">
         La contraseña es requerida
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Fecha de admisión</mat-label>
       <input type="date" matInput formControlName="admission_date">
       <mat-error *ngIf="userForm.get('admission_date')?.hasError('required')">
@@ -157,20 +168,14 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="w-100">
       <mat-label>Fecha de salida</mat-label>
       <input type="date" matInput formControlName="leave_date">
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Roles</mat-label>
-      <mat-select formControlName="roles">
-        <mat-option *ngFor="let role of roles" [value]="role.id">{{ role.position }}</mat-option>
-      </mat-select>
     </mat-form-field>
   </mat-dialog-content>
 </form>
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancelar</button>
-  <button mat-button color="primary" class="text-primary" (click)="save()" [disabled]="userForm.invalid" [ngClass]="{'text-danger': userForm.invalid}">{{ data.button }}</button>
+  <button mat-button color="primary" class="text-primary" (click)="save()" [disabled]="userForm.invalid"
+    [ngClass]="{'text-danger': userForm.invalid}">{{ data.button }}</button>
 </div>

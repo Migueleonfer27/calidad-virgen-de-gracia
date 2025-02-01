@@ -4,6 +4,8 @@ import { CategoriesComponent } from '../category/components/categoriesTable/cate
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { SubcategoryTableComponent } from '../subcategory/components/subcategory-table/subcategory-table.component';
+import { RoleListComponent } from './components/role-list/role-list.component';
+
 
 const routes: Routes = [
   {
@@ -17,6 +19,10 @@ const routes: Routes = [
       {
         path: 'usersList',
         component: UserListComponent
+      },
+      {
+        path: 'roles',
+        component: RoleListComponent
       },
       {
         path: '',
