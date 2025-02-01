@@ -3,14 +3,30 @@ export interface Result {
   data: Subcategory[];
 }
 
-export interface Subcategory {
-  id:          number;
+export interface ResultSubcategory {
+  cod:  number;
+  data: SubcategoryIns;
+}
+export interface ResultEditSubcategory {
+  cod:  number;
+  data: Subcategory;
+}
+
+export interface SubcategoryIns {
+  id?:          number;
   name:        string;
   id_category: number;
-  createdAt:   Date;
-  updatedAt:   Date;
-  deletedAt:   null;
-  category:    Category;
+}
+
+
+export interface Subcategory {
+  id?:          number;
+  name:        string;
+  id_category: number;
+  createdAt?:   Date;
+  updatedAt?:   Date;
+  deletedAt?:   null;
+  category?:    Category;
 }
 
 export interface Category {

@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from '../category/components/categoriesTable/categories-table.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { SubcategoryTableComponent } from '../subcategory/components/subcategory-table/subcategory-table.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
+
 
 const routes: Routes = [
   {
@@ -26,7 +28,9 @@ const routes: Routes = [
         path: '',
         redirectTo: 'usersList',
         pathMatch: 'full'
-      }
+      },
+      { path: 'subcategory-table/:id/:name',
+        component: SubcategoryTableComponent }
     ]
   }
 ];

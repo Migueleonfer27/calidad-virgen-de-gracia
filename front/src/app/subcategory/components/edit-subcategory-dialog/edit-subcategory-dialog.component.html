@@ -1,0 +1,37 @@
+<div class="dialog-container">
+  <div></div>
+  <h2 mat-dialog-title class="text-center">
+    Editar
+  </h2>
+
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="subcategory.name" placeholder="Ingrese el nombre de la subcategoría" #nombre="ngModel" required="true" />
+      <mat-error *ngIf="nombre.invalid && nombre.touched">
+        El nombre es obligatorio.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Select a category</mat-label>
+      <mat-select [(value)]="catselected">
+        <mat-option value="none">None</mat-option> <!-- Opción por defecto -->
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+  </div>
+
+  <mat-dialog-actions  class="button-group">
+    <button mat-raised-button (click)="close()" color="warn" class="action-button">
+      Descartar
+    </button>
+    <button mat-raised-button (click)="init()" color="primary" class="action-button">
+      Confirmar
+    </button>
+  </mat-dialog-actions>
+</div>
+

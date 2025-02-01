@@ -24,9 +24,9 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef } from '@angular/materia
 export class CategoriesComponent implements AfterViewInit{
 
   displayedColumns: string[] = [ 'name','star'];
-
+  myColor:string = '#A5B8DB'
   dataSource: MatTableDataSource<Category>=new MatTableDataSource<Category>([])
-
+  hoveredRow: any = null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -91,12 +91,15 @@ export class CategoriesComponent implements AfterViewInit{
     this.categoriesService.deleteCategory(category.id!).subscribe((result) => {
 
       this.dataSource.data=this.dataSource.data.filter((cat)=>cat.id!=category.id)
-      this.snackBar.open(`La categoría ${category.name} ha sido borrada correctamente`,'Cerrar',{
-        duration: 3000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        panelClass: '.snack'
-      })
+
+        this.snackBar.open(`La categoría ${category.name} ha sido borrada correctamente`, 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          panelClass: ['main-snackbar']
+        });
+
+
       })
   }
 
@@ -117,9 +120,10 @@ export class CategoriesComponent implements AfterViewInit{
                   this.dataSource.data = [...this.dataSource.data, resultInsert.data];
 
                   this.snackBar.open(`La categoría ${category.name} ha sido insertada correctamente`,'Cerrar',{
-                     duration:200000,
-                      panelClass: ['main-snackbar'],
-                      verticalPosition: 'top'
+                     duration:3000,
+                     horizontalPosition: 'center',
+                      panelClass: 'main-snackbar',
+                      verticalPosition: 'bottom'
                   })
                   console.log(this.snackBar)
 
@@ -130,4 +134,6 @@ export class CategoriesComponent implements AfterViewInit{
           }
         )
   }
+
+
 }
