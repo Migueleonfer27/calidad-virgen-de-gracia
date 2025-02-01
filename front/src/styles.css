@@ -14,6 +14,8 @@ app-root {
   flex: 1;
 }
 
-.main-snackbar{
-  background-color:red !important;
+.main-snackbar.mat-snack-bar-container {
+  background-color: #ff4081 !important;
+  color: white !important;
+  font-size: 16px !important;
 }

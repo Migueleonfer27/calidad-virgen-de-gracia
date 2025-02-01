@@ -16,11 +16,13 @@ import { EditSubcategoryDialogComponent } from '../edit-subcategory-dialog/edit-
   standalone: false,
 
   templateUrl: './subcategory-table.component.html',
-  styleUrl: './subcategory-table.component.css'
+  styleUrl: './subcategory-table.component.css',
+
 })
 export class SubcategoryTableComponent {
   id?: number
   name?: string
+
   displayedColumns: string[] = [ 'name','star'];
   dataSource: MatTableDataSource<Subcategory>=new MatTableDataSource<Subcategory>([]);
   constructor(private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar:MatSnackBar) {}

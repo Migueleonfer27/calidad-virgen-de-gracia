@@ -12,9 +12,6 @@ table {
 td, th {
   width: 10%;
 }
-.main-snackbar{
-  background-color:red !important;
-}
 
 .addCategoryBtn{
   display:flex;
@@ -31,8 +28,17 @@ td, th {
   background-color: #A5B8DB;
   color:#294270;
 }
+.hovered-row {
+  background-color: #697C9F !important;
+  color:antiquewhite;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
 
-
+a{
+  all: unset;
+  cursor: pointer;
+}
 
 
 
