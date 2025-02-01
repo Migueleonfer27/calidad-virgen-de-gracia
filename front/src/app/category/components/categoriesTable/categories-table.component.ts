@@ -95,7 +95,7 @@ export class CategoriesComponent implements AfterViewInit{
         this.snackBar.open(`La categoría ${category.name} ha sido borrada correctamente`, 'Cerrar', {
           duration: 3000,
           horizontalPosition: 'center',
-          verticalPosition: 'top',
+          verticalPosition: 'bottom',
           panelClass: ['main-snackbar']
         });
 
@@ -123,7 +123,7 @@ export class CategoriesComponent implements AfterViewInit{
                      duration:3000,
                      horizontalPosition: 'center',
                       panelClass: 'main-snackbar',
-                      verticalPosition: 'top'
+                      verticalPosition: 'bottom'
                   })
                   console.log(this.snackBar)
 

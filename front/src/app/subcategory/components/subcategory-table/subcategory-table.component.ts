@@ -82,7 +82,7 @@ export class SubcategoryTableComponent {
                       this.snackBar.open(`La Subcategoría ${subcategory.name} ha sido insertada correctamente`,'Cerrar',{
                          duration:2000,
                           panelClass: ['main-snackbar'],
-                          verticalPosition: 'top'
+                          verticalPosition: 'bottom'
                       })
                       console.log(this.snackBar)
 
@@ -131,7 +131,7 @@ export class SubcategoryTableComponent {
         this.snackBar.open(`La categoría ${subcategory.name} ha sido borrada correctamente`,'Cerrar',{
           duration: 3000,
           horizontalPosition: 'center',
-          verticalPosition: 'top',
+          verticalPosition: 'bottom',
           panelClass: '.snack'
         })
         })

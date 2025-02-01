@@ -23,10 +23,10 @@
         <th class="text-end" mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
         <td class="text-end w-25" mat-cell *matCellDef="let row">
 
-          <button class="border-0 bg-light" mat-icon-button matSuffix (click)="editSubcategory(row)">
-            <mat-icon class="text-primary">edit</mat-icon>
+          <button class="border-0 bg-light" mat-icon-button matSuffix (click)="editSubcategory(row)" title="Editar subcategoría">
+            <mat-icon class="text-primary" >edit</mat-icon>
           </button>
-          <button class="border-0 bg-light" mat-icon-button matSuffix (click)="deletSubcategory(row)">
+          <button class="border-0 bg-light" mat-icon-button matSuffix (click)="deletSubcategory(row)" title="Borrar subcategoría">
             <mat-icon class="text-danger">delete</mat-icon>
           </button>
         </td>
