@@ -19,15 +19,14 @@ import { HttpClientModule } from '@angular/common/http'
     AppRoutingModule,
     SharedModule,
     HomeModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
    // AdminModule
   ],
   providers: [
     provideAnimationsAsync(),
     provideHttpClient()
-    BrowserAnimationsModule,
-    HttpClientModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
