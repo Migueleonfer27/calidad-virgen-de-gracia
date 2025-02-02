@@ -1,4 +1,5 @@
 // Jaime Ortega
+import { Op } from 'sequelize'
 import { Users } from "../../models/associations.js"
 
 class MailConnection {
@@ -10,7 +11,10 @@ class MailConnection {
 
     async getUserByEmail(email) {
         return await Users.findOne({
-            where: { email: email }
+            [Op.or]: [
+                { email: email },
+                { corporate_email: email }
+            ]
         })
     }
 }

@@ -7,6 +7,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { provideHttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -22,7 +24,10 @@ import { provideHttpClient } from '@angular/common/http';
   providers: [
     provideAnimationsAsync(),
     provideHttpClient()
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

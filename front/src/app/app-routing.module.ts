@@ -24,8 +24,8 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'encuesta',
@@ -35,8 +35,16 @@ const routes: Routes = [
     path: '**',
     component: HomePageComponent
   },
-
-];
+  {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'auth/login'
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
