@@ -18,6 +18,12 @@ class UserRoleConnection {
       throw error;
     }
   }
+
+  async haveRole(idUser, idRole) {
+    return await UsersRoles.findOne({
+      where: { user_id: idUser, role_id: idRole },
+    });
+  }
 }
 
 export { UserRoleConnection };

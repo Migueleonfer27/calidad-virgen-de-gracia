@@ -1,8 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdminService } from '../../services/admin.service';
 import { ApiResponse, Role } from '../../interfaces/user.interfaces';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-edit-user-dialog',
@@ -15,6 +16,7 @@ export class FormUserDialogComponent {
   userForm: FormGroup;
   user: ApiResponse = {} as ApiResponse;
   roles: Role[] = [];
+  hide = signal(true);
 
   constructor(
     private fb: FormBuilder,
@@ -61,9 +63,15 @@ export class FormUserDialogComponent {
     });
   }
 
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
   save() {
     if (this.userForm.valid) {
       let userData = this.userForm.value;
+      userData.birth_date = userData.birth_date ? new Date(userData.birth_date).toISOString().split('T')[0] : null;
       userData.admission_date = userData.admission_date ? new Date(userData.admission_date).toISOString().split('T')[0] : null;
       userData.leave_date = userData.leave_date ? new Date(userData.leave_date).toISOString().split('T')[0] : null;
       this.dialogRef.close(userData);

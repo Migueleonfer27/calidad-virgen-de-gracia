@@ -46,4 +46,20 @@ export class AdminService {
   removeAssignedRole(user_id: number, role_id: number): Observable<Role> {
     return this.http.delete<Role>(`${this.urlUserRoles}/${user_id}/${role_id}`);
   }
+
+  getRolesForTable(): Observable<Role[]> {
+    return this.http.get<Role[]>(`${this.urlRoles}`);
+  }
+
+  postRole(role: Role): Observable<Role> {
+    return this.http.post<Role>(this.urlRoles, role);
+  }
+
+  updateRole(id: number, role: Role): Observable<Role> {
+    return this.http.put<Role>(`${this.urlRoles}/${id}`, role);
+  }
+
+  deleteRole(id: number): Observable<Role> {
+    return this.http.delete<Role>(`${this.urlRoles}/${id}`);
+  }
 }

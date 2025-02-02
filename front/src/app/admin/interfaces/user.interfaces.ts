@@ -26,13 +26,15 @@ export interface User {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null;
-  Roles: Role [];
+  Roles: Role[];
 }
 
 export interface UserList {
   id: number;
   first_name: string;
   corporate_email: string;
+  birth_date: Date;
+  admission_date: Date;
   gender: string;
   Roles: Role[];
 }
@@ -45,16 +47,6 @@ export interface Role {
 export interface ApiResponse {
   message: string;
   data: UserList[];
-}
-
-export interface ApiResponseDelete {
-  message: string;
-  data: number;
-}
-
-export interface ApiResponseUpdate {
-  message: string;
-  data: User;
 }
 
 export interface ApiResponseRoles {

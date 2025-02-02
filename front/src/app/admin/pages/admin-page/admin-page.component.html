@@ -1,7 +1,18 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12 mt-3">
-      <app-user-list></app-user-list>
-    </div>
+<div class="d-flex nav-admin justify-content-between align-items-center p-3 rounded-3 mb-3 flex-column flex-md-row text-center text-md-start">
+  <h1 class="text-white title-text mb-3 mb-md-0">Administrador</h1>
+  <div class="d-flex gap-2 gap-md-3 flex-wrap justify-content-center">
+    <button mat-raised-button color="primary" [routerLink]="['/admin', 'usersList']">
+      <mat-icon>person</mat-icon>
+      Gestión Usuarios
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/admin', 'roles']">
+      <mat-icon>security</mat-icon>
+      Gestión de Roles
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/admin', 'categories']">
+      <mat-icon>category</mat-icon>
+      Gestión de Categorías
+    </button>
   </div>
 </div>
+<router-outlet></router-outlet>
