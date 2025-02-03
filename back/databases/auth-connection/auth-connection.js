@@ -1,4 +1,5 @@
 // Jaime Ortega
+import { Op } from 'sequelize'
 import { Users, Roles, UsersRoles } from "../../models/associations.js";
 import bcrypt from "bcrypt";
 
@@ -6,7 +7,10 @@ class AuthConnection {
     async getUserRegistered(email, password) {
         let user = await Users.findOne({
             where: {
-                email: email,
+                [Op.or]: [
+                    { email: email },
+                    { corporate_email: email }
+                ]
             },
         })
         if (!user) throw new Error('Usuario no encontrado')

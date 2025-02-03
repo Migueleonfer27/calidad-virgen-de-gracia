@@ -24,6 +24,10 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
@@ -35,8 +39,7 @@ const routes: Routes = [
     path: '**',
     component: HomePageComponent
   },
-
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
