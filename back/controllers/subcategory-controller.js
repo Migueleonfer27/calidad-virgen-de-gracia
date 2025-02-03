@@ -16,7 +16,7 @@ export const subcategoryController = {
                         'data': data
                     });
                 } else {
-                    res.status(404).json({
+                    res.status(203).json({
                         'msg': msg.subcategory.error.notFound
                     })
                 }
@@ -54,7 +54,7 @@ export const subcategoryController = {
                         'data': data
                     })
                 } else {
-                    res.status(404).json({
+                    res.status(203).json({
                         'msg': msg.subcategory.error.notFound
                     })
                 }
@@ -76,7 +76,7 @@ export const subcategoryController = {
                         'data': data
                     })
                 } else {
-                    res.status(404).json({
+                    res.status(203).json({
                         'msg': msg.subcategory.error.notFound
                     })
                 }
