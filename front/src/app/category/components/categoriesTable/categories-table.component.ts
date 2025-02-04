@@ -9,6 +9,9 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogActions } from '@angular/material/
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog/confirm-dialog.component';
+import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
+import { Subcategory } from '../../../subcategory/interfaces/subcategory.interface';
+import { catchError, map, Observable } from 'rxjs';
 
 
 
@@ -31,13 +34,12 @@ export class CategoriesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private categoriesService: CategoryService, private dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(private categoriesService: CategoryService,private subcategoryService:SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
   }
 
   ngOnInit() {
     this.categoriesService.showAll().subscribe((result) => {
-      console.log(result)
 
       this.dataSource = new MatTableDataSource(result!);
       this.dataSource.paginator = this.paginator
@@ -93,36 +95,66 @@ export class CategoriesComponent implements AfterViewInit {
   }
 
   delet(category: Category) {
-    const dialog = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      data: {message:`Estas seguro que quieres borrar la categoría ${category.name}`},
-      enterAnimationDuration: '400ms',
-      exitAnimationDuration: '400ms'
-    });
-    dialog.afterClosed().subscribe((result) => {
-      if(!result){
-        return
-      }
-      this.categoriesService.deleteCategory(category.id!).subscribe((result) => {
-        if (result.cod == 1) {
-          this.dataSource.data = this.dataSource.data.filter((cat) => cat.id != category.id)
+    this.getSubcategories(category.id!).subscribe(subcategories => {
+      let msg;
 
-          this.snackBar.open(`La categoría ${category.name} ha sido borrada correctamente`, 'Cerrar', {
-            duration: 3000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom',
-            panelClass: ['main-snackbar']
-          });
-        } else {
-          this.snackBar.open(`Ha ocurrido un error la categoría ${category.name} no ha sido borrada correctamente`, 'Cerrar', {
-            duration: 3000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom',
-            panelClass: ['main-snackbar']
-          });
+      if (subcategories.length > 0) {
+        msg = `Si borras esta categoría se borrarán las siguientes subcategorías:\n\n` +
+        subcategories.map(subcategory => `- ${subcategory}`).join('\n');
+      } else {
+        msg = `¿Estás seguro que quieres borrar la categoría ${category.name}?`;
+      }
+
+      const dialog = this.dialog.open(ConfirmDialogComponent, {
+        width: '250px',
+        data: { message: msg, button: 'Eliminar', closeBtn: 'Cancelar' },
+        enterAnimationDuration: '400ms',
+        exitAnimationDuration: '400ms'
+      });
+
+      dialog.afterClosed().subscribe((result) => {
+        if (!result) {
+          return;
         }
+
+        this.categoriesService.deleteCategory(category.id!).subscribe((result) => {
+          if (result.cod == 1) {
+            this.dataSource.data = this.dataSource.data.filter((cat) => cat.id != category.id);
+
+            this.snackBar.open(`La categoría ${category.name} ha sido borrada correctamente`, 'Cerrar', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: ['main-snackbar']
+            });
+          } else  if(result.cod==2){
+            this.snackBar.open(`La categoría ${category.name} no ha sido borrada porque contiene subcategorías con documentos anexos y deben ser eliminados primero`, 'Cerrar', {
+              duration: 5000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: '.snack'
+            })
+          }else{
+            this.snackBar.open(`Ha ocurrido un error, la categoría ${category.name} no ha sido borrada correctamente`, 'Cerrar', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: ['main-snackbar']
+            });
+          }
+        });
+      });
+    });
+  }
+
+  getSubcategories(id: number): Observable<string[]> {
+    return this.subcategoryService.getSubcategoriesFromCategory(id).pipe(
+      map(result => result?.data ? result.data.map(element => element.name) : []),
+      catchError(error => {
+        console.error('Error obteniendo subcategorías:', error);
+        return ([]);
       })
-    })
+    );
   }
 
   add() {

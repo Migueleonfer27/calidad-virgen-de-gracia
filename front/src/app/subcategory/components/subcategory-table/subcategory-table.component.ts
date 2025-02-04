@@ -32,18 +32,18 @@ export class SubcategoryTableComponent {
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit() {
 
-    console.log(this.name);
+
     this.route.params
       .pipe(
         switchMap(params => {
-          console.log('Parámetros recibidos:', params);
+
           this.id = +params['id']; // Convertir a número
           this.name = params['name']; // Guardar nombre
           return this.subcategoryService.getSubcategoriesFromCategory(this.id);
         })
       )
       .subscribe(subcategories => {
-        console.log('Subcategorías obtenidas:', subcategories.data);
+
         this.dataSource = new MatTableDataSource(subcategories.data!);
         this.dataSource.paginator = this.paginator
         this.dataSource.sort = this.sort
@@ -85,7 +85,7 @@ export class SubcategoryTableComponent {
                 panelClass: ['main-snackbar'],
                 verticalPosition: 'bottom'
               })
-              console.log(this.snackBar)
+
 
 
 
@@ -126,7 +126,7 @@ export class SubcategoryTableComponent {
   deletSubcategory(subcategory: Subcategory) {
     const dialog = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
-      data: { message: `Estas seguro que quieres borrar la subcategoría ${subcategory.name}` },
+      data: { message: `Estas seguro que quieres borrar la subcategoría ${subcategory.name}`,button: 'Eliminar', closeBtn: 'Cancelar' },
       enterAnimationDuration: '400ms',
       exitAnimationDuration: '400ms'
     });
@@ -135,14 +135,23 @@ export class SubcategoryTableComponent {
         return
       }
       this.subcategoryService.deleteSubcategory(subcategory.id!).subscribe((result) => {
+        if(result.cod==2){
+          this.snackBar.open(`La subcategoría ${subcategory.name} no ha sido borrada porque contiene documentos anexos y deben ser eliminados primero`, 'Cerrar', {
+            duration: 4000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: '.snack'
+          })
+        }else{
+          this.dataSource.data = this.dataSource.data.filter((cat) => cat.id != subcategory.id)
+          this.snackBar.open(`La categoría ${subcategory.name} ha sido borrada correctamente`, 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: '.snack'
+          })
+        }
 
-        this.dataSource.data = this.dataSource.data.filter((cat) => cat.id != subcategory.id)
-        this.snackBar.open(`La categoría ${subcategory.name} ha sido borrada correctamente`, 'Cerrar', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom',
-          panelClass: '.snack'
-        })
       })
     })
 
