@@ -17,7 +17,8 @@ export const subcategoryController = {
                     });
                 } else {
                     res.status(203).json({
-                        'msg': msg.subcategory.error.notFound
+                        'msg': msg.subcategory.error.notFound,
+                        'data': data
                     })
                 }
             })
@@ -55,7 +56,8 @@ export const subcategoryController = {
                     })
                 } else {
                     res.status(203).json({
-                        'msg': msg.subcategory.error.notFound
+                        'msg': msg.subcategory.error.notFound,
+                        'data': data
                     })
                 }
             })
@@ -77,7 +79,8 @@ export const subcategoryController = {
                     })
                 } else {
                     res.status(203).json({
-                        'msg': msg.subcategory.error.notFound
+                        'msg': msg.subcategory.error.notFound,
+                        'data': data
                     })
                 }
             })
