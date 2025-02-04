@@ -30,7 +30,7 @@ export class CategoriesComponent implements AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private categoriesService: CategoryService, private dialog: MatDialog, private snackBar:MatSnackBar) {
+  constructor(private categoriesService: CategoryService, private dialog: MatDialog, private snackBar:MatSnackBar, private dialogConfirm:) {
 
   }
 
@@ -85,7 +85,7 @@ export class CategoriesComponent implements AfterViewInit{
   delet(category:Category){
 
     this.categoriesService.deleteCategory(category.id!).subscribe((result) => {
-
+     
       this.dataSource.data=this.dataSource.data.filter((cat)=>cat.id!=category.id)
 
         this.snackBar.open(`La categoría ${category.name} ha sido borrada correctamente`, 'Cerrar', {
