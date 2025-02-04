@@ -112,7 +112,7 @@ export class UserListComponent implements AfterViewInit {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas eliminar este usuario?' }
+      data: { message: '¿Estás seguro de que deseas eliminar este usuario?', button: 'Eliminar', closeBtn: 'Cancelar' }
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
@@ -155,7 +155,7 @@ export class UserListComponent implements AfterViewInit {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas desasignar este rol?' }
+      data: { message: '¿Estás seguro de que deseas desasignar este rol?', button: 'Remover', closeBtn: 'Cancelar' }
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {

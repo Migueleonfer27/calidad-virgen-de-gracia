@@ -98,7 +98,7 @@ export class RoleListComponent {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas eliminar este rol?' }
+      data: { message: '¿Estás seguro de que deseas eliminar este rol?', button: 'Eliminar', closeBtn: 'Cancelar'}
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
