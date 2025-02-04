@@ -54,7 +54,7 @@ export class UserListComponent implements AfterViewInit {
       width: '500px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { id: null, title: 'Crear usuario', button: 'Crear', message: 'Complete el formulario para crear un nuevo usuario.' }
+      data: { id: null, title: 'Crear usuario', button: 'Crear', closeBtn: 'Cancelar', message: 'Complete el formulario para crear un nuevo usuario.' }
     });
 
     dialogRef.afterClosed().subscribe((user) => {
@@ -74,12 +74,21 @@ export class UserListComponent implements AfterViewInit {
     });
   }
 
+  showUser(id: number) {
+    const dialogRef = this.dialog.open(FormUserDialogComponent, {
+      width: '500px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: { id, title: 'Información del usuario', button: 'Info', closeBtn: 'Cerrar', message: 'Listado completo de la información del usuario.' }
+    });
+  }
+
   editUser(id: number) {
     const dialogRef = this.dialog.open(FormUserDialogComponent, {
       width: '500px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { id, title: 'Editar usuario', button: 'Editar', message: '¿Estás seguro de que deseas editar este usuario?' }
+      data: { id, title: 'Editar usuario', button: 'Editar', closeBtn: 'Cancelar', message: '¿Estás seguro de que deseas editar este usuario?' }
     });
 
     dialogRef.afterClosed().subscribe((user) => {
