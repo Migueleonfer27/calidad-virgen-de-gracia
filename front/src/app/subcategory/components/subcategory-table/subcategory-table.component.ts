@@ -23,8 +23,8 @@ import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog
 export class SubcategoryTableComponent {
   id?: number
   name?: string
-
-  displayedColumns: string[] = ['name', 'star'];
+  hoveredRow: any = null;
+  displayedColumns: string[] = ['#','name', 'star'];
   dataSource: MatTableDataSource<Subcategory> = new MatTableDataSource<Subcategory>([]);
   constructor(private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 

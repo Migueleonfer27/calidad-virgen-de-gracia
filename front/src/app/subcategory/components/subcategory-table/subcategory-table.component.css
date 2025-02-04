@@ -29,4 +29,15 @@ td, th {
   background-color:#193e7a;
   color:white;
 }
+.hovered-row {
+  background-color: #d6e0f4 !important;
+  color:rgb(76, 1, 54);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+a{
+  all: unset;
+  cursor: pointer;
+}
 

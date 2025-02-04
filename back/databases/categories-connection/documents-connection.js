@@ -22,25 +22,26 @@ export class DocumentConnection {
     }
     getDocumentsFromCategory = async (categoryId) => {
         let resultado = [];
-        resultado = await Category.findOne({
-            where: { id: categoryId },
-            include: [
-                {
-                    model: Subcategory,
-                    as: 'subcategories',
-                    include: [
-                        {
-                            model: Document,
-                            as: 'documents'
-                        }
-                    ]
-                }
-            ]
-        })
+        
 
-        if (!resultado) {
+           resultado= await Category.findOne({
+                where: { id: categoryId }, 
+                include: [
+                    {
+                        model: Subcategory,
+                        as: 'subcategories',
+                        include: [
+                            {
+                                model: Document,
+                                as: 'documents'
+                            }
+                        ]
+                    }
+                ]
+            });
+        /*if (!resultado) {
             throw error;
-        }
+        }*/
         return resultado;
     }
 
