@@ -24,7 +24,7 @@ export class RoleListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['#', 'code', 'year', 'position', 'actions'];
+  displayedColumns: string[] = ['#', 'code', 'year', 'position', 'description', 'actions'];
 
   constructor(private adminService: AdminService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.adminService.getRoles().subscribe((res) => {
