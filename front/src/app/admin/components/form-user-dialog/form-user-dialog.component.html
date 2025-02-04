@@ -177,5 +177,5 @@
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancelar</button>
   <button mat-button color="primary" class="text-primary" (click)="save()" [disabled]="userForm.invalid"
-    [ngClass]="{'text-danger': userForm.invalid}">{{ data.button }}</button>
+    [ngClass]="{'text-secondary': userForm.invalid}">{{ data.button }}</button>
 </div>
