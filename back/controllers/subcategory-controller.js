@@ -1,10 +1,11 @@
 // Gema Rubio y Daniel Cruz
 import { response, request } from 'express';
 import { SubcategoryConnection } from '../databases/categories-connection/subcategory-connection.js';
+import {DocumentConnection } from '../databases/categories-connection/documents-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
 
 const connection = new SubcategoryConnection();
-
+const connectionDocument=new DocumentConnection()
 export const subcategoryController = {
 
     get: (req = request, res = response) => {
@@ -17,7 +18,8 @@ export const subcategoryController = {
                     });
                 } else {
                     res.status(203).json({
-                        'msg': msg.subcategory.error.notFound
+                        'msg': msg.subcategory.error.notFound,
+                        'data': data
                     })
                 }
             })
@@ -55,7 +57,8 @@ export const subcategoryController = {
                     })
                 } else {
                     res.status(203).json({
-                        'msg': msg.subcategory.error.notFound
+                        'msg': msg.subcategory.error.notFound,
+                        'data': data
                     })
                 }
             })
@@ -77,7 +80,8 @@ export const subcategoryController = {
                     })
                 } else {
                     res.status(203).json({
-                        'msg': msg.subcategory.error.notFound
+                        'msg': msg.subcategory.error.notFound,
+                        'data': data
                     })
                 }
             })
@@ -113,8 +117,11 @@ export const subcategoryController = {
 
    
 
-    delete: (req = request, res=response)=>{
+    delete: async(req = request, res=response)=>{
+        //result: va todo bien 1, algo ha ido mal 0, si la subcategoria tiene documentos 2
         let result
+       const documents=await connectionDocument.getDocumentsFromSubcategory(req.params.id)
+       if( documents.length==0){
         connection.deleteSubcategory(req.params.id)    
         .then( data => {
             result=1
@@ -129,6 +136,13 @@ export const subcategoryController = {
                                     error:err  
                                     });
         });
+       }else{
+        result=2
+        res.status(203).json({cod:result,
+            data:[] 
+            });
+       }
+       
     },
     update: (req = request, res=response)=>{
         let result

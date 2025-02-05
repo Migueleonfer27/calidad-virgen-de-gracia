@@ -5,8 +5,10 @@ import { response, request } from 'express';
 import { CategoryConnection } from '../databases/categories-connection/category-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
 
-const connection = new CategoryConnection();
+import DocumentConnection from '../databases/categories-connection/documents-connection.js';
 
+const connection = new CategoryConnection();
+const docuementConnection = new DocumentConnection()
 export const categoryController = {
 
     get: (req, res = response) => {
@@ -92,23 +94,37 @@ export const categoryController = {
 
    
 
-    delete: (req = request, res=response)=>{
+    delete: async (req = request, res=response)=>{
         let result
-        connection.deleteCategory(req.params.id)    
-        .then( data => {
-            result=1
-            console.log('Categoría borrada correctamente!');
-            res.status(201).json({cod:result,
-                                data:data});
-        })
-        .catch( err => {
-            console.log(err);
-
-            result=0
+          //result: va todo bien 1, algo ha ido mal 0, si la subcategoria tiene documentos 2
+        const documents=await docuementConnection.getDocumentsFromCategory(req.params.id)
+        
+        if(!documents || !documents.subcategories || documents.subcategories.every(sub => sub.documents.length == 0)){
+            
+            connection.deleteCategory(req.params.id)    
+            .then( data => {
+                result=1
+                console.log('Categoría borrada correctamente!');
+                res.status(201).json({cod:result,
+                                    data:data,doc:documents});
+            })
+            .catch( err => {
+                console.log(err);
+    
+                result=0
+                res.status(203).json({cod:result,
+                                        error:err  
+                                        });
+            });
+           
+        }else{
+            result=2
             res.status(203).json({cod:result,
-                                    error:err  
-                                    });
-        });
+                data:[],doc:documents
+                });
+          
+       
+        }
     },
     update: (req = request, res=response)=>{
         let result

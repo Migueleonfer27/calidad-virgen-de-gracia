@@ -20,12 +20,10 @@ export class EditSubcategoryDialogComponent {
 
 ngOnInit(): void {
   this.categoriesService.showAll().subscribe((result) => {
-       console.log(result)
+
        if(result!=null){
         this.categories=result
        }
-
-        console.log(this.categories)
 
        })
 }
@@ -36,8 +34,8 @@ init() {
   if (this.validate()) {
     this.subcategory.id_category = this.catselected!;
 
-    this.dialogRef.close(this.subcategory);  
-    console.log({ "cat modificada:": this.subcategory });
+    this.dialogRef.close(this.subcategory);
+  
   }
 
 }

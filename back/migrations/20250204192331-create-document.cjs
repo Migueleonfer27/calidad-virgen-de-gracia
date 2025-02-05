@@ -2,29 +2,32 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('roles', {
+    await queryInterface.createTable('Documents', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       code: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
+        type: Sequelize.STRING
       },
-      year: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+      url: {
+        type: Sequelize.STRING
       },
-      position: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      id_subcategory:  {
+        type: Sequelize.BIGINT,
+        primaryKey: true,
+        
+        references: {
+          model: 'subcategories',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -35,12 +38,12 @@ module.exports = {
         type: Sequelize.DATE
       },
       deletedAt: {
+        type: Sequelize.DATE, // Para el softdelete
         allowNull: true,
-        type: Sequelize.DATE
-      }
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('roles');
+    await queryInterface.dropTable('Documents');
   }
 };

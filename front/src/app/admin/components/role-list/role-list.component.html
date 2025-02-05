@@ -15,42 +15,52 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8 overflow-auto table-responsive-md border rounded-3 shadow-sm">
-  <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-hover w-100 m-0 align-middle">
+  <table mat-table [dataSource]="dataSource" matSort class=" w-100 m-0 align-middle">
 
     <ng-container matColumnDef="#">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> # </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class=" bg-header-table text-center align-middle"> # </th>
       <td mat-cell *matCellDef="let row; let index = index">{{ index + 1 }}</td>
     </ng-container>
 
     <ng-container matColumnDef="code">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Código </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> Código </th>
       <td mat-cell *matCellDef="let row">{{ row.code }}</td>
     </ng-container>
 
     <ng-container matColumnDef="year">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Año </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> Año </th>
       <td mat-cell *matCellDef="let row">{{ row.year }}</td>
     </ng-container>
 
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Puesto </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> Puesto </th>
       <td mat-cell *matCellDef="let row">{{ row.position }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> Descripción </th>
+      <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef class="text-end align-middle"> Acciones </th>
-      <td mat-cell *matCellDef="let row" class="d-flex justify-content-center justify-content-md-end gap-2">
-        <button mat-icon-button title="Editar rol">
-          <mat-icon class="text-primary" (click)="editRole(row.id)">edit</mat-icon>
-        </button>
-        <button mat-icon-button title="Borrar rol">
-          <mat-icon class="text-danger" (click)="deleteRole(row.id)">delete</mat-icon>
-        </button>
+      <th mat-header-cell *matHeaderCellDef class="bg-header-table text-end align-middle"> Acciones </th>
+      <td mat-cell *matCellDef="let row">
+        <div class="d-flex justify-content-center gap-2 justify-content-md-center">
+          <button mat-icon-button title="Editar rol">
+            <mat-icon class="text-primary" (click)="editRole(row.id)">edit</mat-icon>
+          </button>
+          <button mat-icon-button title="Borrar rol">
+            <mat-icon class="text-danger" (click)="deleteRole(row.id)">delete</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    (mouseenter)="hoveredRow = row"
+    (mouseleave)="hoveredRow = null"
+    [ngClass]="{'hovered-row': hoveredRow === row}"></tr>
 
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell text-center" colspan="5">No hay roles que coincidan con "{{input.value}}"</td>

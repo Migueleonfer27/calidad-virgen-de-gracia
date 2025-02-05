@@ -18,13 +18,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RoleListComponent {
   roles: Role[] = [];
-
+  myColor: string = '#A5B8DB'
+  hoveredRow: any = null;
   dataSource: MatTableDataSource<Role> = new MatTableDataSource<Role>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['#', 'code', 'year', 'position', 'actions'];
+  displayedColumns: string[] = ['#', 'code', 'year', 'position', 'description', 'actions'];
 
   constructor(private adminService: AdminService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.adminService.getRoles().subscribe((res) => {
@@ -98,7 +99,7 @@ export class RoleListComponent {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas eliminar este rol?' }
+      data: { message: '¿Estás seguro de que deseas eliminar este rol?', button: 'Eliminar', closeBtn: 'Cancelar'}
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {

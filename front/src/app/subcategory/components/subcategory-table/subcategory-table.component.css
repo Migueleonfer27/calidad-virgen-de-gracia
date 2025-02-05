@@ -1,6 +1,6 @@
 .subnav-admin{
   background-color: #A5B8DB;
-  color:#294270;
+  color:#ffffff;
 }
 
 table {
@@ -15,9 +15,7 @@ table {
 td, th {
   width: 10%;
 }
-.main-snackbar{
-  background-color:red !important;
-}
+
 
 .addCategoryBtn{
   display:flex;
@@ -28,5 +26,16 @@ td, th {
 .color-primary{
   background-color:#193e7a;
   color:white;
+}
+.hovered-row {
+  background-color: #d6e0f4 !important;
+  color:rgb(76, 1, 54);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+a{
+  all: unset;
+  cursor: pointer;
 }
 

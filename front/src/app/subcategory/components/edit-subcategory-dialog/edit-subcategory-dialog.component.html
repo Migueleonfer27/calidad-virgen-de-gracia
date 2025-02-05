@@ -14,9 +14,9 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Select a category</mat-label>
+      <mat-label>Selecciona una categoria</mat-label>
       <mat-select [(value)]="catselected">
-        <mat-option value="none">None</mat-option> <!-- Opción por defecto -->
+        <!-- <mat-option value="none">Selecciona una categoría</mat-option> Opción por defecto -->
         <mat-option *ngFor="let category of categories" [value]="category.id">
           {{ category.name }}
         </mat-option>

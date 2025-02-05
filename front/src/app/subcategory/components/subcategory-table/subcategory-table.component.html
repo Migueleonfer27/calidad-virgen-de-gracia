@@ -14,35 +14,47 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="Nombre" #input>
       <mat-icon matSuffix class="text-primary">search</mat-icon>
     </mat-form-field>
-    <table class=" w-50" mat-table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="name">
-        <th class=" w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        <td class="w-50" mat-cell *matCellDef="let row"> {{ row.name }} </td>
-      </ng-container>
-      <ng-container matColumnDef="star" stickyEnd>
-        <th class="text-end" mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
-        <td class="text-end w-25" mat-cell *matCellDef="let row">
+    <div class="mat-elevation-z8 overflow-auto table-responsive-md border rounded-3 shadow-sm">
+      <table class=" table-responsive border rounded-3 " mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="#">
+          <th class="bg-header-table" mat-header-cell *matHeaderCellDef mat-sort-header > # </th>
+          <td  mat-cell *matCellDef="let row; let index = index">{{ index + 1 }}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th class=" w-50 bg-header-table" mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td class=" w-50" mat-cell *matCellDef="let row"> {{ row.name }} </td>
+        </ng-container>
+        <ng-container matColumnDef="star" stickyEnd>
+          <th class="text-center align-middle gap-2 bg-header-table" mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
+          <td class="text-center align-middle gap-2" mat-cell *matCellDef="let row">
 
-          <button class="border-0 bg-light" mat-icon-button matSuffix (click)="editSubcategory(row)" title="Editar subcategoría">
-            <mat-icon class="text-primary" >edit</mat-icon>
-          </button>
-          <button class="border-0 bg-light" mat-icon-button matSuffix (click)="deletSubcategory(row)" title="Borrar subcategoría">
-            <mat-icon class="text-danger">delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+            <button class="border-0 bg-light me-2" mat-icon-button matSuffix (click)="editSubcategory(row)" title="Editar subcategoría">
+              <mat-icon class="text-primary" >edit</mat-icon>
+            </button>
+            <button class="border-0 bg-light" mat-icon-button matSuffix (click)="deletSubcategory(row)" title="Borrar subcategoría">
+              <mat-icon class="text-danger">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
 
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"  ></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"  ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          (mouseenter)="hoveredRow = row"
+        (mouseleave)="hoveredRow = null"
+        [ngClass]="{'hovered-row': hoveredRow === row}">
+        </tr>
 
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-    </table>
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDaetaRow>
+          <td class="mat-cell" colspan="4">No hay subcategorías en el sistema "{{input.value}}"</td>
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+
+
   </div>
 
 </div>

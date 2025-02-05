@@ -40,7 +40,7 @@ export class CategoryService {
     }
 
   deleteCategory(id: number){
-    return this.http.delete<Result>(`${environment.apiUrl+this.categoriesUrl}/delete/${id}`)
+    return this.http.delete<ResultInsert>(`${environment.apiUrl+this.categoriesUrl}/delete/${id}`)
   }
 
    editCategory(category:ResultInsert){
