@@ -14,8 +14,41 @@ app-root {
   flex: 1;
 }
 
-.main-snackbar.mat-snack-bar-container {
-  background-color: #ff4081 !important;
-  color: white !important;
+
+/*
+.snack-error{
+  background-color:blue !important;
+}*/
+.mdc-snackbar__surface{
+  background-color:  #0b3074c1 !important;
+
+}
+
+.mdc-button__label span{
+  color: rgb(255, 255, 255) !important;
+}
+.bg-header-table{
+  background-color:#e7ebf2a7 !important;
+}
+.mat-mdc-snackbar-surface{
+  background-color:  #0b3074c1 !important;
+}
+.hovered-row {
+  background-color: #d6e0f4 !important;
+  color:rgb(76, 1, 54);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.mat-mdc-snack-bar-label{
+  background-color:  #a5b8dbc1 !important;
+  color: rgb(12, 12, 77) !important;
   font-size: 16px !important;
 }
+
+.mdc-snackbar__label{
+  background-color:  #a5b8dbc2 !important;
+  color: rgb(14, 5, 98) !important;
+  font-size: 16px !important;
+}
+
+

@@ -87,7 +87,7 @@ export class SubcategoryConnection {
         let result = [];
         
             result = await Subcategory.findByPk(id)
-         
+            
             if(result==null){
                 throw error
             }

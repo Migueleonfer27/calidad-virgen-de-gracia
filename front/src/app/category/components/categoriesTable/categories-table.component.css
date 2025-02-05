@@ -26,14 +26,9 @@ td, th {
 }
 .subnav-admin{
   background-color: #A5B8DB;
-  color:#294270;
+  color:#ffffff;
 }
-.hovered-row {
-  background-color: #697C9F !important;
-  color:antiquewhite;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
+
 
 a{
   all: unset;

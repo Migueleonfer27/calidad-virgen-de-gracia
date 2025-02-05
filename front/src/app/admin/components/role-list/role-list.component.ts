@@ -18,7 +18,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RoleListComponent {
   roles: Role[] = [];
-
+  myColor: string = '#A5B8DB'
+  hoveredRow: any = null;
   dataSource: MatTableDataSource<Role> = new MatTableDataSource<Role>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

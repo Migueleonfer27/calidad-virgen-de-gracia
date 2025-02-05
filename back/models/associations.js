@@ -3,6 +3,7 @@ import Roles from "./role.js";
 import UsersRoles from "./user-role.js";
 import Category from "./category.js";
 import Subcategory from "./subcategory.js";
+import Document from "./document.js"
 
 Users.belongsToMany(Roles, {
   through: UsersRoles,
@@ -29,5 +30,16 @@ Subcategory.belongsTo(Category, {
   foreignKey: 'id_category'
 })
 
-export { Users, Roles, UsersRoles, Category, Subcategory };
+Subcategory.hasMany(Document, {
+  as: 'documents',
+  foreignKey: 'id_subcategory'
+
+});
+
+Document.belongsTo(Subcategory, {
+  as: 'subcategory',
+  foreignKey: 'id_subcategory'
+})
+
+export { Users, Roles, UsersRoles, Category, Subcategory, Document };
 

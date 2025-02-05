@@ -60,6 +60,7 @@ export class CategoryConnection{
                return result;
     }
 
+    
 
     deleteCategory= async (id)=>{
 
