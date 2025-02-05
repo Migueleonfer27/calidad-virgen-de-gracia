@@ -23,9 +23,12 @@ export class UserListComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
-  displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'gender', 'corporate_email', 'roles', 'actions'];
+ 
+  displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'last_name', 'corporate_email', 'roles', 'actions'];
+
 
   constructor(private adminService: AdminService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.adminService.getUsers().subscribe(
@@ -55,7 +58,7 @@ export class UserListComponent implements AfterViewInit {
       width: '500px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { id: null, title: 'Crear usuario', button: 'Crear', message: 'Complete el formulario para crear un nuevo usuario.' }
+      data: { id: null, title: 'Crear usuario', button: 'Crear', closeBtn: 'Cancelar', message: 'Complete el formulario para crear un nuevo usuario.' }
     });
 
     dialogRef.afterClosed().subscribe((user) => {
@@ -75,12 +78,21 @@ export class UserListComponent implements AfterViewInit {
     });
   }
 
+  showUser(id: number) {
+    const dialogRef = this.dialog.open(FormUserDialogComponent, {
+      width: '500px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: { id, title: 'Información del usuario', button: 'Info', closeBtn: 'Cerrar', message: 'Listado completo de la información del usuario.' }
+    });
+  }
+
   editUser(id: number) {
     const dialogRef = this.dialog.open(FormUserDialogComponent, {
       width: '500px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { id, title: 'Editar usuario', button: 'Editar', message: '¿Estás seguro de que deseas editar este usuario?' }
+      data: { id, title: 'Editar usuario', button: 'Editar', closeBtn: 'Cancelar', message: '¿Estás seguro de que deseas editar este usuario?' }
     });
 
     dialogRef.afterClosed().subscribe((user) => {
@@ -104,7 +116,7 @@ export class UserListComponent implements AfterViewInit {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas eliminar este usuario?' }
+      data: { message: '¿Estás seguro de que deseas eliminar este usuario?', button: 'Eliminar', closeBtn: 'Cancelar' }
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
@@ -147,7 +159,7 @@ export class UserListComponent implements AfterViewInit {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas desasignar este rol?' }
+      data: { message: '¿Estás seguro de que deseas desasignar este rol?', button: 'Remover', closeBtn: 'Cancelar' }
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {

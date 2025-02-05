@@ -7,12 +7,7 @@
     </div>
 
     <div class="col-4 col-md-6 text-end">
-
-      <button mat-raised-button *ngIf="!isUserLoggedIn()" routerLink="/auth/login" class="login-btn">
-        <mat-icon>login</mat-icon> Iniciar sesión
-      </button>
-
-      <div *ngIf="isUserLoggedIn()">
+      <div *ngIf="!isUserLoggedIn()">
         <button mat-raised-button [matMenuTriggerFor]="userMenu">
           Mi cuenta
         </button>

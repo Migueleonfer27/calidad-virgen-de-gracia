@@ -11,7 +11,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ConfirmDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { message: string, closeBtn:string, button:string }
+
+    @Inject(MAT_DIALOG_DATA) public data: { message: string, button: string, closeBtn: string }
+
   ) { }
 
   onConfirm(): void {
