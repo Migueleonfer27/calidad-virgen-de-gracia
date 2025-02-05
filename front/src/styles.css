@@ -24,10 +24,12 @@ app-root {
 
 }
 
-.mdc-button__label{
+.mdc-button__label span{
   color: rgb(255, 255, 255) !important;
 }
-
+.bg-header-table{
+  background-color:#e7ebf2a7 !important;
+}
 .mat-mdc-snackbar-surface{
   background-color:  #0b3074c1 !important;
 }

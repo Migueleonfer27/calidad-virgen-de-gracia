@@ -17,15 +17,15 @@
     <div class="mat-elevation-z8 overflow-auto table-responsive-md border rounded-3 shadow-sm">
       <table class=" w-100 m-0 align-middle" mat-table [dataSource]="dataSource" matSort >
         <ng-container matColumnDef="#">
-          <th  mat-header-cell *matHeaderCellDef mat-sort-header > # </th>
+          <th class=" bg-header-table" mat-header-cell *matHeaderCellDef mat-sort-header > # </th>
           <td  mat-cell *matCellDef="let row; let index = index">{{ index + 1 }}</td>
         </ng-container>
           <ng-container matColumnDef="name">
-            <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header > Nombre </th>
+            <th class="w-50 bg-header-table" mat-header-cell *matHeaderCellDef mat-sort-header > Nombre </th>
             <td class="w-50" mat-cell *matCellDef="let row" >  {{ row.name }}</td>
           </ng-container>
           <ng-container matColumnDef="star" stickyEnd>
-            <th class="text-center align-middle gap-2" mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
+            <th class="text-center align-middle gap-2 bg-header-table" mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
             <td class=" text-center align-middle gap-2" mat-cell *matCellDef="let row" >
               <div  class="d-flex justify-content-center gap-2 justify-content-md-center">
                 <button class="border-0 bg-light" mat-icon-button matSuffix [routerLink]="['/admin/subcategory-table', row.id, row.name]" title="Ver detalle">

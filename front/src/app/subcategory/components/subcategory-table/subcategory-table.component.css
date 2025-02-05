@@ -1,6 +1,6 @@
 .subnav-admin{
   background-color: #A5B8DB;
-  color:#294270;
+  color:#ffffff;
 }
 
 table {
@@ -15,9 +15,7 @@ table {
 td, th {
   width: 10%;
 }
-.main-snackbar{
-  background-color:red !important;
-}
+
 
 .addCategoryBtn{
   display:flex;
