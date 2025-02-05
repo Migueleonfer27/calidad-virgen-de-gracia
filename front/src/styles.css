@@ -33,7 +33,12 @@ app-root {
 .mat-mdc-snackbar-surface{
   background-color:  #0b3074c1 !important;
 }
-
+.hovered-row {
+  background-color: #d6e0f4 !important;
+  color:rgb(76, 1, 54);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
 .mat-mdc-snack-bar-label{
   background-color:  #a5b8dbc1 !important;
   color: rgb(12, 12, 77) !important;

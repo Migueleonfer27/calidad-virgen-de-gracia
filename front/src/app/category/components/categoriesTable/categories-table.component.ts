@@ -28,8 +28,9 @@ import { catchError, map, Observable } from 'rxjs';
 export class CategoriesComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['#','name', 'star'];
-  myColor: string = '#A5B8DB'
+
   dataSource: MatTableDataSource<Category> = new MatTableDataSource<Category>([])
+  myColor: string = '#A5B8DB'
   hoveredRow: any = null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
