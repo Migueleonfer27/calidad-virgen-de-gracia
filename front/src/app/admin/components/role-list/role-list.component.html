@@ -37,15 +37,22 @@
       <td mat-cell *matCellDef="let row">{{ row.position }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Descripción </th>
+      <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef class="text-end align-middle"> Acciones </th>
-      <td mat-cell *matCellDef="let row" class="d-flex justify-content-center justify-content-md-end gap-2">
-        <button mat-icon-button title="Editar rol">
-          <mat-icon class="text-primary" (click)="editRole(row.id)">edit</mat-icon>
-        </button>
-        <button mat-icon-button title="Borrar rol">
-          <mat-icon class="text-danger" (click)="deleteRole(row.id)">delete</mat-icon>
-        </button>
+      <td mat-cell *matCellDef="let row">
+        <div class="d-flex justify-content-center gap-2 justify-content-md-center">
+          <button mat-icon-button title="Editar rol">
+            <mat-icon class="text-primary" (click)="editRole(row.id)">edit</mat-icon>
+          </button>
+          <button mat-icon-button title="Borrar rol">
+            <mat-icon class="text-danger" (click)="deleteRole(row.id)">delete</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
 

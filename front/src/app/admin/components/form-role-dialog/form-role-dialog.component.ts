@@ -25,7 +25,8 @@ export class FormRoleComponent {
     this.roleForm = this.fb.group({
       code: ['', Validators.required],
       year: ['', Validators.required],
-      position: ['', Validators.required]
+      position: ['', Validators.required],
+      description: ['',Validators.required]
     });
   }
 
