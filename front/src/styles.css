@@ -14,8 +14,34 @@ app-root {
   flex: 1;
 }
 
-.main-snackbar.mat-snack-bar-container {
-  background-color: #ff4081 !important;
-  color: white !important;
+
+/*
+.snack-error{
+  background-color:blue !important;
+}*/
+.mdc-snackbar__surface{
+  background-color:  #0b3074c1 !important;
+
+}
+
+.mdc-button__label{
+  color: rgb(255, 255, 255) !important;
+}
+
+.mat-mdc-snackbar-surface{
+  background-color:  #0b3074c1 !important;
+}
+
+.mat-mdc-snack-bar-label{
+  background-color:  #a5b8dbc1 !important;
+  color: rgb(12, 12, 77) !important;
   font-size: 16px !important;
 }
+
+.mdc-snackbar__label{
+  background-color:  #a5b8dbc2 !important;
+  color: rgb(14, 5, 98) !important;
+  font-size: 16px !important;
+}
+
+

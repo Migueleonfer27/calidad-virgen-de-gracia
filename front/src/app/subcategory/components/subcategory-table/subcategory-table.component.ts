@@ -79,11 +79,12 @@ export class SubcategoryTableComponent {
           this.subcategoryService.addSubcategory(subcategory)
             .subscribe((resultInsert) => {
               this.dataSource.data = [...this.dataSource.data, resultInsert.data];
-
+              this.snackBar.handsetCssClass='.main-snackbar'
               this.snackBar.open(`La Subcategoría ${subcategory.name} ha sido insertada correctamente`, 'Cerrar', {
-                duration: 2000,
-                panelClass: ['main-snackbar'],
-                verticalPosition: 'bottom'
+                duration: 200000,
+                panelClass: ['snack-error'],
+                verticalPosition: 'bottom',
+
               })
 
 
