@@ -81,7 +81,7 @@ export class SubcategoryTableComponent {
               this.dataSource.data = [...this.dataSource.data, resultInsert.data];
               this.snackBar.handsetCssClass='.main-snackbar'
               this.snackBar.open(`La Subcategoría ${subcategory.name} ha sido insertada correctamente`, 'Cerrar', {
-                duration: 200000,
+                duration: 3000,
                 panelClass: ['snack-error'],
                 verticalPosition: 'bottom',
 

@@ -130,7 +130,7 @@ export class CategoriesComponent implements AfterViewInit {
             });
           } else  if(result.cod==2){
             this.snackBar.open(`La categoría ${category.name} no ha sido borrada porque contiene subcategorías con documentos anexos y deben ser eliminados primero`, 'Cerrar', {
-              duration: 100000,
+              duration: 5000,
               horizontalPosition: 'center',
               verticalPosition: 'bottom',
               panelClass: '.snack'
