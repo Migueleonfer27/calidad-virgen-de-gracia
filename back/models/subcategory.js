@@ -1,6 +1,6 @@
-'use strict';
 import { Sequelize, DataTypes, Model } from 'sequelize';
 import {db as conexion}   from '../databases/connection.js'
+'use strict';
 
 export class Subcategory extends Model{
 

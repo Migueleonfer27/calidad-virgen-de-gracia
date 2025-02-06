@@ -75,7 +75,7 @@ export class CategoriesComponent implements AfterViewInit {
       if (!result) return;
 
       this.categoriesService.editCategory(result).subscribe((response) => {
-        if (result.data.cod == 1) {
+        if (response.cod == 1) {
           this.dataSource.data = this.dataSource.data.map(row =>
             row.id === response.data.id ? response.data : row
           );
