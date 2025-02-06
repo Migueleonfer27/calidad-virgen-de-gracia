@@ -10,6 +10,7 @@ import {
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
+  csvMiddleware
 } from "../middlewares/user-middleware.js";
 
 export const router = Router();
@@ -41,4 +42,4 @@ router.put(
   UserController.updateUser
 );
 router.delete("/:id", isIdIntMiddleware, UserController.deleteUser);
-router.post('/massive', UserController.storeUsersCsv);
+router.post('/massive', csvMiddleware, UserController.storeUsersCsv);
