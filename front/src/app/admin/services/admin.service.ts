@@ -62,4 +62,10 @@ export class AdminService {
   deleteRole(id: number): Observable<Role> {
     return this.http.delete<Role>(`${this.urlRoles}/${id}`);
   }
+
+  postCsv(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(`${this.urlUsers}/massive`, formData);
+  }
 }
