@@ -26,7 +26,7 @@ export class UserListComponent implements AfterViewInit {
 
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
- 
+
   displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'last_name', 'corporate_email', 'roles', 'actions'];
 
 
@@ -185,5 +185,20 @@ export class UserListComponent implements AfterViewInit {
       this.dataSource.data = response.data;
     });
   }
-}
 
+  onFileInputCsv(event: any) {
+    const file = event.target.files[0];
+
+    if (file) {
+      this.adminService.postCsv(file).subscribe({
+        next: () => {
+          this.refreshUsers();
+          this.snackBar.open('Archivo CSV cargado correctamente', 'Cerrar', { duration: 3000 });
+        },
+        error: (error) => {
+          this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
+        }
+      })
+    }
+  }
+}
