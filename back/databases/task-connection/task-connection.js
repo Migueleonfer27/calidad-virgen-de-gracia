@@ -1,7 +1,9 @@
 import { Op } from 'sequelize';
-import { Task, TaskUser, Users } from '../../models/associations.js';
+import { Roles, Task, TaskUser, Users } from '../../models/associations.js';
 
 export class TaskConnection {
+    //State:1->toDo 2->done
+
     insertTask = async (task, idUser) => {
         const newTask = new Task()
         newTask.description = task.description;
@@ -13,7 +15,36 @@ export class TaskConnection {
             const assignedTask = new TaskUser()
             assignedTask.id_user = idUser
             assignedTask.id_task = resultTask.id
+            assignedTask.state=1
             result = await assignTask(assignedTask)
+        } catch (error) {
+            resultTask = error
+            throw error;
+
+        }
+        return resultTask;
+    }
+
+    insertTaskByRole = async (task, role) => {
+        const newTask = new Task()
+        newTask.description = task.description;
+        newTask.end_date = task.end_date
+        let us=[]
+        let resultTask;
+        let users;
+        try {
+            resultTask = await newTask.save();
+            users=await getUserByRole(role)
+            console.log()
+            users[0].dataValues.Users.forEach(async (user)  => {
+                
+                const assignedTask = new TaskUser()
+                assignedTask.id_user = user.dataValues.id
+               assignedTask.id_task = resultTask.id
+                assignedTask.state=1
+                await assignTask(assignedTask)
+            })
+           
         } catch (error) {
             resultTask = error
             throw error;
@@ -25,18 +56,20 @@ export class TaskConnection {
     getTaskByIdUser = async (id) => {
         let resultado = [];
         try{
-            resultado = await Users.findByPk(id, {
-                attributes: [],
+            resultado= await Users.findOne({
+                where: { id: id },
                 include: [
                     {
                         model: Task,
+                        attributes: ['id', 'description', 'end_date'], 
                         through: {
-                            attributes: []
-                        },
-                        attributes: ['id', 'description', 'end_date']
+                            attributes: ['state','id_user'], 
+                        }
                     }
-                ]
-            })
+                ],
+                attributes: [],
+            });
+        
 
         }catch(err){
             throw err
@@ -52,10 +85,12 @@ export class TaskConnection {
                 {
                     model: Users,
                     through: {
-                        attributes: []
+                        attributes: ['state']
                     },
                     attributes: ['id', 'first_name', 'last_name']
                 }
+                
+
             ]
         })
 
@@ -78,10 +113,38 @@ export class TaskConnection {
         return result
     }
 
+    updateTaskFromUser = async (taskUser) => {
+         //State:1->toDo 2->done
+        let result = [];
+        
+    const task = await TaskUser.findOne({
+            where: {
+                [Op.and]:{
+                    id_user: {
+                        [Op.eq]: taskUser.id_user
+                    },
+                    id_task: {
+                        [Op.eq]: taskUser.id_task
+                    }
+                }
+               
+            }
+            
+        })
+        
+        if (result == null) {
+            throw error
+        }
+        task.state=taskUser.state
+        result = await task.save()
+
+        return result
+    }
+
     deleteTaskFromUser  = async (idTask,idUser) => {
         let result = [];
         try{
-            const taskUser = await TaskUser.findAll({
+            const taskUser = await TaskUser.findOne({
                 where: {
                     [Op.and]:{
                         id_user: {
@@ -96,7 +159,7 @@ export class TaskConnection {
             })
             console.log(taskUser)
            
-            result = await taskUser[0].destroy()
+            result = await taskUser.destroy()
         }catch(err){
             throw err
         }
@@ -107,6 +170,7 @@ export class TaskConnection {
         let result = [];
         try{
             const task = await Task.findByPk(idTask)
+            result=await task.destroy()
             const taskUser=await TaskUser.findAll({
                 where: {
                     id_task:{
@@ -117,7 +181,7 @@ export class TaskConnection {
 
           
             if(task && taskUser.length>0){
-                result=task.destroy()
+               
                 taskUser.forEach(element => {
                     element.destroy()
                 });
@@ -130,7 +194,35 @@ export class TaskConnection {
         return result
     }
 
+  
 
+
+}
+
+const getUserByRole= async (role)=>{
+    let users=[]
+    try {
+        users=await Roles.findAll({
+            where: { id: role },
+            attributes: [],
+            include: [
+                {
+                    model: Users,
+                    attributes: ['id'], 
+                    through:{
+                        attributes:[]
+                    }
+                       
+                    
+                }
+            ],
+            
+        });
+    
+    } catch (error) {
+        throw error
+    }
+    return users
 
 }
 const assignTask = async (assignedTask) => {
