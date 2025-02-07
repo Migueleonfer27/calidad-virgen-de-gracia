@@ -25,7 +25,8 @@ TaskUser.init({
     },
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE'
-  }
+  },
+  state: DataTypes.INTEGER,
 }, {
   sequelize: conexion,
   modelName: 'TaskUser',

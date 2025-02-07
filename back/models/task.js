@@ -14,7 +14,8 @@ export class Task extends Model {
       autoIncrement: true,
     },
     description: DataTypes.STRING,
-    end_date:  DataTypes.DATE
+    end_date:  DataTypes.DATE,
+    
   }, {
    sequelize:conexion,
     modelName: 'Task',
