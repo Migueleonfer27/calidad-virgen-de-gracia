@@ -1,0 +1,51 @@
+<div cdkDropListGroup class="container">
+  <div class="row justify-content-center g-4">
+    <div class="col-md-6">
+      <mat-card class="shadow">
+        <mat-card-header
+          class="bg-primary text-white text-center fw-bold d-flex align-items-center justify-content-center">
+          <mat-card-title>Tareas Pendientes</mat-card-title>
+        </mat-card-header>
+        <mat-card-content cdkDropList [cdkDropListData]="todo" class="p-3 min-vh-50 overflow-auto"
+          (cdkDropListDropped)="drop($event)">
+          @for (item of todo; track item) {
+          <mat-card class="kanban-item border mat-elevation-z4 my-3" cdkDrag>
+            <mat-card-header>
+              <mat-card-title>{{ item }}</mat-card-title>
+              <mat-card-subtitle>Descripción de la tarea</mat-card-subtitle>
+              <mat-card-subtitle>02/09/1999</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions align="end">
+              <button mat-button color="primary">Ver más</button>
+            </mat-card-actions>
+          </mat-card>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6">
+      <mat-card class="shadow">
+        <mat-card-header
+          class="bg-danger text-white text-center fw-bold d-flex align-items-center justify-content-center">
+          <mat-card-title>Tareas Terminadas</mat-card-title>
+        </mat-card-header>
+        <mat-card-content cdkDropList [cdkDropListData]="done" class="p-3 min-vh-50 overflow-auto"
+          (cdkDropListDropped)="drop($event)">
+          @for (item of done; track item) {
+          <mat-card class="kanban-item border mat-elevation-z4 my-3" cdkDrag>
+            <mat-card-header>
+              <mat-card-title>{{ item }}</mat-card-title>
+              <mat-card-subtitle>Descripción de la tarea</mat-card-subtitle>
+              <mat-card-subtitle>02/09/1999</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions align="end">
+              <button mat-button color="accent">Ver más</button>
+            </mat-card-actions>
+          </mat-card>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

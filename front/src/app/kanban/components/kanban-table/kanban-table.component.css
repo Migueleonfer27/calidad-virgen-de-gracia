@@ -1,0 +1,7 @@
+.kanban-item {
+  cursor: grab;
+}
+
+.kanban-item:active {
+  cursor: grabbing;
+}
