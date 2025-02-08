@@ -1,0 +1,9 @@
+<mat-list>
+  @for (user of users; track user) {
+    <mat-list-item>
+      <mat-icon matListItemIcon>folder</mat-icon>
+      <h3 matListItemTitle>{{user.first_name}}{{user.last_name}}</h3>
+
+    </mat-list-item>
+  }
+</mat-list>

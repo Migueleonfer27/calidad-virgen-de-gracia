@@ -37,8 +37,8 @@ export class SubcategoryTableComponent {
       .pipe(
         switchMap(params => {
 
-          this.id = +params['id']; // Convertir a número
-          this.name = params['name']; // Guardar nombre
+          this.id = +params['id'];
+          this.name = params['name']; 
           return this.subcategoryService.getSubcategoriesFromCategory(this.id);
         })
       )

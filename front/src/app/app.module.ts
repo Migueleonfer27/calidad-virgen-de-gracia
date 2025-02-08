@@ -9,6 +9,8 @@ import { HomeModule } from './home/home.module';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http'
+import { TaskModule } from "./task/task.module";
+
 
 @NgModule({
   declarations: [
@@ -21,8 +23,8 @@ import { HttpClientModule } from '@angular/common/http'
     HomeModule,
     BrowserAnimationsModule,
     HttpClientModule,
-   // AdminModule
-  ],
+    TaskModule
+],
   providers: [
     provideAnimationsAsync(),
     provideHttpClient()

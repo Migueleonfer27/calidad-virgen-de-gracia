@@ -1,0 +1,36 @@
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descripción </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="end_date">
+      <th mat-header-cell *matHeaderCellDef>Fecha de Entrega</th>
+      <td mat-cell *matCellDef="let element">  {{ element.end_date | date:'dd-MM-yyyy' }}  </td>
+    </ng-container>
+
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="accion">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-mini-fab aria-label="Example icon button with a delete icon" (click)="userAssigned(element.Users, element)" title="Usuarios asignados">
+          <mat-icon>group</mat-icon>
+        </button>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
