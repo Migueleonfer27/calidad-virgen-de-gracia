@@ -1,11 +1,15 @@
-
+<app-task-filter
+label="Filtrar por Estado"
+[rolesOption]="filterOptions"
+[tableField]="'state'"
+(filterChange)="applyFilter($event)"></app-task-filter>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
     <ng-container matColumnDef="user">
       <th class="w-75" mat-header-cell *matHeaderCellDef>Usuarios Asignados</th>
-      <td class="w-75"mat-cell *matCellDef="let element"> {{element.first_name}}{{element.last_name}}</td>
+      <td class="w-75"mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}}</td>
     </ng-container>
 
     <!-- Name Column -->

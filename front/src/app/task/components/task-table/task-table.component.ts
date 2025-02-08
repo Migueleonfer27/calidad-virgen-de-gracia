@@ -18,6 +18,8 @@ export class TaskTableComponent {
   displayedColumns: string[] = [ 'description','type', 'end_date','accion'];
   dataSource = new MatTableDataSource<Task>([]);
   rolesOption:Role[]= [];
+  filteredData: Task[] = [];
+
   constructor(private taskService:TaskService, private router: Router, private adminService:AdminService){
     this.adminService.getRoles().subscribe((res) => {
       this.rolesOption = res.data;
@@ -27,7 +29,9 @@ export class TaskTableComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+   
   }
+
 
  ngOnInit() {
 
@@ -35,11 +39,21 @@ export class TaskTableComponent {
        .subscribe(response => {
 
          this.dataSource = new MatTableDataSource(response.data);
+         this.filteredData=response.data;
          this.dataSource.paginator = this.paginator
 
        });
    }
 
+   applyFilter(filterValue: { role: string }) {
+    if (!filterValue.role || filterValue.role=="0") {
+      this.dataSource.data = this.filteredData;
+    } else {
+      this.dataSource.data = this.filteredData.filter(
+        (task) => task.type == parseInt(filterValue.role)
+      );
+    }
+  }
    userAssigned(users: UserAssigned[], task:Task){
 
       this.taskService.saveUsers(users, task)

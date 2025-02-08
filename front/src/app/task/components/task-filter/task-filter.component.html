@@ -1,18 +1,8 @@
 <div class="filter-menu">
-  <h3>Filtros</h3>
-
   <mat-form-field appearance="fill">
-    <mat-label>Estado</mat-label>
-    <mat-select [formControl]="statusFilter" (selectionChange)="onFilterChange()">
-      <mat-option value="1">Pendiente</mat-option>
-      <mat-option value="2">Terminado</mat-option>
-     
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Rol</mat-label>
+    <mat-label>{{ label }}</mat-label>
     <mat-select [formControl]="roleFilter" (selectionChange)="onFilterChange()">
+      <mat-option [value]="'0'">Todos</mat-option>
       <mat-option *ngFor="let role of rolesOption" [value]="role.id">{{ role.position }}</mat-option>
     </mat-select>
   </mat-form-field>

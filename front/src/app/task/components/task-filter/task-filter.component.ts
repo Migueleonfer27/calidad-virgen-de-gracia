@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AdminService } from '../../../admin/services/admin.service';
 import { Role } from '../../../admin/interfaces/user.interfaces';
@@ -11,20 +11,19 @@ import { Role } from '../../../admin/interfaces/user.interfaces';
   styleUrl: './task-filter.component.css'
 })
 export class TaskFilterComponent {
-
-  @Output() filterChange = new EventEmitter<{ status: string, role: string }>();
+  @Input() label="Filtrar por"
+  @Input()  rolesOption:Role[]=[]
+  @Input()  tableField=""
+  @Output() filterChange = new EventEmitter<{  role: string }>();
 
   roleFilter=new FormControl('');
-  statusFilter=new FormControl('');
-  rolesOption:Role[]=[]
+
   constructor(private adminService: AdminService){
-    this.adminService.getRoles().subscribe((res) => {
-      this.rolesOption = res.data;
-    });
+    
   }
   onFilterChange() {
     this.filterChange.emit({
-      status: this.statusFilter.value!,
+
       role: this.roleFilter.value!
     });
   }

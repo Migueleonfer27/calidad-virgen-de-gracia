@@ -1,3 +1,5 @@
+/**
+ * @Gema */
 import { Op } from 'sequelize';
 import { Roles, Task, TaskUser, Users, UsersRoles } from '../../models/associations.js';
 

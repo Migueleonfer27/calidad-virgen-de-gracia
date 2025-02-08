@@ -42,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     TaskTableComponent,
     TaskPageComponent,
-    UserTaskComponent
+    UserTaskComponent,
+    TaskFilterComponent
   ]
 })
 export class TaskModule { }

@@ -1,4 +1,8 @@
-
+<app-task-filter
+label="Filtrar por rol de asignación"
+[rolesOption]="rolesOption"
+[tableField]="'type'"
+(filterChange)="applyFilter($event)"></app-task-filter>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 
