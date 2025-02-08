@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { TaskList, UserAssigned, CacheStore, UserTaskCache } from '../../interfaces/task.interface';
+import { Task, UserAssigned, CacheStore, UserTaskCache } from '../../interfaces/task.interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { TaskService } from '../../services/task.service';
 import { Router } from '@angular/router';
+import { AdminService } from '../../../admin/services/admin.service';
+import { Role } from '../../../admin/interfaces/user.interfaces';
 
 @Component({
   selector: 'app-task-table',
@@ -13,10 +15,14 @@ import { Router } from '@angular/router';
   styleUrl: './task-table.component.css'
 })
 export class TaskTableComponent {
-  displayedColumns: string[] = [ 'description', 'end_date','accion'];
-  dataSource = new MatTableDataSource<TaskList>([]);
-
-  constructor(private taskService:TaskService, private router: Router){}
+  displayedColumns: string[] = [ 'description','type', 'end_date','accion'];
+  dataSource = new MatTableDataSource<Task>([]);
+  rolesOption:Role[]= [];
+  constructor(private taskService:TaskService, private router: Router, private adminService:AdminService){
+    this.adminService.getRoles().subscribe((res) => {
+      this.rolesOption = res.data;
+    });
+  }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -34,11 +40,21 @@ export class TaskTableComponent {
        });
    }
 
-   userAssigned(users: UserAssigned[], task:TaskList){
+   userAssigned(users: UserAssigned[], task:Task){
 
       this.taskService.saveUsers(users, task)
-      this.router.navigate(['task','user-task']);
+      this.router.navigate(['/task','user-task']);
    }
+
+   getRoleDescription(idRol: number) {
+
+    if(idRol!=null){
+      return this.rolesOption.find(r => r.id === idRol)?.position;
+    }
+
+  return null
+
+  }
 }
 
 

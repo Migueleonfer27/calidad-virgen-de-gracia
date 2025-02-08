@@ -1,11 +1,16 @@
+
+
+
+/********************************** */
 export interface ResponseTask {
   cod:  number;
-  data: TaskList[];
+  data: Task[];
 }
 
-export interface TaskList {
+export interface Task {
   id:          number;
   description: string;
+  type:        number;
   end_date:    Date;
   Users:       UserAssigned[];
 }
@@ -29,5 +34,5 @@ export interface CacheStore
 
 export interface UserTaskCache{
   users?: UserAssigned[];
-  task?: TaskList;
+  task?: Task;
 }

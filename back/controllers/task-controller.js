@@ -29,7 +29,7 @@ export const taskController = {
     },
     insertByRole:(req = request, res = response) => {
         let result
-        connection.insertTaskByRole(req.body.task, req.body.role)
+        connection.insertTaskByRole(req.body.task)
             .then(data => {
                 result = 1
                 
@@ -40,7 +40,7 @@ export const taskController = {
                 });
             })
             .catch(err => {
-               // console.log(err);
+               console.log(err);
                 result = 0
                 res.status(203).json({
                     cod: result,

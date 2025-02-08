@@ -7,15 +7,16 @@
     </div>
 
     <div class="col-4 col-md-6 text-end">
-      <div *ngIf="!isUserLoggedIn()">
+     <!--<div *ngIf="!isUserLoggedIn()">-->
         <button mat-raised-button [matMenuTriggerFor]="userMenu">
           Mi cuenta
         </button>
         <mat-menu #userMenu="matMenu">
           <button mat-menu-item routerLink="/admin">Administración</button>
+          <button mat-menu-item routerLink="/task">Calidad</button>
           <button mat-menu-item (click)="logout()">Cerrar sesión</button>
         </mat-menu>
-      </div>
+      <!--</div>-->
     </div>
   </div>
 </header>

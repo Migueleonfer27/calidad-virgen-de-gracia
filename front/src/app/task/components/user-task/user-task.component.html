@@ -1,9 +1,32 @@
-<mat-list>
-  @for (user of users; track user) {
-    <mat-list-item>
-      <mat-icon matListItemIcon>folder</mat-icon>
-      <h3 matListItemTitle>{{user.first_name}}{{user.last_name}}</h3>
 
-    </mat-list-item>
-  }
-</mat-list>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="user">
+      <th class="w-75" mat-header-cell *matHeaderCellDef>Usuarios Asignados</th>
+      <td class="w-75"mat-cell *matCellDef="let element"> {{element.first_name}}{{element.last_name}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="state">
+      <th class="w-25 text-center" mat-header-cell *matHeaderCellDef>Estado de la Tarea</th>
+      <td class="w-25 text-center" mat-cell *matCellDef="let element">
+        <div class="border d-inline-flex align-items-center rounded">
+          <mat-icon *ngIf="element.TaskUser.state == 1" class="text-warning">hourglass_empty</mat-icon>
+          <mat-icon *ngIf="element.TaskUser.state == 2" class="text-success">check_circle</mat-icon>
+        </div>
+
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
