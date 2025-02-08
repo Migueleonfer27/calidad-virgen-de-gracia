@@ -3,16 +3,19 @@ import { CommonModule } from '@angular/common';
 import { CdkDropListGroup, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 
 import { KanbanRoutingModule } from './kanban-routing.module';
 import { KanbanTableComponent } from './components/kanban-table/kanban-table.component';
 import { KanbanPageComponent } from './pages/kanban-page/kanban-page.component';
+import { DocumentsDialogComponent } from './components/documents-dialog/documents-dialog.component';
 
 
 @NgModule({
   declarations: [
     KanbanTableComponent,
-    KanbanPageComponent
+    KanbanPageComponent,
+    DocumentsDialogComponent
   ],
   imports: [
     CommonModule,
@@ -21,11 +24,13 @@ import { KanbanPageComponent } from './pages/kanban-page/kanban-page.component';
     CdkDropList,
     CdkDrag,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatIcon
   ],
   exports: [
     KanbanPageComponent,
-    KanbanTableComponent
+    KanbanTableComponent,
+    DocumentsDialogComponent
   ]
 })
 export class KanbanModule { }

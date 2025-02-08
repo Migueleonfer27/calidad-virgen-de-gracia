@@ -1,0 +1,31 @@
+<div class="container px-4 py-4">
+  <h2 mat-dialog-title class="text-primary">{{ data.title }}</h2>
+  <div mat-dialog-content class="">
+    <p class="text-secondary">{{ data.message }}</p>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Enlace del Documento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of urlDocumentList; let i = index">
+            <td class="px-3 align-middle">{{ i + 1 }}</td>
+            <td>
+              <a [href]="item" target="_blank">
+                {{ item }}
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div mat-dialog-actions class="d-flex justify-content-end mt-3">
+    <button mat-button (click)="closeDialog()">
+      {{ data.button }}
+    </button>
+  </div>
+</div>
