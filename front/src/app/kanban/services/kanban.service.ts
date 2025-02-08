@@ -22,6 +22,6 @@ export class KanbanService {
   }
 
   deleteTask(id_task: number, id_user: number): Observable<any> {
-    return this.http.delete<any>(`${this.urlTask}/deleteFromUser`, { params: { id_task, id_user } });
+    return this.http.delete<any>(`${this.urlTask}/deleteFromUser`, { body: { id_task, id_user } });
   }
 }
