@@ -10,7 +10,7 @@ const connection = new TaskConnection();
 export const taskController = {
     insert: (req = request, res = response) => {
         let result
-        connection.insertTask(req.body.task, req.body.id_user)
+        connection.insertTask(req.body.task, req.body.id_user,req.body.id_document)
             .then(data => {
                 result = 1
                 console.log('Task insertada correctamente!');
@@ -31,7 +31,7 @@ export const taskController = {
     },
     insertByRole:(req = request, res = response) => {
         let result
-        connection.insertTaskByRole(req.body.task)
+        connection.insertTaskByRole(req.body.task,req.body.id_document)
             .then(data => {
                 result = 1
                 

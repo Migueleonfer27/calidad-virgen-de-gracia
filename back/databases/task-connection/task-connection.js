@@ -1,12 +1,13 @@
 /**
  * @Gema */
 import { Op } from 'sequelize';
-import { Roles, Task, TaskUser, Users, UsersRoles } from '../../models/associations.js';
+import { Roles, Task, TaskUser, Users, UsersRoles ,TaskDocument, Document} from '../../models/associations.js';
+
 
 export class TaskConnection {
     //State:1->toDo 2->done
 
-    insertTask = async (task, idUser) => {
+    insertTask = async (task, idUser, idDocument) => {
         const newTask = new Task()
         newTask.description = task.description;
         newTask.end_date = task.end_date
@@ -19,6 +20,10 @@ export class TaskConnection {
             assignedTask.id_task = resultTask.id
             assignedTask.state = 1
             result = await assignTask(assignedTask)
+            const taskDocument=new TaskDocument()
+            taskDocument.id_task=resultTask.id
+            taskDocument.id_document=idDocument
+            result =await assignDocuments(taskDocument)
         } catch (error) {
             resultTask = error
             throw error;
@@ -27,7 +32,7 @@ export class TaskConnection {
         return resultTask;
     }
 
-    insertTaskByRole = async (task) => {
+    insertTaskByRole = async (task, idDocument) => {
         const newTask = new Task()
         
         newTask.description = task.description;
@@ -47,7 +52,12 @@ export class TaskConnection {
                 assignedTask.id_task = resultTask.id
                 assignedTask.state = 1
                 await assignTask(assignedTask)
+               
             })
+            const taskDocument=new TaskDocument()
+            taskDocument.id_task=resultTask.id
+            taskDocument.id_document=idDocument
+            const result =await assignDocuments(taskDocument)
 
         } catch (error) {
             resultTask = error
@@ -68,7 +78,17 @@ export class TaskConnection {
                         attributes: ['id', 'description', 'end_date'],
                         through: {
                             attributes: ['state', 'id_user'],
-                        }
+                        },
+                        include:[
+                            {
+                                model: Document,
+                                attributes: ['id','name','code','url'],
+                                through: {
+                                    attributes: [],
+                                }
+                            }
+                        ]
+
                     }
                 ],
                 attributes: [],
@@ -93,10 +113,19 @@ export class TaskConnection {
                     },
                     attributes: ['id', 'first_name', 'last_name'],
                   
+                   
+                },
+                {
+                    model: Document,
+                    through: {
+                        attributes: []
+                    },
+                    attributes: ['id','name','code','url'],
+                  
                 }
-
-
-            ]
+                
+            ],
+           
         })
 
         if (!resultado) {
@@ -183,13 +212,23 @@ export class TaskConnection {
                     }
                 }
             })
+            const taskDocument= await TaskDocument.findAll({
+                where: {
+                    id_task: {
+                        [Op.eq]: idTask
+                    }
+                }
+            })
 
 
-            if (task && taskUser.length > 0) {
+            if (task && taskUser.length > 0 && taskDocument.length > 0) {
 
                 taskUser.forEach(element => {
                     element.destroy()
                 });
+                taskDocument.forEach(element => {
+                    element.destroy()
+                })
             }
 
 
@@ -229,6 +268,21 @@ const getUserByRole = async (role) => {
     }
     return users
 
+}
+
+const assignDocuments = async (assignedDocuments) => {
+    let result
+    try {
+
+        result = await assignedDocuments.save();
+
+    } catch (error) {
+        //resultTask=error.errors[0].message
+        throw error;
+
+    }
+
+    return result
 }
 const assignTask = async (assignedTask) => {
     let result
