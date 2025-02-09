@@ -25,14 +25,9 @@ export class KanbanTableComponent {
   ngOnInit() {
     const userId = Number(localStorage.getItem('user_id'));
 
-    this.kanbanService.getTasks().subscribe(response => {
-      this.todo = response.data.filter(task =>
-        task.Users.some(user => user.id === userId && user.TaskUser.state === 1)
-      );
-
-      this.done = response.data.filter(task =>
-        task.Users.some(user => user.id === userId && user.TaskUser.state === 2)
-      );
+    this.kanbanService.getTasksById(userId).subscribe(response => {
+      this.todo = response.data.filter(task => task.TaskUser.state === 1);
+      this.done = response.data.filter(task => task.TaskUser.state === 2);
     });
   }
 
