@@ -104,7 +104,7 @@ export class TaskConnection {
             throw err
         }
 
-        return resultado;
+        return resultado.Tasks;
     }
     getAllTask = async () => {
         let resultado = [];
