@@ -3,18 +3,7 @@
 
   <div class="col-12 col-md-6 d-flex justify-content-center" *ngFor="let docu of documents">
 
-    <mat-card class="card m-3 justify-content-center text-center" appearance="outlined">
-      <mat-card-header class="d-flex flex-column align-items-center">
-        <mat-card-title>{{ docu.code }}</mat-card-title>
-        <mat-card-subtitle>{{ docu.name }}</mat-card-subtitle>
-      </mat-card-header>
-      <a href={{docu.url}} target="_blank">
-
-        <mat-card-content>
-          <img class="responsive-img" mat-card-image src="/icono-pdf.png" alt="Photo of a PDF">
-        </mat-card-content>
-      </a>
-    </mat-card>
+   <app-card-documents [docu]="docu"></app-card-documents>
 
   </div>
   <div class="container-fluid text-center mt-2">

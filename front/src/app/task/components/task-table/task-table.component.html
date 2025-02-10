@@ -1,21 +1,21 @@
 <app-task-filter label="Filtrar por rol de asignación" [rolesOption]="rolesOption" [tableField]="'type'"
   (filterChange)="applyFilter($event)"></app-task-filter>
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8 overflow-auto table-responsive-md border rounded-3 shadow-sm">
   <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
     <ng-container matColumnDef="description">
-      <th class="bg-header-table" mat-header-cell *matHeaderCellDef>Descripción </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      <th class="bg-header-table h6 " mat-header-cell *matHeaderCellDef>Descripción </th>
+      <td class="h6" mat-cell *matCellDef="let element"> {{element.description}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="end_date">
-      <th class="bg-header-table" mat-header-cell *matHeaderCellDef>Fecha de Entrega</th>
-      <td mat-cell *matCellDef="let element"> {{ element.end_date | date:'dd-MM-yyyy' }} </td>
+      <th class="bg-header-table  h6" mat-header-cell *matHeaderCellDef>Fecha de Entrega</th>
+      <td  mat-cell *matCellDef="let element"> {{ element.end_date | date:'dd-MM-yyyy' }} </td>
     </ng-container>
     <ng-container matColumnDef="type">
-      <th class="bg-header-table" mat-header-cell *matHeaderCellDef>Asignación</th>
+      <th class="bg-header-table h6" mat-header-cell *matHeaderCellDef>Asignación</th>
       <td mat-cell *matCellDef="let element"> {{ getRoleDescription(element.type) ? getRoleDescription(element.type):
         element.Users[0]?.first_name+' '+ element.Users[0].last_name }} </td>
     </ng-container>
@@ -23,7 +23,7 @@
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="accion">
-      <th class="text-center align-middle gap-2 bg-header-table" mat-header-cell *matHeaderCellDef> Acción </th>
+      <th class=" h6 text-center align-middle gap-2 bg-header-table" mat-header-cell *matHeaderCellDef> Acción </th>
       <td mat-cell *matCellDef="let element">
         <div class="d-flex justify-content-center gap-2 justify-content-md-center">
           <button mat-mini-fab aria-label="Example icon button with a delete icon"

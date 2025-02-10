@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TaskDocumentDialogComponent } from './components/task-document-dialog/task-document-dialog.component';
 import { MatCardModule } from '@angular/material/card';
+import { CardDocumentsComponent } from './components/card-documents/card-documents.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatCardModule } from '@angular/material/card';
     UserTaskComponent,
     TaskFilterComponent,
     TaskEditDialogComponent,
-    TaskDocumentDialogComponent
+    TaskDocumentDialogComponent,
+    CardDocumentsComponent
   ],
   imports: [
     CommonModule,
