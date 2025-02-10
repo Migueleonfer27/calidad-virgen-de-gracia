@@ -20,10 +20,13 @@ export class TaskConnection {
             assignedTask.id_task = resultTask.id
             assignedTask.state = 1
             result = await assignTask(assignedTask)
-            const taskDocument=new TaskDocument()
-            taskDocument.id_task=resultTask.id
-            taskDocument.id_document=idDocument
-            result =await assignDocuments(taskDocument)
+            idDocument.forEach(async (element) => {
+                const taskDocument=new TaskDocument()
+                taskDocument.id_task=resultTask.id
+                taskDocument.id_document=idDocument
+                result =await assignDocuments(element)
+            });
+           
         } catch (error) {
             resultTask = error
             throw error;
@@ -54,10 +57,12 @@ export class TaskConnection {
                 await assignTask(assignedTask)
                
             })
-            const taskDocument=new TaskDocument()
-            taskDocument.id_task=resultTask.id
-            taskDocument.id_document=idDocument
-            const result =await assignDocuments(taskDocument)
+            idDocument.forEach(async (element) => {
+                const taskDocument=new TaskDocument()
+                taskDocument.id_task=resultTask.id
+                taskDocument.id_document=element
+                await assignDocuments(taskDocument)
+            });
 
         } catch (error) {
             resultTask = error

@@ -10,7 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http'
 import { TaskModule } from "./task/task.module";
-
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -23,11 +23,13 @@ import { TaskModule } from "./task/task.module";
     HomeModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    TaskModule
+    TaskModule,
+
 ],
   providers: [
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(),
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })

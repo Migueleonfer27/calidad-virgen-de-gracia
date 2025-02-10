@@ -38,7 +38,7 @@ export class SubcategoryTableComponent {
         switchMap(params => {
 
           this.id = +params['id'];
-          this.name = params['name']; 
+          this.name = params['name'];
           return this.subcategoryService.getSubcategoriesFromCategory(this.id);
         })
       )
