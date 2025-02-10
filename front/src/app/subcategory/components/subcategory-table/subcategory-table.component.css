@@ -2,6 +2,31 @@
   background-color: #A5B8DB;
   color:#ffffff;
 }
+li:hover {
+  cursor: pointer;
+}
+
+
+.list-group-item {
+  color: white;
+  background-color: #A5B8DB;
+  border-color: #FFF;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.list-group-item:hover, .list-group-item.active {
+  background-color: #021026;
+}
+.list-group-item {
+  color: white;
+  background-color: #A5B8DB;
+  border-color: #FFF;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.list-group-item:hover, .list-group-item.active {
+  background-color: #021026;
+}
 
 table {
   width: 100%;

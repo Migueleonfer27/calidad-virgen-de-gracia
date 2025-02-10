@@ -45,7 +45,9 @@
         </div>
       </td>
     </ng-container>
-
+    <tr class="mat-row " *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay eventos en el sistema </td>
+    </tr>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

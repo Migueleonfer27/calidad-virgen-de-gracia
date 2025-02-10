@@ -1,6 +1,6 @@
 <div class="container-fluid ps-4 row d-flex justify-content-center">
-  <h5 class="text-center mt-2">Evento: {{task.description}}</h5>
-  <h5 class="text-center ">Documentos Asignados</h5>
+  <h5 class="text-center mt-2">{{task.description}}</h5>
+
   <div class="col-12 col-md-6 d-flex justify-content-center" *ngFor="let docu of documents">
 
     <mat-card class="card m-3 justify-content-center text-center" appearance="outlined">

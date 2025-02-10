@@ -1,6 +1,6 @@
 .card {
   max-width: 220px;
-  background-color: cadetblue;
+  background-color: rgb(174, 228, 230);
 }
 
 .header-image {
@@ -9,7 +9,7 @@
 }
 
 .responsive-img {
-  max-width: 100px;
+  max-width: 80px;
   height: auto;
 }
 
