@@ -16,8 +16,14 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
+    path: 'task',
+    loadChildren: () => import('./task/task.module').then(m => m.TaskModule)
+  },
+  {
+    
     path: 'kanban',
     loadChildren: () => import('./kanban/kanban.module').then(m => m.KanbanModule)
+
   },
   {
     path: '**',

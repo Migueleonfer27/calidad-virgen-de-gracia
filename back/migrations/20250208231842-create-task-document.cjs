@@ -2,28 +2,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Tasks', {
+    await queryInterface.createTable('Task_Documents', {
       id: {
-       
+        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      description: {
-        type: Sequelize.STRING
-      },
-      end_date: {
-        type: Sequelize.STRING
-      },
-      type:{
+      id_task: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
         
         references: {
-          model: 'roles',
+          model: 'tasks',
           key: 'id'
         },
-      
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      id_document: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        
+        references: {
+          model: 'documents',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Tasks');
+    await queryInterface.dropTable('Task_Documents');
   }
 };

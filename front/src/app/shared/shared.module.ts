@@ -7,11 +7,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../admin/components/confirm-dialog/confirm-dialog.component';
+
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmDialogComponent
+
   ],
   imports: [
     CommonModule,
@@ -19,11 +24,14 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ConfirmDialogComponent
+
   ]
 })
 export class SharedModule { }

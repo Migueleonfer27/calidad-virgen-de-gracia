@@ -1,3 +1,5 @@
+/**
+ * @Gema */
 import { response, request } from 'express';
 import { TaskConnection } from '../databases/task-connection/task-connection.js';
 import TaskUser from '../models/task-user.js';
@@ -8,7 +10,7 @@ const connection = new TaskConnection();
 export const taskController = {
     insert: (req = request, res = response) => {
         let result
-        connection.insertTask(req.body.task, req.body.id_user)
+        connection.insertTask(req.body.task, req.body.id_user,req.body.id_document)
             .then(data => {
                 result = 1
                 console.log('Task insertada correctamente!');
@@ -29,7 +31,7 @@ export const taskController = {
     },
     insertByRole:(req = request, res = response) => {
         let result
-        connection.insertTaskByRole(req.body.task, req.body.role)
+        connection.insertTaskByRole(req.body.task,req.body.id_document)
             .then(data => {
                 result = 1
                 
@@ -40,7 +42,7 @@ export const taskController = {
                 });
             })
             .catch(err => {
-               // console.log(err);
+               console.log(err);
                 result = 0
                 res.status(203).json({
                     cod: result,

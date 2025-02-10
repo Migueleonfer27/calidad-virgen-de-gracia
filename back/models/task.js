@@ -15,7 +15,13 @@ export class Task extends Model {
     },
     description: DataTypes.STRING,
     end_date:  DataTypes.DATE,
-    
+    type:{
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'roles',
+        key: 'id'
+      },
+    }
   }, {
    sequelize:conexion,
     modelName: 'Task',
