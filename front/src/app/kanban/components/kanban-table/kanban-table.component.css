@@ -1,0 +1,12 @@
+.kanban-item {
+  cursor: grab;
+}
+
+.kanban-item:active {
+  cursor: grabbing;
+}
+
+.card-grab:hover {
+  background-color: #A5B8DB;
+  transition: 0.3s;
+}
