@@ -8,6 +8,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { DocumentsDialogComponent } from '../documents-dialog/documents-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-kanban-table',
@@ -20,7 +21,7 @@ export class KanbanTableComponent {
   todo: Task[] = [];
   done: Task[] = [];
 
-  constructor(private kanbanService: KanbanService, private dialog: MatDialog) { }
+  constructor(private kanbanService: KanbanService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     const userId = Number(localStorage.getItem('user_id'));
@@ -47,9 +48,9 @@ export class KanbanTableComponent {
             event.previousIndex,
             event.currentIndex
           );
-          alert(`Tarea actualizada con éxito a estado ${state}`) // cambiar por matsnackbar
+          this.snackBar.open(`Tarea actualizada con éxito`, 'Cerrar', { duration: 3000 })
         },
-        error: (err) => alert('Error actualizando la tarea: ' + err) // cambiar por matsnackbar
+        error: (err) => this.snackBar.open('Error actualizando la tarea: ' + err)
       });
     }
   }
@@ -63,9 +64,9 @@ export class KanbanTableComponent {
       next: () => {
         this.todo = this.todo.filter(task => task.id !== id_task);
         this.done = this.done.filter(task => task.id !== id_task);
-        console.log('Tarea eliminada con éxito.'); // cambiar por matsnackbar
+        this.snackBar.open('Tarea eliminada con éxito.', 'Cerrar', { duration: 3000 });
       },
-      error: (err) => console.error('Error al intentar eliminar la tarea.', err) // cambiar por matsnackbar
+      error: (err) => this.snackBar.open('Error al intentar eliminar la tarea.', err)
     });
   }
 
