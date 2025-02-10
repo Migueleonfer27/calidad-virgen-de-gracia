@@ -98,8 +98,6 @@ export class TaskConnection {
                 ],
                 attributes: [],
             });
-
-
         } catch (err) {
             throw err
         }

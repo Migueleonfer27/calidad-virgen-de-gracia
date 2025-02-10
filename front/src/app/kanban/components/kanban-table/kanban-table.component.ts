@@ -27,8 +27,12 @@ export class KanbanTableComponent {
     const userId = Number(localStorage.getItem('user_id'));
 
     this.kanbanService.getTasksById(userId).subscribe(response => {
-      this.todo = response.data.filter(task => task.TaskUser.state === 1);
-      this.done = response.data.filter(task => task.TaskUser.state === 2);
+      const formattedData = response.data.map(task => ({
+        ...task,
+        end_date: task.end_date.split(' ')[0].split('-').reverse().join('/')
+      }));
+      this.todo = formattedData.filter(task => task.TaskUser.state === 1);
+      this.done = formattedData.filter(task => task.TaskUser.state === 2);
     });
   }
 
