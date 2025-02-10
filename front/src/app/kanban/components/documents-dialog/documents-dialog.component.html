@@ -1,22 +1,29 @@
 <div class="container px-4 py-4">
-  <h2 mat-dialog-title class="text-primary">{{ data.title }}</h2>
-  <div mat-dialog-content class="">
-    <p class="text-secondary">{{ data.message }}</p>
+  <h2 mat-dialog-title class="text-primary mb-4">{{ data.title }}</h2>
+  <div mat-dialog-content class="mb-4">
+    <p class="text-secondary mb-4">{{ data.message }}</p>
     <div class="table-responsive">
       <table class="table table-bordered table-hover">
         <thead class="table-primary">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Enlace del Documento</th>
+            <th scope="col" class="text-center">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Código</th>
+            <th scope="col" class="text-center">Enlace del Documento</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of urlDocumentList; let i = index">
-            <td class="px-3 align-middle">{{ i + 1 }}</td>
-            <td>
-              <a [href]="item" target="_blank">
-                {{ item }}
+          <tr *ngFor="let item of documents; let i = index">
+            <td class="text-center align-middle">{{ i + 1 }}</td>
+            <td class="align-middle">{{ item.name }}</td>
+            <td class="align-middle">{{ item.code }}</td>
+            <td class="d-flex justify-content-center align-middle gap-1">
+              <a [href]="item.url" target="_blank" class="d-inline-block">
+                <img src="icono-pdf.png" alt="img-pdf" class="img-fluid" style="max-width: 40px;">
               </a>
+              <button mat-icon-button matSuffix class="align-middle">
+                <mat-icon class="text-primary">file_download</mat-icon>
+              </button>
             </td>
           </tr>
         </tbody>
