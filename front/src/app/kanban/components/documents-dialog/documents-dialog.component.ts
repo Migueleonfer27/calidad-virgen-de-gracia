@@ -30,7 +30,6 @@ export class DocumentsDialogComponent {
       tasksWithDocs.forEach(task => {
         this.documents.push(...task.Documents);
       });
-      console.log(tasksWithDocs);
     });
   }
 
