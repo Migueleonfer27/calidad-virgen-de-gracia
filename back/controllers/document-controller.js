@@ -65,5 +65,28 @@ export const documentController = {
                     'msg': msg.document.error.show
                 })
             })
+    },
+
+    getBySubcategoryId: (req = request, res = response) => {
+        const subcategoryId = req.params.id;
+        connection.getDocumentsFromSubcategory(subcategoryId)
+            .then( data => {
+                if (data.length > 0) {
+                    res.status(200).json({
+                        'msg': msg.document.success.index,
+                        'data': data
+                    })
+                } else {
+                    res.status(203).json({
+                        'msg': msg.document.error.notFound,
+                        'data': data
+                    })
+                }
+            })
+            .catch( err => {
+                res.status(500).json({
+                    'msg': msg.document.error.show
+                })
+            })
     }
 }

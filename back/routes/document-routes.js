@@ -17,4 +17,10 @@ router.get('/getByName/:name',
         validarCampos
     ], documentController.getByName);
 
+router.get('/getBySubcategoryId/:id',
+    [
+        check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(),
+        validarCampos
+    ], documentController.getBySubcategoryId);
+
 router.get('/', documentController.get);
