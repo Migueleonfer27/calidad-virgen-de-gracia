@@ -50,6 +50,32 @@ export class DocumentConnection {
         return resultado;
     }
 
+    getDocumentById = async (id) => {
+        let resultado = [];
+        resultado = await Document.findByPk(id);
+
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
+    getDocumentByName = async (name) => {
+        let resultado = [];
+        resultado = await Document.findAll({
+            where: {
+                name: {
+                    [Op.like]: `%${name}%`
+                }
+            }
+        });
+        
+        if (!resultado){
+            throw error;
+        }
+        return resultado;
+    }
+
 }
 
 
