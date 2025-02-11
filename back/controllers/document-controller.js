@@ -95,13 +95,13 @@ export const documentController = {
         connection.insertDocument(document)
             .then(data => {
                 res.status(201).json({
-                    'msg': msg.document.success.add,
+                    'msg': msg.document.success.create,
                     'data': data
                 })
             })
             .catch( err => {
                 res.status(500).json({
-                    'msg': msg.document.error.add
+                    'msg': msg.document.error.create
                 })
             })
     },
@@ -118,6 +118,22 @@ export const documentController = {
             .catch( err => {
                 res.status(500).json({
                     'msg': msg.document.error.delete
+                })
+            })
+    },
+
+    update: (req = request, res = response) => {
+        const document = req.body;
+        connection.updateDocument(document)
+            .then(data => {
+                res.status(200).json({
+                    'msg': msg.document.success.update,
+                    'data': data
+                })
+            })
+            .catch( err => {
+                res.status(500).json({
+                    'msg': msg.document.error.update
                 })
             })
     }

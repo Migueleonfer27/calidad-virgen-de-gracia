@@ -1,3 +1,4 @@
+// Daniel Cruz
 import { Op } from 'sequelize';
 import { Category, Subcategory, Document } from '../../models/associations.js';
 
@@ -107,6 +108,20 @@ export class DocumentConnection {
 
         return result;
     }
+
+    updateDocument = async(body) => {
+        let result = [];
+
+        result = await Document.findByPk(body.id)
+
+        if (!result) {
+            throw error;
+        }
+
+        result = await result.update(body);
+
+        return result;
+    } 
 
 }
 

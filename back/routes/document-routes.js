@@ -1,3 +1,4 @@
+// Daniel Cruz
 import { Router } from "express";
 import { documentController } from "../controllers/document-controller.js";
 import { check } from "express-validator";
@@ -10,6 +11,15 @@ router.delete('/delete/:id',
         check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(),
         validarCampos
     ], documentController.delete);
+
+router.put('/update',
+    [
+        check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(),
+        check('name', 'El nombre es obligatorio.').isString().notEmpty(),
+        check('code', 'El code es obligatorio.').isString().notEmpty(),
+        check('url', 'La url es obligatoria.').isString().notEmpty(),
+        validarCampos
+    ], documentController.update);
 
 router.post('/', 
     [

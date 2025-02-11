@@ -47,7 +47,6 @@ export const messages = {
 
   category: {
     success: {
-      add: "Categoría insertada correctamente.",
       index: "Categorías obtenidas correctamente.",
       show: "Categoría obtenida correctamente.",
       create: "Categoría creada correctamente.",
@@ -55,7 +54,6 @@ export const messages = {
       delete: "Categoría eliminada correctamente.",
     },
     error: {
-      add: "Error al insertar la categoría.",
       index: "Error al obtener las categorías.",
       show: "Error al obtener la categoría.",
       notFound: 'No se encontraron categorías disponibles.',
@@ -67,7 +65,6 @@ export const messages = {
 
   subcategory: {
     success: {
-      add: "Subcategoría insertada correctamente.",
       index: "Subcategorías obtenidas correctamente.",
       show: "Subcategoría obtenida correctamente.",
       create: "Subcategoría creada correctamente.",
@@ -75,7 +72,6 @@ export const messages = {
       delete: "Subcategoría eliminada correctamente.",
     },
     error: {
-      add: "Error al insertar la subcategoría.",
       index: "Error al obtener las subcategorías.",
       show: "Error al obtener la subcategoría.",
       notFound: 'No se encontraron subcategorías disponibles.',
@@ -87,7 +83,6 @@ export const messages = {
 
   document: {
     success: {
-      add: "Documento insertado correctamente.",
       index: "Documentos obtenidos correctamente.",
       show: "Documento obtenido correctamente.",
       create: "Documento creado correctamente.",
@@ -95,7 +90,6 @@ export const messages = {
       delete: "Documento eliminado correctamente.",
     },
     error: {
-      add: "Error al insertar el documento.",
       index: "Error al obtener los documentos.",
       show: "Error al obtener el documento.",
       notFound: 'No se encontraron documentos disponibles.',
