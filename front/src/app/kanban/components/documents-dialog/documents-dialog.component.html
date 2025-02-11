@@ -19,9 +19,10 @@
             <td class="align-middle">{{ item.code }}</td>
             <td class="d-flex justify-content-center align-middle gap-1">
               <a [href]="item.url" target="_blank" class="d-inline-block">
-                <img src="icono-pdf.png" alt="img-pdf" class="img-fluid" style="max-width: 40px;">
+                <img src="icono-pdf.png" alt="img-pdf" title="Ver documento" class="img-fluid" style="max-width: 40px;">
               </a>
-              <button mat-icon-button matSuffix class="align-middle">
+              <button mat-icon-button matSuffix class="align-middle" title="Descargar documento"
+                (click)="onDownloadPdf(item.url)">
                 <mat-icon class="text-primary">file_download</mat-icon>
               </button>
             </td>

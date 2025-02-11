@@ -9,6 +9,7 @@ import { router as subcategoryRoutes } from "../routes/subcategory-routes.js";
 import { router as authRoutes } from "../routes/auth-routes.js";
 import { router as mailRoutes } from "../routes/mail-routes.js";
 import { router as taskRoutes } from "../routes/task-routes.js"
+import { router as proxyRoutes } from "../routes/proxy-routes.js"; // Importa la nueva ruta
 
 class Server {
   constructor() {
@@ -21,6 +22,7 @@ class Server {
     this.authPath = '/api/auth';
     this.mailPath = '/api/mail';
     this.taskPath = '/api/task';
+    this.proxyPath = '/api/proxy'; // Nueva ruta para el proxy
     this.middlewares();
     this.routes();
   }
@@ -44,6 +46,7 @@ class Server {
     this.app.use(this.authPath, authRoutes);
     this.app.use(this.mailPath, mailRoutes);
     this.app.use(this.taskPath, taskRoutes);
+    this.app.use(this.proxyPath, proxyRoutes); // Agregamos la nueva ruta
   }
 
   listen() {

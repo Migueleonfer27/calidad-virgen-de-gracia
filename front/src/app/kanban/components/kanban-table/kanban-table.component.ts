@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DocumentsDialogComponent } from '../documents-dialog/documents-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { Document } from '../../../task/interfaces/task.interface';
 
 @Component({
   selector: 'app-kanban-table',
@@ -87,12 +88,12 @@ export class KanbanTableComponent {
     });
   }
 
-  openDialog() {
+  openDialog(document: Document[]) {
     this.dialog.open(DocumentsDialogComponent, {
       width: 'auto',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { title: 'Documentos anexos', button: 'Cerrar', message: 'Esta es la documentación anexa que tienes que completar para rellenar la tarea.' }
+      data: { title: 'Documentos anexos', button: 'Cerrar', message: 'Esta es la documentación anexa que tienes que completar para rellenar la tarea.', dataDocs: { document } }
     });
   }
 }
