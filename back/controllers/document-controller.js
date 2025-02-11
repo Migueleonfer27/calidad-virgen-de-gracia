@@ -42,5 +42,28 @@ export const documentController = {
                     'msg': msg.document.error.show
                 })
             })
+    },
+
+    getByName: (req = request, res = response) => {
+        const name = req.params.name;
+        connection.getDocumentByName(name)
+            .then(data => {
+                if (data.length > 0) {
+                    res.status(200).json({
+                        'msg': msg.document.success.show,
+                        'data': data
+                    })
+                } else {
+                    res.status(203).json({
+                        'msg': msg.document.error.notFound,
+                        'data': data
+                    })
+                }
+            })
+            .catch( err => {
+                res.status(500).json({
+                    'msg': msg.document.error.show
+                })
+            })
     }
 }
