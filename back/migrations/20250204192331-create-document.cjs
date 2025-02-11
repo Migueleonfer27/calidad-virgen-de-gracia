@@ -10,13 +10,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       code: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       url: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(1000)
       },
       id_subcategory:  {
         type: Sequelize.BIGINT,

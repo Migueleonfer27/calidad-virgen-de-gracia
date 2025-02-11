@@ -65,6 +65,7 @@ export class SubcategoryConnection {
         }
         return resultado;
     }
+    
      insertSubcategory = async(subcategory) => {
        const newSubcategory=new Subcategory()
        newSubcategory.name=subcategory.name
