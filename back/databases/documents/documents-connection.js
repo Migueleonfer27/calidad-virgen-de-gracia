@@ -94,6 +94,20 @@ export class DocumentConnection {
         return result;
     }
 
+    deleteDocument = async(id) => {
+        let result = [];
+
+        result = await Document.findByPk(id)
+
+        if (!result) {
+            throw error
+        }
+
+        result = result.destroy();
+
+        return result;
+    }
+
 }
 
 

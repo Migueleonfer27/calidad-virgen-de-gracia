@@ -5,6 +5,12 @@ import { validarCampos } from "../middlewares/validar-campos.js";
 
 export const router = Router();
 
+router.delete('/delete/:id',
+    [
+        check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(),
+        validarCampos
+    ], documentController.delete);
+
 router.post('/', 
     [
         check('name', 'El nombre es obligatorio.').isString().notEmpty(),
