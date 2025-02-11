@@ -76,6 +76,24 @@ export class DocumentConnection {
         return resultado;
     }
 
+    insertDocument = async(document) => {
+        const newDocument = new Document();
+        newDocument.name = document.name;
+        newDocument.code = document.code;
+        newDocument.url = document.url;
+        newDocument.id_subcategory = document.id_subcategory;
+
+        let result = 0;
+
+        try {
+            result = await newDocument.save();
+        } catch (error) {
+            result = error.errors[0].message
+        }
+
+        return result;
+    }
+
 }
 
 

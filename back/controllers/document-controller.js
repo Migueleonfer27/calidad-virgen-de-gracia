@@ -88,5 +88,21 @@ export const documentController = {
                     'msg': msg.document.error.show
                 })
             })
+    },
+
+    insert: (req = request, res = response) => {
+        const document = req.body;
+        connection.insertDocument(document)
+            .then(data => {
+                res.status(201).json({
+                    'msg': msg.document.success.add,
+                    'data': data
+                })
+            })
+            .catch( err => {
+                res.status(500).json({
+                    'msg': msg.document.error.add
+                })
+            })
     }
 }

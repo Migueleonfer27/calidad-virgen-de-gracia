@@ -5,6 +5,15 @@ import { validarCampos } from "../middlewares/validar-campos.js";
 
 export const router = Router();
 
+router.post('/', 
+    [
+        check('name', 'El nombre es obligatorio.').isString().notEmpty(),
+        check('code', 'El code es obligatorio.').isString().notEmpty(),
+        check('url', 'La url es obligatoria.').isString().notEmpty(),
+        check('id_subcategory', 'El id_subcategory es obligatorio').isInt().notEmpty(),
+        validarCampos
+    ], documentController.insert);
+
 router.get('/getById/:id',
     [
         check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(),
