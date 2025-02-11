@@ -79,6 +79,24 @@ export const messages = {
       update: "Error al actualizar la subcategoría.",
       delete: "Error al eliminar la subcategoría.",
     },
+  },
+
+  document: {
+    success: {
+      index: "Documentos obtenidos correctamente.",
+      show: "Documento obtenido correctamente.",
+      create: "Documento creado correctamente.",
+      update: "Documento actualizado correctamente.",
+      delete: "Documento eliminado correctamente.",
+    },
+    error: {
+      index: "Error al obtener los documentos.",
+      show: "Error al obtener el documento.",
+      notFound: 'No se encontraron documentos disponibles.',
+      create: "Error al crear el documento.",
+      update: "Error al actualizar el documento.",
+      delete: "Error al eliminar el documento.",
+    },
   }
 };
 

@@ -1,7 +1,5 @@
 import { Op } from 'sequelize';
-
-import { Category,Subcategory, Document} from '../../models/associations.js';
-
+import { Category, Subcategory, Document } from '../../models/associations.js';
 
 export class DocumentConnection {
     getDocumentsFromSubcategory = async (subcategoryId) => {
@@ -39,9 +37,16 @@ export class DocumentConnection {
                     }
                 ]
             });
-        /*if (!resultado) {
+        return resultado;
+    }
+
+    getDocuments = async () => {
+        let resultado = [];
+        resultado = await Document.findAll();
+
+        if (!resultado) {
             throw error;
-        }*/
+        }
         return resultado;
     }
 
