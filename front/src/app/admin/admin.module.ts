@@ -21,6 +21,7 @@ import { SubcategoryModule } from '../subcategory/subcategory.module';
 import { RoleListComponent } from './components/role-list/role-list.component';
 import { FormRoleComponent } from './components/form-role-dialog/form-role-dialog.component';
 import { SharedModule } from '../shared/shared.module';
+import { DocumentModule } from '../document/document.module';
 
 
 @NgModule({
@@ -48,8 +49,9 @@ import { SharedModule } from '../shared/shared.module';
     MatSelectModule,
     RouterModule,
     AdminRoutingModule,
-      SubcategoryModule,
-      SharedModule
+    SubcategoryModule,
+    SharedModule,
+    DocumentModule
   ],
   exports:[
     AdminPageComponent,

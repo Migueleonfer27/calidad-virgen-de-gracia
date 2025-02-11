@@ -5,6 +5,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { SubcategoryTableComponent } from '../subcategory/components/subcategory-table/subcategory-table.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
+import { DocumentTableComponent } from '../document/components/document-table/document-table.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'roles',
         component: RoleListComponent
+      },
+      {
+        path: 'documents',
+        component: DocumentTableComponent
       },
       {
         path: '',
