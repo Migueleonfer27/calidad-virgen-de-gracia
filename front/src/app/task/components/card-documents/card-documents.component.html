@@ -1,12 +1,16 @@
-<mat-card class="card m-3 justify-content-center text-center" appearance="outlined">
-  <mat-card-header class="d-flex flex-column align-items-center">
-    <mat-card-title>{{ docu.code }}</mat-card-title>
-    <mat-card-subtitle>{{ docu.name }}</mat-card-subtitle>
-  </mat-card-header>
-  <a href={{docu.url}} target="_blank">
+<mat-card class="card  d-flex p-3 m-2 align-middle" appearance="outlined">
 
-    <mat-card-content>
-      <img class="responsive-img" mat-card-image src="/icono-pdf.png" alt="Photo of a PDF">
-    </mat-card-content>
-  </a>
+  <mat-card-header>
+    <div>
+      <a href={{docu.url}} target="_blank">
+       <img mat-card-image src='/icono-pdf.png'>
+     </a>
+   </div>
+    <mat-card-subtitle class="text-start me-3">{{ docu.code }}</mat-card-subtitle>
+    <mat-card-subtitle class="text-start  me-3">{{ docu.name }}</mat-card-subtitle>
+
+  </mat-card-header>
+
+
+
 </mat-card>

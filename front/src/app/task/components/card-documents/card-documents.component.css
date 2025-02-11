@@ -1,0 +1,13 @@
+.card {
+  width: 300px;
+  background-color: rgb(174, 203, 203);
+}
+
+img {
+  width: 5rem;
+}
+
+
+a{
+  text-decoration: none;
+}

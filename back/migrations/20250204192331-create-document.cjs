@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       url: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       id_subcategory:  {
         type: Sequelize.BIGINT,

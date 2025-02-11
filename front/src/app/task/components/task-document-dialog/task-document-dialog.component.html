@@ -1,12 +1,12 @@
-<div class="container-fluid ps-4 row d-flex justify-content-center">
-  <h5 class="text-center mt-2">{{task.description}}</h5>
+<div class="container p-3 row d-flex justify-content-center">
+  <h5 class="text-center ">{{task.description}}</h5>
 
-  <div class="col-12 col-md-6 d-flex justify-content-center" *ngFor="let docu of documents">
+  <div class="d-flex ms-4 justify-content-center align-items-center" *ngFor="let docu of documents">
 
    <app-card-documents [docu]="docu"></app-card-documents>
 
   </div>
-  <div class="container-fluid text-center mt-2">
+  <div class="container text-center mt-2">
     <button class="w-25" mat-button (click)="close()">Cerrar</button>
   </div>
 
