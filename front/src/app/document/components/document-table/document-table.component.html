@@ -33,7 +33,7 @@
           <button class="border-0 bg-light " mat-icon-button matSuffix [matTooltip]="'Editar documento'">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>
-          <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Borrar documento'">
+          <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Borrar documento'" (click)="onDelete(document)">
             <mat-icon class="text-danger">delete</mat-icon>
           </button>
         </div>

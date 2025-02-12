@@ -133,9 +133,7 @@ export class DocumentConnection {
     }
 
     deleteDocument = async(id) => {
-        let result = [];
-
-        result = await Document.findByPk(id, {
+        let result = await Document.findByPk(id, {
             attributes: { exclude: ['id_subcategory'] },
             include: [
                 {
@@ -149,7 +147,7 @@ export class DocumentConnection {
             throw error
         }
 
-        result = result.destroy();
+        await result.destroy();
 
         return result;
     }

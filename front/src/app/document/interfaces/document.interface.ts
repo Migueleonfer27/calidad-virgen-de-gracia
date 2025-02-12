@@ -18,3 +18,15 @@ export interface Subcategory {
   id:   number;
   name: string;
 }
+
+export interface EditResponse {
+  msg: string;
+  data: EditedDocument;
+}
+
+export interface EditedDocument {
+  id:          number;
+  name:        string;
+  code:        string;
+  url:         string;
+}
