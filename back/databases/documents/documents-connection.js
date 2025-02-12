@@ -10,7 +10,15 @@ export class DocumentConnection {
                 id_subcategory: {
                     [Op.eq]: subcategoryId
                 }
-            }
+            },
+            attributes: { exclude: ['id_subcategory'] },
+            include: [
+                {
+                    model: Subcategory,
+                    as: 'subcategory',
+                    attributes: ['id', 'name']
+                }
+            ]
 
         })
 
@@ -43,7 +51,16 @@ export class DocumentConnection {
 
     getDocuments = async () => {
         let resultado = [];
-        resultado = await Document.findAll();
+        resultado = await Document.findAll({
+            attributes: { exclude: ['id_subcategory'] },
+            include: [
+                {
+                    model: Subcategory,
+                    as: 'subcategory',
+                    attributes: ['id', 'name']
+                }
+            ]
+        });
 
         if (!resultado) {
             throw error;
@@ -53,7 +70,16 @@ export class DocumentConnection {
 
     getDocumentById = async (id) => {
         let resultado = [];
-        resultado = await Document.findByPk(id);
+        resultado = await Document.findByPk(id, {
+            attributes: { exclude: ['id_subcategory'] },
+            include: [
+                {
+                    model: Subcategory,
+                    as: 'subcategory',
+                    attributes: ['id', 'name']
+                }
+            ]
+        });
 
         if (!resultado){
             throw error;
@@ -64,11 +90,15 @@ export class DocumentConnection {
     getDocumentByName = async (name) => {
         let resultado = [];
         resultado = await Document.findAll({
-            where: {
-                name: {
-                    [Op.like]: `%${name}%`
+            where: { name: { [Op.like]: `%${name}%` } },
+            attributes: { exclude: ['id_subcategory'] },
+            include: [
+                {
+                    model: Subcategory,
+                    as: 'subcategory',
+                    attributes: ['id', 'name']
                 }
-            }
+            ]
         });
         
         if (!resultado){
@@ -77,28 +107,43 @@ export class DocumentConnection {
         return resultado;
     }
 
-    insertDocument = async(document) => {
-        const newDocument = new Document();
-        newDocument.name = document.name;
-        newDocument.code = document.code;
-        newDocument.url = document.url;
-        newDocument.id_subcategory = document.id_subcategory;
-
-        let result = 0;
-
+    insertDocument = async (document) => {
         try {
-            result = await newDocument.save();
-        } catch (error) {
-            result = error.errors[0].message
-        }
+            const newDocument = await Document.create({
+                name: document.name,
+                code: document.code,
+                url: document.url,
+                id_subcategory: document.id_subcategory
+            });
 
-        return result;
+            return await Document.findByPk(newDocument.id, {
+                attributes: { exclude: ['id_subcategory'] },
+                include: [
+                    {
+                        model: Subcategory,
+                        as: 'subcategory',
+                        attributes: ['id', 'name']
+                    }
+                ]
+            });
+
+        } catch (error) {
+            return { error: error.errors[0].message };
+        }
     }
 
     deleteDocument = async(id) => {
         let result = [];
 
-        result = await Document.findByPk(id)
+        result = await Document.findByPk(id, {
+            attributes: { exclude: ['id_subcategory'] },
+            include: [
+                {
+                    model: Subcategory,
+                    as: 'subcategory',
+                    attributes: ['id', 'name']
+                }
+            ]})
 
         if (!result) {
             throw error
@@ -118,9 +163,17 @@ export class DocumentConnection {
             throw error;
         }
 
-        result = await result.update(body);
+        await result.update(body);
 
-        return result;
+        return await Document.findByPk(body.id, {
+            attributes: { exclude: ['id_subcategory'] },
+            include: [
+                {
+                    model: Subcategory,
+                    as: 'subcategory',
+                    attributes: ['id', 'name']
+                }
+            ]});
     } 
 
 }
