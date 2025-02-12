@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { DocumentTableComponent } from './components/document-table/document-table.component';
 import { DocumentRoutingModule } from './document-routing.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DocumentRoutingModule } from './document-routing.module';
     CommonModule,
     DocumentRoutingModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule
   ],
   exports: [
     DocumentTableComponent

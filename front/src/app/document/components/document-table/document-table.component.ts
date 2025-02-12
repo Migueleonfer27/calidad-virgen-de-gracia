@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Document } from '../../interfaces/document.interface';
 import { DocumentService } from '../../services/document.service';
-import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
 
 @Component({
   selector: 'app-document-table',
@@ -11,16 +12,17 @@ import { SubcategoryService } from '../../../subcategory/services/subcategory.se
 })
 export class DocumentTableComponent implements OnInit {
 
-  documents: Document[] = [];
-  displayedColumns: String[] = ['#', 'name', 'code', 'subcategory', 'actions'];
+  displayedColumns: string[] = ['#', 'name', 'code', 'subcategory', 'actions'];
+  documents = new MatTableDataSource<Document>();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private documentService: DocumentService) {}
 
   ngOnInit(): void {
-
-      this.documentService.getDocuments()
-        .subscribe(response => {
-          this.documents = response.data;
-        })
+    this.documentService.getDocuments().subscribe(response => {
+      this.documents.data = response.data;
+      this.documents.paginator = this.paginator;
+    });
   }
 }
