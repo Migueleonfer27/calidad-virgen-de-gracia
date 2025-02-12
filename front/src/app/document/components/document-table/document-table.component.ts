@@ -25,4 +25,12 @@ export class DocumentTableComponent implements OnInit {
       this.documents.paginator = this.paginator;
     });
   }
+
+  openDocument(url: String) {
+    if (url) {
+      window.open(String(url), '_blank');
+    } else {
+      console.error("No hay URL disponible para este documento.");
+    }
+  }
 }
