@@ -60,8 +60,8 @@ export class DocumentTableComponent implements OnInit {
         this.documentService.addDocument(document).subscribe({
           next: (response) => {
             this.documents.data = [...this.documents.data, response.data];
-            this.documents.paginator = this.paginator;  // Asegúrate que el paginador siga funcionando
-            this.documents._updateChangeSubscription();  // Forzar la actualización de la tabla
+            this.documents.paginator = this.paginator;
+            this.documents._updateChangeSubscription(); 
             this.snackBar.open('Documento añadido correctamente', 'Cerrar', { duration: 3000 });
           },
           error: (error) => {
