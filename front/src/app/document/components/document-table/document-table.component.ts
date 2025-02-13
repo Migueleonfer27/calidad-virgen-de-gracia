@@ -15,7 +15,7 @@ import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog
 })
 export class DocumentTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['#', 'name', 'code', 'subcategory', 'actions'];
+  displayedColumns: string[] = ['#', 'name', 'code', 'subcategory', 'autofilled', 'actions'];
   documents = new MatTableDataSource<Document>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,6 +39,10 @@ export class DocumentTableComponent implements OnInit {
     } else {
       console.error("No hay URL disponible para este documento.");
     }
+  }
+
+  onNewDocument(document: Document) {
+    
   }
 
   onDelete(document: Document) {
