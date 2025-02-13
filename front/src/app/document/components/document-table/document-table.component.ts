@@ -45,7 +45,7 @@ export class DocumentTableComponent implements OnInit {
     const dialog = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
       data: {
-        message: `¿Estás seguro de que quieres eliminar este documento? ${document.name}`,
+        message: '¿Estás seguro de que quieres eliminar este documento?',
         button: 'Eliminar',
         closeBtn: 'Cancelar'
       },

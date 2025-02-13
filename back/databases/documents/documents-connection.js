@@ -113,7 +113,8 @@ export class DocumentConnection {
                 name: document.name,
                 code: document.code,
                 url: document.url,
-                id_subcategory: document.id_subcategory
+                id_subcategory: document.id_subcategory,
+                autofilled: document.autofilled
             });
 
             return await Document.findByPk(newDocument.id, {
