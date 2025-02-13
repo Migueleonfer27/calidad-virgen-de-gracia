@@ -21,9 +21,9 @@
               <a [href]="item.url" target="_blank" class="d-inline-block">
                 <img src="icono-pdf.png" alt="img-pdf" title="Ver documento" class="img-fluid" style="max-width: 40px;">
               </a>
-              <button mat-icon-button matSuffix class="align-middle" title="Descargar documento"
-                (click)="onDownloadPdf(item.url)">
-                <mat-icon class="text-primary">file_download</mat-icon>
+              <input type="file" #fileInput accept=".pdf" hidden (change)="fillAndDownloadPdf($event)" />
+              <button mat-icon-button matSuffix class="align-middle" title="Autorellenar documento" (click)="fileInput.click()">
+                <mat-icon class="text-secondary">edit_note</mat-icon>
               </button>
             </td>
           </tr>

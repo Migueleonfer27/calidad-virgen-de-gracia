@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Document } from '../../../task/interfaces/task.interface';
-import { KanbanService } from '../../services/kanban.service';
-import { PdfService } from '../../services/pdf.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PdfService } from '../../services/pdf.service';
 
 @Component({
   selector: 'app-documents-dialog',
@@ -13,11 +12,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './documents-dialog.component.css',
 })
 export class DocumentsDialogComponent {
-
   documents: Document[] = [];
+  selectedFile!: File;
+
 
   constructor(
-    private kanbanService: KanbanService,
     private pdfService: PdfService,
     private matSnackbar: MatSnackBar,
     public dialogRef: MatDialogRef<DocumentsDialogComponent>,
@@ -26,13 +25,40 @@ export class DocumentsDialogComponent {
     this.documents = data.dataDocs.document;
   }
 
-  async onDownloadPdf(pdfUrl: string) {
-    try {
-      await this.pdfService.downloadPdfFromUrl(pdfUrl, 'documento.pdf');
-      this.matSnackbar.open('PDF descargado correctamente', 'Cerrar', { duration: 3000 });
-    } catch (error) {
-      this.matSnackbar.open('Error al descargar el PDF', 'Cerrar', { duration: 3000 });
+  async fillAndDownloadPdf(event: any) {
+    const file = event.target.files[0];
+    if (!file) {
+      this.matSnackbar.open('Selecciona un archivo PDF', 'Cerrar', {
+        duration: 3000
+      });
+      return;
     }
+
+    if (file.type !== 'application/pdf') {
+      this.matSnackbar.open('El archivo seleccionado no es un PDF', 'Cerrar', {
+        duration: 3000
+      });
+      return;
+    }
+
+    const formData = {
+      "NOMBRE DEL TUTOR": "Fernando",
+    };
+
+    this.pdfService.uploadAndFillPdf(file, formData).subscribe(
+      (blob) => {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'documento_rellenado.pdf';
+        link.click();
+      },
+      (error) => {
+        console.error('Error al rellenar el PDF:', error);
+        this.matSnackbar.open('Error al rellenar el PDF', 'Cerrar', {
+          duration: 3000,
+        });
+      }
+    );
   }
 
   closeDialog(): void {

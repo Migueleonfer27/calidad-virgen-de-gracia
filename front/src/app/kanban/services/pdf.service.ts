@@ -1,36 +1,29 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PdfService {
-  constructor() { }
+  private apiUrl = 'http://localhost:9090/api/pdf/fill-pdf';
 
-  async downloadPdfFromUrl(pdfUrl: string, fileName: string): Promise<void> {
-    try {
-      const proxyUrl = `http://localhost:9090/api/proxy/proxy-pdf?url=${encodeURIComponent(pdfUrl)}`;
+  constructor(private http: HttpClient) { }
 
-      const response = await fetch(proxyUrl);
-      if (!response.ok) {
-        throw new Error('No se pudo descargar el PDF');
-      }
+  uploadAndFillPdf(file: File, formData: { [key: string]: string }) {
+    const headers = new HttpHeaders({
+      'form-data': JSON.stringify(formData),
+    });
 
-      const pdfBlob = await response.blob();
-      const blobUrl = URL.createObjectURL(pdfBlob);
-
-      // Descargar correctamente el archivo
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-
-      // Limpiar memoria
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      console.error('Error al descargar el PDF:', error);
-      throw error;
-    }
+    return this.http.post(this.apiUrl, file, {
+      headers,
+      responseType: 'blob'
+    }).pipe(
+      catchError(error => {
+        console.error('Error en la solicitud HTTP:', error);
+        return throwError(error);
+      })
+    );
   }
 }
