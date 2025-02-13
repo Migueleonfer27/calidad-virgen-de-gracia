@@ -13,9 +13,9 @@ class AuthConnection {
                 ]
             },
         })
-        if (!user) throw new Error('Usuario no encontrado')
+        if (!user) throw new Error('Credenciales inválidas. Intente de nuevo.')
         const passwordValid = await bcrypt.compare(password, user.password)
-        if (!passwordValid) throw new Error('Contraseña incorrecta')
+        if (!passwordValid) throw new Error('Credenciales inválidas. Intente de nuevo.')
         return user
     }
 

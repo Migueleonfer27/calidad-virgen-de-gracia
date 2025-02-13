@@ -20,12 +20,12 @@ const AuthController = {
         try {
             const user = await connection.getUserRegistered(email, password)
             if (!user) {
-                return res.status(400).json({ message: 'Email incorrecto' })
+                return res.status(400).json({ message: 'Credenciales inválidas. Intente de nuevo.' })
             }
 
             const validPassword = await bcrypt.compare(password, user.password)
             if (!validPassword) {
-                return res.status(400).json({ message: 'Contraseña incorrecta' })
+                return res.status(400).json({ message: 'Credenciales inválidas. Intente de nuevo.' })
             }
 
             const roles = await connection.getUserRoles(user.id)
