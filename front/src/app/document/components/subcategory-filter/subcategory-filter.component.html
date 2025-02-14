@@ -1,7 +1,7 @@
 <mat-form-field>
   <mat-label>Filtrar por subcategoría</mat-label>
-  <mat-select formControlName="subcategoryFilter">
-    <mat-option></mat-option>
+  <mat-select [formControl]="subcategoryFilterControl">
+    <mat-option [value]="''">Todas</mat-option>
     <mat-optgroup *ngFor="let category of categories" [label]="category.name">
       <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory.id">
         {{ subcategory.name }}

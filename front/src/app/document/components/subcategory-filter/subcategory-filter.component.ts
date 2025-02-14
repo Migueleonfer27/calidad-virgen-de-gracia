@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Subcategory } from '../../interfaces/document.interface';
 import { CategoryService } from '../../../category/services/category.service';
 import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'doc-subcategory-filter',
@@ -13,6 +14,8 @@ export class SubcategoryFilterComponent {
 
   categories: any[] = [];
   subcategories: { [key: number]: Subcategory[] } = {};
+  subcategoryFilterControl = new FormControl('');
+  @Output() filterChange = new EventEmitter<string>();
 
   constructor(
     private categoryService: CategoryService,
@@ -21,6 +24,9 @@ export class SubcategoryFilterComponent {
 
   ngOnInit(): void {
     this.loadCategories();
+    this.subcategoryFilterControl.valueChanges.subscribe(value => {
+      this.filterChange.emit(value!);
+    });
   }
 
   loadCategories() {
