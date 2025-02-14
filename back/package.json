@@ -30,7 +30,10 @@
     "sequelize": "^6.37.5",
     "sequelize-cli": "^6.6.2",
     "socket.io": "^4.8.1",
-    "uuid": "^11.0.5"
+    "uuid": "^11.0.5",
+    "follow-redirects": "^1.15.9",
+    "html-pdf": "^3.0.1",
+    "puppeteer": "^24.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.4.0",

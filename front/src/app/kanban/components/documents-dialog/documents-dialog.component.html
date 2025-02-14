@@ -6,10 +6,10 @@
       <table class="table table-bordered table-hover">
         <thead class="table-primary">
           <tr>
-            <th scope="col" class="text-center">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Código</th>
-            <th scope="col" class="text-center">Enlace del Documento</th>
+            <th scope="col" class="align-middle">#</th>
+            <th scope="col" class="align-middle">Nombre</th>
+            <th scope="col" class="align-middle">Código</th>
+            <th scope="col" class="align-middle">Enlace del Documento</th>
           </tr>
         </thead>
         <tbody>
@@ -17,14 +17,16 @@
             <td class="text-center align-middle">{{ i + 1 }}</td>
             <td class="align-middle">{{ item.name }}</td>
             <td class="align-middle">{{ item.code }}</td>
-            <td class="d-flex justify-content-center align-middle gap-1">
-              <a [href]="item.url" target="_blank" class="d-inline-block">
-                <img src="icono-pdf.png" alt="img-pdf" title="Ver documento" class="img-fluid" style="max-width: 40px;">
-              </a>
-              <input type="file" #fileInput accept=".pdf" hidden (change)="fillAndDownloadPdf($event)" />
-              <button mat-icon-button matSuffix class="align-middle" title="Autorellenar documento" (click)="fileInput.click()">
-                <mat-icon class="text-secondary">edit_note</mat-icon>
-              </button>
+            <td class="text-center align-middle">
+              <div class="d-flex justify-content-center align-items-center gap-2">
+                <a [href]="item.url" target="_blank" class="d-inline-block">
+                  <img src="icono-pdf.png" alt="img-pdf" title="Ver documento" class="img-fluid" style="max-width: 40px;">
+                </a>
+                <button mat-icon-button matSuffix (click)="downloadPdf(item)"
+                  title="Descargar documento autorellenado">
+                  <mat-icon class="text-primary">download</mat-icon>
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>

@@ -1,30 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
+import { Observable } from 'rxjs';
+import { User } from '../../admin/interfaces/user.interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfService {
-  private apiUrl = `${environment.apiUrl}/pdf/fill-pdf`;
+  private apiUrl = `${environment.apiUrl}/download`;
 
   constructor(private http: HttpClient) { }
 
-  uploadAndFillPdf(file: File, formData: { [key: string]: string }) {
-    const headers = new HttpHeaders({
-      'form-data': JSON.stringify(formData),
-    });
-
-    return this.http.post(this.apiUrl, file, {
-      headers,
-      responseType: 'blob'
-    }).pipe(
-      catchError(error => {
-        console.error('Error en la solicitud HTTP:', error);
-        return throwError(error);
-      })
-    );
+  uploadAndFillPdf(url: string, usuario: User, document: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl, { url, usuario, document });
   }
 }

@@ -1,8 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Document } from '../../../task/interfaces/task.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PdfService } from '../../services/pdf.service';
+import { AdminService } from '../../../admin/services/admin.service';
 
 @Component({
   selector: 'app-documents-dialog',
@@ -13,10 +14,10 @@ import { PdfService } from '../../services/pdf.service';
 })
 export class DocumentsDialogComponent {
   documents: Document[] = [];
-  selectedFile!: File;
-
+  user: any; // PRUEBA PDF
 
   constructor(
+    private userService: AdminService,
     private pdfService: PdfService,
     private matSnackbar: MatSnackBar,
     public dialogRef: MatDialogRef<DocumentsDialogComponent>,
@@ -25,40 +26,30 @@ export class DocumentsDialogComponent {
     this.documents = data.dataDocs.document;
   }
 
-  async fillAndDownloadPdf(event: any) {
-    const file = event.target.files[0];
-    if (!file) {
-      this.matSnackbar.open('Selecciona un archivo PDF', 'Cerrar', {
-        duration: 3000
-      });
-      return;
-    }
-
-    if (file.type !== 'application/pdf') {
-      this.matSnackbar.open('El archivo seleccionado no es un PDF', 'Cerrar', {
-        duration: 3000
-      });
-      return;
-    }
-
-    const formData = {
-      "NOMBRE DEL TUTOR": "Fernando",
-    };
-
-    this.pdfService.uploadAndFillPdf(file, formData).subscribe(
-      (blob) => {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'documento_rellenado.pdf';
-        link.click();
+  ngOnInit() { // PRUEBA RELLENAR PDF
+    this.userService.getUserForFillPdf(2).subscribe({
+      next: (response) => {
+        if (response && response.data) {
+          this.user = response.data;
+        } else {
+          console.warn("No se encontró el usuario.");
+        }
       },
-      (error) => {
-        console.error('Error al rellenar el PDF:', error);
-        this.matSnackbar.open('Error al rellenar el PDF', 'Cerrar', {
-          duration: 3000,
-        });
+      error: (err) => {
+        console.error("Error al obtener el usuario:", err);
       }
-    );
+    });
+  }
+
+  downloadPdf(doc: Document) {
+    this.pdfService.uploadAndFillPdf(doc.url, this.user, doc.name).subscribe({
+      next: response => {
+        this.matSnackbar.open(response.mensaje, "Cerrar", { duration: 3000 });
+      },
+      error: error => {
+        this.matSnackbar.open("Error al generar el PDF", "Cerrar", { duration: 3000 });
+      }
+    });
   }
 
   closeDialog(): void {
