@@ -7,17 +7,17 @@
     </button>
   </div>
   <doc-subcategory-filter (filterChange)="onFilterChange($event)"></doc-subcategory-filter>
-  <table mat-table [dataSource]="documents" class="mat-elevation-z8">
+  <table mat-table [dataSource]="documents" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="#">
       <th mat-header-cell *matHeaderCellDef>#</th>
       <td mat-cell *matCellDef="let document; let index = index;"> {{ index + 1 }} </td>
     </ng-container>
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
       <td mat-cell *matCellDef="let document"> {{ document.name }} </td>
     </ng-container>
     <ng-container matColumnDef="code">
-      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
       <td mat-cell *matCellDef="let document"> {{ document.code }} </td>
     </ng-container>
     <ng-container matColumnDef="subcategory">
@@ -25,7 +25,7 @@
       <td mat-cell *matCellDef="let document"> {{ document.subcategory.name }} </td>
     </ng-container>
     <ng-container matColumnDef="autofilled">
-      <th mat-header-cell *matHeaderCellDef class="text-center">Autorrellenable</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">Autorrellenable</th>
       <td mat-cell *matCellDef="let document" class="text-center">
         <span *ngIf="document.autofilled; else notFilled">
           <mat-icon class="text-success" [matTooltip]="'Autorrellenable'">check</mat-icon>

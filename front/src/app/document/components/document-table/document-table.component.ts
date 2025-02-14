@@ -9,6 +9,7 @@ import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog
 import { AddDocFormDialogComponent } from '../add-doc-form-dialog/add-doc-form-dialog.component';
 import { EditDocFormDialogComponent } from '../edit-doc-form-dialog/edit-doc-form-dialog.component';
 import { FormControl } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-document-table',
@@ -23,6 +24,7 @@ export class DocumentTableComponent implements OnInit {
   subcategoryFilterControl = new FormControl('');
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private documentService: DocumentService,
@@ -34,6 +36,7 @@ export class DocumentTableComponent implements OnInit {
       .subscribe(response => {
         this.documents.data = response.data;
         this.documents.paginator = this.paginator;
+        this.documents.sort = this.sort;
 
         this.documents.filterPredicate = (data: Document, filter: string) => {
           return data.subcategory.id.toString() === filter;
