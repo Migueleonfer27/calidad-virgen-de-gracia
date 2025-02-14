@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog/confirm-dialog.component';
 import { AddDocFormDialogComponent } from '../add-doc-form-dialog/add-doc-form-dialog.component';
+import { EditDocFormDialogComponent } from '../edit-doc-form-dialog/edit-doc-form-dialog.component';
 
 @Component({
   selector: 'app-document-table',
@@ -61,11 +62,44 @@ export class DocumentTableComponent implements OnInit {
           next: (response) => {
             this.documents.data = [...this.documents.data, response.data];
             this.documents.paginator = this.paginator;
-            this.documents._updateChangeSubscription(); 
+            this.documents._updateChangeSubscription();
             this.snackBar.open('Documento añadido correctamente', 'Cerrar', { duration: 3000 });
           },
           error: (error) => {
             this.snackBar.open('Ha ocurrido un error. No se ha podido añadir el documento.', 'Cerrar', { duration: 3000 });
+          }
+        });
+      }
+    });
+  }
+
+  onUpdate(document: Document) {
+    const dialog = this.dialog.open(EditDocFormDialogComponent, {
+      width: '500px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: {
+        title: 'Editar documento',
+        document: { ...document },
+        button: 'Guardar',
+        closeBtn: 'Cancelar',
+        message: 'Modifica el formulario para editar los datos del documento.'
+      }
+    });
+
+    dialog.afterClosed().subscribe((updatedDocument) => {
+      if (updatedDocument) {
+        this.documentService.editDocument(updatedDocument).subscribe({
+          next: (response) => {
+            const index = this.documents.data.findIndex(doc => doc.id === response.data.id);
+            if (index > -1) {
+              this.documents.data[index] = response.data;
+              this.documents._updateChangeSubscription(); 
+            }
+            this.snackBar.open('Documento actualizado correctamente', 'Cerrar', { duration: 3000 });
+          },
+          error: () => {
+            this.snackBar.open('Ha ocurrido un error al actualizar el documento.', 'Cerrar', { duration: 3000 });
           }
         });
       }

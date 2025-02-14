@@ -1,10 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Category } from '../../../category/interfaces/category';
-import { Subcategory } from '../../interfaces/document.interface';
 import { CategoryService } from '../../../category/services/category.service';
 import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
+import { Subcategory } from '../../interfaces/document.interface';
 
 @Component({
   selector: 'add-doc-form-dialog',

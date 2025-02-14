@@ -6,6 +6,7 @@
       <mat-icon>note_add</mat-icon>Añadir documento
     </button>
   </div>
+  <doc-subcategory-filter></doc-subcategory-filter>
   <table mat-table [dataSource]="documents" class="mat-elevation-z8">
     <ng-container matColumnDef="#">
       <th mat-header-cell *matHeaderCellDef>#</th>
@@ -41,7 +42,7 @@
           <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Abrir documento'" (click)="openDocument(document.url)">
             <mat-icon class="text-success">file_open</mat-icon>
           </button>
-          <button class="border-0 bg-light " mat-icon-button matSuffix [matTooltip]="'Editar documento'">
+          <button class="border-0 bg-light " mat-icon-button matSuffix [matTooltip]="'Editar documento'" (click)="onUpdate(document)">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>
           <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Borrar documento'" (click)="onDelete(document)">

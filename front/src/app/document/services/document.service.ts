@@ -24,6 +24,17 @@ export class DocumentService {
     return this.http.post<EditResult>(url, document)
   }
 
+  editDocument(document: Document): Observable<EditResult> {
+    const url = `${this._documentUrl}${this._documentPath}/update`;
+    return this.http.put<EditResult>(url, {
+      id: document.id,        
+      name: document.name,
+      code: document.code,
+      url: document.url,
+      autofilled: document.autofilled
+    });
+  }
+
   deleteDocument(document: Document) {
     const url = `${this._documentUrl}${this._documentPath}/delete/${document.id}`;
     return this.http.delete<EditResult>(url);
