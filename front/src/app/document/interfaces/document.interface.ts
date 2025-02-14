@@ -18,6 +18,8 @@ export interface Document {
   updatedAt:   Date;
   deletedAt:   null;
   subcategory: Subcategory;
+
+  [key: string]: any;
 }
 
 export interface Subcategory {

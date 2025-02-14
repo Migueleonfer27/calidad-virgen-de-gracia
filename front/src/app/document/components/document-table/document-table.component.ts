@@ -41,6 +41,15 @@ export class DocumentTableComponent implements OnInit {
         this.documents.filterPredicate = (data: Document, filter: string) => {
           return data.subcategory.id.toString() === filter;
         };
+
+        this.documents.sortingDataAccessor = (data, sortHeaderName) => {
+          switch (sortHeaderName) {
+            case 'subcategory':
+              return data.subcategory.name; 
+            default:
+              return data[sortHeaderName];
+          }
+        };
       });
   }
 
