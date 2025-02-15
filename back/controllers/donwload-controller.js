@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { PDFDocument } from "pdf-lib";
 import os from "os";
+import TemplatesPdf from "../interfaces/pdf.interfaces.js";
 
 export const DownloadController = {
   donwloadPdf: async (req = request, res = response) => {
@@ -11,12 +12,13 @@ export const DownloadController = {
     const usuario = req.body.usuario;
     const document = req.body.document;
     const rutaDestino = "../donwladFiles";
+    const documentName = document.replace(/\.pdf$/, "");
 
     try {
       console.log(`Generando PDF para la URL: ${url}`);
       const pdfBytes = await generarPdfDesdeUrl(url, usuario, document);
       const downloadsPath = path.join(os.homedir(), "Downloads");
-      const filePath = path.join(downloadsPath, usuario.first_name + ".pdf");
+      const filePath = path.join(downloadsPath, documentName + ".pdf");
       await fs.promises.writeFile(filePath, pdfBytes);
       res.status(200).json({ mensaje: "PDF generado correctamente" });
     } catch (error) {
@@ -74,32 +76,31 @@ const generarPdfDesdeUrl = async (
 
 const autoFiled = async (pdfPath, usuario, document) => {
   try {
-    const pdfBuffer = fs.readFileSync(pdfPath + "/" + document);
+    const pdfBuffer = fs.readFileSync(path.join(pdfPath, document));
     const pdfDoc = await PDFDocument.load(pdfBuffer);
     const form = pdfDoc.getForm();
-
     const fields = form.getFields();
 
-    fields.forEach((field, index) => {
-      console.log(`Campo ${index + 1}: ${field.getName()}`);
+    const templatesPdf = new TemplatesPdf();
+    const template = templatesPdf.getTemplate(document);
 
-      if (
-        field.constructor.name === "PDFTextField" &&
-        (field.getName() === "NOMBRE DEL TUTOR" ||
-          field.getName() === "DOCENTE" ||
-          field.getName() === "NOMBRE Y APELLIDOS")
-      ) {
-        field.setText(usuario.first_name + " " + usuario.last_name); // Rellenar campo de texto
-        console.log(`✅ Se ha rellenado el campo: ${field.getName()}`);
-      } else if (
-        field.constructor.name === "PDFTextField" &&
-        field.getName() === "DNI"
-      ) {
-        field.setText(usuario.dni);
+    if (!template) {
+      console.error(`No hay plantilla definida para el documento: ${document}`);
+      return null;
+    }
+
+    const { mappings } = template;
+
+    fields.forEach((field) => {
+      const fieldName = field.getName();
+      console.log(`Campo encontrado: ${fieldName}`);
+
+      if (mappings[fieldName] && field.constructor.name === "PDFTextField") {
+        const value = mappings[fieldName](usuario) || "";
+        field.setText(value);
+        console.log(`Campo rellenado: ${fieldName} -> ${value}`);
       } else {
-        console.log(
-          `⚠️ El campo "${field.getName()}" no es de tipo texto y no se puede rellenar.`
-        );
+        console.log(`Campo ignorado: ${fieldName}`);
       }
     });
 
