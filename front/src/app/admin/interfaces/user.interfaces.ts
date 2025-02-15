@@ -32,6 +32,7 @@ export interface User {
 export interface UserList {
   id: number;
   first_name: string;
+  last_name?: string;
   corporate_email: string;
   birth_date: Date;
   admission_date: Date;

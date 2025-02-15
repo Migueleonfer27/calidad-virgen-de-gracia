@@ -1,0 +1,12 @@
+
+.custom-mat-form {
+  background: white; /* Fondo blanco */
+  border-radius: 50px; /* Bordes redondeados */
+  display: block; /* Asegura que respete el tamaño */
+}
+
+/* Ajustar bordes dentro del campo */
+::ng-deep .custom-mat-form .mat-form-field-outline {
+  display: none !important; /* Oculta completamente el borde */
+}
+
