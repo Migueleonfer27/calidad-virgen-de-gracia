@@ -1,0 +1,58 @@
+<mat-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup" errorMessage="El campo descripción y fecha de entrega es obligatorio">
+    <form [formGroup]="firstFormGroup">
+      <div class="d-flex flex-column m-2">
+        <ng-template matStepLabel>Rellena los siguientes campos</ng-template>
+
+        <mat-form-field>
+          <mat-label>Descripción</mat-label>
+          <input matInput placeholder="Descripción" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Elige una fecha de entrega</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="endDate" required>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="year"></mat-datepicker>
+        </mat-form-field>
+        <label id="example-radio-group-label">Selecciona un tipo de asignacion</label>
+        <mat-radio-group formControlName="selectedOption" aria-label="Select an option">
+          <mat-radio-button value="insert">Asignación por usuario</mat-radio-button>
+          <mat-radio-button value="insertByRole">Asignación por rol</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+    <form [formGroup]="secondFormGroup">
+      <div class="d-flex flex-column m-2">
+        <ng-template matStepLabel>Elige la asignación</ng-template>
+
+        <app-radio-options *ngIf="firstFormGroup.get('selectedOption')?.value === 'insertByRole'"
+          label="Selecciona un rol" [rolesOption]="rolesOptions"></app-radio-options>
+
+        <app-radio-options *ngIf="firstFormGroup.get('selectedOption')?.value === 'insert'" label="Selecciona un usuario"
+          [rolesOption]="userOptions"></app-radio-options>
+
+        <div>
+          <button mat-button matStepperPrevious>Atrás</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Agregar documentos</ng-template>
+    
+    <div>
+      <button mat-button matStepperPrevious>Atrás</button>
+      <button mat-button (click)="stepper.reset()">Guardar</button>
+    </div>
+  </mat-step>
+</mat-stepper>

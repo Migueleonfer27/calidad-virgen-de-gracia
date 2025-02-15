@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserTaskComponent } from './components/user-task/user-task.component';
 import { TaskPageComponent } from './pages/task-page/task-page.component';
 import { TaskTableComponent } from './components/task-table/task-table.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
       {
         path: 'user-task',
         component: UserTaskComponent
+      },
+      {
+        path: 'create-task',
+        component: CreateTaskComponent
       },
       {
         path: 'task-table',

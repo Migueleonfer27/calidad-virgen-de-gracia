@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatRadioModule} from '@angular/material/radio';
 import { TaskTableComponent } from './components/task-table/task-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -23,7 +24,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TaskDocumentDialogComponent } from './components/task-document-dialog/task-document-dialog.component';
 import { MatCardModule } from '@angular/material/card';
 import { CardDocumentsComponent } from './components/card-documents/card-documents.component';
-
+import { CreateTaskComponent } from './components/create-task/create-task.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { RadioOptionsComponent } from './components/radio-options/radio-options.component';
+import { OptionsCategoriesComponent } from './components/options-categories/options-categories.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,10 @@ import { CardDocumentsComponent } from './components/card-documents/card-documen
     TaskFilterComponent,
     TaskEditDialogComponent,
     TaskDocumentDialogComponent,
-    CardDocumentsComponent
+    CardDocumentsComponent,
+    CreateTaskComponent,
+    RadioOptionsComponent,
+    OptionsCategoriesComponent
   ],
   imports: [
     CommonModule,
@@ -53,14 +61,23 @@ import { CardDocumentsComponent } from './components/card-documents/card-documen
     FormsModule,
     MatDatepickerModule,
      MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatStepperModule,
+    MatRadioModule
+  ],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {showError: true},
+    },
   ],
   exports: [
     TaskTableComponent,
     TaskPageComponent,
     UserTaskComponent,
     TaskFilterComponent,
-    TaskEditDialogComponent
+    TaskEditDialogComponent,
+    CreateTaskComponent
   ]
 })
 export class TaskModule { }
