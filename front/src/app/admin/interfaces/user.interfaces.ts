@@ -54,3 +54,8 @@ export interface ApiResponseRoles {
   message: string;
   data: Role[];
 }
+
+export interface ApiResponseForFillPdf {
+  message: string;
+  data: User[];
+}

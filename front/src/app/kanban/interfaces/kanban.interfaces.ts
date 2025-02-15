@@ -6,18 +6,17 @@ export interface Task {
     state: number;
     id_user: number;
   };
-}
-
-export interface TaskUser {
-  id: number;
-  first_name: string;
-  last_name: string;
-  TaskUser: {
-    state: number;
-  };
+  Documents: Document[]
 }
 
 export interface TaskResponse {
   cod: number;
   data: Task[];
+}
+
+export interface Document {
+  id: number,
+  name: string,
+  code: string,
+  url: string
 }

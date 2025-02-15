@@ -9,7 +9,7 @@ import { Role } from '../../../admin/interfaces/user.interfaces';
 import { TaskEditDialogComponent } from '../task-edit-dialog/task-edit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { TaskDocumentDialogComponent } from '../task-document-dialog/task-document-dialog.component';
 
 @Component({
