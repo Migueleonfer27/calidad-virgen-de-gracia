@@ -29,6 +29,7 @@ export class KanbanTableComponent {
     const userId = Number(localStorage.getItem('user_id'));
 
     this.kanbanService.getTasksById(userId).subscribe(response => {
+      console.log(response);
       const formattedData = response.data.map(task => ({
         ...task,
         end_date: task.end_date.split(' ')[0].split('-').reverse().join('/')
