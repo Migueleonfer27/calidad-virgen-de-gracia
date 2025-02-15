@@ -9,6 +9,8 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { DocumentsDialogComponent } from '../documents-dialog/documents-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { Document } from '../../../task/interfaces/task.interface';
 
 @Component({
   selector: 'app-kanban-table',
@@ -27,8 +29,13 @@ export class KanbanTableComponent {
     const userId = Number(localStorage.getItem('user_id'));
 
     this.kanbanService.getTasksById(userId).subscribe(response => {
-      this.todo = response.data.filter(task => task.TaskUser.state === 1);
-      this.done = response.data.filter(task => task.TaskUser.state === 2);
+      console.log(response);
+      const formattedData = response.data.map(task => ({
+        ...task,
+        end_date: task.end_date.split(' ')[0].split('-').reverse().join('/')
+      }));
+      this.todo = formattedData.filter(task => task.TaskUser.state === 1);
+      this.done = formattedData.filter(task => task.TaskUser.state === 2);
     });
   }
 
@@ -56,26 +63,38 @@ export class KanbanTableComponent {
   }
 
   deleteTask(id_task: number) {
-    const confirmDelete = confirm("¿Estás seguro de que quieres eliminar esta tarea?"); // cambiar por dialog de confirmación
-    if (!confirmDelete) return; // cambiar por dialog de confirmación
-    const userId = Number(localStorage.getItem('user_id'));
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: {
+        message: '¿Estás seguro de que deseas eliminar esta tarea?',
+        button: 'Eliminar',
+        closeBtn: 'Cancelar'
+      }
+    });
 
-    this.kanbanService.deleteTask(id_task, userId).subscribe({
-      next: () => {
-        this.todo = this.todo.filter(task => task.id !== id_task);
-        this.done = this.done.filter(task => task.id !== id_task);
-        this.snackBar.open('Tarea eliminada con éxito.', 'Cerrar', { duration: 3000 });
-      },
-      error: (err) => this.snackBar.open('Error al intentar eliminar la tarea.', err)
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const userId = Number(localStorage.getItem('user_id'));
+        this.kanbanService.deleteTask(id_task, userId).subscribe({
+          next: () => {
+            this.todo = this.todo.filter(task => task.id !== id_task);
+            this.done = this.done.filter(task => task.id !== id_task);
+            this.snackBar.open('Tarea eliminada con éxito.', 'Cerrar', { duration: 3000 });
+          },
+          error: (err) => this.snackBar.open('Error al intentar eliminar la tarea.', 'Cerrar', { duration: 3000 })
+        });
+      }
     });
   }
 
-  openDialog() {
+  openDialog(document: Document[]) {
     this.dialog.open(DocumentsDialogComponent, {
       width: 'auto',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { title: 'Documentos anexos', button: 'Cerrar', message: 'Esta es la documentación anexa que tienes que completar para rellenar la tarea.' }
+      data: { title: 'Documentos anexos', button: 'Cerrar', message: 'Esta es la documentación anexa que tienes que completar para rellenar la tarea.', dataDocs: { document } }
     });
   }
 }

@@ -3,6 +3,10 @@
   color:#ffffff;
 }
 
+.list-group-item:hover, .list-group-item.active {
+  background-color: #021026;
+}
+
 table {
   width: 100%;
 }

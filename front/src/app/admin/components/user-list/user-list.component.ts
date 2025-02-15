@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ApiResponse, Role, UserList } from '../../interfaces/user.interfaces';
 import { AdminService } from '../../services/admin.service';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';

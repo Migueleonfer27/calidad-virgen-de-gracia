@@ -19,7 +19,7 @@ export class TaskFilterComponent {
   roleFilter=new FormControl('');
 
   constructor(private adminService: AdminService){
-    
+
   }
   onFilterChange() {
     this.filterChange.emit({

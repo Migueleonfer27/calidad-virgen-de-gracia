@@ -1,0 +1,24 @@
+<label class="h6" id="example-radio-group-label">{{ label }}</label>
+
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="radio-group"
+  [(ngModel)]="selectedType"
+  (change)="emitSelection()"
+>
+  <ng-container *ngFor="let role of displayedRoles">
+    <mat-radio-button class="radio-button" [value]="role.id">
+      {{ role.position }}
+    </mat-radio-button>
+  </ng-container>
+</mat-radio-group>
+
+<!-- Paginador de Angular Material -->
+<mat-paginator
+  [length]="rolesOption.length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 15]"
+  (page)="onPageChange($event)"
+>
+</mat-paginator>
+

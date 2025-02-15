@@ -1,18 +1,2 @@
-.card {
-  max-width: 220px;
-  background-color: cadetblue;
-}
 
-.header-image {
-  background-image: url('/icono-pdf.png');
-  background-size: cover;
-}
 
-.responsive-img {
-  max-width: 100px;
-  height: auto;
-}
-
-a{
-  text-decoration: none;
-}

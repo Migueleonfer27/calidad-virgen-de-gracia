@@ -16,7 +16,7 @@
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Elige una fecha de entrega</mat-label>
       <input matInput  [(ngModel)]="task.end_date" [matDatepicker]="picker">
-      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-hint>DD/MM/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>

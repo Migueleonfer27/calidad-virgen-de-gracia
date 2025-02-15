@@ -30,7 +30,8 @@ export class Document extends Model{
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
-    }
+    },
+    autofilled: DataTypes.BOOLEAN
   }, {
     sequelize:conexion,
    modelName: 'Document',
