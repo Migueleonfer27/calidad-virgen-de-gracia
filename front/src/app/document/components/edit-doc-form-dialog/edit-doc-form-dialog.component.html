@@ -20,7 +20,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>URL</mat-label>
-      <textarea matInput formControlName="url" minlength="5" maxlength="255"></textarea>
+      <textarea matInput formControlName="url" minlength="5" maxlength="1000"></textarea>
       <mat-error *ngIf="editDocsForm.get('url')?.hasError('required')">
         La URL es obligatoria.
       </mat-error>

@@ -24,7 +24,7 @@ export class TaskConnection {
                 const taskDocument=new TaskDocument()
                 taskDocument.id_task=resultTask.id
                 taskDocument.id_document=idDocument
-                result =await assignDocuments(element)
+                result =await assignDocuments(taskDocument)
             });
            
         } catch (error) {
@@ -87,7 +87,7 @@ export class TaskConnection {
                         include:[
                             {
                                 model: Document,
-                                attributes: ['id','name','code','url'],
+                                attributes: ['id','name','code','url', 'autofilled'],
                                 through: {
                                     attributes: [],
                                 }
@@ -123,7 +123,7 @@ export class TaskConnection {
                     through: {
                         attributes: []
                     },
-                    attributes: ['id','name','code','url'],
+                    attributes: ['id','name','code','url', 'autofilled'],
                   
                 }
                 

@@ -18,5 +18,6 @@ export interface Document {
   id: number,
   name: string,
   code: string,
-  url: string
+  url: string,
+  autofilled: boolean
 }

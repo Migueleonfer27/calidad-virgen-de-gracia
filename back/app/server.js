@@ -9,7 +9,8 @@ import { router as subcategoryRoutes } from "../routes/subcategory-routes.js";
 import { router as authRoutes } from "../routes/auth-routes.js";
 import { router as mailRoutes } from "../routes/mail-routes.js";
 import { router as taskRoutes } from "../routes/task-routes.js";
-import { router as downloadRoutes } from "../routes/donwload-routes.js"
+import { router as documentRoutes } from "../routes/document-routes.js";
+import { router as downloadRoutes } from "../routes/donwload-routes.js";
 
 class Server {
   constructor() {
@@ -22,8 +23,8 @@ class Server {
     this.authPath = "/api/auth";
     this.mailPath = "/api/mail";
     this.taskPath = "/api/task";
-    this.downloadPath= '/api/download';
-    this.documentPath = '/api/documents';
+    this.downloadPath = "/api/download";
+    this.documentPath = "/api/documents";
     this.middlewares();
     this.routes();
   }

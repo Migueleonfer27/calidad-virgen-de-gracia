@@ -22,7 +22,10 @@
                 <a [href]="item.url" target="_blank" class="d-inline-block">
                   <img src="icono-pdf.png" alt="img-pdf" title="Ver documento" class="img-fluid" style="max-width: 40px;">
                 </a>
-                <button mat-icon-button matSuffix (click)="downloadPdf(item)"
+                <button
+                *ngIf="item.autofilled"
+                mat-icon-button matSuffix
+                (click)="downloadPdf(item)"
                   title="Descargar documento autorellenado">
                   <mat-icon class="text-primary">download</mat-icon>
                 </button>
