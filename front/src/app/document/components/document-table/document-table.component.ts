@@ -5,7 +5,7 @@ import { Document } from '../../interfaces/document.interface';
 import { DocumentService } from '../../services/document.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { AddDocFormDialogComponent } from '../add-doc-form-dialog/add-doc-form-dialog.component';
 import { EditDocFormDialogComponent } from '../edit-doc-form-dialog/edit-doc-form-dialog.component';
 import { FormControl } from '@angular/forms';
@@ -45,7 +45,7 @@ export class DocumentTableComponent implements OnInit {
         this.documents.sortingDataAccessor = (data, sortHeaderName) => {
           switch (sortHeaderName) {
             case 'subcategory':
-              return data.subcategory.name; 
+              return data.subcategory.name;
             default:
               return data[sortHeaderName];
           }

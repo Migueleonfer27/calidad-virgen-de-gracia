@@ -39,6 +39,7 @@ export interface Document {
   name: string;
   code: string;
   url:  string;
+  autofilled?: boolean;
 }
 export interface TaskUser {
   state: number;
