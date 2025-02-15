@@ -28,7 +28,7 @@ import { catchError, map, Observable } from 'rxjs';
 export class CategoriesComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['#','name', 'star'];
-
+  categories:Category[]=[]
   dataSource: MatTableDataSource<Category> = new MatTableDataSource<Category>([])
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
@@ -41,7 +41,7 @@ export class CategoriesComponent implements AfterViewInit {
 
   ngOnInit() {
     this.categoriesService.showAll().subscribe((result) => {
-
+      this.categories=result!
       this.dataSource = new MatTableDataSource(result!);
       this.dataSource.paginator = this.paginator
       this.dataSource.sort = this.sort

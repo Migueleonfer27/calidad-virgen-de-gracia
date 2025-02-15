@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SubcategoryService } from '../../services/subcategory.service';
 import { switchMap } from 'rxjs';
-import { Subcategory, SubcategoryIns } from '../../interfaces/subcategory.interface';
+import {  Subcategory, SubcategoryIns } from '../../interfaces/subcategory.interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -11,6 +11,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditSubcategoryDialogComponent } from '../edit-subcategory-dialog/edit-subcategory-dialog.component';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { CategoryService } from '../../../category/services/category.service';
+import { Category } from '../../../category/interfaces/category';
+
 
 @Component({
   selector: 'app-subcategory-table',
@@ -21,17 +24,23 @@ import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialo
 
 })
 export class SubcategoryTableComponent {
+  //@Input() public categories:Category[]=[]
   id?: number
   name?: string
+  categories:Category[]=[]
   hoveredRow: any = null;
   displayedColumns: string[] = ['#','name', 'star'];
   dataSource: MatTableDataSource<Subcategory> = new MatTableDataSource<Subcategory>([]);
-  constructor(private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar, private categoryService:CategoryService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit() {
+    this.categoryService.showAll().subscribe((result) => {
+      this.categories=result!
 
+
+    })
 
     this.route.params
       .pipe(

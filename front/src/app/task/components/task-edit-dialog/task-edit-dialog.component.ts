@@ -14,7 +14,7 @@ export class TaskEditDialogComponent {
   startDate = new Date(1990, 0, 1);
   constructor(private dialogRef: MatDialogRef<TaskEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public task: Task) {
-    const fechaSeleccionada = new Date(this.task.end_date); // Convertir a Date
+    const fechaSeleccionada = new Date(this.task.end_date); 
     fechaSeleccionada.setMinutes(fechaSeleccionada.getMinutes() + fechaSeleccionada.getTimezoneOffset());
     this.task.end_date = fechaSeleccionada;
     this.startDate = new Date(this.task.end_date);

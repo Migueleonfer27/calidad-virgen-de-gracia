@@ -1,0 +1,48 @@
+<h1 mat-dialog-title class="text-primary">{{ data.title }}</h1>
+<div mat-dialog-content class="py-0">
+  <p>{{ data.message }}</p>
+</div>
+<form [formGroup]="addDocsForm">
+  <mat-dialog-content class="d-flex flex-column gap-2 justify-content-center">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="addDocsForm.get('name')?.hasError('required')">
+        El nombre es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Código</mat-label>
+      <input matInput formControlName="code">
+      <mat-error *ngIf="addDocsForm.get('code')?.hasError('required')">
+        El código es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>URL</mat-label>
+      <textarea matInput formControlName="url" minlength="5" maxlength="255"></textarea>
+      <mat-error *ngIf="addDocsForm.get('url')?.hasError('required')">
+        La URL es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Añade el documento a una subcategoría</mat-label>
+      <mat-select formControlName="id_subcategory">
+        <mat-optgroup *ngFor="let category of categories" [label]="category.name">
+          <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory.id">
+            {{ subcategory.name }}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+      <mat-error *ngIf="addDocsForm.get('id_subcategory')?.hasError('required')">
+        La elección de subcategoría es obligatoria.
+      </mat-error>
+    </mat-form-field>
+    <mat-checkbox formControlName="autofilled">¿Va a ser el documento autorrellenable?</mat-checkbox>
+    <div class="d-flex gap-2 justify-content-end">
+      <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="save()" [disabled]="addDocsForm.invalid"
+        [ngClass]="{'text-secondary': addDocsForm.invalid}">{{ data.button }}</button>
+    </div>
+  </mat-dialog-content>
+</form>

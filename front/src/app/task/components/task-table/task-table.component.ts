@@ -69,8 +69,8 @@ export class TaskTableComponent {
     //this.router.navigate(['/task', 'document-task']);
     console.log(documents, task)
     const dialog = this.dialog.open(TaskDocumentDialogComponent, {
-      height: '400px',
-      width: '400px',
+      height: 'auto',
+      width: 'auto',
       data: { task,documents},
       enterAnimationDuration: '400ms',
       exitAnimationDuration: '400ms'

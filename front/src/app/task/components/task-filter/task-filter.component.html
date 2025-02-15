@@ -1,5 +1,5 @@
 <div class="filter-menu">
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline" class="w-100">
     <mat-label>{{ label }}</mat-label>
     <mat-select [formControl]="roleFilter" (selectionChange)="onFilterChange()">
       <mat-option [value]="'0'">Todos</mat-option>

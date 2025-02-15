@@ -1,7 +1,7 @@
 // Gema Rubio y Daniel Cruz
 import { response, request } from 'express';
 import { SubcategoryConnection } from '../databases/categories-connection/subcategory-connection.js';
-import {DocumentConnection } from '../databases/categories-connection/documents-connection.js'
+import { DocumentConnection } from '../databases/documents/documents-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
 
 const connection = new SubcategoryConnection();

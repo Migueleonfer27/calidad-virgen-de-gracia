@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
@@ -26,6 +27,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatTooltipModule
   ],
   exports: [
     HeaderComponent,

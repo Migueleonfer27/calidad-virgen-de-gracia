@@ -23,6 +23,7 @@ class Server {
     this.mailPath = "/api/mail";
     this.taskPath = "/api/task";
     this.downloadPath= '/api/download';
+    this.documentPath = '/api/documents';
     this.middlewares();
     this.routes();
   }
@@ -48,6 +49,7 @@ class Server {
     this.app.use(this.authPath, authRoutes);
     this.app.use(this.mailPath, mailRoutes);
     this.app.use(this.taskPath, taskRoutes);
+    this.app.use(this.documentPath, documentRoutes);
     this.app.use(this.downloadPath, downloadRoutes);
   }
 

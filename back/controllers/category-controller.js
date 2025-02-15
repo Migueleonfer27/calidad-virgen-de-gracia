@@ -1,11 +1,8 @@
-
-
 // Gema Rubio y Daniel Cruz
 import { response, request } from 'express';
 import { CategoryConnection } from '../databases/categories-connection/category-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
-
-import DocumentConnection from '../databases/categories-connection/documents-connection.js';
+import { DocumentConnection } from '../databases/documents/documents-connection.js'
 
 const connection = new CategoryConnection();
 const docuementConnection = new DocumentConnection()
@@ -20,8 +17,9 @@ export const categoryController = {
                     'data': data
                 });
             } else {
-                res.status(404).json({
-                    'msg': msg.category.error.notFound
+                res.status(203).json({
+                    'msg': msg.category.error.notFound,
+                    'data': data
                 })
             }
         }) 
@@ -58,8 +56,9 @@ export const categoryController = {
                         'data': data
                     })
                 } else {
-                    res.status(404).json({
-                        'msg': msg.category.error.notFound
+                    res.status(203).json({
+                        'msg': msg.category.error.notFound,
+                        'data': data
                     })
                 }
             })
