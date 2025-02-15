@@ -13,7 +13,8 @@ import { AdminService } from '../../../admin/services/admin.service';
 })
 export class CreateTaskComponent {
   task:Task={id:0,description:'',type:0,end_date:new Date()}
-  selectedOption:String = ''
+  id_user:number=0;
+  routeSelected:String = ''
   rolesOptions:Role[]=[]
   userOptions:Role[]=[]
   private _formBuilder = inject(FormBuilder);
@@ -40,5 +41,25 @@ export class CreateTaskComponent {
         position: user.first_name+" "+user.last_name
       }));
     });
+
+    this.firstFormGroup.valueChanges.subscribe(values => {
+      this.task.description = values.firstCtrl!;
+      this.task.end_date = new Date(values.endDate!) ;
+      this.routeSelected=values.selectedOption!;
+    });
+
+
+
+  }
+
+
+  updateTaskType(newType: number) {
+    this.task.type = newType;
+    console.log(this.task,this.id_user, this.routeSelected)
+  }
+  updateTaskUser(idUser: number) {
+
+    this.id_user=idUser;
+    console.log(this.task, this.id_user, this.routeSelected)
   }
 }

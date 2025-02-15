@@ -1,4 +1,4 @@
-import { Component, Input, input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, input, Output, ViewChild } from '@angular/core';
 import { Role } from '../../../admin/interfaces/user.interfaces';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
@@ -12,7 +12,9 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 export class RadioOptionsComponent {
 @Input()  rolesOption:Role[]=[]
 @Input() label:String=""
-type: number=0
+@Input() selectedType: number = 0; // Se recibe desde el padre (CreateTaskComponent)
+
+@Output() selectedTypeChange = new EventEmitter<number>(); // Notificar cambios al padre
 
 displayedRoles: Role[] = [];
 pageSize = 5;
@@ -33,5 +35,9 @@ onPageChange(event: PageEvent) {
   this.currentPage = event.pageIndex;
   this.pageSize = event.pageSize;
   this.updateDisplayedRoles();
+}
+
+emitSelection() {
+  this.selectedTypeChange.emit(this.selectedType);
 }
 }
