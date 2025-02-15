@@ -87,7 +87,8 @@ export class TaskConnection {
                         include:[
                             {
                                 model: Document,
-                                attributes: ['id','name','code','url', 'autofilled'],
+                                attributes: ['id','name','code','url','autofilled'],
+
                                 through: {
                                     attributes: [],
                                 }
@@ -123,7 +124,9 @@ export class TaskConnection {
                     through: {
                         attributes: []
                     },
-                    attributes: ['id','name','code','url', 'autofilled'],
+
+                    attributes: ['id','name','code','url','autofilled'],
+
                   
                 }
                 
