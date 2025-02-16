@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+// Jaime Ortega
+import { Component } from '@angular/core'
 import { Role } from '../../interfaces/role.interface'
 import { TokenService } from '../../services/token.service';
 

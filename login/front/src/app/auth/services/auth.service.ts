@@ -59,8 +59,4 @@ export class AuthService {
         })
       )
   }
-
-  getserRoles(userId: number): Observable<String[]> {
-    return this.http.get<String[]>(`${this.apiUrl}/auth/user_roles/${userId}`)
-  }
 }

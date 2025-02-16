@@ -1,3 +1,4 @@
+// Jaime Ortega
 import jwt from 'jsonwebtoken'
 import {blacklistedTokens} from '../controllers/auth-controller.js'
 

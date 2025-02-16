@@ -1,7 +1,6 @@
 // Jaime Ortega
 import { Injectable } from '@angular/core'
 import { JwtPayload, jwtDecode } from 'jwt-decode'
-import { environment } from '../../../environments/environment.development'
 import { Role } from '../interfaces/role.interface'
 
 @Injectable({

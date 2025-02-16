@@ -1,4 +1,3 @@
-import { RolesPageComponent } from './../../pages/roles-page/roles-page.component';
 // Jaime Ortega
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
