@@ -5,6 +5,7 @@ import path from "path";
 import { PDFDocument } from "pdf-lib";
 import os from "os";
 import TemplatesPdf from "../interfaces/pdf.interfaces.js";
+import messages from "../helpers/messages-controllers.js";
 
 export const DownloadController = {
   donwloadPdf: async (req = request, res = response) => {
@@ -20,10 +21,12 @@ export const DownloadController = {
       const downloadsPath = path.join(os.homedir(), "Downloads");
       const filePath = path.join(downloadsPath, documentName + ".pdf");
       await fs.promises.writeFile(filePath, pdfBytes);
-      res.status(200).json({ mensaje: "PDF generado correctamente" });
+      res.status(200).json({ mensaje: messages.download.success.generate });
     } catch (error) {
       console.error("Error al generar el PDF:", error);
-      res.status(500).send("Error al generar el PDF");
+      res
+        .status(500)
+        .json({ message: messages.download.error.notFound, error: error });
     }
   },
 };
@@ -60,7 +63,7 @@ const generarPdfDesdeUrl = async (
       timeout: 30000,
     });
     await page.click(botonSelector);
-    console.log("⬇️ Botón de descarga presionado, esperando el archivo...");
+    console.log("Botón de descarga presionado, esperando el archivo...");
 
     // Dar tiempo para q termine la descarga
     await new Promise((resolve) => setTimeout(resolve, 8000));
@@ -93,7 +96,6 @@ const autoFiled = async (pdfPath, usuario, document) => {
 
     fields.forEach((field) => {
       const fieldName = field.getName();
-      console.log(`Campo encontrado: ${fieldName}`);
 
       if (mappings[fieldName] && field.constructor.name === "PDFTextField") {
         const value = mappings[fieldName](usuario) || "";
