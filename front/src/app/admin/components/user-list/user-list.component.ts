@@ -73,7 +73,6 @@ export class UserListComponent implements AfterViewInit {
             this.snackBar.open(error.error.message, 'Cerrar', { duration: 3000 });
           }
         });
-        if (user.roles) this.addRole(user.id, user.roles);
       }
     });
   }
