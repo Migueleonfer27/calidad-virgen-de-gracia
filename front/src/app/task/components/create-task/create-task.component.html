@@ -1,7 +1,13 @@
-<mat-stepper #stepper>
+<div class=" mb-3 p-3 subnav-admin w-100  container d-flex justify-content-between align-items-center text-align-center rounded-3 mb-3">
+ <div></div>
+  <button class="p-0" mat-raised-button matSuffix aria-label="volver" routerLink="/task">
+  <mat-icon class="ms-2 text-primary">arrow_back_ios_new</mat-icon></button>
+  </div>
+
+<mat-stepper #stepper >
   <mat-step [stepControl]="firstFormGroup" errorMessage="El campo descripción y fecha de entrega es obligatorio">
     <form [formGroup]="firstFormGroup">
-      <div class="container d-flex justify-content-center align-items-center min-vh-50v mt-3">
+      <div class="container d-flex justify-content-center align-items-center min-vh-100v mt-3">
         <div class="row w-100">
           <div class="col-12 col-md-8 col-lg-6">
             <ng-template  matStepLabel>Rellena los siguientes campos</ng-template>
@@ -54,17 +60,38 @@
     </form>
   </mat-step>
 
-  <mat-step>
-    <ng-template matStepLabel>Agregar documentos</ng-template>
-    <div class="container d-flex justify-content-center align-items-center min-vh-50 mt-3">
+  <mat-step [stepControl]="thirdFormGroup" errorMessage="Debes añadir un documento al evento">
+    <form [formGroup]="thirdFormGroup">
       <div class="row w-100">
         <div class="col-12 col-md-8 col-lg-6">
+          <label class="h6" id="example-radio-group-label">Selecciona los documentos de esta tarea:</label>
+          <section class="example-section">
+
+            <ng-container formArrayName="documents">
+              <div *ngFor="let docu of documents; let i = index">
+                <p>
+                  <mat-checkbox
+                    [formControlName]="i"
+                    [value]="docu.id!.toString()"
+                    (change)="onDocumentSelectionChange($event, i)">
+                    {{ docu.name }}
+                  </mat-checkbox>
+                </p>
+              </div>
+            </ng-container>
+          </section>
+
+          <app-options-categories
+            [thirdForm]="thirdFormGroup"
+            (subcategorySelected)="onSubcategorySelected($event)">
+          </app-options-categories>
+
           <div class="mt-3">
             <button mat-button matStepperPrevious>Atrás</button>
-            <button mat-button (click)="stepper.reset()">Guardar</button>
+            <button mat-button (click)="saveTask()">Guardar</button>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   </mat-step>
 </mat-stepper>

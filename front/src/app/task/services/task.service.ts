@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CacheStore, Document, EditResponse, ResponseTask, Task, UserAssigned } from '../interfaces/task.interface';
+import { CacheStore, Document, DocumentBySub, EditResponse, RequestInsertByRol, RequestInsertByUser, ResponseTask, Task, UserAssigned } from '../interfaces/task.interface';
 
 
 @Injectable({
@@ -44,5 +44,20 @@ export class TaskService {
   deleteTask(task: Task) {
     const url = `${this._taskUrl}${this._taskPath}/delete`;
     return this.http.delete<EditResponse>(`${url}/${task.id}`)
+  }
+
+  getDocumentBySubcategory(id_subcategory: number){
+    const url = `${this._taskUrl}/documents/getBySubcategoryId/`;
+    return this.http.get<DocumentBySub>(`${url}${id_subcategory}`)
+  }
+
+  saveTaskByUser(task:RequestInsertByUser){
+    const url = `${this._taskUrl}${this._taskPath}/insert`;
+    return this.http.post<ResponseTask>(`${url}`,task)
+  }
+
+  saveTaskByRol(task:RequestInsertByRol){
+    const url = `${this._taskUrl}${this._taskPath}/insertByRole`;
+    return this.http.post<ResponseTask>(`${url}`,task)
   }
 }

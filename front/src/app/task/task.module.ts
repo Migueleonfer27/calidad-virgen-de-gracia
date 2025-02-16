@@ -29,7 +29,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { RadioOptionsComponent } from './components/radio-options/radio-options.component';
 import { OptionsCategoriesComponent } from './components/options-categories/options-categories.component';
-import { OptionsDocumentsComponent } from './components/options-documents/options-documents.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { OptionsDocumentsComponent } from './components/options-documents/option
     CreateTaskComponent,
     RadioOptionsComponent,
     OptionsCategoriesComponent,
-    OptionsDocumentsComponent
+
   ],
   imports: [
     CommonModule,
@@ -65,7 +65,8 @@ import { OptionsDocumentsComponent } from './components/options-documents/option
      MatSnackBarModule,
     MatCardModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule
   ],
   providers: [
     {

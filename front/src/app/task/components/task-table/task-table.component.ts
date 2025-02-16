@@ -112,7 +112,7 @@ export class TaskTableComponent {
             }
             return row;
         });
-          //this.dataSource.data = [...this.dataSource.data];
+         
           this.snackBar.open(`El evento ${task.description} ha sido modificado correctamente`, 'Cerrar', {
             duration: 3000,
             horizontalPosition: 'center',
