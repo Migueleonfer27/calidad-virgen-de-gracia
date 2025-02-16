@@ -1,0 +1,44 @@
+<!-- Jaime Ortega -->
+<div class="card">
+  <div class="card-body">
+    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="ejemplo@ejemplo.com">
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          El email es requerido
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+          Email inválido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100 mb-3">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          La contraseña es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <button mat-raised-button color="primary" class="w-100" type="submit" [disabled]="loginForm.invalid">
+        Iniciar Sesión
+      </button>
+
+      <div class="text-center mt-3">
+        <a href="javascript:void(0)" (click)="resetPasswordDialog()" class="text-primary text-decoration-none">
+          ¿Olvidaste tu contraseña?
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
