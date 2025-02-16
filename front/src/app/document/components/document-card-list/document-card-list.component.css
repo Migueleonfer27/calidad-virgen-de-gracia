@@ -1,0 +1,12 @@
+.row {
+  border-left: 3px solid #193e7a;
+}
+
+.icon {
+  color: #193e7a !important;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-family: 'Merriweather', sans-serif;
+}

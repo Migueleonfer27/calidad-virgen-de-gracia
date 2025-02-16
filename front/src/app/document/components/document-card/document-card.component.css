@@ -1,0 +1,30 @@
+.card {
+  background-color: #F8F8F8;
+  background-position: center;
+  background-size: cover;
+  border: 4px double #c8d8f6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+h5#name {
+  border-left: 2px solid #FFE1E1;
+}
+
+h5#code {
+  background-color: #193e7a;
+  color: #F8F8F8;
+}
+
+.openBtn {
+  background-color: #c8d8f6;
+}
+
+.icon {
+  color: #193e7a !important;
+}

@@ -8,6 +8,7 @@ import { AddDocFormDialogComponent } from './components/add-doc-form-dialog/add-
 import { EditDocFormDialogComponent } from './components/edit-doc-form-dialog/edit-doc-form-dialog.component';
 import { SubcategoryFilterComponent } from './components/subcategory-filter/subcategory-filter.component';
 import { DocumentCardListComponent } from './components/document-card-list/document-card-list.component';
+import { DocumentCardComponent } from './components/document-card/document-card.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { DocumentCardListComponent } from './components/document-card-list/docum
     AddDocFormDialogComponent,
     EditDocFormDialogComponent,
     SubcategoryFilterComponent,
-    DocumentCardListComponent
+    DocumentCardListComponent,
+    DocumentCardComponent
   ],
   imports: [
     CommonModule,

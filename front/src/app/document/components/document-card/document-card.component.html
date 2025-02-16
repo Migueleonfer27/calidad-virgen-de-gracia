@@ -1,0 +1,12 @@
+<mat-card class="card" appearance="outlined" (click)="openDocument(document.url)">
+  <mat-card-content class="d-flex justify-content-between">
+    <div class="d-flex gap-3 align-items-center">
+      <mat-icon class="icon">description</mat-icon>
+      <h5 class="m-0 px-2 py-1 rounded" id="code">{{ document.code  }}</h5>
+      <h5 id="name" class="m-0 px-3">{{ document.name }}</h5>
+    </div>
+    <button class="border-0 d-flex openBtn" mat-icon-button matSuffix [matTooltip]="'Abrir documento'" (click)="openDocument(document.url)">
+      <mat-icon class="icon">file_open</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>

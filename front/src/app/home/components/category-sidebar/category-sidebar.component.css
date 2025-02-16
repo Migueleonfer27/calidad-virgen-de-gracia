@@ -4,22 +4,20 @@ li:hover {
 
 .list-group-item {
   color: #021026;
-  background-color: #FFE1E1;
-  border-color: #c8d8f6;
+  background-color: #c8d8f6;
+  border-color: #FFF;
   transition: background-color 0.3s ease-in-out;
 }
 
 .list-group-item:hover, .list-group-item.active {
-  background-color: #f3adad;
+  color: #FFF;
+  background-color: #021026;
 }
 
-.mat-expansion-panel, .mat-expansion-panel:active, .mat-expansion-panel:hover, .mat-panel-title {
-  background-color: #c8d8f6;
+.mat-accordion {
+  text-transform: uppercase;
+  font-family: 'Merriweather', sans-serif;
 }
-
-/* .mat-expansion-panel-header {
-  background-color: #A5B8DB;
-} */
 
 
 
