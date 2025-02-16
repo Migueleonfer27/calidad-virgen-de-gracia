@@ -27,6 +27,12 @@ const messages = {
       isInt: "El user_id y role_id deben ser números enteros.",
     },
   },
+
+  donwloadMiddleware: {
+    error: {
+      url: 'La url tiene un formato inválido.'
+    }
+  },
 };
 
 export default messages;
