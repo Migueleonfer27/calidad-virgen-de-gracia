@@ -19,6 +19,11 @@ export class DocumentService {
     return this.http.get<Result>(url);
   }
 
+  getDocumentsFromSubcategory(id: number): Observable<Result> {
+    const url = `${this._documentUrl}${this._documentPath}/getBySubcategoryId/${id}`;
+    return this.http.get<Result>(url);
+  }
+
   addDocument(document: Document): Observable<EditResult> {
     const url = `${this._documentUrl}${this._documentPath}`;
     return this.http.post<EditResult>(url, document)
@@ -27,7 +32,7 @@ export class DocumentService {
   editDocument(document: Document): Observable<EditResult> {
     const url = `${this._documentUrl}${this._documentPath}/update`;
     return this.http.put<EditResult>(url, {
-      id: document.id,        
+      id: document.id,
       name: document.name,
       code: document.code,
       url: document.url,

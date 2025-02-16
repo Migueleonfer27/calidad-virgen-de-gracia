@@ -1,6 +1,6 @@
 <h2>Categorías</h2>
 <hr>
-<ul class="list-group">
+<!-- <ul class="list-group">
   <li
   *ngFor="let category of categories"
   [routerLink]="['/category', category.id]"
@@ -8,4 +8,18 @@
   class="list-group-item">
     {{ category.name }}
   </li>
-</ul>
+</ul> -->
+<mat-accordion hideToggle>
+  <mat-expansion-panel *ngFor="let category of categories" [routerLink]="['/category', category.id]" routerLinkActive="active">
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ category.name }} </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ul class="list-group">
+      <li
+      *ngFor="let subcategory of subcategories" [routerLink]="['/subcategory/details', subcategory.id]" routerLinkActive="active"
+      class="list-group-item">
+        {{ subcategory.name }}
+      </li>
+    </ul>
+  </mat-expansion-panel>
+</mat-accordion>

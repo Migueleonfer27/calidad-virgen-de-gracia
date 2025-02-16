@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   exports: [
@@ -28,7 +30,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatSelectModule,
     FormsModule,
     MatCheckboxModule,
-    MatSortModule
+    MatSortModule,
+    MatExpansionModule,
+    MatSidenavModule
   ]
 })
 export class MaterialModule { }

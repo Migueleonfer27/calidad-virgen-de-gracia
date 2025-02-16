@@ -7,6 +7,7 @@ import { DocumentRoutingModule } from './document-routing.module';
 import { AddDocFormDialogComponent } from './components/add-doc-form-dialog/add-doc-form-dialog.component';
 import { EditDocFormDialogComponent } from './components/edit-doc-form-dialog/edit-doc-form-dialog.component';
 import { SubcategoryFilterComponent } from './components/subcategory-filter/subcategory-filter.component';
+import { DocumentCardListComponent } from './components/document-card-list/document-card-list.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SubcategoryFilterComponent } from './components/subcategory-filter/subc
     DocumentTableComponent,
     AddDocFormDialogComponent,
     EditDocFormDialogComponent,
-    SubcategoryFilterComponent
+    SubcategoryFilterComponent,
+    DocumentCardListComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { SubcategoryFilterComponent } from './components/subcategory-filter/subc
   exports: [
     DocumentTableComponent,
     AddDocFormDialogComponent,
-    EditDocFormDialogComponent
+    EditDocFormDialogComponent,
+    DocumentCardListComponent
   ]
 })
 export class DocumentModule { }
