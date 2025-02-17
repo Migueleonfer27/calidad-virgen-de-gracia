@@ -8,7 +8,7 @@ import { Category, ResultInsert } from '../../interfaces/category';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogActions } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef } from '@angular/material/snack-bar';
-import { ConfirmDialogComponent } from '../../../admin/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
 import { Subcategory } from '../../../subcategory/interfaces/subcategory.interface';
 import { catchError, map, Observable } from 'rxjs';
@@ -28,7 +28,7 @@ import { catchError, map, Observable } from 'rxjs';
 export class CategoriesComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['#','name', 'star'];
-
+  categories:Category[]=[]
   dataSource: MatTableDataSource<Category> = new MatTableDataSource<Category>([])
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
@@ -41,7 +41,7 @@ export class CategoriesComponent implements AfterViewInit {
 
   ngOnInit() {
     this.categoriesService.showAll().subscribe((result) => {
-
+      this.categories=result!
       this.dataSource = new MatTableDataSource(result!);
       this.dataSource.paginator = this.paginator
       this.dataSource.sort = this.sort

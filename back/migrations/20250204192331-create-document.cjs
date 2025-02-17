@@ -18,6 +18,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       url: {
+
         allowNull: false,
         type: Sequelize.STRING(1000)
       },

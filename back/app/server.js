@@ -1,28 +1,30 @@
 import express from "express";
 import cors from "cors";
-import fileUpload from 'express-fileupload';
+import fileUpload from "express-fileupload";
 import { router as userRoutes } from "../routes/user-routes.js";
 import { router as roleRoutes } from "../routes/role-routes.js";
 import { router as usersRolesRoutes } from "../routes/user-role-routes.js";
-import { router as categoryRoutes } from '../routes/category-routes.js'
+import { router as categoryRoutes } from "../routes/category-routes.js";
 import { router as subcategoryRoutes } from "../routes/subcategory-routes.js";
 import { router as authRoutes } from "../routes/auth-routes.js";
 import { router as mailRoutes } from "../routes/mail-routes.js";
-import { router as taskRoutes } from "../routes/task-routes.js"
+import { router as taskRoutes } from "../routes/task-routes.js";
+import { router as downloadRoutes } from "../routes/donwload-routes.js"
 import { router as documentRoutes } from "../routes/document-routes.js";
 
 class Server {
   constructor() {
     this.app = express();
-    this.usersPath = '/api/users';
-    this.rolesPath = '/api/roles';
-    this.usersRolesPath = '/api/users/roles';
-    this.categoriesPath = '/api/categories';
-    this.subcategoriesPath = '/api/subcategories';
-    this.authPath = '/api/auth';
-    this.mailPath = '/api/mail';
-    this.taskPath = '/api/task';
-    this.documentPath = '/api/documents';
+    this.usersPath = "/api/users";
+    this.rolesPath = "/api/roles";
+    this.usersRolesPath = "/api/users/roles";
+    this.categoriesPath = "/api/categories";
+    this.subcategoriesPath = "/api/subcategories";
+    this.authPath = "/api/auth";
+    this.mailPath = "/api/mail";
+    this.taskPath = "/api/task";
+    this.downloadPath = "/api/download";
+    this.documentPath = "/api/documents";
     this.middlewares();
     this.routes();
   }
@@ -30,11 +32,13 @@ class Server {
   middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use(fileUpload({
-      useTempFiles: true,
-      tempFileDir: '/tmp/',
-      createParentPath: true
-    }));
+    this.app.use(
+      fileUpload({
+        useTempFiles: true,
+        tempFileDir: "/tmp/",
+        createParentPath: true,
+      })
+    );
   }
 
   routes() {
@@ -47,6 +51,7 @@ class Server {
     this.app.use(this.mailPath, mailRoutes);
     this.app.use(this.taskPath, taskRoutes);
     this.app.use(this.documentPath, documentRoutes);
+    this.app.use(this.downloadPath, downloadRoutes);
   }
 
   listen() {

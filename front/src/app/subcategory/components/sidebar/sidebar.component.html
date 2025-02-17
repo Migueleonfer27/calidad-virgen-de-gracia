@@ -1,0 +1,6 @@
+<ul class="list-group" *ngFor="let category of categories">
+  <li class="list-group-item"
+  [routerLink]="['/admin/subcategory-table', category.id, category.name]"
+  >{{category.name}}
+  </li>
+</ul>
