@@ -148,16 +148,13 @@
       <input type="tel" matInput formControlName="phone" [readonly]="data.button === 'Info'">
     </mat-form-field>
 
-    <mat-form-field class="w-100" *ngIf="data.button !== 'Info'">
+    <mat-form-field class="w-100" *ngIf="data.button !== 'Info' && data.button !=='Crear'">
       <mat-label>Contraseña</mat-label>
       <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" [readonly]="data.button === 'Info'" />
       <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hide()">
         <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-      <mat-error *ngIf="userForm.get('password')?.hasError('required')">
-        La contraseña es requerida
-      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-100">
