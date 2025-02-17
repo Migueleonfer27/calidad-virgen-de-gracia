@@ -22,6 +22,7 @@ import { RoleListComponent } from './components/role-list/role-list.component';
 import { FormRoleComponent } from './components/form-role-dialog/form-role-dialog.component';
 import { SharedModule } from '../shared/shared.module';
 import { DocumentModule } from '../document/document.module';
+import { MatTooltip } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { DocumentModule } from '../document/document.module';
     AdminRoutingModule,
     SubcategoryModule,
     SharedModule,
-    DocumentModule
+    DocumentModule,
+    MatTooltip
   ],
   exports:[
     AdminPageComponent,

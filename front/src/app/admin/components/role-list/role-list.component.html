@@ -46,10 +46,10 @@
       <th mat-header-cell *matHeaderCellDef class="bg-header-table text-end align-middle"> Acciones </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-center gap-2 justify-content-md-center">
-          <button mat-icon-button title="Editar rol">
+          <button mat-icon-button [matTooltip]="'Editar rol'">
             <mat-icon class="text-primary" (click)="editRole(row.id)">edit</mat-icon>
           </button>
-          <button mat-icon-button title="Borrar rol">
+          <button mat-icon-button [matTooltip]="'Borrar rol'">
             <mat-icon class="text-danger" (click)="deleteRole(row.id)">delete</mat-icon>
           </button>
         </div>
@@ -67,5 +67,5 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10]" aria-label="Select page of roles"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons="" aria-label="Select page of roles"></mat-paginator>
 </div>
