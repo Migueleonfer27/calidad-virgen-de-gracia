@@ -72,7 +72,7 @@ export class CreateTaskComponent {
       this.firstFormGroup.markAllAsTouched();
       return;
     }
-   
+
     if (this.secondFormGroup.invalid) {
       console.log("El formulario no es válido. No se puede guardar.");
       this. secondFormGroup.markAllAsTouched();
@@ -159,7 +159,7 @@ export class CreateTaskComponent {
   }
 
   loadDocuments(subcategoryId: number) {
-    this.taskService.getDocumentBySubcategory(this.id_subcategory).subscribe((res) => {
+    this.taskService.getDocumentBySubcategory(subcategoryId).subscribe((res) => {
       if (res.data) {
         this.documents = res.data;
         this.initializeDocuments();
@@ -167,7 +167,6 @@ export class CreateTaskComponent {
     });
   }
   getSelectedDocumentIds(): number[] {
-
     const selectedIds = this.documents_selected.controls
       .map((control, index) => control.value ? this.documents[index].id : null)
       .filter(id => id !== null);
@@ -180,10 +179,10 @@ export class CreateTaskComponent {
     }
 
     this.documents.forEach(doc => {
+
       this.documents_selected.push(this._formBuilder.control(false));
     });
   }
-
   onDocumentSelectionChange(event: any, index: number) {
 
     this.documents_selected.at(index).setValue(event.checked);
@@ -193,6 +192,6 @@ export class CreateTaskComponent {
     this.firstFormGroup.reset();
     this.secondFormGroup.reset();
     this.thirdFormGroup.reset();
-
+   
   }
 }
