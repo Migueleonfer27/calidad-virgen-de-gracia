@@ -1,97 +1,103 @@
-<div class=" mb-3 p-3 subnav-admin w-100  container d-flex justify-content-between align-items-center text-align-center rounded-3 mb-3">
- <div></div>
+<div class="subnav-admin w-100  container d-flex flex-row-reverse text-align-center rounded-3">
+
   <button class="p-0" mat-raised-button matSuffix aria-label="volver" routerLink="/task">
   <mat-icon class="ms-2 text-primary">arrow_back_ios_new</mat-icon></button>
   </div>
-
-<mat-stepper #stepper >
-  <mat-step [stepControl]="firstFormGroup" errorMessage="El campo descripción y fecha de entrega es obligatorio">
-    <form [formGroup]="firstFormGroup">
-      <div class="container d-flex justify-content-center align-items-center min-vh-100v mt-3">
-        <div class="row w-100">
-          <div class="col-12 col-md-8 col-lg-6">
+  <mat-stepper class="bg-stepper" #stepper >
+    <mat-step  [stepControl]="firstFormGroup" errorMessage="El campo descripción y fecha de entrega es obligatorio">
+      <form [formGroup]="firstFormGroup">
+        <div class="d-flex ">
+          <div class="col-12 col-md-6 col-lg-4">
             <ng-template  matStepLabel>Rellena los siguientes campos</ng-template>
 
-            <mat-form-field class="w-100">
-              <mat-label>Descripción</mat-label>
-              <input matInput placeholder="Descripción" formControlName="firstCtrl" required>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label >Descripción</mat-label>
+              <input   matInput placeholder="Descripción" formControlName="firstCtrl" required>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field class="w-100" appearance="outline">
               <mat-label>Fecha de entrega</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="endDate" required>
-              <mat-hint>DD/MM/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker startView="year"></mat-datepicker>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-            <div class="col-12 col-md-8 col-lg-6 mt-3 p-2">
-            <label  class="h6" id="example-radio-group-label">Tipo de asignación</label>
-            <mat-radio-group formControlName="selectedOption" aria-label="Select an option">
-              <mat-radio-button value="insert">Asignación por usuario</mat-radio-button>
-              <mat-radio-button value="insertByRole">Asignación por rol</mat-radio-button>
-            </mat-radio-group>
-            </div>
+
             <div class="mt-3">
+              <label class="h6 ">Tipo de asignación</label>
+              <mat-radio-group class="d-flex flex-column" formControlName="selectedOption">
+                <mat-radio-button value="insert">Asignación por usuario</mat-radio-button>
+                <mat-radio-button value="insertByRole">Asignación por rol</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class="mt-3 text-center">
               <button mat-button matStepperNext>Siguiente</button>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  </mat-step>
+      </form>
+    </mat-step>
 
-  <mat-step [stepControl]="secondFormGroup" errorMessage="La asignación es un campo obligatorio">
-    <form [formGroup]="secondFormGroup">
-      <div class="container d-flex justify-content-center align-items-center min-vh-50 mt-3">
-        <div class="row w-100">
-          <div class="col-12 col-md-8 col-lg-6">
+    <mat-step [stepControl]="secondFormGroup" errorMessage="La asignación es un campo obligatorio">
+      <form [formGroup]="secondFormGroup">
+        <div class="d-flex ">
+          <div class="col-12 col-md-6 col-lg-4">
             <ng-template matStepLabel>Elige la asignación</ng-template>
 
-            <app-radio-options *ngIf="firstFormGroup.get('selectedOption')?.value === 'insertByRole'" label="Selecciona un rol" [rolesOption]="rolesOptions" [selectedType]="task.type" (selectedTypeChange)="updateTaskType($event)"></app-radio-options>
-            <app-radio-options *ngIf="firstFormGroup.get('selectedOption')?.value === 'insert'" label="Selecciona un usuario" [rolesOption]="userOptions" [selectedType]="id_user" (selectedTypeChange)="updateTaskUser($event)"></app-radio-options>
+            <app-radio-options *ngIf="firstFormGroup.get('selectedOption')?.value === 'insertByRole'"
+              label="Selecciona un rol" [rolesOption]="rolesOptions" [selectedType]="task.type"
+              (selectedTypeChange)="updateTaskType($event)"></app-radio-options>
 
-            <div class="mt-3">
+            <app-radio-options *ngIf="firstFormGroup.get('selectedOption')?.value === 'insert'"
+              label="Selecciona un usuario" [rolesOption]="userOptions" [selectedType]="id_user"
+              (selectedTypeChange)="updateTaskUser($event)"></app-radio-options>
+
+            <div class="mt-3 text-center">
               <button mat-button matStepperPrevious>Atrás</button>
               <button mat-button matStepperNext>Siguiente</button>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  </mat-step>
+      </form>
+    </mat-step>
 
-  <mat-step [stepControl]="thirdFormGroup" errorMessage="Debes añadir un documento al evento">
-    <form [formGroup]="thirdFormGroup">
-      <div class="row w-100">
-        <div class="col-12 col-md-8 col-lg-6">
-          <label class="h6" id="example-radio-group-label">Selecciona los documentos de esta tarea:</label>
-          <section class="example-section">
-
-            <ng-container formArrayName="documents">
-              <div *ngFor="let docu of documents; let i = index">
-                <p>
-                  <mat-checkbox
-                    [formControlName]="i"
-                    [value]="docu.id!.toString()"
-                    (change)="onDocumentSelectionChange($event, i)">
-                    {{ docu.name }}
-                  </mat-checkbox>
-                </p>
-              </div>
-            </ng-container>
-          </section>
-
-          <app-options-categories
-            [thirdForm]="thirdFormGroup"
+    <mat-step [stepControl]="thirdFormGroup" errorMessage="Debes añadir un documento al evento">
+      <form [formGroup]="thirdFormGroup">
+        <div class="d-flex  ms-3">
+          <div class="col-12 col-md-6 col-lg-4">
+            <label class="h6">Selecciona una subcategoría:</label>
+            <app-options-categories [thirdForm]="thirdFormGroup"
             (subcategorySelected)="onSubcategorySelected($event)">
           </app-options-categories>
 
-          <div class="mt-3">
-            <button mat-button matStepperPrevious>Atrás</button>
-            <button mat-button (click)="saveTask()">Guardar</button>
+            <label class="h6">Selecciona los documentos:</label>
+            <section class="m-3">
+              <ng-container *ngIf="documents.length > 0; else noDocuments" formArrayName="documents">
+                <div *ngFor="let docu of documents; let i = index">
+                  <mat-checkbox [formControlName]="i" [value]="docu.id!.toString()"
+                    (change)="onDocumentSelectionChange($event, i)">
+                    <div class="d-flex justify-content-between">
+                      {{ docu.name }}
+                      <a [href]="docu.url" target="_blank">
+                        <mat-icon class="mt-1 text-success">description</mat-icon>
+                      </a>
+                    </div>
+
+                  </mat-checkbox>
+                </div>
+              </ng-container>
+              <ng-template #noDocuments>
+                <p class="text-center text-muted">No hay documentos disponibles.</p>
+              </ng-template>
+            </section>
+
+
+            <div class="mt-3 text-center">
+              <button mat-button matStepperPrevious>Atrás</button>
+              <button mat-button (click)="saveTask()">Guardar</button>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-  </mat-step>
-</mat-stepper>
+      </form>
+    </mat-step>
+  </mat-stepper>

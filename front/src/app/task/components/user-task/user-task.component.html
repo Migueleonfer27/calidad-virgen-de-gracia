@@ -8,18 +8,18 @@ label="Filtrar por Estado"
 [rolesOption]="filterOptions"
 [tableField]="'state'"
 (filterChange)="applyFilter($event)"></app-task-filter>
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8 overflow-auto table-responsive-md border rounded-3 shadow-sm">
   <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
     <ng-container matColumnDef="user">
-      <th class="w-75" mat-header-cell *matHeaderCellDef>Usuarios Asignados</th>
+      <th class="w-75 bg-header-table h6" mat-header-cell *matHeaderCellDef>Usuarios Asignados</th>
       <td class="w-75"mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="state">
-      <th class="w-25 text-center" mat-header-cell *matHeaderCellDef>Estado de la Tarea</th>
+      <th class="w-25 text-center bg-header-table h6" mat-header-cell *matHeaderCellDef>Estado de la Tarea</th>
       <td class="w-25 text-center" mat-cell *matCellDef="let element">
         <div class="border d-inline-flex align-items-center rounded">
           <mat-icon *ngIf="element.TaskUser.state == 1" class="text-warning">hourglass_empty</mat-icon>

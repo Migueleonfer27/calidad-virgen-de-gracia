@@ -12,7 +12,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 export class RadioOptionsComponent {
 @Input()  rolesOption:Role[]=[]
 @Input() label:String=""
-@Input() selectedType: number = 0; // Se recibe desde el padre (CreateTaskComponent)
+@Input() selectedType: number = 0; 
 
 @Output() selectedTypeChange = new EventEmitter<number>(); // Notificar cambios al padre
 

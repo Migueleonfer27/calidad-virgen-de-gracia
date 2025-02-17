@@ -45,6 +45,6 @@ export class OptionsCategoriesComponent {
   }
 
   onSubcategoryChange(event:any) {
-    this.subcategorySelected.emit(event.value); // Emite el id_subcategory
+    this.subcategorySelected.emit(event.value); 
   }
 }

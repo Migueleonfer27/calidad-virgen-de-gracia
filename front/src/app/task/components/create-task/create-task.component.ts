@@ -5,6 +5,7 @@ import { Role, User, UserList } from '../../../admin/interfaces/user.interfaces'
 import { AdminService } from '../../../admin/services/admin.service';
 import { TaskService } from '../../services/task.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatRadioButton } from '@angular/material/radio';
 
 @Component({
   selector: 'app-create-task',
@@ -30,10 +31,13 @@ export class CreateTaskComponent {
     selectedOption: ['', Validators.required]
   });
 
-  secondFormGroup = this._formBuilder.group({});
+  secondFormGroup = this._formBuilder.group({
+   
+  });
   thirdFormGroup = this._formBuilder.group({
     id_subcategory: ['', Validators.required],
-    documents: this._formBuilder.array([], Validators.required) // Definir correctamente el FormArray
+    documents: this._formBuilder.array([], Validators.required),
+    documents_selected: ['', Validators.required]
   });
 
   constructor( private snackBar: MatSnackBar, private adminService: AdminService, private taskService: TaskService) {
@@ -55,7 +59,7 @@ export class CreateTaskComponent {
       this.routeSelected = values.selectedOption!;
     });
 
-    // Inicializar documentos seleccionados como FormArray
+
     this.documents_selected = this.thirdFormGroup.get('documents') as FormArray;
   }
 
@@ -72,7 +76,15 @@ export class CreateTaskComponent {
                 };
       this.taskService.saveTaskByUser(task).subscribe(res=> {
           if(res.cod==1){
+            this.resetStepper()
             this.snackBar.open(`El evento ${task.task.description} ha sido creado correctamente`, 'Cerrar', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              panelClass: ['main-snackbar']
+            });
+          }else{
+            this.snackBar.open(`El evento ${task.task.description} no se ha creado correctamente, debes rellenar todos los campos`, 'Cerrar', {
               duration: 3000,
               horizontalPosition: 'center',
               verticalPosition: 'bottom',
@@ -93,7 +105,15 @@ export class CreateTaskComponent {
       };
       this.taskService.saveTaskByRol(task).subscribe(res=> {
         if(res.cod==1){
+          this.resetStepper()
           this.snackBar.open(`El evento ${task.task.description} ha sido creado correctamente`, 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: ['main-snackbar']
+          });
+        }else{
+          this.snackBar.open(`El evento ${task.task.description} no se ha creado correctamente, debes rellenar todos los campos`, 'Cerrar', {
             duration: 3000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
@@ -125,7 +145,7 @@ export class CreateTaskComponent {
     this.taskService.getDocumentBySubcategory(this.id_subcategory).subscribe((res) => {
       if (res.data) {
         this.documents = res.data;
-        this.initializeDocuments(); // Inicializar el FormArray con los documentos obtenidos
+        this.initializeDocuments();
       }
     });
   }
@@ -143,12 +163,18 @@ export class CreateTaskComponent {
     }
 
     this.documents.forEach(doc => {
-      this.documents_selected.push(this._formBuilder.control(false)); // Control inicializado como 'false' (no seleccionado)
+      this.documents_selected.push(this._formBuilder.control(false));
     });
   }
 
   onDocumentSelectionChange(event: any, index: number) {
 
     this.documents_selected.at(index).setValue(event.checked);
+  }
+  resetStepper() {
+    this.firstFormGroup.reset();
+    this.secondFormGroup.reset();
+    this.thirdFormGroup.reset();
+
   }
 }
