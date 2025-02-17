@@ -22,8 +22,8 @@ label="Filtrar por Estado"
       <th class="w-25 text-center bg-header-table h6" mat-header-cell *matHeaderCellDef>Estado de la Tarea</th>
       <td class="w-25 text-center" mat-cell *matCellDef="let element">
         <div class="border d-inline-flex align-items-center rounded">
-          <mat-icon *ngIf="element.TaskUser.state == 1" class="text-warning">hourglass_empty</mat-icon>
-          <mat-icon *ngIf="element.TaskUser.state == 2" class="text-success">check_circle</mat-icon>
+          <mat-icon *ngIf="element.TaskUser.state == 1"  matTooltip="Pendiente" class="text-warning">hourglass_empty</mat-icon>
+          <mat-icon *ngIf="element.TaskUser.state == 2"  matTooltip="Realizada" class="text-success">check_circle</mat-icon>
         </div>
 
       </td>

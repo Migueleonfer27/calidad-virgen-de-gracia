@@ -14,7 +14,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="end_date">
       <th class="bg-header-table  h6" mat-header-cell *matHeaderCellDef>Fecha de Entrega</th>
-      <td  mat-cell *matCellDef="let element"> {{ element.end_date | date:'dd-MM-yyyy' }} </td>
+      <td  mat-cell *matCellDef="let element"> {{ element.end_date | date:'dd/MM/yyyy' }} </td>
     </ng-container>
     <ng-container matColumnDef="type">
       <th class="bg-header-table h6" mat-header-cell *matHeaderCellDef>Asignación</th>
@@ -29,19 +29,19 @@
       <td mat-cell *matCellDef="let element">
         <div class="d-flex justify-content-center gap-2 justify-content-md-center">
           <button mat-icon-button aria-label="Example icon button with a delete icon"
-            (click)="userAssigned(element.Users, element)" title="Usuarios asignados">
+            (click)="userAssigned(element.Users, element)"  matTooltip="Usuarios asignados">
             <mat-icon>group</mat-icon>
           </button>
           <button mat-icon-button aria-label="Example icon button with a delete icon"
-          (click)="documentAssigned(element.Documents, element)" title="Usuarios asignados">
+          (click)="documentAssigned(element.Documents, element)"  matTooltip="Documentos adjuntos">
           <mat-icon class="text-success">description</mat-icon>
         </button>
-          <button mat-icon-button aria-label="Example icon button with a delete icon" title="Usuarios asignados"
+          <button mat-icon-button aria-label="Example icon button with a delete icon"  matTooltip="Editar evento"
             (click)="edit( element)" title="Editar evento">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Example icon button with a delete icon" title="Usuarios asignados"
-          (click)="delet( element)" title="Editar evento">
+          <button mat-icon-button aria-label="Example icon button with a delete icon"  matTooltip="Borrar evento"
+          (click)="delet( element)" title="Eliminar evento">
           <mat-icon class="text-danger">delete</mat-icon>
         </button>
         </div>

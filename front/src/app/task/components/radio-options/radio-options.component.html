@@ -1,4 +1,8 @@
 <label class="h6" id="example-radio-group-label">{{ label }}</label>
+<mat-form-field class="w-100 mb-2" appearance="outline">
+  <mat-label>Buscar </mat-label>
+  <input matInput (keyup)="filter($event)" placeholder="{{label}} por nombre">
+</mat-form-field>
 
 <mat-radio-group
   aria-labelledby="example-radio-group-label"
@@ -15,8 +19,9 @@
 
 <!-- Paginador de Angular Material -->
 <mat-paginator
-  [length]="rolesOption.length"
+  [length]="displayedRoles.length"
   [pageSize]="pageSize"
+  [pageIndex]="currentPage"
   [pageSizeOptions]="[5, 10, 15]"
   (page)="onPageChange($event)"
 >

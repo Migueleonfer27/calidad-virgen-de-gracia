@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import {FormArray, FormBuilder, Validators} from '@angular/forms';
 import { DocumentList, RequestInsertByRol, RequestInsertByUser, Task } from '../../interfaces/task.interface';
 import { Role, User, UserList } from '../../../admin/interfaces/user.interfaces';
@@ -6,6 +6,8 @@ import { AdminService } from '../../../admin/services/admin.service';
 import { TaskService } from '../../services/task.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioButton } from '@angular/material/radio';
+import { Router } from '@angular/router';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-create-task',
@@ -24,7 +26,7 @@ export class CreateTaskComponent {
   documents: DocumentList[] = [];
   documents_selected: FormArray;
   private _formBuilder = inject(FormBuilder);
-
+  @ViewChild('stepper') stepper!: MatStepper;
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
     endDate: ['', Validators.required],
@@ -32,7 +34,7 @@ export class CreateTaskComponent {
   });
 
   secondFormGroup = this._formBuilder.group({
-   
+    assignment: ['', Validators.required]
   });
   thirdFormGroup = this._formBuilder.group({
     id_subcategory: ['', Validators.required],
@@ -40,7 +42,7 @@ export class CreateTaskComponent {
     documents_selected: ['', Validators.required]
   });
 
-  constructor( private snackBar: MatSnackBar, private adminService: AdminService, private taskService: TaskService) {
+  constructor( private snackBar: MatSnackBar, private router: Router, private adminService: AdminService, private taskService: TaskService) {
     this.adminService.getRoles().subscribe((res) => {
       this.rolesOptions = res.data;
     });
@@ -64,6 +66,18 @@ export class CreateTaskComponent {
   }
 
   saveTask() {
+
+    if (this.firstFormGroup.invalid) {
+      console.log("El formulario no es válido. No se puede guardar.");
+      this.firstFormGroup.markAllAsTouched();
+      return;
+    }
+   
+    if (this.secondFormGroup.invalid) {
+      console.log("El formulario no es válido. No se puede guardar.");
+      this. secondFormGroup.markAllAsTouched();
+      return;
+    }
     const selectedDocumentIds = this.getSelectedDocumentIds();
     console.log( selectedDocumentIds, this.routeSelected);
     if(this.routeSelected=='insert'){
@@ -83,6 +97,7 @@ export class CreateTaskComponent {
               verticalPosition: 'bottom',
               panelClass: ['main-snackbar']
             });
+
           }else{
             this.snackBar.open(`El evento ${task.task.description} no se ha creado correctamente, debes rellenar todos los campos`, 'Cerrar', {
               duration: 3000,
@@ -127,13 +142,15 @@ export class CreateTaskComponent {
 }
 
   updateTaskType(newType: number) {
+
     this.task.type = newType;
+    this.secondFormGroup.get('assignment')?.setValue(newType.toString());
 
   }
 
   updateTaskUser(idUser: number) {
     this.id_user = idUser;
-
+    this.secondFormGroup.get('assignment')?.setValue(idUser.toString());
   }
 
   onSubcategorySelected(id: number) {
@@ -172,6 +189,7 @@ export class CreateTaskComponent {
     this.documents_selected.at(index).setValue(event.checked);
   }
   resetStepper() {
+    this.stepper.reset()
     this.firstFormGroup.reset();
     this.secondFormGroup.reset();
     this.thirdFormGroup.reset();

@@ -4,12 +4,7 @@ import { taskController } from '../controllers/task-controller.js';
 import { validarCampos } from '../middlewares/validar-campos.js';
 
 export const router = Router();
-router.put('/updateState',[
-    check('description', 'La descripción es obligatorio').not().isEmpty(),
-    check('end_date', 'La fecha es obligatoria').not().isEmpty(),
-    validarCampos
-
- ],taskController.updateFromUser)
+router.put('/updateState',taskController.updateFromUser)
 router.delete('/deleteFromUser', taskController.deleteFromUser);
 router.delete('/delete/:id', taskController.delete);
 router.post('/insert', [
@@ -28,7 +23,7 @@ router.post('/insertByRole', [
 router.get('/getById/:id', taskController.getByIdUser);
 router.get('/', taskController.getAll);
 router.put('/', [
-    check('task.description', 'La descripción es obligatorio').not().isEmpty(),
-    check('task.end_date', 'La fecha es obligatoria').not().isEmpty(),
+    check('description', 'La descripción es obligatorio').not().isEmpty(),
+    check('end_date', 'La fecha es obligatoria').not().isEmpty(),
     validarCampos
 ],taskController.update);

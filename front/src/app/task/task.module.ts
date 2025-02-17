@@ -30,7 +30,8 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { RadioOptionsComponent } from './components/radio-options/radio-options.component';
 import { OptionsCategoriesComponent } from './components/options-categories/options-categories.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     TaskTableComponent,
@@ -66,7 +67,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCardModule,
     MatStepperModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatTooltipModule,
   ],
   providers: [
     {
