@@ -7,20 +7,17 @@
     </div>
 
     <div class="col-4 col-md-6 text-end">
-
-      <button mat-raised-button *ngIf="!isUserLoggedIn()" routerLink="/auth/login" class="login-btn">
-        <mat-icon>login</mat-icon> Iniciar sesión
-      </button>
-
-      <div *ngIf="isUserLoggedIn()">
+     <!--<div *ngIf="!isUserLoggedIn()">-->
         <button mat-raised-button [matMenuTriggerFor]="userMenu">
           Mi cuenta
         </button>
         <mat-menu #userMenu="matMenu">
           <button mat-menu-item routerLink="/admin">Administración</button>
+          <button mat-menu-item routerLink="/task">Calidad</button>
+          <button mat-menu-item routerLink="/kanban">Kanban</button>
           <button mat-menu-item (click)="logout()">Cerrar sesión</button>
         </mat-menu>
-      </div>
+      <!--</div>-->
     </div>
   </div>
 </header>

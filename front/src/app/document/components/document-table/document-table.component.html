@@ -1,0 +1,64 @@
+<div class="container d-flex flex-column justify-content-center p-0">
+  <div
+    class=" mb-3 subnav-admin w-100  container d-flex justify-content-between align-items-center text-align-center  p-3 rounded-3 mb-3">
+    <h1>Documentos</h1>
+    <button class="p-3 addCategoryBtn" mat-raised-button matSuffix aria-label="Añadir Categoría" (click)="onNewDocument()">
+      <mat-icon>note_add</mat-icon>Añadir documento
+    </button>
+  </div>
+  <doc-subcategory-filter (filterChange)="onFilterChange($event)"></doc-subcategory-filter>
+  <table mat-table [dataSource]="documents" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="#">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let document; let index = index;"> {{ index + 1 }} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+      <td mat-cell *matCellDef="let document" id="name"> {{ document.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+      <td mat-cell *matCellDef="let document"> {{ document.code }} </td>
+    </ng-container>
+    <ng-container matColumnDef="subcategory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Subcategoría</th>
+      <td mat-cell *matCellDef="let document"> {{ document.subcategory.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="autofilled">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center">Autorrellenable</th>
+      <td mat-cell *matCellDef="let document" class="text-center">
+        <span *ngIf="document.autofilled; else notFilled">
+          <mat-icon class="text-success" [matTooltip]="'Autorrellenable'">check</mat-icon>
+        </span>
+        <ng-template #notFilled>
+          <mat-icon class="text-danger" [matTooltip]="'No es autorrellenable'">close</mat-icon>
+        </ng-template>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="text-center">Acciones</th>
+      <td mat-cell *matCellDef="let document">
+        <div  class="d-flex justify-content-center gap-2 justify-content-md-center">
+          <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Abrir documento'" (click)="openDocument(document.url)">
+            <mat-icon class="text-success">file_open</mat-icon>
+          </button>
+          <button class="border-0 bg-light " mat-icon-button matSuffix [matTooltip]="'Editar documento'" (click)="onUpdate(document)">
+            <mat-icon class="text-primary">edit</mat-icon>
+          </button>
+          <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Borrar documento'" (click)="onDelete(document)">
+            <mat-icon class="text-danger">delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>

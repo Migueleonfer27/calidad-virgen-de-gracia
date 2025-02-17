@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SubcategoryService } from '../../services/subcategory.service';
 import { switchMap } from 'rxjs';
-import { Subcategory, SubcategoryIns } from '../../interfaces/subcategory.interface';
+import {  Subcategory, SubcategoryIns } from '../../interfaces/subcategory.interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,6 +10,10 @@ import { EditDialogComponent } from '../../../category/components/edit-dialog/ed
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EditSubcategoryDialogComponent } from '../edit-subcategory-dialog/edit-subcategory-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { CategoryService } from '../../../category/services/category.service';
+import { Category } from '../../../category/interfaces/category';
+
 
 @Component({
   selector: 'app-subcategory-table',
@@ -20,33 +24,39 @@ import { EditSubcategoryDialogComponent } from '../edit-subcategory-dialog/edit-
 
 })
 export class SubcategoryTableComponent {
+  //@Input() public categories:Category[]=[]
   id?: number
   name?: string
-
-  displayedColumns: string[] = [ 'name','star'];
-  dataSource: MatTableDataSource<Subcategory>=new MatTableDataSource<Subcategory>([]);
-  constructor(private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar:MatSnackBar) {}
+  categories:Category[]=[]
+  hoveredRow: any = null;
+  displayedColumns: string[] = ['#','name', 'star'];
+  dataSource: MatTableDataSource<Subcategory> = new MatTableDataSource<Subcategory>([]);
+  constructor(private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar, private categoryService:CategoryService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit() {
+    this.categoryService.showAll().subscribe((result) => {
+      this.categories=result!
 
-   console.log(this.name);
-     this.route.params
-          .pipe(
-            switchMap(params => {
-              console.log('Parámetros recibidos:', params);
-              this.id = +params['id']; // Convertir a número
-              this.name = params['name']; // Guardar nombre
-              return this.subcategoryService.getSubcategoriesFromCategory(this.id);
-            })
-          )
-          .subscribe(subcategories => {
-            console.log('Subcategorías obtenidas:', subcategories.data);
-            this.dataSource=new MatTableDataSource(subcategories.data!);
-            this.dataSource.paginator=this.paginator
-            this.dataSource.sort=this.sort
-          });
+
+    })
+
+    this.route.params
+      .pipe(
+        switchMap(params => {
+
+          this.id = +params['id'];
+          this.name = params['name'];
+          return this.subcategoryService.getSubcategoriesFromCategory(this.id);
+        })
+      )
+      .subscribe(subcategories => {
+
+        this.dataSource = new MatTableDataSource(subcategories.data!);
+        this.dataSource.paginator = this.paginator
+        this.dataSource.sort = this.sort
+      });
   }
 
   ngAfterViewInit() {
@@ -63,38 +73,39 @@ export class SubcategoryTableComponent {
     }
   }
 
-  addSubcategory(){
-     const subcategory:SubcategoryIns={name:"", id_category:this.id!}
-        const dialog = this.dialog.open( EditDialogComponent, {
-              width: '250px',
-              enterAnimationDuration:'400ms',
-              exitAnimationDuration:'400ms',
-              data:subcategory
-            });
+  addSubcategory() {
+    const subcategory: SubcategoryIns = { name: "", id_category: this.id! }
+    const dialog = this.dialog.open(EditDialogComponent, {
+      width: '250px',
+      enterAnimationDuration: '400ms',
+      exitAnimationDuration: '400ms',
+      data: subcategory
+    });
 
-            dialog.afterClosed().subscribe(
-              (result) => {
-                if( result) {
-                    this.subcategoryService.addSubcategory(subcategory)
-                    .subscribe((resultInsert)=>{
-                      this.dataSource.data = [...this.dataSource.data, resultInsert.data];
+    dialog.afterClosed().subscribe(
+      (result) => {
+        if (result) {
+          this.subcategoryService.addSubcategory(subcategory)
+            .subscribe((resultInsert) => {
+              this.dataSource.data = [...this.dataSource.data, resultInsert.data];
+              this.snackBar.handsetCssClass='.main-snackbar'
+              this.snackBar.open(`La Subcategoría ${subcategory.name} ha sido insertada correctamente`, 'Cerrar', {
+                duration: 3000,
+                panelClass: ['snack-error'],
+                verticalPosition: 'bottom',
 
-                      this.snackBar.open(`La Subcategoría ${subcategory.name} ha sido insertada correctamente`,'Cerrar',{
-                         duration:2000,
-                          panelClass: ['main-snackbar'],
-                          verticalPosition: 'bottom'
-                      })
-                      console.log(this.snackBar)
+              })
 
 
 
-                    })
-                }
-              }
-            )
+
+            })
+        }
+      }
+    )
   }
 
-  editSubcategory(subcategory:SubcategoryIns) {
+  editSubcategory(subcategory: SubcategoryIns) {
     const dialog = this.dialog.open(EditSubcategoryDialogComponent, {
       width: '250px',
       data: { ...subcategory },
@@ -115,24 +126,44 @@ export class SubcategoryTableComponent {
             row.id === response.data.id ? response.data : row
           );
 
-        
+
           this.dataSource.data = [...this.dataSource.data];
         }
       });
     });
   }
 
-  deletSubcategory(subcategory:Subcategory){
-
+  deletSubcategory(subcategory: Subcategory) {
+    const dialog = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { message: `Estas seguro que quieres borrar la subcategoría ${subcategory.name}`,button: 'Eliminar', closeBtn: 'Cancelar' },
+      enterAnimationDuration: '400ms',
+      exitAnimationDuration: '400ms'
+    });
+    dialog.afterClosed().subscribe((result) => {
+      if (!result) {
+        return
+      }
       this.subcategoryService.deleteSubcategory(subcategory.id!).subscribe((result) => {
+        if(result.cod==2){
+          this.snackBar.open(`La subcategoría ${subcategory.name} no ha sido borrada porque contiene documentos anexos y deben ser eliminados primero`, 'Cerrar', {
+            duration: 4000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: '.snack'
+          })
+        }else{
+          this.dataSource.data = this.dataSource.data.filter((cat) => cat.id != subcategory.id)
+          this.snackBar.open(`La categoría ${subcategory.name} ha sido borrada correctamente`, 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: '.snack'
+          })
+        }
 
-        this.dataSource.data=this.dataSource.data.filter((cat)=>cat.id!=subcategory.id)
-        this.snackBar.open(`La categoría ${subcategory.name} ha sido borrada correctamente`,'Cerrar',{
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom',
-          panelClass: '.snack'
-        })
-        })
-    }
+      })
+    })
+
+  }
 }

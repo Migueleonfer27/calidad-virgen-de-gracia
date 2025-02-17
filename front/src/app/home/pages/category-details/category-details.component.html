@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-3">
-    <category-sidebar *ngIf="categories.length > 0" [categories]="categories"></category-sidebar>
+  <div class="col-4 mt-5">
+    <category-sidebar *ngIf="categories.length > 0" [categories]="categories" [subcategories]="subcategories"></category-sidebar>
   </div>
   <div class="col">
     <subcategory-card-list *ngIf="subcategories.length > 0" [subcategories]="subcategories"></subcategory-card-list>

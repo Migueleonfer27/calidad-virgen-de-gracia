@@ -16,14 +16,17 @@ import { MatInputModule } from '@angular/material/input';
 import { EditSubcategoryDialogComponent } from './components/edit-subcategory-dialog/edit-subcategory-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CategorySidebarComponent } from '../home/components/category-sidebar/category-sidebar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
     SubcategoryCardListComponent,
     SubcategoryCardComponent,
     SubcategoryTableComponent,
-    EditSubcategoryDialogComponent
+    EditSubcategoryDialogComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatInputModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule,
   ],
   exports: [
     SubcategoryCardListComponent,

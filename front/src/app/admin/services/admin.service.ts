@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { UserList, ApiResponse, User, Role, ApiResponseRoles } from '../interfaces/user.interfaces';
+import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf } from '../interfaces/user.interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class AdminService {
 
   getUser(id: number): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(`${this.urlUsers}/${id}`);
+  }
+
+  getUserForFillPdf(id: number): Observable<ApiResponseForFillPdf> { // PRUEBA RELLENAR PDF
+    return this.http.get<ApiResponseForFillPdf>(`${this.urlUsers}/${id}`);
   }
 
   postUser(user: User): Observable<User> {
@@ -61,5 +65,11 @@ export class AdminService {
 
   deleteRole(id: number): Observable<Role> {
     return this.http.delete<Role>(`${this.urlRoles}/${id}`);
+  }
+
+  postCsv(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(`${this.urlUsers}/massive`, formData);
   }
 }

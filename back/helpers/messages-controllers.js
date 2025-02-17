@@ -56,7 +56,7 @@ export const messages = {
     error: {
       index: "Error al obtener las categorías.",
       show: "Error al obtener la categoría.",
-      notFound: 'No se encontraron categorías disponibles.',
+      notFound: "No se encontraron categorías disponibles.",
       create: "Error al crear la categoría.",
       update: "Error al actualizar la categoría.",
       delete: "Error al eliminar la categoría.",
@@ -74,12 +74,39 @@ export const messages = {
     error: {
       index: "Error al obtener las subcategorías.",
       show: "Error al obtener la subcategoría.",
-      notFound: 'No se encontraron subcategorías disponibles.',
+      notFound: "No se encontraron subcategorías disponibles.",
       create: "Error al crear la subcategoría.",
       update: "Error al actualizar la subcategoría.",
       delete: "Error al eliminar la subcategoría.",
     },
-  }
+  },
+
+  document: {
+    success: {
+      index: "Documentos obtenidos correctamente.",
+      show: "Documento obtenido correctamente.",
+      create: "Documento creado correctamente.",
+      update: "Documento actualizado correctamente.",
+      delete: "Documento eliminado correctamente.",
+    },
+    error: {
+      index: "Error al obtener los documentos.",
+      show: "Error al obtener el documento.",
+      notFound: "No se encontraron documentos disponibles.",
+      create: "Error al crear el documento.",
+      update: "Error al actualizar el documento.",
+      delete: "Error al eliminar el documento.",
+    },
+  },
+
+  download: {
+    success: {
+      generate: "Pdf autorrellenado correctamente.",
+    },
+    error: {
+      notFound: "Error al intentar autorrellenar el pdf: ",
+    },
+  },
 };
 
 export default messages;

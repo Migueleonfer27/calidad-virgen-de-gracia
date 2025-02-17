@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormUserDialogComponent } from './components/form-user-dialog/form-user-dialog.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
@@ -21,6 +20,9 @@ import { RouterModule } from '@angular/router';
 import { SubcategoryModule } from '../subcategory/subcategory.module';
 import { RoleListComponent } from './components/role-list/role-list.component';
 import { FormRoleComponent } from './components/form-role-dialog/form-role-dialog.component';
+import { SharedModule } from '../shared/shared.module';
+import { DocumentModule } from '../document/document.module';
+import { MatTooltip } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -28,7 +30,6 @@ import { FormRoleComponent } from './components/form-role-dialog/form-role-dialo
     AdminPageComponent,
     UserListComponent,
     FormUserDialogComponent,
-    ConfirmDialogComponent,
     RoleListComponent,
     FormRoleComponent,
   ],
@@ -49,12 +50,14 @@ import { FormRoleComponent } from './components/form-role-dialog/form-role-dialo
     MatSelectModule,
     RouterModule,
     AdminRoutingModule,
-      SubcategoryModule
+    SubcategoryModule,
+    SharedModule,
+    DocumentModule,
+    MatTooltip
   ],
   exports:[
     AdminPageComponent,
     UserListComponent,
-    ConfirmDialogComponent,
     FormUserDialogComponent,
 
   ]

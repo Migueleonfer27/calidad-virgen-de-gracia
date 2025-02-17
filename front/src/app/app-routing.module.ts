@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home/pages/home-page/home-page.component';
-import { CategoryDetailsComponent } from './home/pages/category-details/category-details.component';
-import { AdminPageComponent } from './admin/pages/admin-page/admin-page.component';
-import { CategoriesComponent } from './category/components/categoriesTable/categories-table.component';
-import { UserListComponent } from './admin/components/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -15,25 +11,23 @@ const routes: Routes = [
     path: 'category',
     loadChildren: () => import('./home/home.module').then( m => m.HomeModule)
   },
-  // {
-  //   path: 'subcategory',
-  //   loadChildren: () => import('./home/home.module').then( m => m.HomeModule)
-  // },
   {
-    path: 'iniciar-sesion',
-    component: HomePageComponent
-  },
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    path: 'subcategory',
+    loadChildren: () => import('./home/home.module').then( m => m.HomeModule)
   },
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
-    path: 'encuesta',
-    component: HomePageComponent
+    path: 'task',
+    loadChildren: () => import('./task/task.module').then(m => m.TaskModule)
+  },
+  {
+
+    path: 'kanban',
+    loadChildren: () => import('./kanban/kanban.module').then(m => m.KanbanModule)
+
   },
   {
     path: '**',

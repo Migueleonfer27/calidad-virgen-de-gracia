@@ -1,14 +1,15 @@
 <div
   class="d-flex justify-content-between align-items-center subnav-admin p-3 rounded-3 mb-3 nav-admin flex-column flex-md-row text-center text-md-start">
-  <h1>Usuarios</h1>
+  <h1 class="text-white">Usuarios</h1>
   <div class="d-flex gap-2">
     <button mat-raised-button color="primary" (click)="createUser()">
       <mat-icon>add</mat-icon>
       Añadir usuario
     </button>
-    <button mat-raised-button color="primary">
-      <mat-icon>file_download</mat-icon>
-      Importar csv
+    <input type="file" #fileInput accept=".csv" (change)="onFileInputCsv($event)" hidden />
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+      <mat-icon>file_upload</mat-icon>
+      Importar CSV
     </button>
   </div>
 </div>
@@ -19,50 +20,53 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8 table-responsive border rounded-3 shadow-sm">
-  <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-hover w-100 m-0 align-middle">
+  <table mat-table [dataSource]="dataSource" matSort class=" w-100 m-0 align-middle">
 
     <ng-container matColumnDef="#">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> # </th>
+      <th mat-header-cell *matHeaderCellDef class="bg-header-table text-center align-middle"> # </th>
       <td mat-cell *matCellDef="let row; let index = index">{{ index + 1 }}</td>
     </ng-container>
 
     <ng-container matColumnDef="photo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Foto </th>
+      <th mat-header-cell *matHeaderCellDef class="bg-header-table text-center align-middle"> Foto </th>
       <td mat-cell *matCellDef="let row">
-        <img [src]="'img-user.png'" alt="Foto de {{ row.first_name }}" class="img-fluid rounded-circle"
+        <img [src]="'img-user.png'" alt="Foto de {{ row.first_name }}" class="rounded-circle"
           style="width: 40px; height: 40px;">
       </td>
     </ng-container>
 
     <ng-container matColumnDef="dni">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> DNI </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> DNI </th>
       <td mat-cell *matCellDef="let row"> {{row.dni}} </td>
     </ng-container>
 
     <ng-container matColumnDef="first_name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Nombre </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> Nombre
+      </th>
       <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
     </ng-container>
-
-    <ng-container matColumnDef="gender">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Genero </th>
-      <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> Apellidos
+      </th>
+      <td mat-cell *matCellDef="let row"> {{row.last_name}} </td>
     </ng-container>
-
     <ng-container matColumnDef="corporate_email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Correo corporativo </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-header-table text-center align-middle"> Correo
+        corporativo </th>
       <td mat-cell *matCellDef="let row"> {{row.corporate_email}} </td>
     </ng-container>
 
     <ng-container matColumnDef="roles">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center align-middle"> Roles </th>
+      <th mat-header-cell *matHeaderCellDef class="bg-header-table align-middle"> Roles
+      </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex flex-column align-items-start gap-2">
           <ng-container *ngIf="row.Roles?.length; else noRoles">
             <span *ngFor="let role of row.Roles"
               class="badge bg-light text-dark border border-secondary shadow-sm d-flex align-items-center gap-1 px-2 py-1 rounded-pill text-wrap">
               {{ role.position }}
-              <button mat-icon-button matSuffix class="p-0 h-auto" matTooltip="Eliminar" (click)="removeAssignedRole(row.id, role.id)" title="Desasignar rol">
+              <button mat-icon-button matSuffix class="p-0 h-auto" matTooltip="Eliminar"
+                (click)="removeAssignedRole(row.id, role.id)">
                 <mat-icon class="text-danger align-middle">remove</mat-icon>
               </button>
             </span>
@@ -75,13 +79,16 @@
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef class="text-center align-middle"> Acciones </th>
+      <th mat-header-cell *matHeaderCellDef class="bg-header-table text-center align-middle"> Acciones </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-center gap-2 justify-content-md-center">
-          <button (click)="editUser(row.id)" mat-icon-button matSuffix title="Editar usuario">
+          <button (click)="showUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Información usuario'">
+            <mat-icon class="text-secondary">info</mat-icon>
+          </button>
+          <button (click)="editUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Editar usuario'">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>
-          <button (click)="deleteUser(row.id)" mat-icon-button matSuffix title="Borrar usuario">
+          <button (click)="deleteUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Borrar usuario'">
             <mat-icon class="text-danger">delete</mat-icon>
           </button>
         </div>
@@ -89,12 +96,13 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (mouseenter)="hoveredRow = row"
+      (mouseleave)="hoveredRow = null" [ngClass]="{'hovered-row': hoveredRow === row}"></tr>
 
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell text-center" colspan="8">No hay usuarios que coincidan con "{{input.value}}"</td>
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 75, 100]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 75, 100]" showFirstLastButtons="" aria-label="Select page of users"></mat-paginator>
 </div>

@@ -1,0 +1,14 @@
+.card {
+  width: auto;
+  height: auto;
+  background-color: rgb(207, 232, 232);
+}
+
+img {
+  width: 4rem;
+}
+
+
+a{
+  text-decoration: none;
+}

@@ -36,4 +36,19 @@ const yearMiddleware = (req, res, next) => {
   next();
 };
 
-export { positionMiddleware, codeMiddleware, yearMiddleware, isIdIntMiddleware };
+const descriptionMiddleware = (req, res, next) => {
+  if (req.body.description.length < 5 || req.body.description.length > 255) {
+    return res.status(400).json({
+      messages: messages.roleMiddleware.description,
+    });
+  }
+  next();
+};
+
+export {
+  positionMiddleware,
+  codeMiddleware,
+  yearMiddleware,
+  isIdIntMiddleware,
+  descriptionMiddleware,
+};
