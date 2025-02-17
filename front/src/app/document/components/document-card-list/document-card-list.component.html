@@ -1,0 +1,8 @@
+<div class="row px-5 mx-3">
+  <h2 class="p-0 mb-3"><mat-icon class="icon">description</mat-icon> {{ documents[0].subcategory.name }}</h2>
+  <hr>
+  <button mat-raised-button class="col-md-2" (click)="goBack()"><mat-icon>arrow_back</mat-icon> Volver</button>
+  <div class="col-12 my-3 p-0" *ngFor="let document of documents">
+    <document-card [document]="document"></document-card>
+  </div>
+</div>

@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomeModule)
   },
   {
+    path: 'subcategory',
+    loadChildren: () => import('./home/home.module').then( m => m.HomeModule)
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
@@ -20,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./task/task.module').then(m => m.TaskModule)
   },
   {
-    
+
     path: 'kanban',
     loadChildren: () => import('./kanban/kanban.module').then(m => m.KanbanModule)
 

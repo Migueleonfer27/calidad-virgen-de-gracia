@@ -2,3 +2,11 @@
   background-color: #A5B8DB;
   color:#ffffff;
 }
+
+#name {
+  max-width: 450px;
+  white-space: normal;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

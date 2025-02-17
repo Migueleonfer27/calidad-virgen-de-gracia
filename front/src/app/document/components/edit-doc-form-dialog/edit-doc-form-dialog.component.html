@@ -2,30 +2,48 @@
 <div mat-dialog-content class="py-0">
   <p>{{ data.message }}</p>
 </div>
+<hr>
 <form [formGroup]="editDocsForm">
   <mat-dialog-content class="d-flex flex-column gap-2 justify-content-center">
-    <mat-form-field>
+    <mat-form-field
+      [ngClass]="{'mb-3': editDocsForm.get('name')?.invalid && (editDocsForm.get('name')?.touched || editDocsForm.get('name')?.dirty)}">
       <mat-label>Nombre</mat-label>
-      <input matInput formControlName="name">
-      <mat-error *ngIf="editDocsForm.get('name')?.hasError('required')">
-        El nombre es obligatorio.
+      <input matInput formControlName="name" minlength="4" maxlength="101" (input)="onInput('name')">
+      <mat-error class="d-flex flex-column" *ngIf="editDocsForm.get('name')?.invalid && editDocsForm.get('name')?.touched">
+        <ul>
+          <li *ngIf="editDocsForm.get('name')?.hasError('required')">El nombre es obligatorio.</li>
+          <li *ngIf="editDocsForm.get('name')?.hasError('minlength')">Debe tener al menos 4 caracteres.</li>
+          <li *ngIf="editDocsForm.get('name')?.hasError('maxlength')">No puede superar los 100 caracteres.</li>
+        </ul>
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field
+      [ngClass]="{'mb-3': editDocsForm.get('code')?.invalid && (editDocsForm.get('code')?.touched || editDocsForm.get('code')?.dirty)}">
       <mat-label>Código</mat-label>
-      <input matInput formControlName="code">
-      <mat-error *ngIf="editDocsForm.get('code')?.hasError('required')">
-        El código es obligatorio.
+      <input matInput formControlName="code" minlength="2" maxlength="7" (input)="onInput('code')">
+      <mat-error class="d-flex flex-column" *ngIf="editDocsForm.get('code')?.invalid">
+        <ul>
+          <li *ngIf="editDocsForm.get('code')?.hasError('required')">El código es obligatorio.</li>
+          <li *ngIf="editDocsForm.get('code')?.hasError('minlength')">Debe tener al menos 2 caracteres.</li>
+          <li *ngIf="editDocsForm.get('code')?.hasError('maxlength')">Debe tener un máximo de 6 caracteres.</li>
+        </ul>
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field
+      [ngClass]="{'mb-3': editDocsForm.get('url')?.invalid && (editDocsForm.get('url')?.touched || editDocsForm.get('url')?.dirty)}">
       <mat-label>URL</mat-label>
-      <textarea matInput formControlName="url" minlength="5" maxlength="1000"></textarea>
-      <mat-error *ngIf="editDocsForm.get('url')?.hasError('required')">
-        La URL es obligatoria.
+      <textarea matInput formControlName="url" minlength="5" maxlength="1001" (input)="onInput('url')"></textarea>
+      <mat-error class="d-flex flex-column" *ngIf="editDocsForm.get('url')?.invalid">
+        <ul>
+          <li *ngIf="editDocsForm.get('url')?.hasError('required')">La URL es obligatoria.</li>
+          <li *ngIf="editDocsForm.get('url')?.hasError('minlength')">Debe tener al menos 5 caracteres.</li>
+          <li *ngIf="editDocsForm.get('url')?.hasError('maxlength')">No puede superar los 1000 caracteres.</li>
+          <li *ngIf="editDocsForm.get('url')?.hasError('pattern')">La URL debe comenzar con "https://".</li>
+        </ul>
       </mat-error>
     </mat-form-field>
     <mat-checkbox formControlName="autofilled">¿Va a ser el documento autorrellenable?</mat-checkbox>
+    <hr>
     <div class="d-flex gap-2 justify-content-end">
       <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
       <button mat-raised-button color="primary" (click)="save()" [disabled]="editDocsForm.invalid"
