@@ -96,11 +96,13 @@ export class TaskTableComponent {
     });
 
     dialog.afterClosed().subscribe((result) => {
+      console.log(result);
       if (!result) return;
       result.end_date = new Date(result.end_date);
       result.end_date.setHours(result.end_date.getHours() + 12);
 
       this.taskService.editTask(result).subscribe((response) => {
+        console.log(response);
         if (response.cod == 1) {
           this.dataSource.data = this.dataSource.data.map((row) =>{
             if (row.id === response.data.id) {
@@ -112,7 +114,7 @@ export class TaskTableComponent {
             }
             return row;
         });
-          //this.dataSource.data = [...this.dataSource.data];
+
           this.snackBar.open(`El evento ${task.description} ha sido modificado correctamente`, 'Cerrar', {
             duration: 3000,
             horizontalPosition: 'center',
