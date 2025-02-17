@@ -1,5 +1,5 @@
 <!-- Jaime Ortega -->
-<mat-card class="card p-3 m-2 justify-content-center" appearance="outlined" [routerLink]="['/role', role.id]">
+<mat-card class="card p-3 m-2 justify-content-center" appearance="outlined" (click)="selectRole()">
   <mat-card-content>
     <h3 class="text-center">{{ role.position }}</h3>
   </mat-card-content>

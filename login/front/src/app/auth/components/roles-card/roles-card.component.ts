@@ -11,4 +11,9 @@ import { Role } from '../../interfaces/role.interface'
 export class RolesCardComponent {
   @Input()
   public role!: Role
+
+  selectRole() {
+    localStorage.setItem('rol', JSON.stringify(this.role))
+    window.location.href = 'http://localhost:4200'
+  }
 }

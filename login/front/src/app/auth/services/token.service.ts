@@ -31,15 +31,15 @@ export class TokenService {
   getUserRoles(): Role[] {
     const decodedToken: any = this.decodeToken()
     const roles = decodedToken?.roles || []
-    return roles.map((role: Role) =>({position: role}))
+    return roles.map((role: Role) => ({ position: role }))
   }
 
   isTokenExpired(): boolean {
-    const decodedToken: any = this.decodeToken();
-    if (!decodedToken || !decodedToken.exp) return true;
+    const decodedToken: any = this.decodeToken()
+    if (!decodedToken || !decodedToken.exp) return true
 
-    const currentTime = Math.floor(Date.now() / 1000);
-    return decodedToken.exp < currentTime;
+    const currentTime = Math.floor(Date.now() / 1000)
+    return decodedToken.exp < currentTime
   }
 
   saveToken(token: string): void {
