@@ -14,25 +14,27 @@ export class RadioOptionsComponent {
 @Input() label:String=""
 @Input() selectedType: number = 0;
 
-@Output() selectedTypeChange = new EventEmitter<number>(); // Notificar cambios al padre
+@Output() selectedTypeChange = new EventEmitter<number>();
 
 displayedRoles: Role[] = [];
 pageSize = 5;
-currentPage = 0;
+pageIndex = 0;
+filteredRoles: Role[] = [];
 
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 ngOnInit() {
+  this.filteredRoles = [...this.rolesOption];
   this.updateDisplayedRoles();
 }
 
 updateDisplayedRoles() {
-  const startIndex = this.currentPage * this.pageSize;
-  this.displayedRoles = this.rolesOption.slice(startIndex, startIndex + this.pageSize);
+  const startIndex = this.pageIndex * this.pageSize;
+  this.displayedRoles = this.filteredRoles.slice(startIndex, startIndex + this.pageSize);  
 }
 
 onPageChange(event: PageEvent) {
-  this.currentPage = event.pageIndex;
+  this.pageIndex = event.pageIndex;
   this.pageSize = event.pageSize;
   this.updateDisplayedRoles();
 }
@@ -40,16 +42,15 @@ filter(event: any): void {
   const searchTerm = event.target.value.toLowerCase();
   if (searchTerm) {
 
-    this.displayedRoles = this.rolesOption.filter(role =>
+    this.filteredRoles = this.rolesOption.filter(role =>
       role.position.toLowerCase().includes(searchTerm)
     );
-    this.currentPage = 0;
+    this.pageIndex = 0;
   } else {
 
-    this.displayedRoles = [...this.rolesOption];
+    this.filteredRoles = [...this.rolesOption];
   }
-
-
+  this.updateDisplayedRoles();
 }
 emitSelection() {
   this.selectedTypeChange.emit(this.selectedType);
