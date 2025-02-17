@@ -17,9 +17,31 @@ export class EditDocFormDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ){
     this.editDocsForm = this.fb.group({
-      name: [this.data.document.name, Validators.required],
-      code: [this.data.document.code, Validators.required],
-      url: [this.data.document.url, Validators.required],
+      name: [
+        this.data.document.name,
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(100)
+        ]
+      ],
+      code: [
+        this.data.document.code,
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(6)
+        ]
+      ],
+      url: [
+        this.data.document.url,
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(1000),
+          Validators.pattern(/^https:\/\/.*/)
+        ]
+      ],
       autofilled: [this.data.document.autofilled]
     })
   }
@@ -27,7 +49,7 @@ export class EditDocFormDialogComponent {
   save() {
     if (this.editDocsForm.valid) {
       const updatedDocument = {
-        id: this.data.document.id,      
+        id: this.data.document.id,
         ...this.editDocsForm.value
       };
       this.dialogRef.close(updatedDocument);
@@ -36,6 +58,14 @@ export class EditDocFormDialogComponent {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  onInput(controlName: string) {
+    const control = this.editDocsForm.get(controlName);
+    if (control) {
+      control.markAsTouched();
+      control.updateValueAndValidity();
+    }
   }
 
 }

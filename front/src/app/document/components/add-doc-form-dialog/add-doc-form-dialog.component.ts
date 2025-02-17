@@ -25,14 +25,36 @@ export class AddDocFormDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
 
-      this.addDocsForm = this.fb.group({
-        name: ['', Validators.required],
-        code: ['', Validators.required],
-        url: ['', Validators.required],
-        id_subcategory: ['', Validators.required],
-        autofilled: [false]
-      })
-    }
+    this.addDocsForm = this.fb.group({
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(100)
+        ]
+      ],
+      code: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(6)
+        ]
+      ],
+      url: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(1000),
+          Validators.pattern(/^https:\/\/.*/)
+        ]
+      ],
+      id_subcategory: ['', Validators.required],
+      autofilled: [false]
+    });
+  }
 
   ngOnInit(): void {
       this.loadCategories();
@@ -66,5 +88,13 @@ export class AddDocFormDialogComponent implements OnInit {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  onInput(controlName: string) {
+    const control = this.addDocsForm.get(controlName);
+    if (control) {
+      control.markAsTouched();
+      control.updateValueAndValidity();
+    }
   }
 }

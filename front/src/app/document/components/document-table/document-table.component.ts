@@ -45,7 +45,7 @@ export class DocumentTableComponent implements OnInit {
         this.documents.sortingDataAccessor = (data, sortHeaderName) => {
           switch (sortHeaderName) {
             case 'subcategory':
-              return data.subcategory.name; 
+              return data.subcategory.name;
             default:
               return data[sortHeaderName];
           }

@@ -29,7 +29,8 @@ import { DocumentCardComponent } from './components/document-card/document-card.
     DocumentTableComponent,
     AddDocFormDialogComponent,
     EditDocFormDialogComponent,
-    DocumentCardListComponent
+    DocumentCardListComponent,
+    DocumentCardComponent
   ]
 })
 export class DocumentModule { }
