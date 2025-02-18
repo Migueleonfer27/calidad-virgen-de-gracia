@@ -26,7 +26,7 @@ class AuthConnection {
         })
 
         let roles = await Promise.all(user_roles.map(ur => Roles.findByPk(ur.role_id)))
-        return roles.map(role => role.name)
+        return roles.map(role => role.position)
     }
 }
 
