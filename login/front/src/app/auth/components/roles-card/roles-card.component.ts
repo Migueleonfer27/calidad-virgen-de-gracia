@@ -1,6 +1,7 @@
 // Jaime Ortega
 import { Component, Input } from '@angular/core';
 import { Role } from '../../interfaces/role.interface'
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'roles-card',
@@ -12,8 +13,11 @@ export class RolesCardComponent {
   @Input()
   public role!: Role
 
-  selectRole() {
-    localStorage.setItem('rol', JSON.stringify(this.role))
+  constructor(private tokenService: TokenService) {}
+
+  selectRole(role: Role): void {
+    this.tokenService.setSelectedRole(role)
+    localStorage.setItem('rol', JSON.stringify(role))
     window.location.href = 'http://localhost:4200'
   }
 }

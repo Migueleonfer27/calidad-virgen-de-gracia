@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../environments/environment.development'
 import { Observable, tap, BehaviorSubject } from 'rxjs'
 import { AuthResponse, LoginForm, User } from '../interfaces/auth.interface'
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class AuthService {
   private _currentUser = new BehaviorSubject<User | null>(null)
   public currentUser$ = this._currentUser.asObservable()
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private tokenService: TokenService
+  ) {
     this.checkToken()
   }
 
@@ -31,6 +35,7 @@ export class AuthService {
         tap(resp => {
           if (resp.token) {
             localStorage.setItem('token', resp.token)
+            this.tokenService.setToken(resp.token)
             this._currentUser.next(resp.user)
           }
         })
@@ -42,6 +47,7 @@ export class AuthService {
       .pipe(
         tap(() => {
           localStorage.removeItem('token')
+          this.tokenService.removeToken()
           this._currentUser.next(null)
         })
       )
