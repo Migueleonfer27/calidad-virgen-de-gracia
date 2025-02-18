@@ -36,19 +36,9 @@ export class AuthService {
           if (resp.token) {
             localStorage.setItem('token', resp.token)
             this.tokenService.setToken(resp.token)
+            this.tokenService.setSessionActive(true)
             this._currentUser.next(resp.user)
           }
-        })
-      )
-  }
-
-  logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/logout`, {})
-      .pipe(
-        tap(() => {
-          localStorage.removeItem('token')
-          this.tokenService.removeToken()
-          this._currentUser.next(null)
         })
       )
   }
