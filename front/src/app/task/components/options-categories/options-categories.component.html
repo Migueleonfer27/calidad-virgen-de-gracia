@@ -1,0 +1,12 @@
+<div [formGroup]="thirdForm">
+  <mat-form-field class="w-100 mt-3" appearance="outline">
+    <mat-label>Selecciona una subcategoría</mat-label>
+    <mat-select formControlName="id_subcategory" (selectionChange)="onSubcategoryChange($event)">
+      <mat-optgroup *ngFor="let category of categories" [label]="category.name">
+        <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory.id">
+          {{ subcategory.name }}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+</div>

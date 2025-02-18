@@ -18,6 +18,7 @@ const messages = {
     position: "El nombre del rol debe tener al menos 2 caracteres.",
     code: "El código del rol debe tener al menos 2 caracteres.",
     year: "El año del rol debe tener al menos 4 dígitos.",
+    description: "La descripción debe estar en el intervalo de 5 y 255 caracteres."
   },
 
   userRoleMiddleware: {
@@ -25,6 +26,12 @@ const messages = {
       required: "El user_id y role_id son obligatorios.",
       isInt: "El user_id y role_id deben ser números enteros.",
     },
+  },
+
+  donwloadMiddleware: {
+    error: {
+      url: 'La url tiene un formato inválido.'
+    }
   },
 };
 

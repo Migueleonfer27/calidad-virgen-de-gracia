@@ -6,10 +6,10 @@ import {
   nameMiddleware,
   lastNameMiddleware,
   emailMiddleware,
-  passwordMiddleware,
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
+  csvMiddleware
 } from "../middlewares/user-middleware.js";
 
 export const router = Router();
@@ -22,7 +22,6 @@ router.post(
   nameMiddleware,
   lastNameMiddleware,
   emailMiddleware,
-  passwordMiddleware,
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
@@ -41,3 +40,4 @@ router.put(
   UserController.updateUser
 );
 router.delete("/:id", isIdIntMiddleware, UserController.deleteUser);
+router.post('/massive', csvMiddleware, UserController.storeUsersCsv);

@@ -1,5 +1,7 @@
 import { Users, Roles } from "../../models/associations.js";
 import bcrypt from "bcrypt";
+import { sendEmail } from "../../helpers/mail-helper.js";
+import { randomBytes } from 'crypto';
 
 class UserConnection {
     async getUsers() {
@@ -36,9 +38,13 @@ class UserConnection {
 
     async createUser(user) {
         try {
-            const password = await bcrypt.hash(user.password, 10);
-            return await Users.create({ ...user, password });
+            const passwordPlain = randomBytes(4).toString("hex"); 
+            const passwordHashed = await bcrypt.hash(passwordPlain, 10);
+            const newUser = await Users.create({ ...user, password: passwordHashed });
+            await sendEmail(user.email, user.first_name, passwordPlain);
+            return newUser;
         } catch (error) {
+            console.error("Error al crear usuario:", error);
             throw error;
         }
     }

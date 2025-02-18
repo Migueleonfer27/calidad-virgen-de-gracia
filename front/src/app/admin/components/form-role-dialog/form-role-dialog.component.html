@@ -27,9 +27,18 @@
         El puesto es requerido
       </mat-error>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description" minlength="5" maxlength="255"></textarea>
+      <mat-error *ngIf="roleForm.get('description')?.hasError('required')">
+        La descripción es requerida
+      </mat-error>
+    </mat-form-field>
     <div class="d-flex gap-2 justify-content-end">
       <button mat-button color="warn" (click)="closeDialog()">Cancelar</button>
-      <button mat-button color="primary" (click)="save()" [disabled]="roleForm.invalid" [ngClass]="{'text-danger': roleForm.invalid}">{{ data.button }}</button>
+      <button mat-button color="primary" (click)="save()" [disabled]="roleForm.invalid"
+        [ngClass]="{'text-secondary': roleForm.invalid}">{{ data.button }}</button>
     </div>
   </mat-dialog-content>
 </form>

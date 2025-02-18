@@ -89,6 +89,14 @@ const genderMiddleware = (req, res, next) => {
   next();
 };
 
+const csvMiddleware = (req, res, next) => {
+  if (!req.files || !req.files.file)
+    return res.status(400).json({ message: "No se ha subido ningún archivo." });
+  if (req.files.file.name.split(".").pop().toLowerCase() !== "csv")
+    return res.status(400).json({ message: "El archivo debe ser un CSV." });
+  next();
+};
+
 export {
   isIdIntMiddleware,
   dniMiddleware,
@@ -99,4 +107,5 @@ export {
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
+  csvMiddleware
 };

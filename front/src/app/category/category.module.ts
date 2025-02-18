@@ -20,6 +20,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { CategoriesComponent } from './components/categoriesTable/categories-table.component';
 import { MatRippleModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatDialogModule,
     MatSnackBarModule,
     MatTableModule,
-    MatRippleModule
+    MatRippleModule,
+    MatTooltipModule
 
   ],
   exports: [
