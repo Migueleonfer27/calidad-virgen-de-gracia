@@ -1,6 +1,3 @@
-
-
-
 // Gema Rubio y Daniel Cruz
 import { Op } from 'sequelize';
 import { Category, Subcategory } from '../../models/associations.js';

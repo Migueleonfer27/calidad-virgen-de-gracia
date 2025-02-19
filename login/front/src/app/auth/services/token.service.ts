@@ -81,6 +81,6 @@ export class TokenService {
 
   getSessionActive(): boolean {
     const sessionActiveString = this.cookieService.get('sessionActive');
-    return sessionActiveString ? JSON.parse(sessionActiveString) : false; // Devuelve false si no está definido
+    return sessionActiveString ? JSON.parse(sessionActiveString) : false; 
   }
 }

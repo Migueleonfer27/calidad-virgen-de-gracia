@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { TokenService } from '../../../../../../login/front/src/app/auth/services/token.service'
-// import { Role } from '../../../../../../login/front/src/app/auth/interfaces/role.interface'
+
 
 @Component({
   selector: 'shared-header',
@@ -28,7 +28,7 @@ export class HeaderComponent {
       localStorage.setItem('token', token)
       const decodeToken = this.tokenService.decodeToken()
       if (decodeToken) {
-        console.log('Decoded Token:', decodeToken)
+        
         localStorage.setItem('user_id', decodeToken.uid.toString())
         localStorage.setItem('roles', JSON.stringify(decodeToken.roles))
       } else {

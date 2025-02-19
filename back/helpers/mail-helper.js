@@ -1,3 +1,5 @@
+/**Miguel */
+
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { viewPasswordEmail } from "../templates/generate-password-email.js";
