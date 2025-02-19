@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-02-2025 a las 14:16:58
+-- Tiempo de generación: 18-02-2025 a las 11:52:36
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,10 +40,59 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 'Proceso de planificación estratégica', '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(2, 'Procesos de enseñanza y aprendizaje', '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(3, 'Procesos de gestión', '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(4, 'Proceso de medición y mejora', '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL);
+(1, 'Proceso de planificación estratégica', '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(2, 'Procesos de enseñanza y aprendizaje', '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(3, 'Procesos de gestión', '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(4, 'Proceso de medición y mejora', '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `url` varchar(1000) NOT NULL,
+  `id_subcategory` bigint(20) NOT NULL,
+  `autofilled` tinyint(1) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `documents`
+--
+
+INSERT INTO `documents` (`id`, `name`, `code`, `url`, `id_subcategory`, `autofilled`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 'Convocatoria de Reunión', 'DYC05', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/ESTouQG8LyBMjY7hM5S7KhMBo1_Z4rNLZNCNhoRTeig0UA?e=D9RRuX', 1, 0, '2025-02-18 10:03:08', '2025-02-18 09:08:49', NULL),
+(2, 'Protección de datos', 'DYC12', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EaKJ_ArMD2ZCgvRky57RxAABBAseeN0wru_u9COLFDJL0Q?e=bZuu1P', 1, 0, '2025-02-18 10:03:08', '2025-02-18 09:08:51', NULL),
+(3, 'Ficha de Proceso - Actividades de Aula', 'ACT01', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/Ecl-7OtaOgZArNDTZ5BvuisBDIoDSAa1FlKtvYoj03Uy5Q?e=MumMPD', 2, 0, '2025-02-18 10:04:23', '2025-02-18 09:08:54', NULL),
+(4, 'Justificante faltas de alumnado', 'ACT02', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EUCn_eac2ttOsCX3wDUDtGABrmfgR4RadMFnVlS05uITZQ?e=m8TAvT', 2, 0, '2025-02-18 10:04:23', '2025-02-18 09:08:56', NULL),
+(5, 'Modelo de reclamación notas parciales', 'EVA04', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EcjGd_JW03NKp_jMNpAfpcUBXOo8JmNFm5msUR06A_T9Kw?e=VLgOqK', 3, 0, '2025-02-18 09:10:51', '2025-02-18 09:10:51', NULL),
+(6, 'Acta de Evaluación', 'EVA05', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EUg3h-eoZhlKrwxlZ0tPLSoB-lVAi-z-LoQ1DFiDoDIenw?e=uyoly6', 3, 0, '2025-02-18 09:12:42', '2025-02-18 09:12:42', NULL),
+(7, 'Ficha datos alumnado', 'FEM05', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/Ed9OSl6bqHBOjIPcBFnmn5EBFwdIhiaC2mGB0-kjJ3dyAA?e=ik2tnM', 4, 0, '2025-02-18 09:13:46', '2025-02-18 09:13:46', NULL),
+(8, 'Ficha datos empresas', 'FEM10', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EXxZuhBJ01hAkjwGbMyCzYcB8ywMmP5kfEJkSd1g8wwB9g?e=cSLKqJ', 4, 0, '2025-02-18 09:14:28', '2025-02-18 09:14:28', NULL),
+(9, 'Autorización Inclusión en bolsa de trabajo', 'ORI04', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EWHBVIflbu9BpuKhtZjN0eYBy20uyppmI1DRl95PCx6HqA?e=JGnheJ', 5, 0, '2025-02-18 09:15:20', '2025-02-18 09:15:20', NULL),
+(10, 'Firma Alumnado en Dpto IOP', 'ORI05', 'https://crfpcastilla.sharepoint.com/:x:/s/EPT13002691E03-SGC/EUeqSPuv2F5HhfvwRcc4CtsBDHT4mJNs_w9GW7VW2bpzNw?e=QPQKGs', 5, 0, '2025-02-18 09:16:09', '2025-02-18 09:16:09', NULL),
+(11, 'Autorización alumnado mayor-menor de edad', 'PROG07', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EfMiek9m1w5Dih8pceFmqEABKRP0J7JuFfzYgYUbGztg4g?e=WoEElM', 6, 0, '2025-02-18 09:17:13', '2025-02-18 09:17:13', NULL),
+(12, 'Ficha de datos de ACE', 'PROG11', 'https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FPROGRAMACION%2FPROG11%20Ficha%20de%20datos%20de%20ACE%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FPROGRAMACION&p=true&ga=1', 6, 0, '2025-02-18 09:23:56', '2025-02-18 09:23:56', NULL),
+(13, 'TUT02 Aviso de anulacion matricula.pdf', 'TUT02', 'https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FTUTORIA%2FTUT02%20Aviso%20de%20anulacion%20matricula%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FTUTORIA&p=true&ga=1', 7, 1, '2025-02-18 09:25:56', '2025-02-18 09:25:56', NULL),
+(14, 'Acta de elección de delegados', 'TUT07', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EXf6As9Pg0tLlsaUdZGkC-UBVZ1ESOKsxDNqOZYsRMgChQ?e=wZ5HV9', 7, 0, '2025-02-18 09:26:34', '2025-02-18 09:26:34', NULL),
+(15, 'Listado material botiquín', 'PRL02', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EbMRo3EcwxpCuNXC1k3ptCIBIaEESDkhhmBL3vKEpAA-1g?e=FFIBeY', 8, 0, '2025-02-18 09:27:12', '2025-02-18 09:27:12', NULL),
+(16, 'Evaluación Simulacro', 'PRL08', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EQ6XQNS0cnhGr8LlQaT9Ao8B-wMc0hxz27YDjn-vi_Hv8Q?e=z7CKzg', 8, 0, '2025-02-18 09:27:40', '2025-02-18 09:27:40', NULL),
+(17, 'RRHH02 Ficha datos personales profesorado.pdf', 'RRHH02', 'https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH%2FRRHH02%20Ficha%20datos%20personales%20profesorado%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH&p=true&ga=1', 9, 0, '2025-02-18 09:28:21', '2025-02-18 10:50:09', NULL),
+(18, 'Modelo de asuntos propios retribuidos', 'RRHH10', 'https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH%2FRRHH10%20Modelo%20asuntos%20propios%20retribuidos%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH&p=true&ga=1', 9, 0, '2025-02-18 09:29:45', '2025-02-18 09:29:45', NULL),
+(19, 'Control de Averías y Suministros del Centro', 'RMAT04', 'https://crfpcastilla.sharepoint.com/:x:/s/EPT13002691E03-SGC/EcVwgtzmbJZDj696UtToBe0BPP_cvywRcuE4bqWaYbRFXg?e=hfHfAB', 10, 0, '2025-02-18 09:30:44', '2025-02-18 09:30:44', NULL),
+(20, 'Préstamo de Equipo Informático', 'RMAT07', 'https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRECURSOS%20MATERIALES%2FRMAT07%20Prestamo%20de%20Equipo%20Informatico%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRECURSOS%20MATERIALES&p=true&ga=1', 10, 0, '2025-02-18 09:31:51', '2025-02-18 09:31:51', NULL),
+(21, 'Informe de Auditoría Interna', 'AUD03', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/ESjTFdIo1gtCuoxyHUL5UUYBVf1hy4ZvRILn0gmbLKUIWg?e=CnTlg9', 11, 0, '2025-02-18 09:32:43', '2025-02-18 09:32:43', NULL),
+(22, 'Listado de No Conformidades (NC)', 'AUD06', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/Efsv4VQD7cpFmjhQ2m5KWtUB0Jov9e3RmxPlmCiPf4wH6w?e=qEkaWT', 11, 0, '2025-02-18 09:33:12', '2025-02-18 09:33:12', NULL),
+(23, 'Memoria Final Curso', 'MEM01', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/EfyMXntGPiBJnl-wy_tR0tEB_TmdV6-bxNPVVj089OSCKA?e=JKiRGl', 12, 0, '2025-02-18 09:34:21', '2025-02-18 09:34:21', NULL),
+(24, 'Memoria Encuesta ACE', 'MEM04', 'https://crfpcastilla.sharepoint.com/:w:/s/EPT13002691E03-SGC/Ef0GB9f--lNBpsftiaz_OecBFDMPmgk9Z-pFxu7J6z9fOA?e=qlsVMH', 12, 0, '2025-02-18 09:35:09', '2025-02-18 09:35:09', NULL),
+(25, 'Hoja de SQR', 'SQR02', 'https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FMEDICION%20y%20MEJORA%2FSQR%2FSQR02%20Hoja%20de%20SQR%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FMEDICION%20y%20MEJORA%2FSQR&p=true&ga=1', 14, 0, '2025-02-18 09:36:09', '2025-02-18 09:36:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -56,6 +105,7 @@ CREATE TABLE `roles` (
   `code` varchar(255) NOT NULL,
   `year` int(11) NOT NULL,
   `position` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `deletedAt` datetime DEFAULT NULL
@@ -65,17 +115,17 @@ CREATE TABLE `roles` (
 -- Volcado de datos para la tabla `roles`
 --
 
-INSERT INTO `roles` (`id`, `code`, `year`, `position`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, '829389', 2025, 'ADMINISTRADOR', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(2, '526549', 2025, 'SECRETARIO/A', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(3, '455683', 2025, 'JEFE/A DE DEPARTAMENTO', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(4, '866579', 2025, 'JEFE/A DE ESTUDIOS ADJUNTO', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(5, '583653', 2025, 'JEFE/A TÉCNICO/A', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(6, '709055', 2025, 'COORDINADOR DE PREVENCIÓN', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(7, '250266', 2025, 'COORDINADOR/A DE FORMACIÓN Y TRANSFORMACIÓN DIGITAL', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(8, '88857', 2025, 'DIRECTOR/A', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(9, '231842', 2025, 'COORDINADOR/A DE AULA DE TECNOLOGÍA APLICADA', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(10, '918216', 2025, 'COORDINADOR/A DE AULA PROFESIONAL DE EMPRENDIMIENTO', '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL);
+INSERT INTO `roles` (`id`, `code`, `year`, `position`, `description`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, '765107', 2025, 'ADMINISTRADOR', 'Gestiona permisos de usuario, controla la configuración del sistema y supervisa la seguridad de la plataforma.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(2, '782771', 2025, 'SECRETARIO/A', 'Administra tareas administrativas como la gestión de documentos, actualización de registros y asistencia en la programación de eventos.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(3, '204341', 2025, 'JEFE/A DE DEPARTAMENTO', 'Gestiona la configuración de los departamentos, asigna tareas y supervisa los informes de progreso dentro de la aplicación.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(4, '793851', 2025, 'JEFE/A DE ESTUDIOS ADJUNTO', 'Supervisa y aprueba los programas académicos, realiza ajustes a los contenidos y coordina la distribución de materiales educativos.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(5, '805767', 2025, 'JEFE/A TÉCNICO/A', 'Gestiona la configuración de sistemas técnicos, supervisa las operaciones técnicas y resuelve problemas técnicos dentro de la plataforma.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(6, '842058', 2025, 'COORDINADOR DE PREVENCIÓN', 'Controla las configuraciones de seguridad, monitorea las alertas y asegura el cumplimiento de las normativas de prevención de riesgos.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(7, '742061', 2025, 'COORDINADOR/A DE FORMACIÓN Y TRANSFORMACIÓN DIGITAL', 'Configura y gestiona módulos de capacitación online, organiza seminarios virtuales y promueve la integración de herramientas digitales en el proceso de formación.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(8, '112397', 2025, 'DIRECTOR/A', 'Supervisa la gestión de usuarios, ajusta políticas de acceso y toma decisiones clave sobre la evolución y expansión de la plataforma.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(9, '857253', 2025, 'COORDINADOR/A DE AULA DE TECNOLOGÍA APLICADA', 'Gestiona las configuraciones del aula virtual de tecnología, organiza actividades prácticas y supervisa el progreso de los estudiantes.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL),
+(10, '16291', 2025, 'COORDINADOR/A DE AULA PROFESIONAL DE EMPRENDIMIENTO', 'Gestiona módulos de emprendimiento, crea proyectos interactivos y coordina las mentorías y talleres sobre nuevas empresas dentro de la aplicación.', '2025-02-18 08:59:40', '2025-02-18 08:59:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -96,7 +146,11 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20250125101733-create-users.cjs'),
 ('20250125102452-create-roles.cjs'),
 ('20250125102815-create-user-role.cjs'),
-('20250125103608-create-subcategory.cjs');
+('20250125103608-create-subcategory.cjs'),
+('20250204192331-create-document.cjs'),
+('20250205202939-create-task.cjs'),
+('20250206083612-create-task-user.cjs'),
+('20250208231842-create-task-document.cjs');
 
 -- --------------------------------------------------------
 
@@ -118,20 +172,107 @@ CREATE TABLE `subcategories` (
 --
 
 INSERT INTO `subcategories` (`id`, `name`, `id_category`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 'Dirección y comunicación (DYC)', 1, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(2, 'Actividades de aula (ACT)', 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(3, 'Evaluación (EVA)', 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(4, 'Formación Empresas (FEM)', 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(5, 'Orientación (ORI)', 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(6, 'Programación (PROG)', 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(7, 'Tutoría (TUT)', 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(8, 'Prevención de riesgos laborales (PRL)', 3, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(9, 'Recursos Humanos (RRHH)', 3, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(10, 'Recursos materiales (RMAT)', 3, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(11, 'Auditorías', 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(12, 'Memorias anuales', 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(13, 'Registros de control', 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(14, 'SQRs (Sugerencias, Quejas y Reclamaciones)', 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL);
+(1, 'Dirección y comunicación (DYC)', 1, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(2, 'Actividades de aula (ACT)', 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(3, 'Evaluación (EVA)', 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(4, 'Formación Empresas (FEM)', 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(5, 'Orientación (ORI)', 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(6, 'Programación (PROG)', 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(7, 'Tutoría (TUT)', 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(8, 'Prevención de riesgos laborales (PRL)', 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(9, 'Recursos Humanos (RRHH)', 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(10, 'Recursos materiales (RMAT)', 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(11, 'Auditorías', 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(12, 'Memorias anuales', 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(13, 'Registros de control', 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(14, 'SQRs (Sugerencias, Quejas y Reclamaciones)', 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `end_date` varchar(255) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `description`, `end_date`, `type`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 'Actualización de datos del profesorado', '2025-02-19 23:00:00', 6, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(2, 'Aviso anulación de matrícula', '2025-02-18 23:00:00', 6, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `task_documents`
+--
+
+CREATE TABLE `task_documents` (
+  `id` int(11) NOT NULL,
+  `id_task` int(11) NOT NULL,
+  `id_document` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `task_documents`
+--
+
+INSERT INTO `task_documents` (`id`, `id_task`, `id_document`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 1, 17, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(2, 2, 13, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `task_users`
+--
+
+CREATE TABLE `task_users` (
+  `id` int(11) NOT NULL,
+  `id_task` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `state` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `task_users`
+--
+
+INSERT INTO `task_users` (`id`, `id_task`, `id_user`, `state`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 1, 2, 1, '2025-02-18 09:46:57', '2025-02-18 09:54:32', NULL),
+(2, 1, 25, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(3, 1, 35, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(4, 1, 16, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(5, 1, 19, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(6, 1, 4, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(7, 1, 32, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(8, 1, 37, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(9, 1, 51, 1, '2025-02-18 09:46:57', '2025-02-18 09:46:57', NULL),
+(10, 2, 2, 1, '2025-02-18 09:59:48', '2025-02-18 10:05:08', NULL),
+(11, 2, 4, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL),
+(12, 2, 16, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL),
+(13, 2, 19, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL),
+(14, 2, 25, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL),
+(15, 2, 32, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL),
+(16, 2, 35, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL),
+(17, 2, 37, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL),
+(18, 2, 51, 1, '2025-02-18 09:59:48', '2025-02-18 09:59:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -175,57 +316,57 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `code`, `last_name`, `first_name`, `nrp`, `dni`, `abbreviation`, `birth_date`, `gender`, `title`, `address`, `city`, `postal_code`, `province`, `phone_rp`, `specialty`, `body`, `department`, `admission_date`, `leave_date`, `email`, `corporate_email`, `password`, `phone`, `profile_picture`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 'A001', 'User', 'Admin', 'NRP001', '12345678A', 'ADM', '1980-01-01 00:00:00', 'O', 'Admin', '123 Admin Street', 'Admin City', '12345', 'Admin Province', '987654321', 'Admin Specialty', 'Admin Body', 'Admin Department', '2000-01-01 00:00:00', NULL, 'jaime.ornu@gmail.com', 'calidad.nodemailer@gmail.com', '$2b$10$be.2gln3yQJMFUCPNuZAseNWtdez/Q6Uk4kGnjj6lxCMOGS7ehqUS', '123456789', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(2, 'pQAeqxdrpu', 'Guardado Berríos', 'Irene', '558753', '70120888V', 'YZP', '1998-11-27 00:00:00', 'H', 'Funcionario de Métricas Global', 'Grupo Federico, 1', 'Almería', '01751', 'Andalucía', '973166925', 'Facilitador', 'Granados y Zúñiga', 'Electrónica', '2020-03-05 00:00:00', NULL, 'Norma_ToroAbeyta@hotmail.com', 'Ana.TrejoLara@hotmail.com', '$2b$10$fRU6XjmuGbaK2eQwuXRT7e/ftFwjXYuM8FlgjPJdtp5TOMcH8e3GO', '955 147 290', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(3, 'sKlBm97Xie', 'Padilla Benavídez', 'Antonia', '017624', '23110319F', 'DAV', '2007-12-21 00:00:00', 'O', 'Productor de Programa Inversor', 'Rua Carla, 55', 'Dos Hermanas', '90954', 'Cataluña', '992778377', 'Consultor', 'Agosto y Espinosa de los Monteros', 'Librería', '2022-01-21 00:00:00', NULL, 'Gabriela_VillaGalindo@hotmail.com', 'Elsa_MontezCovarrubias32@gmail.com', '$2b$10$a4n3qJO13N/Fr0F7tV7InOoFRyArN2S7M/VNX8F72STANMIo7EW9i', '985 644 452', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(4, 'weEbiSoIja', 'Ortiz Regalado', 'Santiago', '600380', '70466778O', 'AON', '2003-03-09 00:00:00', 'O', 'Ejecutivo de Seguro Humano', 'Manzana Mercedes Escamilla 41', 'Parla', '92455', 'Castilla-La Mancha', '942 187 558', 'Consultor', 'Escamilla, Palacios y Delarosa Asociados', 'Librería', '2021-09-16 00:00:00', NULL, 'JulioCesar_FonsecaPerea@yahoo.com', 'Claudia_MataBarragan31@yahoo.com', '$2b$10$ImKmh7XnDsrQoeHs4k7syeV6iE7CY7daDJ6ZzU1D3VSSQ1Szn4yci', '987.323.944', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(5, '4tfsEReGWP', 'Fierro Flores', 'Guillermina', '282834', '89613546G', 'MCR', '2023-05-19 00:00:00', 'M', 'Diseñador de Creativo Central', 'Riera Matilde s/n.', 'Madrid', '87390', 'Aragón', '982.469.765', 'Asistente', 'Serna Llamas Hermanos', 'Hogar', '2023-07-28 00:00:00', NULL, 'Manuela.SevillaMayorga@yahoo.com', 'Dolores_CaraballoTamez35@gmail.com', '$2b$10$pCF37UGFgDXkXXiLtzn06uD7v6fXugilcdPAwSIxLDs3BAgl34BTO', '985-248-740', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(6, 'acHUzrjzyD', 'Serrato Olivárez', 'Anita', '396273', '70433977H', 'UUH', '2019-07-16 00:00:00', 'H', 'Gerente de Seguro Regional', 'Explanada Iván, 2', 'El Prat de LLobregat', '12465', 'Canarias', '958-461-138', 'Consultor', 'Toledo Hermanos', 'Mascotas', '2020-11-23 00:00:00', '2025-02-03 00:00:00', 'Isabela1@hotmail.com', 'Leticia25@gmail.com', '$2b$10$fWhMTEA6w0czb5dPjODdn.BiDDSOb1OLi1TTBV8TJJp6kEJ0qZC.2', '926420162', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(7, '9X3dD3ilRe', 'Alonzo Gómez', 'Luis', '877868', '08882426D', 'EQQ', '1999-05-16 00:00:00', 'M', 'Planificador de Investigación Distrito', 'Parque Jennifer s/n.', 'Vigo', '42944', 'Castilla-La Mancha', '900.097.194', 'Arquitecto', 'Aparicio y Mayorga', 'Electrónica', '2020-04-26 00:00:00', NULL, 'Martin.NinoMuniz56@gmail.com', 'MariadelosAngeles14@gmail.com', '$2b$10$jp0ClESBLRGJ4iui6XrppuvgKal1BGlgr9oEF.I/1PBbLAzKed/S.', '962 603 790', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(8, 'xfvgBnscBp', 'Limón Delafuente', 'José', '355514', '70097823B', 'LIU', '2023-02-14 00:00:00', 'M', 'Funcionario de Marketing Directo', 'Vía Pablo Bahena 66', 'Torrelavega', '64905', 'Aragón', '969.083.200', 'Supervisor', 'Colunga, Arce y Armenta Asociados', 'Moda', '2023-04-01 00:00:00', NULL, 'Eloisa41@yahoo.com', 'JoseLuis_MascarenasAlejandro@hotmail.com', '$2b$10$WiEGX4diVezd2g2sPXF7RuQnVdnxjO6X50UAXLbM./uPCl3KUBPxe', '930421561', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(9, 'SdBiObSa3f', 'Lemus Holguín', 'María Eugenia', '681280', '42768638B', 'MPQ', '2016-11-23 00:00:00', 'M', 'Administrador de Aplicaciones Jefe', 'Riera Ignacio, 14', 'Mollet del Vallés', '58701', 'Aragón', '968-983-671', 'Especialista', 'Melgar y Casares', 'Bebes', '2024-03-02 00:00:00', NULL, 'Margarita_GarciaCruz39@yahoo.com', 'German_LermaDuran@hotmail.com', '$2b$10$0Tj6yatkNvoOpYKzGS.XBeLZNdpXiA98aB3OA.a3FOpIqOgGt4mG.', '966.858.830', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(10, 'BGmGOfsyyw', 'Romo Delgadillo', 'María Luisa', '939760', '20066807X', 'OHM', '1998-11-22 00:00:00', 'O', 'Coordinador de Marca Directo', 'Manzana Esperanza 1', 'Alicante', '61728', 'Andalucía', '967.542.766', 'Supervisor', 'Álvarez S.L.', 'Librería', '2021-09-17 00:00:00', NULL, 'Diana41@gmail.com', 'JoseMaria_CeballosVillarreal23@gmail.com', '$2b$10$L//R61CKr9YFo2dJaBkHhefrQ9Hl/SsNdyvMssJK4GHs35HGhFSja', '940547406', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(11, '6cwcuGbDxM', 'Montéz Espinoza', 'María Elena', '779650', '25332772O', 'RUX', '2001-02-18 00:00:00', 'O', 'Especialista de Seguridada Gerente', 'Paseo María Elena 82', 'Guadalajara', '56678', 'Navarra', '979-097-669', 'Director', 'Farías, Farías y Carrillo Asociados', 'Hogar', '2022-10-07 00:00:00', NULL, 'Daniel90@hotmail.com', 'AnaMaria27@hotmail.com', '$2b$10$HTh/WsG79TZowj/yXPPY6uxHq..HUMMV7mRAg8hbbfyu62zbtL3oO', '973743567', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(12, '78UzDHrddp', 'Matos Roybal', 'Jacobo', '984140', '23383893J', 'ZSI', '2006-07-27 00:00:00', 'H', 'Especialista de Programa Central', 'Muelle Pío Muñoz s/n.', 'El Puerto de Santa María', '49856', 'Galicia', '950 465 183', 'Coordinador', 'Carrero Merino S.L.', 'Videojuegos', '2023-07-19 00:00:00', NULL, 'Cristian.BahenaBarragan22@gmail.com', 'Gregorio_AlcarazVelasco@yahoo.com', '$2b$10$R/FeYoAwV/PjjXJUZ8F7EujfLwJCM4NDOqzivq86OM6Kiu5y8VnV6', '906-789-578', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(13, 'WMueqBysdH', 'Merino Matías', 'Carlos', '142055', '03055099V', 'QVQ', '2011-05-26 00:00:00', 'O', 'Arquitecto de División Distrito', 'Apartamento Guillermina Santillán 1', 'Gecho', '52337', 'Comunidad de Madrid', '912-097-893', 'Estratega', 'Meza Aguilera Hermanos', 'Parafarmacia', '2021-07-14 00:00:00', NULL, 'Felipe43@gmail.com', 'Susana.GamezLoera67@yahoo.com', '$2b$10$ruZd8UFK0u412ximMLXmKeCx7WCkpKT7/OTvJedqK5aQiJm9bZRuq', '903548285', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(14, 'TaLj45apRv', 'Valdés Morales', 'Elisa', '451038', '71068064A', 'VTN', '2016-07-18 00:00:00', 'M', 'Especialista de Comunicaciones Directo', 'Arrabal Ana María Pedraza 16', 'Calahorra', '64149', 'Cataluña', '996 842 012', 'Técnico', 'Cervantes e Hijos', 'Música', '2021-11-04 00:00:00', NULL, 'MariaSoledad90@hotmail.com', 'Teodoro_ValleGutierrez86@hotmail.com', '$2b$10$bwfoq08Bi.vID1kuNiPgNeWjdWJn0CYjvwotWs.AQ8EyFcD//sLuC', '990.687.945', NULL, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(15, 'h7R2f11aj5', 'Nazario Orellana', 'Mercedes', '161010', '31117620Z', 'ODZ', '2014-12-18 00:00:00', 'O', 'Administrador de Respuesta Heredado', 'Extrarradio Cristián Tirado s/n.', 'Córdoba', '60022', 'Región de Murcia', '934 410 219', 'Coordinador', 'Murillo Salazar S.A.', 'Decoración', '2022-02-18 00:00:00', '2025-02-02 00:00:00', 'Raquel.BravoMaestas69@gmail.com', 'Leticia.EsquiveldeAnda74@hotmail.com', '$2b$10$tNmT3DGyd/5evm/vlxXt5uymHNW.qm2dm4C5810KdXc90wIxy6oz6', '924.524.048', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(16, '3Vkrtwo589', 'Meza Medina', 'Óscar', '039148', '46327627K', 'PQB', '2014-07-27 00:00:00', 'M', 'Desarrollador de Intranet International', 'Carretera Lilia, 78', 'Móstoles', '39645', 'Galicia', '958-906-748', 'Gerente', 'Paredes Gallardo S.A.', 'Música', '2023-05-13 00:00:00', NULL, 'Silvia9@gmail.com', 'Estela_OlveraDelagarza@hotmail.com', '$2b$10$wZn7VS7fXnW1iTDWCy6lee4bqDa1xzKlYtJ3.Maa7N8e.HyOZOja6', '964-755-339', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(17, 'wgNTkZ0ji4', 'Dueñas Fuentes', 'Miguel', '898643', '16946612C', 'JJN', '2003-01-29 00:00:00', 'H', 'Analista de Interacciones Nacional', 'Urbanización Javier Cadena 99', 'Santa Lucía de Tirajana', '76427', 'Castilla y León', '997.802.454', 'Relacciones', 'Grijalva Lugo e Hijos', 'Cine', '2024-11-23 00:00:00', NULL, 'Patricio.SolanoArce@gmail.com', 'Marilu67@hotmail.com', '$2b$10$oUgFjL8h8ZUc6uyOTZQXhOZt8Lmo7YELn3nR4T24NrlUU1xVeruwy', '948-940-519', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(18, 'sCaAbYpl85', 'Zarate Alarcón', 'Marcela', '891795', '91268343P', 'YNP', '2024-11-04 00:00:00', 'O', 'Analista de Operaciones Global', 'Mercado Manuel s/n.', 'San Fernando', '67847', 'Región de Murcia', '942.448.489', 'Planificador', 'Griego Carrasco e Hijos', 'Papelería', '2023-02-02 00:00:00', NULL, 'Julia_LomeliCalvillo13@yahoo.com', 'Martin_BarretoMonroy3@yahoo.com', '$2b$10$ObTKg/ermaH0M4D.9pAIqOOffRGqo/yIvGcNoGMIqgS2v876R2t1i', '950-360-838', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(19, 'qJkpSungRT', 'Valenzuela Delatorre', 'Mónica', '500638', '38890750V', 'MDB', '2001-03-17 00:00:00', 'O', 'Analista de Integración Adelante', 'Cuesta Cristina Burgos 14', 'Almería', '06379', 'Comunidad Valenciana', '923 431 171', 'Coordinador', 'Véliz y Carrasco', 'Videojuegos', '2023-08-08 00:00:00', NULL, 'Emilio_DavilaYbarra4@yahoo.com', 'Santiago93@yahoo.com', '$2b$10$jWTWshwRtZs5UPHorUqspu69nKUZQWux3tim3LiTgqMrv6ROWkWqy', '971328514', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(20, 'c24bO99e9h', 'Verduzco Naranjo', 'Fernando', '844489', '89910517F', 'JWY', '2015-07-26 00:00:00', 'M', 'Supervisor de Seguridada Adelante', 'Barranco María, 41', 'Zaragoza', '60368', 'Región de Murcia', '985-041-594', 'Supervisor', 'Páez Henríquez S.A.', 'Joyería', '2024-10-09 00:00:00', NULL, 'Dorotea.OlmosSuarez@yahoo.com', 'Jeronimo_HinojosaRendon@hotmail.com', '$2b$10$yozo62AulE0vgUMR4fdwgugOLIXz926wgnobTc5oTn9RWVcpODa9K', '998.291.983', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(21, 'z5u3MYePVp', 'Maestas Tafoya', 'Silvia', '772137', '38840154H', 'EQK', '1998-12-01 00:00:00', 'M', 'Productor de Contabilidad Dinánmico', 'Muelle Alicia Lebrón, 22', 'Sanlúcar de Barrameda', '33251', 'Galicia', '939 322 633', 'Técnico', 'Vaca e Hijos', 'Mascotas', '2025-01-22 00:00:00', NULL, 'Catalina56@yahoo.com', 'Lorenzo.SierraVega8@yahoo.com', '$2b$10$YTFf4TQr0KxhHc.jipk7sOpjl84RKYzx0ZnvAdc6Qhm./j3Ay/dGO', '900-655-380', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(22, 'AUGXgaOmk6', 'Vélez Mojica', 'Nicolás', '331344', '78636036M', 'RXN', '2000-05-12 00:00:00', 'H', 'Agente de Cuentas Cliente', 'Colonia Juan Sosa, 3', 'Granada', '66506', 'Andalucía', '936 895 808', 'Especialista', 'Téllez y Ureña', 'Música', '2022-08-29 00:00:00', NULL, 'Adela.AragonValle@yahoo.com', 'Micaela_SantacruzPena@yahoo.com', '$2b$10$JdIlHDidgpAESd1tTRPCi.43ubeNk26smLDpKES/UqUXPcPuu2qGC', '983583157', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(23, 'koLobSixig', 'Armas Meraz', 'Virginia', '330192', '24452501K', 'UZA', '2022-05-11 00:00:00', 'M', 'Supervisor de Identidad Nacional', 'Subida Guadalupe s/n.', 'San Fernando', '04679', 'Comunidad de Madrid', '937 145 552', 'Analista', 'Arteaga Hermanos', 'Mascotas', '2025-01-08 00:00:00', NULL, 'David_ArenasTerrazas@hotmail.com', 'German48@hotmail.com', '$2b$10$Y1LkzQdsYwsGSDn.WMcqrOn.Yk0Jmq5gYAWabYA9xQYjxIFVjqKli', '939.004.611', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(24, 'VccuS0uKpJ', 'Alfaro Tello', 'José María', '884113', '82691394W', 'LCV', '2013-10-05 00:00:00', 'M', 'Diseñador de Seguro International', 'Carretera Carlos, 74', 'Manresa', '00544', 'Principado de Asturias', '965238255', 'Agente', 'Cuellar y Ozuna', 'Bebes', '2024-10-02 00:00:00', '2025-02-03 00:00:00', 'JoseEmilio8@hotmail.com', 'Juan96@hotmail.com', '$2b$10$dnBqdFZE3nYGuSxDedgvt.svmJKQBuQMw3EreKisUJQHsVGw0kbYe', '976 603 837', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(25, '1UipUJ2lbK', 'Muñoz Sedillo', 'Ana', '513695', '30454980N', 'DFB', '2021-12-10 00:00:00', 'O', 'Planificador de Tácticas Dinánmico', 'Prolongación Marilú 4', 'Gecho', '39308', 'Comunidad de Madrid', '922.845.003', 'Asociado', 'Olivo S.L.', 'Bricolaje', '2025-01-24 00:00:00', NULL, 'Miguel.CalderonLlamas90@yahoo.com', 'Dolores_OlivoValles60@gmail.com', '$2b$10$g.KMThh7hNyXfG5heG3/W.jwptf.M3X5PINJ.PgPiKI1.g5iOkQ2K', '994 169 562', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(26, 'NDfdthJEkR', 'Nieto Mora', 'Clara', '566701', '54321567T', 'EDA', '2010-05-30 00:00:00', 'H', 'Coordinador de Tácticas Interno', 'Terrenos Antonio Rolón, 9', 'Hospitalet de LLobregat', '95250', 'Baleares', '981-362-046', 'Analista', 'Rosas S.A.', 'Informática', '2020-10-14 00:00:00', NULL, 'Cristobal39@yahoo.com', 'Patricio_OrozcoGuerra47@gmail.com', '$2b$10$zqDaaaE9t12zSyus1WxTOOD9WUscx8Vy0yhtsQgOQ/Q7ZaVi28F02', '997-821-823', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(27, 'dJ4B5AA8Bg', 'Rivera Montemayor', 'Antonia', '971676', '39559777P', 'XWT', '2007-03-23 00:00:00', 'O', 'Técnico de Optimización Futuro', 'Calle Emilia 29', 'Linares', '54044', 'Andalucía', '913-309-741', 'Analista', 'Hinojosa Miranda S.A.', 'Bricolaje', '2022-02-10 00:00:00', NULL, 'Rocio.AguayoZamudio18@gmail.com', 'Ramona.SegoviaZayas@hotmail.com', '$2b$10$JwU6Wx.xPLsUQaAZ0kxgoeNU3j7mrOZk7EIscN.vQF5alyxScwgpW', '977-829-430', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(28, '6wAX1uwzka', 'Figueroa Lozano', 'Vicente', '430156', '33335308W', 'ZVQ', '2009-09-18 00:00:00', 'O', 'Desarrollador de Funcionalidad Cliente', 'Aldea Patricio Escamilla, 2', 'Paterna', '49699', 'Andalucía', '943-026-595', 'Ingeniero', 'Maya y Moreno', 'Música', '2023-02-18 00:00:00', NULL, 'JoseMaria.GranadosVanegas23@gmail.com', 'Ana49@yahoo.com', '$2b$10$fZmI6719FPgty/tXXVCU1uddIy2gkRTRnlONiw0M7WsJfH9Uob4nu', '970.576.149', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(29, 'Up50rJjPyz', 'Regalado Moya', 'Graciela', '639723', '77985096M', 'PAD', '2024-10-01 00:00:00', 'M', 'Gerente de Tácticas Dinánmico', 'Rua Carmen, 1', 'Vitoria', '62112', 'Canarias', '905.244.031', 'Administrador', 'Sierra y Durán', 'Parafarmacia', '2023-10-31 00:00:00', NULL, 'Roberto.QuintanillaAngulo36@hotmail.com', 'Fernando_LeyvaLopez82@hotmail.com', '$2b$10$cWPLVOeEC2Y2GfOUTWP8k.YOd5c1FUqTYktceOyw1O4WSS4NKsmC2', '963695428', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(30, 'J5BJudDp2s', 'Sierra Alcaraz', 'Débora', '459520', '93428090P', 'FWI', '2019-02-15 00:00:00', 'H', 'Planificador de Configuración Central', 'Bajada Roser Flores, 5', 'Chiclana de la Frontera', '26367', 'La Rioja', '932189456', 'Técnico', 'Ozuna S.L.', 'Papelería', '2023-07-26 00:00:00', NULL, 'JoseEduardo_ValentinOcasio@hotmail.com', 'Eloisa71@hotmail.com', '$2b$10$KBDLEwkYHVvdsH0UaWTsRObCSsGCTDBLeRcnB/WYihiLWUk/ciLo2', '928-886-615', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(31, 'DAsvjJb75j', 'Salas Trujillo', 'Jorge Luis', '360959', '76005480J', 'ZRQ', '2010-08-06 00:00:00', 'M', 'Planificador de Programa Dinánmico', 'Rampa Norma Palomo 77', 'Lugo', '41650', 'Aragón', '924-537-868', 'Administrador', 'Mares e Hijos', 'Decoración', '2020-12-09 00:00:00', NULL, 'Jordi_RosadoSauceda52@gmail.com', 'Sara73@hotmail.com', '$2b$10$vTCuP.Smtn2kLLCsuWkslul2Trcs3z..K6HEjqB/DCa9Dho4dVimS', '957 808 679', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(32, 'u6ngaCUYkN', 'Narváez Balderas', 'Roser', '128771', '56018089F', 'ENX', '2010-04-26 00:00:00', 'O', 'Coordinador de Funcionalidad Heredado', 'Colonia Fernando Gómez s/n.', 'Getafe', '96699', 'Aragón', '933950961', 'Director', 'Esquibel S.A.', 'Librería', '2021-08-07 00:00:00', NULL, 'Rafael.MarreroUribe@gmail.com', 'JoseEduardo23@yahoo.com', '$2b$10$cu0pN3ZHm7S/kVufWvQ8Ke1vW301nLaGJcnSDkoJszlQ1bm0UDyIq', '912.789.948', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(33, 'UOkUmWhG6R', 'Nieves Angulo', 'Julio César', '355932', '51438528N', 'IKD', '2019-08-19 00:00:00', 'M', 'Productor de Operaciones Corporativo', 'Barranco Cristián s/n.', 'Paterna', '07251', 'Cantabria', '957 416 650', 'Asociado', 'Venegas y Véliz', 'Electrónica', '2021-05-24 00:00:00', NULL, 'Veronica96@yahoo.com', 'Salvador_OrtaOrnelas15@gmail.com', '$2b$10$3q.q6lHS9IiLkGIeZlQDOeCaYgEwepM57Px0fioXIPdDpb2eB4iWa', '985-626-632', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(34, 'wBqOT1tQn5', 'Saucedo Saldivar', 'Reina', '717345', '65173854M', 'MYS', '2000-11-20 00:00:00', 'H', 'Productor de Investigación Heredado', 'Paseo Natalia Casanova, 8', 'Jerez de la Frontera', '01519', 'Extremadura', '955 885 943', 'Administrador', 'de Jesús, Hurtado y Tello Asociados', 'Bricolaje', '2024-06-10 00:00:00', NULL, 'MariadelosAngeles_TejadaMondragon@gmail.com', 'Ramon56@yahoo.com', '$2b$10$aMTWJhxMm0l8fymzbYYBveNyoJtgztZzOFKY5On9kUeHFMCeQzpYu', '973 539 774', NULL, '2025-02-03 13:14:18', '2025-02-03 13:14:18', NULL),
-(35, '4geIfJqjfr', 'Treviño Montemayor', 'Marcos', '374016', '05677177B', 'ZXR', '2021-08-14 00:00:00', 'O', 'Especialista de Optimización Central', 'Barranco Débora Batista s/n.', 'Estepona', '99035', 'Comunidad de Madrid', '921 912 115', 'Administrador', 'Olivera Alicea S.L.', 'Hogar', '2024-06-21 00:00:00', NULL, 'Jennifer.BalderasCortes@yahoo.com', 'Berta_LozanoGaribay@yahoo.com', '$2b$10$bE6Zyzj88OPVXIMT93azeuxQs.WDMNDS7ZC8j5ukQZ.SLKTmFXEre', '991709366', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(36, 'm6FnClLYRC', 'Montoya Villalpando', 'Lorena', '006759', '25562160W', 'AIX', '2003-07-07 00:00:00', 'O', 'Asociado de Intranet Nacional', 'Vía Raúl Rivera s/n.', 'Santiago de Compostela', '25310', 'Comunidad Valenciana', '994.232.624', 'Funcionario', 'Roybal y Dueñas', 'Informática', '2022-08-25 00:00:00', NULL, 'Hermenegildo.CarrionMascarenas21@hotmail.com', 'Julia_FelicianoValladares@gmail.com', '$2b$10$GJWyoMGyV8Nt2FW3nT5vru1wsgmGGHMpUWqGhxeigt1I5hXNOfgwm', '968-850-060', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(37, 'nGTQBWuDwr', 'Baca Sáenz', 'Margarita', '298607', '10865330O', 'NHN', '2005-03-31 00:00:00', 'O', 'Productor de Seguridada Interno', 'Bloque María, 3', 'Irún', '20344', 'Principado de Asturias', '999467895', 'Desarrollador', 'Mercado, Aponte y Delgado Asociados', 'Librería', '2023-09-25 00:00:00', NULL, 'Horacio.MelendezOsorio82@hotmail.com', 'Gloria.MirelesCenteno25@hotmail.com', '$2b$10$FEUD57fabh4gfYJEjt/bvuejhS7vB48xOFnyleNp8NKj2uqnuvp5.', '919833103', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(38, 'IIPDzQ2VX5', 'Ulibarri Gracia', 'Alfonso', '366385', '81356305E', 'NID', '2000-02-28 00:00:00', 'O', 'Relacciones de Intranet Nacional', 'Barrio María Eugenia Balderas, 2', 'Dos Hermanas', '90886', 'Comunidad Valenciana', '920250479', 'Planificador', 'Vélez Ocasio S.L.', 'Juguetería', '2024-08-15 00:00:00', NULL, 'Ester.BarajasZepeda@gmail.com', 'Elena.EscamillaCasanova@hotmail.com', '$2b$10$mAz2qdO5Ax826z.oYif9R.c1JlEiqvOSvlJWJvJ8VuxuuxFS9Z7I.', '912 018 826', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(39, 'TZnPuPFZpu', 'Santillán Hinojosa', 'Gabriel', '952746', '50214643O', 'HEF', '2017-10-18 00:00:00', 'H', 'Planificador de Soluciones International', 'Escalinata Marisol Garica s/n.', 'Rivas-Vaciamadrid', '28464', 'Cantabria', '951841172', 'Ingeniero', 'Lucero y Carvajal', 'Deportes', '2021-08-26 00:00:00', '2025-02-02 00:00:00', 'MariaJose.EstevezLovato29@gmail.com', 'Manuela_GaribayAlcala@yahoo.com', '$2b$10$S9Z9xLSlaDa3Hs4yLKzB0eS2vA2aeYUsB8pLJeejQGFZg9gvLjpiW', '939091013', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(40, 'dUsHZ3bi1z', 'Adorno Razo', 'Isabel', '202018', '07929258J', 'VLD', '2019-05-31 00:00:00', 'O', 'Representante de Investigación Gerente', 'Ronda Lucía 3', 'Las Palmas de Gran Canaria', '73495', 'Comunidad Valenciana', '949804038', 'Desarrollador', 'Ávalos, Narváez y Morales Asociados', 'Videojuegos', '2024-01-24 00:00:00', NULL, 'Adriana.CintronMontenegro@hotmail.com', 'Felipe69@hotmail.com', '$2b$10$Xc6AHdgGaxmyPf/vJGaAxek8ic36N987tjvGNDwgaFqI5FT/9JDky', '995-103-231', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(41, '1euUDKqaKA', 'Nava Santiago', 'Pío', '233177', '11703431N', 'OCD', '2008-01-23 00:00:00', 'H', 'Productor de Contabilidad Gerente', 'Escalinata Hugo Amaya 62', 'Mollet del Vallés', '62910', 'La Rioja', '906-834-774', 'Facilitador', 'Salgado y Gallardo', 'Joyería', '2022-10-20 00:00:00', '2025-02-02 00:00:00', 'MariaJose_SevillaRamirez62@hotmail.com', 'Mayte.MontesCruz@hotmail.com', '$2b$10$s6wqZkvu9YAVOZV3DgePneSMZTx/gsxUyZKLLXhz9d/LUUrGW2/.i', '901.130.146', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(42, 'W9OxNDPqFJ', 'Palomo Lemus', 'Carlos', '148371', '32923203O', 'XOO', '1995-08-21 00:00:00', 'H', 'Gerente de Configuración Interno', 'Extrarradio Lilia Farías 59', 'León', '48410', 'Castilla-La Mancha', '920.044.904', 'Diseñador', 'Santillán Carreón S.L.', 'Librería', '2021-08-03 00:00:00', NULL, 'Carlos98@yahoo.com', 'Veronica_GironPacheco@yahoo.com', '$2b$10$.0/ZrX8B3npY5qwAm1SLFO/UO4D32Ty9XKEtqUjPIJsQxZnrQNxWi', '957609145', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(43, '4AbAyidfa0', 'Cerda Marrero', 'Jacobo', '998190', '44101017B', 'SQL', '2000-12-08 00:00:00', 'H', 'Agente de Programa Central', 'Extrarradio Sergi, 8', 'Lorca', '84036', 'Andalucía', '914126890', 'Administrador', 'Núñez, Valentín y Mejía Asociados', 'Marroquinería', '2024-10-12 00:00:00', NULL, 'Monica68@gmail.com', 'Alberto34@hotmail.com', '$2b$10$oC9IX0s1rd0LTJu417H60.7Y/WX1YpTYU5F/ltGjK2JcOM0Y62ud6', '952 209 105', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(44, '9hRTcZj5kr', 'Torres Alejandro', 'Armando', '270871', '59851368G', 'LCH', '2018-11-22 00:00:00', 'M', 'Administrador de Tácticas Humano', 'Bloque Emilia Altamirano 79', 'Manresa', '27956', 'Andalucía', '968283768', 'Facilitador', 'Piña e Hijos', 'Papelería', '2022-01-13 00:00:00', NULL, 'Dolores.MelgarSolorio62@yahoo.com', 'Raul.LaureanoSalas@hotmail.com', '$2b$10$ZPa446pTpL0r9MV.Ca7AUeJLzFIFqrdRL0L6KeMyawKj2Q3o6WAtO', '938285277', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(45, 'F6jXvSF1ah', 'Lira Alfaro', 'Alfredo', '495488', '83496655L', 'LOR', '2016-04-24 00:00:00', 'M', 'Coordinador de Integración Senior', 'Explanada Gregorio Gámez s/n.', 'Benalmádena', '93085', 'Castilla-La Mancha', '901.314.053', 'Representante', 'Farías Bahena S.A.', 'Librería', '2020-05-02 00:00:00', '2025-02-02 00:00:00', 'Nicolas_OlivaresPadron12@yahoo.com', 'Adan.RiveraArias@hotmail.com', '$2b$10$qhz2xMPc0xiCiFJ3rX3/4.qxJpEcHnYV6DrRQo2RB3ebf7tPoSogS', '982049648', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(46, 'EMDcsM7h6h', 'Armijo Espinosa de los Monteros', 'Rodrigo', '137270', '69017781E', 'KPQ', '2000-11-26 00:00:00', 'M', 'Representante de Usabilidad Distrito', 'Prolongación Ana, 45', 'Ávila', '20773', 'Cantabria', '985.627.924', 'Oficial', 'Uribe y Montañez', 'Papelería', '2024-07-17 00:00:00', NULL, 'Daniela_PortilloRocha24@hotmail.com', 'Julia.CarrionSanabria62@gmail.com', '$2b$10$fwZx9fIxwLbavbwvXWDILuPKxxdv49WwcqpUx96Im7Dobw.2GGAq6', '913559331', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(47, 'dhb8CtHP9i', 'Betancourt Perales', 'Sonia', '537184', '77709072G', 'GCJ', '2022-07-24 00:00:00', 'O', 'Director de Configuración Adelante', 'Mercado Vicente Cortés, 56', 'Alcalá de Guadaira', '72287', 'Cantabria', '978.701.457', 'Administrador', 'Carreón e Hijos', 'Parafarmacia', '2020-05-18 00:00:00', NULL, 'Esteban.SaldivarOlivera@yahoo.com', 'Raul_AlcalaOcasio4@gmail.com', '$2b$10$q5sAZUtIxWFlWF8JTCeUHuB1CM1tolhZJ0GNGgITYna3Lr1k1SFmy', '981 776 174', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(48, 'N8AOqJQySN', 'Villa Arriaga', 'José Eduardo', '283426', '10733627M', 'QTG', '2021-04-07 00:00:00', 'M', 'Desarrollador de Contabilidad Director', 'Rampa Mónica, 6', 'Salamanca', '12913', 'Cantabria', '999707774', 'Estratega', 'Figueroa S.A.', 'Electrónica', '2021-06-28 00:00:00', NULL, 'Carlos.CarmonaPabon89@gmail.com', 'JoseLuis39@yahoo.com', '$2b$10$WpsETR6AY/KEfLyebssQEOEw/Xap5HUvbiu3RUl6C0K4cus28INbW', '967-107-607', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(49, '6mLuDw345S', 'Cantú Bustos', 'Maricarmen', '855705', '40950576J', 'DCY', '1997-06-09 00:00:00', 'H', 'Consultor de Configuración Humano', 'Torrente Laura 4', 'Sagunto', '15060', 'País Vasco', '991169389', 'Facilitador', 'Duarte, Nájera y Cazares Asociados', 'Videojuegos', '2020-12-03 00:00:00', NULL, 'MariaSoledad_SalazarQuintana@gmail.com', 'Elisa_MayorgaEnriquez@hotmail.com', '$2b$10$WKGAdWloouNMCFecaK2ZbOWu9j/kFuOZ9bqHqP/PJZY.57xVnEBOi', '967-213-596', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(50, 'JNEo44WhIe', 'Carmona Aponte', 'Juan Ramón', '442208', '66710833Y', 'KQM', '1997-07-28 00:00:00', 'M', 'Agente de Grupo International', 'Sector Manuel, 8', 'Reus', '11983', 'Cataluña', '969 489 520', 'Facilitador', 'Berríos, Anaya y Mejía Asociados', 'Bebes', '2022-05-20 00:00:00', '2025-02-02 00:00:00', 'Ignacio_ArellanoArias39@hotmail.com', 'JoseEduardo75@gmail.com', '$2b$10$chx.CuLVuPB1OdTc3bpF4uMx1q7FJV14KJgGwIHSoUpkf2qHb2.va', '976-731-148', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(51, 'fGmKezSARX', 'Barela Calvillo', 'Esperanza', '763604', '92040876X', 'YJF', '2023-06-05 00:00:00', 'O', 'Director de Comunicaciones Global', 'Masía Jesús Godínez 31', 'Almería', '76010', 'País Vasco', '908738777', 'Estratega', 'Archuleta y Quesada', 'Salud', '2022-06-02 00:00:00', NULL, 'Timoteo28@hotmail.com', 'Alfonso5@gmail.com', '$2b$10$.cW/8T/wc4fVbE4442KVFOO1uc4Uq26t5CeG4or/45OIGm1k/G.se', '972.574.794', NULL, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL);
+(1, 'A001', 'User', 'Admin', 'NRP001', '12345678A', 'ADM', '1980-01-01 00:00:00', 'O', 'Admin', '123 Admin Street', 'Admin City', '12345', 'Admin Province', '987654321', 'Admin Specialty', 'Admin Body', 'Admin Department', '2000-01-01 00:00:00', NULL, 'jaime.ornu@gmail.com', 'calidad.nodemailer@gmail.com', '$2b$10$fnTZ6iczrUlNMQWBn.ZY7OU.0lSsrmyPorKuPG9MsCxSv.wNVQb96', '123456789', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(2, 'ShZga3Njjj', 'Ulloa Cuellar', 'Irene', '822858', '79078261J', 'FOY', '2003-01-08 00:00:00', 'H', 'Analista de Tácticas Interno', 'Extrarradio Magdalena 9', 'La Coruña', '49815', 'Cantabria', '952-343-324', 'Asociado', 'Carreón S.L.', 'Mascotas', '2020-03-11 00:00:00', NULL, 'Eva_AlemanParedes@gmail.com', 'Antonio65@gmail.com', '$2b$10$g/SfJpoWl5Fl6MbSryKqKuLQWHITU7kLkohE3rRgB1BV0udYCbROm', '910502783', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(3, 'WxCpOaLAJA', 'Ocasio Roldán', 'Sergi', '087617', '46503138P', 'PPW', '1996-03-10 00:00:00', 'M', 'Coordinador de Calidad Nacional', 'Puerta José 34', 'Zaragoza', '94348', 'Comunidad Valenciana', '913.569.190', 'Oficial', 'Ocasio S.L.', 'Electrónica', '2022-11-04 00:00:00', NULL, 'Benjamin19@gmail.com', 'Alberto.CardonaZamudio@gmail.com', '$2b$10$V1nNzYgLztEyNX72xXZL5OIX6EDywlNLc7pvBS6nUjs.VX.jHRrDS', '918698137', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(4, '6MF7cejVWP', 'Cervántez Robledo', 'Matilde', '663990', '74975195P', 'EPM', '2005-10-31 00:00:00', 'H', 'Estratega de Configuración Producto', 'Ramal Marta Herrera 8', 'Elda', '46091', 'Navarra', '949546921', 'Agente', 'Yáñez y Bustos', 'Joyería', '2024-03-23 00:00:00', NULL, 'Jordi.ZayasOsorio50@hotmail.com', 'Josefina97@yahoo.com', '$2b$10$d9ZymeceCwwx55tejFmb0uvX.25NAGRCI29kiHAqi7xxmH9xw/AKa', '983 552 877', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(5, 'KXQGYBZ7Om', 'Aparicio Cotto', 'Victoria', '733082', '01583201W', 'CUV', '2021-12-29 00:00:00', 'H', 'Consultor de Marca Nacional', 'Sector Federico Mireles s/n.', 'Lugo', '47792', 'Castilla-La Mancha', '982.762.819', 'Planificador', 'Valdez, Saldivar y Collado Asociados', 'Moda', '2023-11-12 00:00:00', NULL, 'JoseLuis21@hotmail.com', 'Irene.ManzanaresReyes97@hotmail.com', '$2b$10$LMVg2kR7iPfjz6ov5EpOP.w0Y1oqVuz9XhKCLc.GfzjbphSabhIRi', '933815874', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(6, 'y6G9WHaX00', 'Rangel Polanco', 'María de los Ángeles', '741895', '38318289D', 'OPT', '2002-03-25 00:00:00', 'H', 'Asistente de Calidad Humano', 'Apartamento Ángela, 24', 'Benalmádena', '93967', 'La Rioja', '998 347 151', 'Oficial', 'Casas y Mares', 'Marroquinería', '2022-05-25 00:00:00', NULL, 'Caridad_TiradoDominguez@yahoo.com', 'Gilberto.FonsecaBriseno45@gmail.com', '$2b$10$0xrslqZwwFNU5cypwWqYWOnNuwGKRNmqerkBzGW8mHKuLDIjoV3qW', '951.464.209', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(7, '1ExLQ96tlM', 'Carranza Lara', 'Benito', '400973', '03931829N', 'MEG', '2019-12-05 00:00:00', 'M', 'Productor de Normas Humano', 'Riera Anita 6', 'Elda', '68182', 'Región de Murcia', '993.846.320', 'Técnico', 'Márquez y Cadena', 'Librería', '2021-05-06 00:00:00', NULL, 'Cesar.BenitezGalarza66@hotmail.com', 'Blanca90@hotmail.com', '$2b$10$PZ2GMEimbUnWH78ab/Qx1OLm2MU1wHYm0OM12BEnPG3zkl448P2sK', '926-504-690', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(8, 'FnI8FsEhUD', 'Quiróz Benavídez', 'Raquel', '699941', '91698775U', 'LNV', '2011-03-25 00:00:00', 'H', 'Analista de Factores Nacional', 'Rincón Salvador s/n.', 'Alcoy', '53047', 'Principado de Asturias', '968.646.601', 'Oficial', 'Alanis y Cervántez', 'Parafarmacia', '2022-11-13 00:00:00', NULL, 'Daniela93@gmail.com', 'Guadalupe_BritoCovarrubias@yahoo.com', '$2b$10$W2GdfVs7Wx/I7i1rwkUKpe28jQe1At7.WOKFLd7DPFrqglm8lWe5y', '931.947.364', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(9, 'cOecnclZLh', 'Rosado Salinas', 'Jerónimo', '511312', '13903733H', 'LYV', '2024-05-08 00:00:00', 'M', 'Relacciones de Configuración Dinánmico', 'Huerta Tomás Casares, 68', 'Telde', '79509', 'Navarra', '979-654-674', 'Coordinador', 'Velasco, Sevilla y Archuleta Asociados', 'Joyería', '2024-12-08 00:00:00', NULL, 'Blanca.SoriaDelgado75@hotmail.com', 'Ariadna_PelayoSarabia@hotmail.com', '$2b$10$CAcNKrKEt3Zc63YDBe6OoO8upp9znjH2L5BsDLW50bnobDsXLFL7W', '923-976-068', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(10, 'xloDZH709g', 'Montoya Ibarra', 'Carla', '883032', '16258377E', 'EMQ', '1996-12-23 00:00:00', 'O', 'Técnico de Mobilidad Interno', 'Parcela Esteban s/n.', 'Sabadell', '35017', 'Baleares', '918153303', 'Agente', 'Rivas S.L.', 'Mascotas', '2020-10-03 00:00:00', NULL, 'Dorotea69@gmail.com', 'JoseEmilio28@yahoo.com', '$2b$10$/mjuiz4oCrthqPJAdqfteO5.octSkGv4L.5DyvVwHMrjAchxkEED6', '933348237', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(11, 'r5uNgkCOTS', 'Banda Escobar', 'Timoteo', '240568', '34454704B', 'VZI', '2015-05-04 00:00:00', 'O', 'Desarrollador de Contabilidad Inversor', 'Escalinata Felipe 60', 'Coslada', '23085', 'Andalucía', '970527120', 'Agente', 'Jiménez, Aponte y Palomo Asociados', 'Joyería', '2023-04-23 00:00:00', NULL, 'Bernardo_MaciasVazquez@yahoo.com', 'Hugo_MercadoRios@yahoo.com', '$2b$10$9htWmp5FG7h91PxrRJHCC.Uqmg4d8I88kg26MqzXxnT7OMWJzwmkO', '971212722', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(12, 'uoq7TpW3yh', 'Rentería de Jesús', 'Julia', '551348', '05526933D', 'CVN', '1997-04-08 00:00:00', 'M', 'Representante de Aplicaciones Senior', 'Bloque Micaela Dávila 5', 'Mijas', '26476', 'La Rioja', '937-866-296', 'Asistente', 'Mercado, Parra y Benavídez Asociados', 'Juguetería', '2023-02-19 00:00:00', NULL, 'Maria_CabanArguello@hotmail.com', 'Guillermina.NegreteLaboy@yahoo.com', '$2b$10$px2P9.V4eN5EStGMdTZCaephY4haNiExXigHClaB2mZxxjKG2t/By', '999 233 847', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(13, 'rarAv7xh3u', 'Segura Carrasquillo', 'Miguel', '360865', '32366201T', 'XAG', '2019-07-15 00:00:00', 'M', 'Agente de Operaciones International', 'Puente Rebeca, 9', 'Segovia', '66123', 'Navarra', '943-755-028', 'Gerente', 'Garay Villagómez S.L.', 'Hogar', '2021-07-29 00:00:00', NULL, 'Clara82@hotmail.com', 'Virginia_PerezEspinoza49@gmail.com', '$2b$10$am5z9XNOjyV9irvx68LjT.IgN7US2nxETvuASSCr5p0gd3uaRG4eu', '929 101 323', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(14, 'pr8baz8Cq4', 'Valverde Villanueva', 'Adán', '063726', '00943611S', 'CTR', '2024-05-03 00:00:00', 'M', 'Analista de Seguridada Adelante', 'Subida Adán Briseño, 40', 'Palma de Mallorca', '54343', 'Comunidad Valenciana', '974805349', 'Analista', 'Aragón Becerra Hermanos', 'Informática', '2023-12-30 00:00:00', NULL, 'Maria71@hotmail.com', 'Leonor.ZunigaGuevara@hotmail.com', '$2b$10$Pvs5zR0T5Wz7aD1oa8RZwOKzXpuPpM3RRF/yWiASViCh45JWlEi9C', '962-318-406', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(15, 'Oy7jVzAtle', 'Contreras Granado', 'Agustín', '312965', '66445187J', 'COY', '2001-06-22 00:00:00', 'O', 'Asistente de Creativo Cliente', 'Carretera Arturo Terrazas s/n.', 'Pamplona', '89089', 'Comunidad Valenciana', '933.653.956', 'Estratega', 'Verduzco, Cintrón y Collazo Asociados', 'Marroquinería', '2024-11-12 00:00:00', NULL, 'Gilberto69@hotmail.com', 'Ivan24@yahoo.com', '$2b$10$WDp8.TCET8e0a1AnKnAD.OsVnpM21EubosL.LWXTDBpMpmqDhLQCy', '942-193-726', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(16, 'OYujItovnm', 'Mojica Romero', 'María Elena', '041503', '16754499N', 'LSH', '1999-04-28 00:00:00', 'O', 'Administrador de Implementación Global', 'Arrabal Victoria Mares, 42', 'Mérida', '01017', 'Canarias', '934 729 091', 'Facilitador', 'Contreras e Hijos', 'Electrónica', '2022-03-10 00:00:00', '2025-02-17 00:00:00', 'Carla.SaucedaGaitan43@hotmail.com', 'Ramon.RodarteRosado89@yahoo.com', '$2b$10$3mhTKO4Vo0BfwtdzrlIG2.3.xXszxg2sWZlhwTNhCRbBL64k2cBey', '930184947', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(17, '4sRVe2XIQx', 'Espinoza Rodríguez', 'Jaime', '208377', '65824818F', 'HHR', '1995-09-12 00:00:00', 'O', 'Representante de Integración Senior', 'Barranco María de los Ángeles Rodarte s/n.', 'Tarragona', '58613', 'Aragón', '962.596.721', 'Ingeniero', 'Castellanos, López y Mateo Asociados', 'Cine', '2021-08-24 00:00:00', NULL, 'Isabel47@hotmail.com', 'Silvia71@yahoo.com', '$2b$10$mz6qmaRS.FNPDAzbT0jvTepMYo6NkMBEi7glDr9WsQ1k08jU29hpq', '998 531 391', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(18, 'AleLH56454', 'Centeno Valles', 'María Teresa', '454931', '27207847B', 'ZIT', '1996-03-12 00:00:00', 'M', 'Coordinador de Calidad International', 'Conjunto Homero Delapaz, 8', 'Segovia', '11506', 'La Rioja', '949.205.044', 'Administrador', 'Pedraza Hermanos', 'Informática', '2020-03-24 00:00:00', NULL, 'Dolores71@gmail.com', 'Anita.OrdonezCardona@hotmail.com', '$2b$10$5JXSopTO17wToiIya1DHvO.rMOzb4oh7DNavFFMfHOgoJ0BfUkHEK', '949459004', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(19, 'GQw1Z6A9ow', 'Santiago Chávez', 'Víctor', '766115', '09304935F', 'QPX', '1999-11-23 00:00:00', 'H', 'Arquitecto de Normas International', 'Arrabal Cristóbal Flórez s/n.', 'San Sebastían de los Reyes', '98780', 'Extremadura', '946.466.074', 'Facilitador', 'Rentería, Almanza y Hinojosa Asociados', 'Mascotas', '2022-04-18 00:00:00', NULL, 'Jacobo_DelatorreRosado@yahoo.com', 'Leonor_TrevinoValverde82@hotmail.com', '$2b$10$OFkDVtqo5mxoECtZtgrGsevzx1BHyJJeFD99W6A66ZsYQ4M1JaKCS', '910-323-981', NULL, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(20, 'ALQlblOC6g', 'Cuellar Longoria', 'Roser', '213351', '21278467M', 'GCS', '2011-03-29 00:00:00', 'H', 'Técnico de Seguro Gerente', 'Puerta Rodrigo Bueno s/n.', 'Manresa', '63801', 'Baleares', '904328433', 'Analista', 'Leal e Hijos', 'Informática', '2022-07-16 00:00:00', NULL, 'Monica1@gmail.com', 'Elsa_MirandaCarrero25@yahoo.com', '$2b$10$teCt/4VOExKxk2pF4308GeFDzEutwLHdX1PkIN1IHO1ONsK3MbZzu', '948 508 354', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(21, 'WS2FvQUMQc', 'León Lozano', 'Carlota', '813858', '53424698T', 'OHH', '2007-12-15 00:00:00', 'M', 'Ejecutivo de Contabilidad Interno', 'Rambla Luis 76', 'Baracaldo', '66418', 'Canarias', '941 554 198', 'Ejecutivo', 'Olivo y Crespo', 'Bricolaje', '2022-01-09 00:00:00', '2025-02-18 00:00:00', 'Josep_MerinoAlmanza72@gmail.com', 'Jeronimo76@gmail.com', '$2b$10$QFs5J93RhZpcbrvCNg/ES.xTjHATmS0.FqrFPsjLxjDoewqWqEMH6', '925-361-033', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(22, 'xJ9TqfDOhI', 'Angulo Pagan', 'Leonor', '067245', '00027438P', 'TOG', '2003-11-22 00:00:00', 'M', 'Facilitador de Usabilidad Producto', 'Mercado Felipe Tórrez, 45', 'Córdoba', '26573', 'País Vasco', '982.908.967', 'Representante', 'Dueñas, Maldonado y Torres Asociados', 'Parafarmacia', '2021-03-01 00:00:00', NULL, 'Maricarmen44@gmail.com', 'Carles50@gmail.com', '$2b$10$aMsdWpEJCSZToLBK9beETeKwxx8p/zvdIURcpzPPxqna1uewrQGWe', '977 028 633', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(23, 'IjFOCSUSnZ', 'Iglesias Pizarro', 'Teresa', '929289', '00538506J', 'EEE', '2009-04-25 00:00:00', 'O', 'Relacciones de Implementación Jefe', 'Jardines María Eugenia 14', 'Tarrasa', '33294', 'Castilla y León', '910544152', 'Productor', 'Medrano, Hernández y de Jesús Asociados', 'Hogar', '2024-11-16 00:00:00', NULL, 'Fernando38@hotmail.com', 'Elena75@gmail.com', '$2b$10$i2OHU6q1bKKS2IE/Odl2uOM/aUWt.vHKZ05FeBoFX1NRtC9muh/m.', '960-819-701', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(24, 'EYtixG8T2U', 'Valadez Camarillo', 'Pío', '403847', '03218054U', 'NRJ', '2003-08-22 00:00:00', 'H', 'Diseñador de Marketing Director', 'Cuesta Rebeca Zaragoza 81', 'Calahorra', '97417', 'Castilla-La Mancha', '945137963', 'Consultor', 'Reséndez Olivas S.A.', 'Informática', '2023-07-28 00:00:00', NULL, 'Mariana_AvilaMadrigal@hotmail.com', 'Ana_MojicaAlarcon@yahoo.com', '$2b$10$x1Mu.pP6tRn6kReZq4DS.OAgPom1z6u1jERC0Cyq29V/5EhDJ6lfW', '910-352-874', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(25, 'tfosrTkS8o', 'Dávila Candelaria', 'Ramiro', '305115', '49880743C', 'XVP', '2017-10-06 00:00:00', 'H', 'Relacciones de Tácticas Distrito', 'Calle María Teresa 39', 'Estepona', '34870', 'Andalucía', '973 169 398', 'Consultor', 'Armas, Vallejo y Montalvo Asociados', 'Moda', '2022-07-07 00:00:00', NULL, 'Marilu55@gmail.com', 'Virginia5@gmail.com', '$2b$10$x0QoGnJ22bOgBZfyQIptIuh7K3SGQ25UM9aH4W19SEhbLvvxIPnXu', '996 460 962', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(26, 'u1oMrgn7T9', 'Noriega Quiñones', 'Concepción', '981928', '59175175P', 'GBT', '1995-11-10 00:00:00', 'O', 'Supervisor de Tácticas International', 'Torrente Soledad Soria, 58', 'Almería', '51010', 'Cataluña', '978170623', 'Desarrollador', 'Vera y Bañuelos', 'Librería', '2023-05-09 00:00:00', NULL, 'Debora_ArmentaNajera6@yahoo.com', 'Alfredo11@yahoo.com', '$2b$10$GnZzdHxXPU3yl21VnSOzXuGJZQ.Obrqr9mhZfjTkld74iDWH2x1KK', '911 979 126', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(27, 'cmTqaUaGMx', 'Granados Atencio', 'Jorge Luis', '358906', '07796935Y', 'ZZR', '2005-04-22 00:00:00', 'H', 'Productor de Aplicaciones Central', 'Bloque Hermenegildo 40', 'Parla', '81846', 'Castilla-La Mancha', '995 595 035', 'Funcionario', 'Nevárez, Gurule y Gamboa Asociados', 'Moda', '2023-04-23 00:00:00', NULL, 'Fernando.PinaGallardo@gmail.com', 'Gonzalo_EscobarMejia54@hotmail.com', '$2b$10$xBr7Nc3qdeL8eiUPJdQs1OFZ3sTg3K5KZksQJ5V0npSGIm510pTGO', '975-649-472', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(28, 'Ow4JEbkhsS', 'Archuleta Olvera', 'Samuel', '047064', '32753991V', 'XYU', '2018-11-09 00:00:00', 'M', 'Asociado de Configuración Producto', 'Apartamento Gloria Sepúlveda s/n.', 'Almería', '78006', 'La Rioja', '990035305', 'Oficial', 'Covarrubias Rosario e Hijos', 'Librería', '2024-11-06 00:00:00', NULL, 'Jaime_ReyesVelez60@hotmail.com', 'Barbara.NajeraAlcaraz@gmail.com', '$2b$10$MIVXCJiIjeCQtwmteKoul.5o.9/yINfjo58lx9W.hkGR7yaxqxC/y', '922.075.539', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(29, 'g9hXHcp9Q3', 'Lozada León', 'Hugo', '830688', '18814213K', 'AXK', '2010-08-03 00:00:00', 'O', 'Relacciones de Intranet Futuro', 'Arrabal Maricarmen Jaimes s/n.', 'Reus', '19326', 'Cataluña', '966-279-495', 'Estratega', 'Mata y Toledo', 'Parafarmacia', '2022-07-14 00:00:00', '2025-02-17 00:00:00', 'Juan_GomezPartida76@hotmail.com', 'Gregorio.VanegasPerales@yahoo.com', '$2b$10$AfKfBBeUOZ5Ddb0V91yMi.2wh4vblHnwTSvD9bmbtESDBEIGHckGK', '971.722.948', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(30, 'UPI3gmZlqB', 'Alonzo Iglesias', 'Amalia', '306595', '16909921T', 'QPJ', '2006-04-20 00:00:00', 'M', 'Consultor de Web Dinánmico', 'Ronda Javier Mora, 1', 'Mollet del Vallés', '50435', 'Galicia', '994 345 454', 'Técnico', 'Melgar, Calderón y Terán Asociados', 'Papelería', '2024-05-25 00:00:00', NULL, 'Beatriz86@hotmail.com', 'Jeronimo.RazoPonce@gmail.com', '$2b$10$YsvVHQZideL.j1ejaiKwUeH595bRiGufMEskhB9W7HxLM7C6iKbv6', '921 825 223', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(31, '0YvUQv3iM4', 'Cavazos Ontiveros', 'Jesús', '227296', '04012851N', 'NHZ', '2021-04-09 00:00:00', 'M', 'Coordinador de Métricas Gerente', 'Torrente Marta s/n.', 'El Ejido', '89905', 'Galicia', '958 204 623', 'Arquitecto', 'Loya, Jiménez y Corrales Asociados', 'Informática', '2020-09-26 00:00:00', '2025-02-18 00:00:00', 'Jordi88@hotmail.com', 'Clemente57@gmail.com', '$2b$10$VwiW8QnUFGNlCkpk24BSiOU.akr..Rvs/mt9mXUnYqFP0.waRBUxm', '960098660', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(32, 'dr6gSw2OEE', 'Cadena Perales', 'Miguel', '588510', '67524285O', 'WSJ', '2023-01-30 00:00:00', 'M', 'Oficial de Aplicaciones Producto', 'Polígono Jennifer 28', 'San Cristróbal de la Laguna', '75198', 'Comunidad Valenciana', '907413824', 'Relacciones', 'Olivas Munguía e Hijos', 'Parafarmacia', '2021-05-19 00:00:00', NULL, 'Hugo.MenendezMurillo@yahoo.com', 'Benito18@gmail.com', '$2b$10$RQE7lRznJfa2UIJIAJcLzeh4zX7MRybdqEp7WhZmXfYRw0yJzEbi.', '932-028-481', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(33, 'prZJJSxldw', 'Caballero Miranda', 'Claudia', '856068', '54088745Q', 'JCJ', '2008-08-26 00:00:00', 'M', 'Estratega de Normas Adelante', 'Pasaje Enrique Jaimes, 87', 'Paterna', '67254', 'Galicia', '957-079-290', 'Facilitador', 'Gastélum y Negrón', 'Marroquinería', '2024-08-13 00:00:00', NULL, 'Esteban_FigueroaRodriguez92@hotmail.com', 'Virginia38@gmail.com', '$2b$10$VOTs1G62Ek5yrG0waW.vgugzCqv.ei39mHKr.1SvmHWhLM4mfo4Tq', '996.811.715', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(34, 'Xhdx44EpJY', 'Partida Durán', 'Julia', '546324', '47379398N', 'GQG', '2008-02-11 00:00:00', 'M', 'Asociado de Calidad Central', 'Colegio Berta 9', 'Pamplona', '09798', 'Región de Murcia', '981 904 650', 'Consultor', 'Muñiz y Vela', 'Cine', '2020-04-26 00:00:00', NULL, 'Matilde.MerinoZayas@hotmail.com', 'Elena65@yahoo.com', '$2b$10$5CK3rimPtcMRCUBvVuPuCussA19.ijxBG8xfQMLod45ELHB7dN.g.', '950-336-312', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(35, 'DFZ6jBndbi', 'Loya Cortés', 'María Cristina', '496867', '02454485R', 'QXP', '2008-07-23 00:00:00', 'M', 'Oficial de Interacciones Heredado', 'Masía Pablo Ureña, 57', 'Aýna', '60676', 'Andalucía', '916.495.571', 'Administrador', 'Reyes Esparza Hermanos', 'Música', '2025-01-19 00:00:00', NULL, 'MariadelosAngeles33@hotmail.com', 'Rebeca_PonceTrejo@gmail.com', '$2b$10$.Pr1Y9hbcbolB8/6od1PhelJrNksmjm1cD1i.qg.Vk8WnCOISTI16', '989 108 541', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(36, 'py1nBHMH0D', 'Guzmán Lemus', 'Martín', '819850', '57660272J', 'SOK', '2024-10-31 00:00:00', 'O', 'Director de Marca Futuro', 'Partida Salvador Armijo, 33', 'Ávila', '35362', 'Extremadura', '965-029-981', 'Arquitecto', 'Covarrubias y Rendón', 'Música', '2021-08-10 00:00:00', '2025-02-17 00:00:00', 'Eva_SoriaLeal99@gmail.com', 'Gabriel.ArenasMelendez75@yahoo.com', '$2b$10$Ugdtm7yW9WXY6Vl4Ky.VWueIE0UJ5m1SkCi.GR.EFoWStNSqL5Wgm', '920-852-299', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(37, 'xyGN08BYSx', 'Benítez Pizarro', 'Clemente', '509661', '26925317P', 'PQQ', '2009-02-22 00:00:00', 'M', 'Director de Respuesta Heredado', 'Senda Daniel Mejía, 4', 'Murcia', '22232', 'Canarias', '947 252 435', 'Funcionario', 'Jaimes, Trujillo y Matías Asociados', 'Salud', '2023-09-01 00:00:00', '2025-02-17 00:00:00', 'MariaJose31@hotmail.com', 'JoseMaria78@yahoo.com', '$2b$10$ovzDEFbNs6aLSuPrJ5Uin.BqH2hssakPG8cd4yI9qksiaCDec8oWy', '947.894.021', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(38, 'T3cgodF4QH', 'Sarabia Pizarro', 'Armando', '826547', '51762522V', 'WET', '2009-08-29 00:00:00', 'M', 'Representante de Web Regional', 'Mercado Berta 4', 'Valladolid', '37121', 'Cataluña', '988.311.834', 'Representante', 'Casas y Rivera', 'Informática', '2025-01-24 00:00:00', NULL, 'Alicia_RoybalCarrillo38@gmail.com', 'Leticia.CalderaCrespo@hotmail.com', '$2b$10$pCByT1U1WfPCU2QBwFQvOuAMvCIpsRBfP/spQb3tWJ29bwzAsTm1a', '991 734 234', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(39, 'ttDumqqqWX', 'Pelayo Arroyo', 'Alfonso', '735118', '53098102E', 'ZDX', '2008-03-12 00:00:00', 'H', 'Asociado de Programa Senior', 'Ronda Elsa Baca 3', 'Arrecife', '21881', 'País Vasco', '902.235.661', 'Productor', 'Ibarra Hermanos', 'Decoración', '2020-10-22 00:00:00', '2025-02-17 00:00:00', 'JoseMaria67@yahoo.com', 'Victoria_ReynosoPelayo85@hotmail.com', '$2b$10$EGajAGVEXtie0xC7C6KzD..MJ.JuICqOK3Kz5iTHUlSwDJKm9OjzS', '994298694', NULL, '2025-02-18 08:59:42', '2025-02-18 08:59:42', NULL),
+(40, 'xe7T5Vp9OV', 'Ponce Caballero', 'Luis Miguel', '068814', '37774945M', 'FBH', '2006-01-07 00:00:00', 'O', 'Asistente de Usabilidad Interno', 'Riera Mercedes 9', 'Talavera de la Reina', '05871', 'País Vasco', '968748738', 'Supervisor', 'Méndez y Meza', 'Bricolaje', '2021-02-19 00:00:00', NULL, 'Timoteo.AranaAlcala@yahoo.com', 'MarcoAntonio_VillalpandoSevilla@hotmail.com', '$2b$10$c3xg2anz7oqsdlbnYxbxrOqgDAxLvZNNjdDizBJtjn00zVlSMeAKa', '999.532.338', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(41, 'LC0OuDjP0S', 'Suárez Madrid', 'Gonzalo', '351716', '03659515S', 'VYA', '2000-07-20 00:00:00', 'M', 'Productor de Creativo Senior', 'Glorieta Anita Atencio, 57', 'San Sebastián', '96805', 'Galicia', '983199645', 'Especialista', 'Sotelo y Garrido', 'Videojuegos', '2021-11-01 00:00:00', NULL, 'Claudio_MercadoRivero68@hotmail.com', 'Agustin50@gmail.com', '$2b$10$Abf/ChiqXrzAdyUOds/9Sea0ekFSKEkKepDD.hYGyQqCX.Pz.ZS/C', '951 664 820', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(42, 'iGuNgXWmFz', 'Serna Jáquez', 'Hugo', '798130', '21343749R', 'OBA', '1998-02-19 00:00:00', 'H', 'Ingeniero de Grupo Corporativo', 'Municipio Rosa s/n.', 'Badajoz', '59051', 'Baleares', '985 452 153', 'Oficial', 'Madrigal S.L.', 'Videojuegos', '2022-03-27 00:00:00', '2025-02-17 00:00:00', 'Maricarmen5@gmail.com', 'Benito.ColonSoliz6@gmail.com', '$2b$10$FqpkaNCSBKRaM9QIGX/ADujY1yfpIsk38PUKnhiB/C8CK9aYsJX1W', '973.164.328', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(43, 'LlewJxR4z8', 'Amaya Cordero', 'Alejandra', '362048', '51915880S', 'DPO', '2000-10-06 00:00:00', 'O', 'Director de Creativo Heredado', 'Pasaje Hermenegildo s/n.', 'Calahorra', '53375', 'La Rioja', '965.855.847', 'Productor', 'Crespo, Barrios y Cabrera Asociados', 'Parafarmacia', '2021-06-17 00:00:00', NULL, 'Jennifer64@yahoo.com', 'Susana4@gmail.com', '$2b$10$SXiS9zsRS24RCum2E6zeZuDqNU2t/A3FzwMN9DEsFv0GaE3yeZ1oG', '974.495.143', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(44, 'COhojNVG9I', 'Ferrer Báez', 'Juana', '843867', '36733334A', 'NKQ', '1997-09-08 00:00:00', 'O', 'Facilitador de Interacciones Futuro', 'Arrabal Victoria Suárez 3', 'Aýna', '94075', 'Extremadura', '914 840 273', 'Gerente', 'Cardona S.A.', 'Marroquinería', '2024-03-20 00:00:00', NULL, 'Josefina.MadrigalAlvarado99@gmail.com', 'Veronica.OquendoCarrasco@yahoo.com', '$2b$10$S8sUMO8WjgNaT4Gq94mN1.IfQ.BEqYIDB/Tnhh2OEI7RAKZ8dIR4W', '925 495 050', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(45, 'ESmiEabvD3', 'Quintero Maldonado', 'Elena', '433665', '79077937N', 'LZM', '2006-07-09 00:00:00', 'H', 'Desarrollador de Creativo Futuro', 'Puente Berta Jaime, 5', 'Tarragona', '41793', 'Baleares', '906.446.528', 'Administrador', 'Partida Partida Hermanos', 'Decoración', '2023-05-08 00:00:00', NULL, 'Julio18@yahoo.com', 'Pio_GarzaOrdonez77@gmail.com', '$2b$10$Yvl/nGv2J2Qi12vlYy.3beyCBU02HoMkEVBUXAOfOHtn7bdh2xiay', '985.595.825', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(46, 'ehMSOX96Y2', 'Velasco Carvajal', 'Josep', '692827', '64386957J', 'LVS', '2014-10-07 00:00:00', 'M', 'Diseñador de Infraestructura Corporativo', 'Sección Octavio Huerta s/n.', 'La Línea de la Concepción', '20583', 'Cantabria', '955 104 298', 'Relacciones', 'Rocha S.A.', 'Mascotas', '2023-11-22 00:00:00', '2025-02-17 00:00:00', 'Ramon70@gmail.com', 'Rosalia_BritoVelazquez@gmail.com', '$2b$10$j98wRYOkPdJruaLWZAh8c.Xzx3SBpAGc0xX7kHUNeuNhzMWzUJRWS', '995 805 924', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(47, 'Dl46MJAheU', 'Calderón Serrato', 'Lorena', '272087', '51582430S', 'ZOX', '2006-02-01 00:00:00', 'M', 'Especialista de Operaciones Nacional', 'Travesía Guadalupe Medina 57', 'Benidorm', '07573', 'Comunidad Valenciana', '960.079.942', 'Técnico', 'Lebrón Valentín Hermanos', 'Hogar', '2024-07-20 00:00:00', '2025-02-18 00:00:00', 'Conchita.HerediaAbeyta92@gmail.com', 'Alejandra61@yahoo.com', '$2b$10$oZjHCVOMtKG1ywXyLT5RTe4T3jtdcPLTFrGaXHN.MxD4qKJhhro3W', '952938394', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(48, 'Iuu4GXl8yZ', 'Prado Esparza', 'Concepción', '586724', '46038777X', 'RBF', '2000-06-01 00:00:00', 'H', 'Consultor de Datos Senior', 'Vía Pública Sara 64', 'San Sebastián', '29673', 'Andalucía', '913624728', 'Administrador', 'Solorzano Vela e Hijos', 'Decoración', '2023-06-23 00:00:00', NULL, 'Federico.AyalaAlcala@hotmail.com', 'Micaela12@yahoo.com', '$2b$10$2h/Hh.1enVRBDKsmintE7OIHjSqEMBLTUFqCx6E7YtXef8zJDX3D6', '919.875.443', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(49, 'WzNmIAU2f3', 'Marrero Deleón', 'Conchita', '422370', '15067544B', 'KHY', '2017-05-12 00:00:00', 'M', 'Facilitador de Contabilidad International', 'Carretera José María, 7', 'Gijón', '60619', 'Extremadura', '918 751 109', 'Relacciones', 'Loya, Delvalle y Bravo Asociados', 'Deportes', '2024-12-26 00:00:00', NULL, 'Esteban53@yahoo.com', 'Gloria.CerdaSalinas9@yahoo.com', '$2b$10$UTH3Ti6wHsjXCgqD9ReMTOGOIy4pycSicUeujxohhFsmV73/9sYka', '924.507.210', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(50, '73tXmTVpuJ', 'Benítez Domínguez', 'Ariadna', '958820', '50505163C', 'LQN', '2016-09-05 00:00:00', 'M', 'Representante de Funcionalidad Gerente', 'Monte Armando Botello 45', 'El Prat de LLobregat', '42282', 'País Vasco', '940.885.902', 'Relacciones', 'Fernández, Zamudio y Carrasco Asociados', 'Electrónica', '2021-02-26 00:00:00', NULL, 'Adela19@yahoo.com', 'Gloria.VegaNieves80@hotmail.com', '$2b$10$UB4ACLDN6zhQqrTyblAITuO75ZBbZWtqO7m1xXT2rrGgL2c2cFFIS', '902.291.865', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(51, '87ymaAvuDJ', 'Bustamante Delagarza', 'Mateo', '199169', '83189150H', 'OYB', '2016-10-18 00:00:00', 'O', 'Productor de Seguridada Director', 'Quinta Emilio 28', 'Algeciras', '78846', 'Andalucía', '909 971 351', 'Analista', 'Crespo, Valle y Garibay Asociados', 'Informática', '2023-07-17 00:00:00', '2025-02-17 00:00:00', 'Carlota47@gmail.com', 'Rosario92@yahoo.com', '$2b$10$9hXOc/hXYiRtxYe/fYDIC.yImf01eRerjMbrkX0VGr6U52veTTfEa', '995.403.254', NULL, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -247,57 +388,57 @@ CREATE TABLE `users_roles` (
 --
 
 INSERT INTO `users_roles` (`id`, `user_id`, `role_id`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
-(1, 1, 1, '2025-02-03 13:14:17', '2025-02-03 13:14:17', NULL),
-(2, 2, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(3, 3, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(4, 4, 5, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(5, 5, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(6, 6, 5, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(7, 7, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(8, 8, 5, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(9, 9, 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(10, 10, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(11, 11, 9, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(12, 12, 9, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(13, 13, 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(14, 14, 7, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(15, 15, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(16, 16, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(17, 17, 5, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(18, 18, 5, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(19, 19, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(20, 20, 10, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(21, 21, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(22, 22, 3, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(23, 23, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(24, 24, 9, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(25, 25, 9, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(26, 26, 3, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(27, 27, 10, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(28, 28, 10, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(29, 29, 3, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(30, 30, 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(31, 31, 10, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(32, 32, 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(33, 33, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(34, 34, 7, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(35, 35, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(36, 36, 3, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(37, 37, 2, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(38, 38, 9, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(39, 39, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(40, 40, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(41, 41, 7, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(42, 42, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(43, 43, 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(44, 44, 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(45, 45, 4, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(46, 46, 5, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(47, 47, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(48, 48, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(49, 49, 5, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(50, 50, 8, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL),
-(51, 51, 6, '2025-02-03 13:14:19', '2025-02-03 13:14:19', NULL);
+(1, 1, 1, '2025-02-18 08:59:41', '2025-02-18 08:59:41', NULL),
+(2, 2, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(3, 3, 10, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(4, 4, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(5, 5, 10, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(6, 6, 7, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(7, 7, 9, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(8, 8, 5, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(9, 9, 7, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(10, 10, 5, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(11, 11, 7, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(12, 12, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(13, 13, 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(14, 14, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(15, 15, 8, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(16, 16, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(17, 17, 10, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(18, 18, 9, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(19, 19, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(20, 20, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(21, 21, 9, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(22, 22, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(23, 23, 7, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(24, 24, 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(25, 25, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(26, 26, 5, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(27, 27, 10, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(28, 28, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(29, 29, 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(30, 30, 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(31, 31, 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(32, 32, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(33, 33, 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(34, 34, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(35, 35, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(36, 36, 7, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(37, 37, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(38, 38, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(39, 39, 7, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(40, 40, 10, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(41, 41, 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(42, 42, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(43, 43, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(44, 44, 9, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(45, 45, 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(46, 46, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(47, 47, 4, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(48, 48, 2, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(49, 49, 8, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(50, 50, 3, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL),
+(51, 51, 6, '2025-02-18 08:59:43', '2025-02-18 08:59:43', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -308,6 +449,13 @@ INSERT INTO `users_roles` (`id`, `user_id`, `role_id`, `createdAt`, `updatedAt`,
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`,`id_subcategory`),
+  ADD KEY `id_subcategory` (`id_subcategory`);
 
 --
 -- Indices de la tabla `roles`
@@ -329,6 +477,29 @@ ALTER TABLE `sequelizemeta`
 ALTER TABLE `subcategories`
   ADD PRIMARY KEY (`id`,`id_category`),
   ADD KEY `id_category` (`id_category`);
+
+--
+-- Indices de la tabla `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `type` (`type`);
+
+--
+-- Indices de la tabla `task_documents`
+--
+ALTER TABLE `task_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_task` (`id_task`),
+  ADD KEY `id_document` (`id_document`);
+
+--
+-- Indices de la tabla `task_users`
+--
+ALTER TABLE `task_users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_task` (`id_task`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indices de la tabla `users`
@@ -358,6 +529,12 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -368,6 +545,24 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `subcategories`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `task_documents`
+--
+ALTER TABLE `task_documents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `task_users`
+--
+ALTER TABLE `task_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -386,10 +581,36 @@ ALTER TABLE `users_roles`
 --
 
 --
+-- Filtros para la tabla `documents`
+--
+ALTER TABLE `documents`
+  ADD CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`id_subcategory`) REFERENCES `subcategories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `subcategories`
 --
 ALTER TABLE `subcategories`
   ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`type`) REFERENCES `roles` (`id`);
+
+--
+-- Filtros para la tabla `task_documents`
+--
+ALTER TABLE `task_documents`
+  ADD CONSTRAINT `task_documents_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `task_documents_ibfk_2` FOREIGN KEY (`id_document`) REFERENCES `documents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `task_users`
+--
+ALTER TABLE `task_users`
+  ADD CONSTRAINT `task_users_ibfk_1` FOREIGN KEY (`id_task`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `task_users_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `users_roles`
