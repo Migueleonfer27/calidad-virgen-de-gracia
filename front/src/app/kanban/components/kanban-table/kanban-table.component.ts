@@ -27,7 +27,7 @@ export class KanbanTableComponent {
 
   ngOnInit() {
     const userId = Number(localStorage.getItem('user_id'));
-    localStorage.setItem('user_id', '2'); // CAMBIAR CUANDO TENGAMOS LOGIN
+    //localStorage.setItem('user_id', '2'); // CAMBIAR CUANDO TENGAMOS LOGIN
 
     this.kanbanService.getTasksById(userId).subscribe(response => {
       console.log(response);

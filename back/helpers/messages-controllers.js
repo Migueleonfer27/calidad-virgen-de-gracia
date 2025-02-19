@@ -1,3 +1,5 @@
+/**Miguel y Daniel */
+
 export const messages = {
   user: {
     success: {

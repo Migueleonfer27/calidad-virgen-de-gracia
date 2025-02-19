@@ -1,3 +1,5 @@
+/**Gema */
+
 import {CategoryConnection} from '../databases/categories-connection/category-connection.js'
 
 export const categoryExist = (id) => {

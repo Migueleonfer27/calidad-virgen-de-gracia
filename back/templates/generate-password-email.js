@@ -1,3 +1,4 @@
+/** Miguel*/
 const viewPasswordEmail = (nameUser, password) => {
   return `
         <!DOCTYPE html>

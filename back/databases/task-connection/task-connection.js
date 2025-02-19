@@ -23,7 +23,7 @@ export class TaskConnection {
             idDocument.forEach(async (element) => {
                 const taskDocument=new TaskDocument()
                 taskDocument.id_task=resultTask.id
-                taskDocument.id_document=idDocument
+                taskDocument.id_document=element
                 result =await assignDocuments(taskDocument)
             });
            
