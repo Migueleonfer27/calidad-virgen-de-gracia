@@ -37,7 +37,7 @@ const viewPasswordEmail = (nameUser, password) => {
   
                     <p>Haz clic en el botón para iniciar sesión:</p>
                     
-                    <a href="http://localhost:4200/" style="
+                    <a href="http://localhost:4300/auth/login" style="
                         display: inline-block;
                         padding: 12px 30px;
                         margin-top: 15px;
