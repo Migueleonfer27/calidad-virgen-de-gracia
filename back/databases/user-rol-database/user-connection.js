@@ -51,8 +51,7 @@ class UserConnection {
 
     async updateUser(id, user) {
         try {
-            const password = await bcrypt.hash(user.password, 10);
-            return await Users.update({ ...user, password }, { where: { id } });
+            return await Users.update(user, { where: { id } });
         } catch (error) {
             throw error;
         }
