@@ -1,3 +1,4 @@
+/**Miguel y Daniel */
 import { Router } from "express";
 import { UserController } from "../controllers/user-controller.js";
 import {
@@ -9,7 +10,8 @@ import {
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
-  csvMiddleware
+  csvMiddleware,
+  passwordMiddleware
 } from "../middlewares/user-middleware.js";
 
 export const router = Router();
@@ -38,6 +40,11 @@ router.put(
   birthDateMiddleware,
   genderMiddleware,
   UserController.updateUser
+);
+router.put('/:id/password', 
+  isIdIntMiddleware, 
+  passwordMiddleware, 
+  UserController.updatePassword
 );
 router.delete("/:id", isIdIntMiddleware, UserController.deleteUser);
 router.post('/massive', csvMiddleware, UserController.storeUsersCsv);

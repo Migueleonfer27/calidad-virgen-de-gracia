@@ -1,5 +1,5 @@
-/**Miguel */
-import { response } from "express";
+/**Miguel y Daniel*/
+import { request, response } from "express";
 import { UserConnection } from "../databases/user-rol-database/user-connection.js";
 import messages from "../helpers/messages-controllers.js";
 import { importUsersFromCSV } from "../helpers/user-csv.js";
@@ -111,6 +111,24 @@ const UserController = {
       });
     }
   },
+
+  updatePassword: (req = request, res = response) => {
+    const { id } = req.params;
+    const { password } = req.body;
+
+    userConnection.updatePassword(id, password)
+      .then(data => {
+        res.status(200).json({
+          'msg': messages.user.success.update,
+          'data': data
+        })
+      })
+      .catch( err => {
+        res.status(500).json({
+          'msg': messages.user.error.update
+        })
+      })
+  }
 };
 
 export { UserController };

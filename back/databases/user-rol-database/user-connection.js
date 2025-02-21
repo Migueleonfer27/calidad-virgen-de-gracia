@@ -1,3 +1,4 @@
+/**Miguel y Daniel */
 import { Users, Roles } from "../../models/associations.js";
 import bcrypt from "bcrypt";
 import { sendEmail } from "../../helpers/mail-helper.js";
@@ -61,6 +62,20 @@ class UserConnection {
     async deleteUser(id) {
         try {
             return await Users.destroy({ where: { id } });
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async updatePassword(idUser, newPassword) {
+        try {
+            const hashedPassword = await bcrypt.hash(newPassword, 10);
+            const [updatedRows] = await Users.update(
+                { password: hashedPassword }, 
+                { where: { id: idUser } }
+            );
+            return updatedRows;
+            
         } catch (error) {
             throw error;
         }
