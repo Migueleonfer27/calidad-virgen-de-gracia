@@ -35,7 +35,7 @@ export class AbilityRole extends Model{
     }
   }, {
     sequelize:conexion,
-   modelName: 'AbilityRole',
+   modelName: 'abilities_roles',
    paranoid: true, // Por si hacemos softdelete
    deletedAt: 'deletedAt',
    timestamps: true, 

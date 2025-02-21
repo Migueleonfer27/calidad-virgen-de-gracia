@@ -4,7 +4,7 @@ export const isRolValid = (permiso) => {
         //0 no tiene token
         //1 no tiene las abilities adecuadas
         //2 problemas con la consulta de las abilities
-        const id_rol = req.user?.roleId; 
+        const rol = req.roles; 
         if (!id_rol) {
           return res.status(401).json({ cod: 0 });
         }
