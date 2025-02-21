@@ -20,13 +20,13 @@
             <td class="text-center align-middle">
               <div class="d-flex justify-content-center align-items-center gap-2">
                 <a [href]="item.url" target="_blank" class="d-inline-block">
-                  <img src="icono-pdf.png" alt="img-pdf" title="Ver documento" class="img-fluid" style="max-width: 40px;">
+                  <img src="icono-pdf.png" alt="img-pdf" matTooltip="Ver documento" class="img-fluid" style="max-width: 40px;">
                 </a>
                 <button
                 *ngIf="item.autofilled"
                 mat-icon-button matSuffix
                 (click)="downloadPdf(item)"
-                  title="Descargar documento autorellenado">
+                matTooltip="Descargar y autorrellenar">
                   <mat-icon class="text-primary">download</mat-icon>
                 </button>
               </div>

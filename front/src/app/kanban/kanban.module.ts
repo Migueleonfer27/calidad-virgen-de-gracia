@@ -9,6 +9,7 @@ import { KanbanRoutingModule } from './kanban-routing.module';
 import { KanbanTableComponent } from './components/kanban-table/kanban-table.component';
 import { KanbanPageComponent } from './pages/kanban-page/kanban-page.component';
 import { DocumentsDialogComponent } from './components/documents-dialog/documents-dialog.component';
+import { MatTooltip } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DocumentsDialogComponent } from './components/documents-dialog/document
     CdkDrag,
     MatButtonModule,
     MatCardModule,
-    MatIcon
+    MatIcon,
+    MatTooltip
   ],
   exports: [
     KanbanPageComponent,
