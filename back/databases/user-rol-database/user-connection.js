@@ -80,6 +80,19 @@ class UserConnection {
             throw error;
         }
     }
+
+    async updateProfilePic(idUser, img) {
+        try {
+            const [updatedRows] = await Users.update(
+                { profile_picture: img }, 
+                { where: { id: idUser } }
+            );
+            return updatedRows;
+            
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export { UserConnection };

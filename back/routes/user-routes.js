@@ -13,6 +13,7 @@ import {
   csvMiddleware,
   passwordMiddleware
 } from "../middlewares/user-middleware.js";
+import { fileValidator } from "../middlewares/file-middleware.js";
 
 export const router = Router();
 
@@ -45,6 +46,10 @@ router.put('/:id/password',
   isIdIntMiddleware, 
   passwordMiddleware, 
   UserController.updatePassword
+);
+router.put('/:id/uploadPic',
+  fileValidator,
+  UserController.updateProfilePic
 );
 router.delete("/:id", isIdIntMiddleware, UserController.deleteUser);
 router.post('/massive', csvMiddleware, UserController.storeUsersCsv);

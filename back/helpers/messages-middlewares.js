@@ -1,4 +1,4 @@
-/**Miguel */
+/**Miguel y Daniel*/
 
 const messages = {
   userMiddleware: {
@@ -35,6 +35,12 @@ const messages = {
       url: 'La url tiene un formato inválido.'
     }
   },
+
+  fileMiddleware: {
+    error: {
+      notFound: "No se encontraron archivos que subir."
+    }
+  }
 };
 
 export default messages;

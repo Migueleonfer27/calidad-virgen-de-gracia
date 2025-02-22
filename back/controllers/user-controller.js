@@ -3,6 +3,8 @@ import { request, response } from "express";
 import { UserConnection } from "../databases/user-rol-database/user-connection.js";
 import messages from "../helpers/messages-controllers.js";
 import { importUsersFromCSV } from "../helpers/user-csv.js";
+import { uploadFile, deleteFile } from "../helpers/file-helper.js";
+import { messages as msg } from '../helpers/messages-controllers.js';
 
 const userConnection = new UserConnection();
 
@@ -112,7 +114,7 @@ const UserController = {
     }
   },
 
-  updatePassword: (req = request, res = response) => {
+  updatePassword: async (req = request, res = response) => {
     const { id } = req.params;
     const { password } = req.body;
 
@@ -128,6 +130,27 @@ const UserController = {
           'msg': messages.user.error.update
         })
       })
+  },
+
+  updateProfilePic: async (req = request, res = response) => {
+    const { id } = req.params;
+    const { img } = req.files;
+
+    try {
+      const imgUrl = await uploadFile(img, undefined, 'profile-pictures');
+
+      const result = await userConnection.updateProfilePic(id, imgUrl);
+      
+      res.status(200).json({
+        'msg': msg.file.success.upload,
+        'data': result
+      })
+      
+    } catch (error) {
+      res.status(500).json({
+        'msg': msg.file.error.upload
+      })
+    }
   }
 };
 
