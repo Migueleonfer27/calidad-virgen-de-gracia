@@ -3,6 +3,7 @@ import { Users, Roles } from "../../models/associations.js";
 import bcrypt from "bcrypt";
 import { sendEmail } from "../../helpers/mail-helper.js";
 import { randomBytes } from 'crypto';
+import { uploadFile, deleteFile } from "../../helpers/file-helper.js";
 
 class UserConnection {
     async getUsers() {
@@ -82,12 +83,26 @@ class UserConnection {
     }
 
     async updateProfilePic(idUser, img) {
+
         try {
+
+            const user = await Users.findByPk(idUser);
+            if (!user) {
+                throw new Error("Usuario no encontrado.");
+            }
+
+            if (user.profile_picture) {
+                await deleteFile(user.profile_picture);
+            }
+    
+            const newImage = await uploadFile(img, undefined, 'profile-pictures');
+    
             const [updatedRows] = await Users.update(
-                { profile_picture: img }, 
+                { profile_picture: newImage }, 
                 { where: { id: idUser } }
             );
-            return updatedRows;
+    
+            return updatedRows ? newImage : null;
             
         } catch (error) {
             throw error;

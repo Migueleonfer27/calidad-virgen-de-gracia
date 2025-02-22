@@ -30,12 +30,12 @@ export const uploadFile = (img, validExtensions = ['png', 'jpg', 'jpeg'], folder
     })
 }
 
-export const deleteFile = (idFile, folder = 'profile-pictures', extension = 'jpg') => {
+export const deleteFile = (file, folder = 'profile-pictures') => {
 
     return new Promise( (resolve, reject ) => {
 
         const __dirname = dirname(fileURLToPath(import.meta.url));
-        const filePath = path.join(__dirname, '../uploads', folder, `${idFile}.${extension}`);
+        const filePath = path.join(__dirname, '../uploads', folder, file);
 
         if (fs.existsSync(filePath)) {
             fs.unlink(filePath, (err) => {

@@ -3,7 +3,6 @@ import { request, response } from "express";
 import { UserConnection } from "../databases/user-rol-database/user-connection.js";
 import messages from "../helpers/messages-controllers.js";
 import { importUsersFromCSV } from "../helpers/user-csv.js";
-import { uploadFile, deleteFile } from "../helpers/file-helper.js";
 import { messages as msg } from '../helpers/messages-controllers.js';
 
 const userConnection = new UserConnection();
@@ -137,19 +136,23 @@ const UserController = {
     const { img } = req.files;
 
     try {
-      const imgUrl = await uploadFile(img, undefined, 'profile-pictures');
+      const newImage = await userConnection.updateProfilePic(id, img);
 
-      const result = await userConnection.updateProfilePic(id, imgUrl);
-      
+      if (!newImage) {
+          return res.status(400).json({
+              msg: msg.file.error.upload
+          });
+      }
+
       res.status(200).json({
-        'msg': msg.file.success.upload,
-        'data': result
-      })
-      
+          msg: msg.file.success.upload,
+          data: { profile_picture: newImage }
+      });
+
     } catch (error) {
-      res.status(500).json({
-        'msg': msg.file.error.upload
-      })
+        res.status(500).json({
+            msg: msg.file.error.upload
+        });
     }
   }
 };
