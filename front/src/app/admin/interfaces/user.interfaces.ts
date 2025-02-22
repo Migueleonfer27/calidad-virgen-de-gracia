@@ -23,6 +23,7 @@ export interface User {
   corporate_email: string;
   password: string;
   phone: string;
+  profile_picture: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: null;
@@ -58,4 +59,9 @@ export interface ApiResponseRoles {
 export interface ApiResponseForFillPdf {
   message: string;
   data: User[];
+}
+
+export interface ProfileResponse {
+  message: string;
+  data: User;
 }
