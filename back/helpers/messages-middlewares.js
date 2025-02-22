@@ -1,5 +1,6 @@
 /**Miguel */
 
+
 const messages = {
   userMiddleware: {
     isInt: "El ID es requerido y debe ser un número entero.",
@@ -35,6 +36,10 @@ const messages = {
       url: 'La url tiene un formato inválido.'
     }
   },
+  abilitiesMiddleware: {
+    unauthorized:"Su rol no está autorizado para esta opción",
+    roleless: "Su usuario no tiene rol asignado"
+  }
 };
 
 export default messages;

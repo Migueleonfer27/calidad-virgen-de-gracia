@@ -54,13 +54,14 @@ export class AbilityRoleConnection {
         let result;
         
         try {
-            await this.resetRole(idRol)
-            abilities.forEach(async (element) => {
+            const deleted=await this.resetRole(idRol)
+            
+            for (const abilityId of abilities) {
                 const abilityRole = new AbilityRole();
                 abilityRole.id_rol = idRol;
-                abilityRole.id_ability = element;
+                abilityRole.id_ability = abilityId;
                 await abilityRole.save();
-            });
+            };
             result = { id_rol: idRol, abilities: abilities };
         } catch (error) {
             result = error;
@@ -68,6 +69,23 @@ export class AbilityRoleConnection {
         }
         return result;
     };
+
+    getRoleByName = async (name) => {
+        let result;
+        
+        try {
+            result=await Roles.findOne({
+                where: { position: name}
+            })
+           
+           
+        } catch (error) {
+            result = error;
+            throw error;
+        }
+        return result
+    }
+    
 
     resetRole = async (idRol)=>{
         let result;

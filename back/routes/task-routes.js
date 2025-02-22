@@ -6,6 +6,7 @@ import { isRolValid } from '../middlewares/abilities-middleware.js';
 import { abilities } from '../helpers/abilities.js';
 import { validateJWT } from '../middlewares/auth-middleware.js';
 export const router = Router();
+
 router.put('/updateState',taskController.updateFromUser)
 router.delete('/deleteFromUser', taskController.deleteFromUser);
 router.delete('/delete/:id',validateJWT,isRolValid(abilities.deleteTask), taskController.delete);
@@ -21,11 +22,12 @@ router.post('/insertByRole', [
     check('task.type', 'Debe asignarse un rol').not().isEmpty(),
     check('id_document[0]', 'Debe ser asignado algún documento').not().isEmpty(),
     validarCampos
-],taskController.insertByRole);
+],validateJWT,isRolValid(abilities.createTask),taskController.insertByRole);
 router.get('/getById/:id', taskController.getByIdUser);
-router.get('/', taskController.getAll);
+
+router.get('/',validateJWT,isRolValid(abilities.getTasks), taskController.getAll);
 router.put('/', [
     check('description', 'La descripción es obligatorio').not().isEmpty(),
     check('end_date', 'La fecha es obligatoria').not().isEmpty(),
     validarCampos
-],taskController.update);
+],validateJWT,isRolValid(abilities.updateTask),taskController.update);

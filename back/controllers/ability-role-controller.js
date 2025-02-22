@@ -14,18 +14,17 @@ export const abilitiesController = {
             .then((data) => {
                 result = 1;
 
-                console.log("Abilities insertada correctamente!");
                 res.status(201).json({
                     cod: result,
                     data: data,
                 });
             })
             .catch((err) => {
-                console.log(err);
+               
                 result = 0;
                 res.status(203).json({
                     cod: result,
-                    error: err,
+                    error: messages.abilities.error.abilityNotCreated,
                 });
             });
     },

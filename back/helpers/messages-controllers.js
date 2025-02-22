@@ -120,6 +120,7 @@ export const messages = {
       indexUser: 'Error al obtener los permisos del usuario.',
       notHaveAbilityRol: 'No hay permisos del asociados al rol.',
       notHaveRolUser: 'El usuario no tiene el rol asociado.',
+      abilityNotCreated: "Las abilities asociadas al rol no existen en el sistema"
     },
   }
 };

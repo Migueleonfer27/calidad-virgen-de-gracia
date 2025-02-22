@@ -76,6 +76,10 @@ module.exports = {
           description: abilities.createTask,
           createdAt: new Date(),
           updatedAt: new Date()
+        },{
+          description: abilities.getTasks,
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
           description: abilities.updateStateTask,
