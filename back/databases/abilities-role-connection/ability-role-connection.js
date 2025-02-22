@@ -94,9 +94,12 @@ export class AbilityRoleConnection {
             const abilitiesOfRol=await AbilityRole.findAll({
                 where: { id_rol: idRol}
             })
-            abilitiesOfRol.forEach(async(element) => {
-                result=await element.destroy()
-            });
+            if(abilitiesOfRol){
+                abilitiesOfRol.forEach(async(element) => {
+                    result=await element.destroy()
+                });
+            }
+           
            
         } catch (error) {
             result = error;
