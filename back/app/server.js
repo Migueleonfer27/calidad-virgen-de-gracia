@@ -11,6 +11,7 @@ import { router as mailRoutes } from "../routes/mail-routes.js";
 import { router as taskRoutes } from "../routes/task-routes.js";
 import { router as downloadRoutes } from "../routes/donwload-routes.js"
 import { router as documentRoutes } from "../routes/document-routes.js";
+import { router as abilityRoleRoutes} from "../routes/ability-role-routes.js"
 
 class Server {
   constructor() {
@@ -25,6 +26,7 @@ class Server {
     this.taskPath = "/api/task";
     this.downloadPath = "/api/download";
     this.documentPath = "/api/documents";
+    this.abilitiesPath= "/api/abilities"
     this.middlewares();
     this.routes();
   }
@@ -52,6 +54,7 @@ class Server {
     this.app.use(this.taskPath, taskRoutes);
     this.app.use(this.documentPath, documentRoutes);
     this.app.use(this.downloadPath, downloadRoutes);
+    this.app.use(this.abilitiesPath, abilityRoleRoutes);
   }
 
   listen() {

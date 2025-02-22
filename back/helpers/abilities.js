@@ -1,0 +1,26 @@
+
+export const abilities={
+    deleteCategory:'Borrar categoría',
+    updateCategory:'Editar categoría',
+    createCategory:'Crear categoría',
+    deleteSubcategory:'Borrar subcategoría',
+    updateSubcategory:'Editar subcategoría',
+    createSubcategory:'Crear subcategoría',
+    deleteDocument:'Borrar documento',
+    updateDocument:'Editar documento',
+    createDocument:'Crear documento',
+    downloadDocument: 'Descargar documento autorrellenado',
+    deleteTask:'Borrar tarea',
+    updateTask:'Editar tarea',
+    createTask:'Crear tarea',
+    updateStateTask: 'Cambiar estado de tarea',
+    getUsers:'Ver usuarios',
+    deleteUser:'Borrar usuario',
+    updateUser:'Editar usuario',
+    createUser:'Crear usuario',
+    getRoles: 'Ver roles',
+    deleteRol:'Borrar rol',
+    updateRol:'Editar rol',
+    createRol:'Crear rol',
+
+}
