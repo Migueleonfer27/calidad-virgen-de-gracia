@@ -81,5 +81,5 @@ Ability.belongsToMany(Roles, {
   otherKey: "id_rol",
 })
 
-export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument};
+export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole};
 

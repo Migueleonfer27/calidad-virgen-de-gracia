@@ -23,7 +23,7 @@ Ability.init({
   description: DataTypes.STRING
 }, {
   sequelize:conexion,
-  modelName: 'Ability',
+  modelName: 'abilities',
   paranoid: true, // Por si hacemos softdelete
   deletedAt: 'deletedAt',
   timestamps: true, 
