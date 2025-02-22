@@ -70,16 +70,17 @@ Task.belongsToMany(Document, {
   foreignKey: "id_task",
   otherKey: "id_document",
 });
+
 Roles.belongsToMany(Ability, {
   through: AbilityRole,
   foreignKey: "id_rol",
   otherKey: "id_ability",
 })
+
 Ability.belongsToMany(Roles, {
   through: AbilityRole,
   foreignKey: "id_ability",
   otherKey: "id_rol",
 })
 
-export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole};
-
+export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole };
