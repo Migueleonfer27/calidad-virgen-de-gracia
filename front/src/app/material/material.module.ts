@@ -15,6 +15,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   exports: [
@@ -34,7 +35,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSortModule,
     MatExpansionModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    MatBadgeModule
   ]
 })
 export class MaterialModule { }
