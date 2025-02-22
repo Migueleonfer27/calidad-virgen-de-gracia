@@ -109,6 +109,19 @@ export const messages = {
       notFound: "Error al intentar autorrellenar el pdf: ",
     },
   },
+
+  abilities: {
+    success: {
+      indexRol: 'Permisos del rol obtenidos correctamente.',
+      indexUser: 'Permisos del usuario obtenidos correctamente.',
+    },
+    error: {
+      indexRol: 'Error al obtener los permisos del rol.',
+      indexUser: 'Error al obtener los permisos del usuario.',
+      notHaveAbilityRol: 'No hay permisos del asociados al rol.',
+      notHaveRolUser: 'El usuario no tiene el rol asociado.',
+    },
+  }
 };
 
 export default messages;
