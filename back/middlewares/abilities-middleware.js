@@ -1,3 +1,5 @@
+//Gema
+
 export const isRolValid = (permiso) => {
     return async (req, res, next) => {
       try {

@@ -1,3 +1,5 @@
+//Gema
+
 export const abilities = {
   deleteCategory: "Borrar categoría",
   updateCategory: "Editar categoría",

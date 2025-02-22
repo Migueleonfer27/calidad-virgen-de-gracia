@@ -52,7 +52,9 @@ export class AbilityRoleConnection {
     // Gema
     addAbilitiesToRole = async (idRol, abilities) => {
         let result;
+        
         try {
+            await this.resetRole(idRol)
             abilities.forEach(async (element) => {
                 const abilityRole = new AbilityRole();
                 abilityRole.id_rol = idRol;
@@ -66,4 +68,22 @@ export class AbilityRoleConnection {
         }
         return result;
     };
+
+    resetRole = async (idRol)=>{
+        let result;
+        
+        try {
+            const abilitiesOfRol=await AbilityRole.findAll({
+                where: { id_rol: idRol}
+            })
+            abilitiesOfRol.forEach(async(element) => {
+                result=await element.destroy()
+            });
+           
+        } catch (error) {
+            result = error;
+            throw error;
+        }
+        return result
+    }
 }

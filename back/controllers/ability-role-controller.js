@@ -10,8 +10,7 @@ export const abilitiesController = {
     // Gema
     addAbilities: (req = request, res = response) => {
         let result;
-        connection
-            .addAbilitiesToRole(req.body.id_rol, req.body.abilities)
+        connection.addAbilitiesToRole(req.body.id_rol, req.body.abilities)
             .then((data) => {
                 result = 1;
 
