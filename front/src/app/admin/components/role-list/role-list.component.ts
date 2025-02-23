@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormRoleComponent } from '../form-role-dialog/form-role-dialog.component';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AbilitiesDialogComponent } from '../abilities-dialog/abilities-dialog.component';
 
 @Component({
   selector: 'app-role-list',
@@ -21,6 +22,7 @@ export class RoleListComponent {
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
   dataSource: MatTableDataSource<Role> = new MatTableDataSource<Role>([]);
+  idUser: number = Number(localStorage.getItem('user_id'));
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -114,6 +116,24 @@ export class RoleListComponent {
           }
         });
       }
+    });
+  }
+
+  showAbilitiesByRole(idRole: number) {
+    this.adminService.getAbilitiesByRole(idRole).subscribe((response) => {
+      const abilities = response.data.abilities.map(ability => ability.description);
+
+      this.dialog.open(AbilitiesDialogComponent, {
+        width: '1000px',
+        data: { abilities },
+        enterAnimationDuration: '300ms',
+        exitAnimationDuration: '300ms'
+      });
+    });
+  }
+  showAbilitiesByUser(idUser: number, idRole: number) {
+    this.adminService.getAbilitiesByUser(idUser, idRole).subscribe((response) => {
+      console.log(response.data.Roles.map(role => role.abilities.map(abilities => abilities.description)));
     });
   }
 }

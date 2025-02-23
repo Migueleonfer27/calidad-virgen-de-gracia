@@ -46,6 +46,9 @@
       <th mat-header-cell *matHeaderCellDef class="bg-header-table text-end align-middle"> Acciones </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-center gap-2 justify-content-md-center">
+          <button mat-icon-button [matTooltip]="'Ver permisos'">
+            <mat-icon class="text-success" (click)="showAbilitiesByRole(row.id)">receipt_long</mat-icon>
+          </button>
           <button mat-icon-button [matTooltip]="'Editar rol'">
             <mat-icon class="text-primary" (click)="editRole(row.id)">edit</mat-icon>
           </button>

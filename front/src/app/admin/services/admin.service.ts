@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf } from '../interfaces/user.interfaces';
+import { Response } from '../interfaces/abilities.interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,6 +13,7 @@ export class AdminService {
   private urlUsers: string = `${environment.apiUrl}/users`;
   private urlRoles: string = `${environment.apiUrl}/roles`;
   private urlUserRoles: string = `${environment.apiUrl}/users/roles`;
+  private urlAbilities: string = `${environment.apiUrl}/abilities`;
 
   constructor(private http: HttpClient) { }
 
@@ -71,5 +73,17 @@ export class AdminService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<any>(`${this.urlUsers}/massive`, formData);
+  }
+
+  // getAllAbilities(): Observable<Response> {
+
+  // }
+
+  getAbilitiesByRole(idRole: number): Observable<Response> {
+    return this.http.get<Response>(`${this.urlAbilities}/${idRole}`);
+  }
+
+  getAbilitiesByUser(idUser: number, idRole: number): Observable<Response> {
+    return this.http.get<Response>(`${this.urlAbilities}/${idUser}/${idRole}`);
   }
 }
