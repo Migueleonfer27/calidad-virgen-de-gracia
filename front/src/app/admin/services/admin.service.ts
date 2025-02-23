@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf } from '../interfaces/user.interfaces';
-import { Response } from '../interfaces/abilities.interfaces';
+import { Response, ResponseAbilities } from '../interfaces/abilities.interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -75,9 +75,9 @@ export class AdminService {
     return this.http.post<any>(`${this.urlUsers}/massive`, formData);
   }
 
-  // getAllAbilities(): Observable<Response> {
-
-  // }
+  getAllAbilities(): Observable<ResponseAbilities> {
+    return this.http.get<ResponseAbilities>(this.urlAbilities);
+  }
 
   getAbilitiesByRole(idRole: number): Observable<Response> {
     return this.http.get<Response>(`${this.urlAbilities}/${idRole}`);

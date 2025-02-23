@@ -25,3 +25,8 @@ export interface Role {
   position: string;
   abilities: Ability[];
 }
+
+export interface ResponseAbilities {
+  message: string;
+  data: Ability[];
+}

@@ -101,7 +101,7 @@ export class RoleListComponent {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas eliminar este rol?', button: 'Eliminar', closeBtn: 'Cancelar'}
+      data: { message: '¿Estás seguro de que deseas eliminar este rol?', button: 'Eliminar', closeBtn: 'Cancelar' }
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
@@ -119,18 +119,26 @@ export class RoleListComponent {
     });
   }
 
-  showAbilitiesByRole(idRole: number) {
-    this.adminService.getAbilitiesByRole(idRole).subscribe((response) => {
-      const abilities = response.data.abilities.map(ability => ability.description);
-
-      this.dialog.open(AbilitiesDialogComponent, {
-        width: '1000px',
-        data: { abilities },
-        enterAnimationDuration: '300ms',
-        exitAnimationDuration: '300ms'
+  showMenuAbilities(idRole: number) {
+    this.adminService.getAbilitiesByRole(idRole).subscribe((roleResponse) => {
+      const roleAbilities = roleResponse.data.abilities.map(ability => ability.description);
+      this.adminService.getAllAbilities().subscribe((allResponse) => {
+        const allAbilities = allResponse.data.map(ability => ({
+          description: ability.description,
+          checked: roleAbilities.includes(ability.description)
+        }));
+        allAbilities.sort((a, b) => (a.checked === b.checked) ? 0 : a.checked ? -1 : 1);
+        this.dialog.open(AbilitiesDialogComponent, {
+          width: '1000px',
+          data: { abilities: allAbilities },
+          enterAnimationDuration: '300ms',
+          exitAnimationDuration: '300ms'
+        });
       });
     });
   }
+
+  // Usar para guards
   showAbilitiesByUser(idUser: number, idRole: number) {
     this.adminService.getAbilitiesByUser(idUser, idRole).subscribe((response) => {
       console.log(response.data.Roles.map(role => role.abilities.map(abilities => abilities.description)));
