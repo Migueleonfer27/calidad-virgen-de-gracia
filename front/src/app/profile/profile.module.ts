@@ -6,6 +6,7 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { UploadProfilePicComponent } from './components/upload-profile-pic/upload-profile-pic.component';
 import { PhoneFormatPipe } from '../pipes/phone-format.pipe';
+import { UpdatePassFormDialogComponent } from './components/update-pass-form-dialog/update-pass-form-dialog.component';
 
 
 
@@ -14,7 +15,8 @@ import { PhoneFormatPipe } from '../pipes/phone-format.pipe';
     UserPageComponent,
     UserProfileComponent,
     UploadProfilePicComponent,
-    PhoneFormatPipe
+    PhoneFormatPipe,
+    UpdatePassFormDialogComponent
   ],
   imports: [
     CommonModule,

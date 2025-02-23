@@ -77,10 +77,15 @@ export class AdminService {
     return this.http.post<any>(`${this.urlUsers}/massive`, formData);
   }
 
-  uploadUserProfilePicture(userId: number, formData: FormData) {
+  uploadUserProfilePicture(idUser: number, formData: FormData) {
     return this.http.put<{ data: { profile_picture: string } }>(
-      `${this.urlUsers}/${userId}/uploadPic`,
+      `${this.urlUsers}/${idUser}/uploadPic`,
       formData
     );
+  }
+
+  updateUserPassword(idUser: number, password: string) {
+    const url = `${this.urlUsers}/${idUser}/password`;
+    return this.http.put<{ msg: string; data: number }>(url, { password }.password)
   }
 }

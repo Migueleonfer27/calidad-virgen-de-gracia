@@ -5,6 +5,8 @@ import { environment } from '../../../../environments/environment.development';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { UploadProfilePicComponent } from '../upload-profile-pic/upload-profile-pic.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdatePassFormDialogComponent } from '../update-pass-form-dialog/update-pass-form-dialog.component';
 
 @Component({
   selector: 'user-profile',
@@ -15,13 +17,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class UserProfileComponent implements OnInit {
 
   usuario: User = {} as User;
-  idUsuario: number | null = Number(localStorage.getItem('user_id'));
+  idUsuario: number = Number(localStorage.getItem('user_id'));
   private _uploadUrl: string = environment.uploadUrl;
   private _bottomSheet = inject(MatBottomSheet);
 
   constructor(
     private adminService: AdminService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -66,4 +69,33 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+
+  onChangePassword() {
+      const dialog = this.dialog.open(UpdatePassFormDialogComponent, {
+        width: '500px',
+        enterAnimationDuration: '300ms',
+        exitAnimationDuration: '300ms',
+        data: {
+          title: 'Cambiar contraseña',
+          button: 'Cambiar',
+          closeBtn: 'Cancelar',
+          message: 'Rellena ambos campos correctamente para cambiar tu contraseña.'
+        }
+      });
+
+      dialog.afterClosed().subscribe((password) => {
+        if (password) {
+          this.adminService.updateUserPassword(this.idUsuario, password).subscribe({
+            next: (response) => {
+              if(response.data == 1) {
+                this.snackBar.open('Contraseña cambiada con éxito.', 'Cerrar', { duration: 3000 })
+              }
+            },
+            error: (error) => {
+              this.snackBar.open(`No se ha podido cambiar la contraseña.`, 'Cerrar', { duration: 3000 })
+            }
+          })
+        }
+      });
+    }
 }

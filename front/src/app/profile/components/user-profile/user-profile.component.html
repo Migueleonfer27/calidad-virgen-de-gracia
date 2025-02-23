@@ -13,7 +13,7 @@
   <div class="row d-flex flex-column justify-content-center">
     <div class="col-md-3 mx-auto">
       <div class="text-center mb-4">
-        <button mat-fab extended class="py-4">
+        <button mat-fab extended class="py-4" (click)="onChangePassword()">
           <mat-icon>manage_accounts</mat-icon> Cambiar Contraseña
         </button>
       </div>
@@ -22,7 +22,7 @@
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">Roles</h5>
-          <span *ngFor="let role of usuario.Roles" class="badge me-2">{{ role.position }}</span>
+          <span *ngFor="let role of usuario.Roles" class="badge me-2 p-2">{{ role.position }}</span>
         </div>
       </div>
     </div>
