@@ -10,7 +10,8 @@ export const abilitiesController = {
     // Gema
     addAbilities: (req = request, res = response) => {
         let result;
-        connection.addAbilitiesToRole(req.body.id_rol, req.body.abilities)
+        connection
+            .addAbilitiesToRole(req.body.id_rol, req.body.abilities)
             .then((data) => {
                 result = 1;
 
@@ -20,7 +21,6 @@ export const abilitiesController = {
                 });
             })
             .catch((err) => {
-               
                 result = 0;
                 res.status(203).json({
                     cod: result,
@@ -37,9 +37,9 @@ export const abilitiesController = {
             );
 
             if (abilitiesByRole.dataValues.abilities.length <= 0) {
-                return res.status(404).json({
+                return res.status(200).json({
                     message: messages.abilities.error.notHaveAbilityRol,
-                    data: null,
+                    data: abilitiesByRole,
                 });
             }
 
@@ -82,6 +82,7 @@ export const abilitiesController = {
         }
     },
 
+    // Miguel
     getAllAbilities: async (req = request, res = response) => {
         try {
             const abilities = await connection.indexAbilities();

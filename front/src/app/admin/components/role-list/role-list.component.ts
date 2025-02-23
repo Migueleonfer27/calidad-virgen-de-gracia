@@ -1,3 +1,5 @@
+// Miguel
+
 import { Component, ViewChild } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { Role, UserList } from '../../interfaces/user.interfaces';
