@@ -133,6 +133,18 @@ module.exports = {
           description: abilities.createRol,
           createdAt: new Date(),
           updatedAt: new Date()
+        },{
+          description: abilities.getAbilitiesByRol,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },{
+          description: abilities.getAbilitiesByUser,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },{
+          description: abilities.addAbilities,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ];
 

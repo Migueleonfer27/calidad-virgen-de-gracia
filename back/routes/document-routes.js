@@ -3,6 +3,9 @@ import { Router } from "express";
 import { documentController } from "../controllers/document-controller.js";
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validar-campos.js";
+import { validateJWT } from "../middlewares/auth-middleware.js";
+import { isRolValid } from "../middlewares/abilities-middleware.js";
+import { abilities } from "../helpers/abilities.js";
 
 export const router = Router();
 
@@ -10,7 +13,7 @@ router.delete('/delete/:id',
     [
         check('id', 'El id debe ser de tipo numérico.').isInt().notEmpty(),
         validarCampos
-    ], documentController.delete);
+    ], validateJWT,isRolValid(abilities.deleteDocument), documentController.delete);
 
 router.put('/update',
     [
@@ -19,7 +22,7 @@ router.put('/update',
         check('code', 'El code es obligatorio.').isString().notEmpty(),
         check('url', 'La url es obligatoria.').isString().notEmpty(),
         validarCampos
-    ], documentController.update);
+    ], validateJWT,isRolValid(abilities.updateDocument), documentController.update);
 
 router.post('/', 
     [
@@ -28,7 +31,7 @@ router.post('/',
         check('url', 'La url es obligatoria.').isString().notEmpty(),
         check('id_subcategory', 'El id_subcategory es obligatorio').isInt().notEmpty(),
         validarCampos
-    ], documentController.insert);
+    ], validateJWT,isRolValid(abilities.createDocument), documentController.insert);
 
 router.get('/getById/:id',
     [
