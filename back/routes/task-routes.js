@@ -24,7 +24,7 @@ router.post('/insertByRole', [
     check('id_document[0]', 'Debe ser asignado algún documento').not().isEmpty(),
     validarCampos
 ],validateJWT,isRolValid(abilities.createTask),taskController.insertByRole);
-router.get('/getById/:id',validateJWT,isRolValid(abilities.getMyTask), taskController.getByIdUser);
+router.get('/getById/:id',validateJWT,isRolValid(abilities.getMyTask),isMyTask, taskController.getByIdUser);
 router.get('/',validateJWT,isRolValid(abilities.getTasks), taskController.getAll);
 router.put('/', [
     check('description', 'La descripción es obligatorio').not().isEmpty(),

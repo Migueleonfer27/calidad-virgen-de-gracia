@@ -7,6 +7,8 @@ export const isMyTask = (req, res, next) => {
 
     if(id_user == id_userTask) {
        return next();
+    }else if(req.params.id==id_user) {
+        return next();
     }
-    return res.status(403).json({ cod:1, msg: messages.taskMiddleware.unauthorized});
+    return res.status(403).json({ cod:0, msg: messages.taskMiddleware.unauthorized});
   };
