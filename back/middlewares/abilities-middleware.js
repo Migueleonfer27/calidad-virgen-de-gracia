@@ -1,8 +1,8 @@
 //Gema
 
-import { AbilityRoleConnection } from "../databases/abilities-role-connection/ability-role-connection.js";
+import { getAbilities } from "../helpers/db-validator.js";
 import messages  from "../helpers/messages-middlewares.js"
-const connection = new AbilityRoleConnection();
+
 
 export const isRolValid = (permiso) => {
     return async (req, res, next) => {
@@ -15,10 +15,7 @@ export const isRolValid = (permiso) => {
         if (!rol) {
           return res.status(401).json({ cod: 0, msg: messages.abilitiesMiddleware.roleless});
         }
-        const id_rol=await connection.getRoleByName(rol[0])
-       
-        
-        const abilities = await connection.getAbilityRole(id_rol.id);
+        const abilities= await getAbilities(rol)
         console.log(abilities.abilities)
         console.log(permiso)
         const abilityRequired= abilities.abilities.filter(ability =>ability.dataValues.description == permiso) 

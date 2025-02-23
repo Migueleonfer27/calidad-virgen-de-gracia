@@ -66,6 +66,15 @@ module.exports = {
           description: abilities.deleteTask,
           createdAt: new Date(),
           updatedAt: new Date()
+        }, {
+          description: abilities.deleteMyTask,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          description: abilities.getMyTask,
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
           description: abilities.updateTask,

@@ -16,6 +16,8 @@ export const abilities = {
   createTask: "Crear tarea",
   updateStateTask: "Cambiar estado de tarea",
   getTasks: "Ver tareas",
+  getMyTask: "Ver mis tareas",
+  deleteMyTask:"Borrar mis tareas",
   getUsers: "Ver usuarios",
   deleteUser: "Borrar usuario",
   updateUser: "Editar usuario",
