@@ -1,5 +1,9 @@
-<h2 mat-dialog-title class="text-light mb-4 fs-1 bg-color p-4">Permisos</h2>
+<h2 mat-dialog-title class="text-light mb-4 fs-1 bg-color p-4">Gestión de Permisos</h2>
 <mat-dialog-content>
+  <div class="d-flex align-items-center bg-color-soft text-white p-3 mb-3 rounded fs-6 shadow">
+    <mat-icon class="text-light pe-4">info</mat-icon>
+    <p class="mb-0 ps-2">Gestiona los permisos de cada rol para definir las acciones que los usuarios pueden realizar dentro de la aplicación.</p>
+  </div>
   <div class="table-responsive border rounded-3 shadow-sm">
     <table mat-table [dataSource]="dataSource" class="table table-striped table-hover">
       <ng-container matColumnDef="number">
@@ -28,6 +32,6 @@
   </mat-paginator>
   <mat-dialog-actions align="end">
     <button mat-button class="mat-primary" (click)="closeDialog()">Cerrar</button>
-    <button mat-button class="mat-primary" (click)="openConfirmDialog()">Confirmar</button>
+    <button mat-button class="mat-primary" (click)="openConfirmDialog()">Añadir</button>
   </mat-dialog-actions>
 </mat-dialog-content>

@@ -124,13 +124,14 @@ export class RoleListComponent {
       const roleAbilities = roleResponse.data.abilities.map(ability => ability.description);
       this.adminService.getAllAbilities().subscribe((allResponse) => {
         const allAbilities = allResponse.data.map(ability => ({
+          id: ability.id,
           description: ability.description,
           checked: roleAbilities.includes(ability.description)
         }));
         allAbilities.sort((a, b) => (a.checked === b.checked) ? 0 : a.checked ? -1 : 1);
         this.dialog.open(AbilitiesDialogComponent, {
           width: '1000px',
-          data: { abilities: allAbilities },
+          data: { abilities: allAbilities, roleId: idRole },
           enterAnimationDuration: '300ms',
           exitAnimationDuration: '300ms'
         });

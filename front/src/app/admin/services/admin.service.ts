@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf } from '../interfaces/user.interfaces';
-import { Response, ResponseAbilities } from '../interfaces/abilities.interfaces';
+import { Response, ResponseAbilities, ResponseInsertAbilities } from '../interfaces/abilities.interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class AdminService {
     return this.http.get<ApiResponse>(`${this.urlUsers}/${id}`);
   }
 
-  getUserForFillPdf(id: number): Observable<ApiResponseForFillPdf> { // PRUEBA RELLENAR PDF
+  getUserForFillPdf(id: number): Observable<ApiResponseForFillPdf> { // PRUEBA RELLENAR PDF
     return this.http.get<ApiResponseForFillPdf>(`${this.urlUsers}/${id}`);
   }
 
@@ -85,5 +85,9 @@ export class AdminService {
 
   getAbilitiesByUser(idUser: number, idRole: number): Observable<Response> {
     return this.http.get<Response>(`${this.urlAbilities}/${idUser}/${idRole}`);
+  }
+
+  assignAbilitiesToRole(idRole: number, abilities: Number[]) {
+    return this.http.post<ResponseInsertAbilities>(`${this.urlAbilities}/addAbilities`, { id_rol: idRole, abilities });
   }
 }

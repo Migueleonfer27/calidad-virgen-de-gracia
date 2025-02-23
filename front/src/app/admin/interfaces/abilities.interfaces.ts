@@ -30,3 +30,13 @@ export interface ResponseAbilities {
   message: string;
   data: Ability[];
 }
+
+export interface ResponseInsertAbilities {
+  cod: number;
+  data: Data;
+}
+
+export interface DataInsertAbilities {
+  id_rol: number;
+  abilities: number[];
+}

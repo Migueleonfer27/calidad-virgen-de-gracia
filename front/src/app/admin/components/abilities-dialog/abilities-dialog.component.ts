@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { AdminService } from '../../services/admin.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-abilities-dialog',
@@ -17,8 +19,10 @@ export class AbilitiesDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AbilitiesDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { abilities: string[] },
-    private dialog: MatDialog
+    @Inject(MAT_DIALOG_DATA) public data: { abilities: any[], roleId: number },
+    private dialog: MatDialog,
+    private adminService: AdminService,
+    private snackBar: MatSnackBar
   ) {
     this.dataSource = new MatTableDataSource(this.data.abilities);
   }
@@ -46,7 +50,26 @@ export class AbilitiesDialogComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.closeDialog();
+        const selectedAbilities = this.data.abilities
+          .filter(ability => ability.checked)
+          .map(ability => ability.id);
+
+        this.adminService.assignAbilitiesToRole(this.data.roleId, selectedAbilities)
+          .subscribe({
+            next: (response) => {
+              this.snackBar.open('Permisos asignados correctamente', 'Cerrar', {
+                duration: 3000,
+              });
+              console.log('Permisos asignados correctamente:', response);
+              this.closeDialog();
+            },
+            error: (error) => {
+              this.snackBar.open('Error al asignar habilidades', 'Cerrar', {
+                duration: 3000,
+              });
+              console.error('Error al asignar habilidades:', error);
+            }
+          });
       }
     });
   }
