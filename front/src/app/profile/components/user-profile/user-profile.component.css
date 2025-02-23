@@ -11,3 +11,7 @@ img.img-fluid {
 .badge {
   background-color: #193e7a;
 }
+
+#profileContainer {
+  border-radius: 0 0 0.3rem 0.3rem;
+}

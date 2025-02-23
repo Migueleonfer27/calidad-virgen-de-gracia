@@ -38,6 +38,7 @@ export interface UserList {
   birth_date: Date;
   admission_date: Date;
   gender: string;
+  profile_picture: string;
   Roles: Role[];
 }
 

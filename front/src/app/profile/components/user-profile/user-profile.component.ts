@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../admin/interfaces/user.interfaces';
 import { AdminService } from '../../../admin/services/admin.service';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'user-profile',
@@ -12,6 +13,7 @@ export class UserProfileComponent implements OnInit {
 
   usuario: User = {} as User;
   idUsuario: number | null = Number(localStorage.getItem('user_id'));
+  private _uploadUrl: string = environment.uploadUrl;
 
   constructor(private adminService: AdminService) {}
 
@@ -30,7 +32,7 @@ export class UserProfileComponent implements OnInit {
 
   get profilePicUrl() {
     return this.usuario?.profile_picture
-      ? `http://localhost:9090/uploads/profile-pictures/${this.usuario.profile_picture}`
+      ? `${this._uploadUrl}${this.usuario.profile_picture}`
       : 'img-user.png';
   }
 }
