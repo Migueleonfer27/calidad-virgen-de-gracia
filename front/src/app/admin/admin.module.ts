@@ -23,6 +23,8 @@ import { FormRoleComponent } from './components/form-role-dialog/form-role-dialo
 import { SharedModule } from '../shared/shared.module';
 import { DocumentModule } from '../document/document.module';
 import { MatTooltip } from '@angular/material/tooltip';
+import { AbilitiesDialogComponent } from './components/abilities-dialog/abilities-dialog.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { MatTooltip } from '@angular/material/tooltip';
     FormUserDialogComponent,
     RoleListComponent,
     FormRoleComponent,
+    AbilitiesDialogComponent,
   ],
   imports: [
     CategoryModule,
@@ -53,7 +56,8 @@ import { MatTooltip } from '@angular/material/tooltip';
     SubcategoryModule,
     SharedModule,
     DocumentModule,
-    MatTooltip
+    MatTooltip,
+    MatCheckboxModule,
   ],
   exports:[
     AdminPageComponent,

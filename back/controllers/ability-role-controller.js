@@ -32,8 +32,10 @@ export const abilitiesController = {
     // Miguel
     getAbilitiesByRole: async (req = request, res = response) => {
         try {
-            const abilitiesByRole = await connection.getAbilityRole(req.params.idRole);
-            
+            const abilitiesByRole = await connection.getAbilityRole(
+                req.params.idRole
+            );
+
             if (abilitiesByRole.dataValues.abilities.length <= 0) {
                 return res.status(404).json({
                     message: messages.abilities.error.notHaveAbilityRol,
@@ -56,8 +58,11 @@ export const abilitiesController = {
     // Miguel
     getAbilitiesByUser: async (req = request, res = response) => {
         try {
-            const abilitiesByUser = await connection.getAbilityByUserRol(req.params.idUser, req.params.idRole);
-            
+            const abilitiesByUser = await connection.getAbilityByUserRol(
+                req.params.idUser,
+                req.params.idRole
+            );
+
             if (abilitiesByUser === null) {
                 return res.status(404).json({
                     message: messages.abilities.error.notHaveRolUser,
@@ -75,5 +80,28 @@ export const abilitiesController = {
                 error: error.message,
             });
         }
-    }
+    },
+
+    getAllAbilities: async (req = request, res = response) => {
+        try {
+            const abilities = await connection.indexAbilities();
+
+            if (abilities.length <= 0) {
+                return res.status(404).json({
+                    message: messages.abilities.error.notHaveAbilities,
+                    data: null,
+                });
+            }
+
+            res.status(200).json({
+                message: messages.abilities.success.indexAbilities,
+                data: abilities,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: messages.abilities.error.indexAbilities,
+                error: error.message,
+            });
+        }
+    },
 };

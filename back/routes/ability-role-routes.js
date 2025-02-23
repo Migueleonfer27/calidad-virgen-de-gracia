@@ -18,6 +18,12 @@ router.post(
 
 // Miguel
 router.get(
+    "/",
+    abilitiesController.getAllAbilities
+);
+
+// Miguel
+router.get(
     "/:idRole",
     [check("idRole", "El rol es obligatorio").not().isEmpty().isNumeric(), validarCampos],
     validateJWT,isRolValid(abilities.getAbilitiesByRol),

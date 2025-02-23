@@ -2,6 +2,17 @@ import { Roles, Ability, AbilityRole, Users } from "../../models/associations.js
 
 export class AbilityRoleConnection {
     // Miguel
+    indexAbilities = async () => {
+        try {
+            return await Ability.findAll({
+                attributes: ['id', 'description']
+            });
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    // Miguel
     getAbilityRole = async (idRole) => {
         try {
             return await Roles.findOne({
@@ -47,7 +58,7 @@ export class AbilityRoleConnection {
         } catch (error) {
             throw error;
         }
-    };    
+    };
 
     // Gema
     addAbilitiesToRole = async (idRol, abilities) => {
