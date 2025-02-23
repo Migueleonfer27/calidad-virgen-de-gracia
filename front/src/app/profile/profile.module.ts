@@ -5,6 +5,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { UploadProfilePicComponent } from './components/upload-profile-pic/upload-profile-pic.component';
+import { PhoneFormatPipe } from '../pipes/phone-format.pipe';
 
 
 
@@ -12,7 +13,8 @@ import { UploadProfilePicComponent } from './components/upload-profile-pic/uploa
   declarations: [
     UserPageComponent,
     UserProfileComponent,
-    UploadProfilePicComponent
+    UploadProfilePicComponent,
+    PhoneFormatPipe
   ],
   imports: [
     CommonModule,

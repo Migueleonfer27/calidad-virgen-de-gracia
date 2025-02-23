@@ -29,7 +29,6 @@ export class UserProfileComponent implements OnInit {
       this.adminService.getUserForProfile(this.idUsuario)
         .subscribe((response) => {
           this.usuario = response.data;
-          console.log(this.usuario)
       });
 
     } else {

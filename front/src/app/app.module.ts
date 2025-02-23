@@ -1,23 +1,21 @@
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
-import { AdminModule } from './admin/admin.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
-import { provideHttpClient } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { HttpClientModule } from '@angular/common/http'
-
-import {provideNativeDateAdapter} from '@angular/material/core';
-import { MatPaginatorIntl } from '@angular/material/paginator';
-import { MatPaginatorEs } from './utils/paginator-espanol';
+import { SharedModule } from './shared/shared.module';
 import { TaskModule } from './task/task.module';
+import { MatPaginatorEs } from './utils/paginator-espanol';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +25,6 @@ import { TaskModule } from './task/task.module';
     BrowserAnimationsModule,
     HttpClientModule,
     TaskModule,
-
 ],
   providers: [
     provideAnimationsAsync(),

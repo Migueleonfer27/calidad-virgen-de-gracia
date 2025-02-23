@@ -41,7 +41,7 @@
               <div class="card-body">
                 <p><strong>Código:</strong> {{ usuario.code }}</p>
                 <p><strong>Número de Registro Personal (NRP):</strong> {{ usuario.nrp }}</p>
-                <p><strong>Teléfono:</strong> {{ usuario.phone_rp }}</p>
+                <p><strong>Teléfono:</strong> {{ usuario.phone_rp | phoneFormat }}</p>
                 <p><strong>Correo corporativo:</strong> {{ usuario.corporate_email }}</p>
               </div>
             </div>
@@ -71,7 +71,7 @@
               <div class="card-body">
                 <p><strong>DNI:</strong> {{ usuario.dni }}</p>
                 <p><strong>Correo personal:</strong> {{ usuario.email }}</p>
-                <p><strong>Teléfono personal:</strong> {{ usuario.phone }}</p>
+                <p><strong>Teléfono personal:</strong> {{ usuario.phone | phoneFormat }}</p>
                 <p><strong>Fecha de nacimiento:</strong> {{ usuario.birth_date | date:'dd/MM/yyyy' }}</p>
               </div>
             </div>
