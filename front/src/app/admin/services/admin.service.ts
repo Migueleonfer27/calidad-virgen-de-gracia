@@ -76,4 +76,11 @@ export class AdminService {
     formData.append('file', file);
     return this.http.post<any>(`${this.urlUsers}/massive`, formData);
   }
+
+  uploadUserProfilePicture(userId: number, formData: FormData) {
+    return this.http.put<{ data: { profile_picture: string } }>(
+      `${this.urlUsers}/${userId}/uploadPic`,
+      formData
+    );
+  }
 }

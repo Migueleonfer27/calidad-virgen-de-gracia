@@ -17,6 +17,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   exports: [
@@ -38,7 +40,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSidenavModule,
     MatCardModule,
     MatBadgeModule,
-    MatTabsModule
+    MatTabsModule,
+    MatBottomSheetModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }
