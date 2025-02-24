@@ -11,11 +11,13 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { TaskModule } from './task/task.module';
 import { MatPaginatorEs } from './utils/paginator-espanol';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
