@@ -1,3 +1,4 @@
+/**Miguel y Daniel */
 import { Router } from "express";
 import { UserController } from "../controllers/user-controller.js";
 import {
@@ -9,8 +10,10 @@ import {
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
-  csvMiddleware
+  csvMiddleware,
+  passwordMiddleware
 } from "../middlewares/user-middleware.js";
+import { fileValidator } from "../middlewares/file-middleware.js";
 import { validateJWT } from "../middlewares/auth-middleware.js";
 import { isRolValid } from "../middlewares/abilities-middleware.js";
 import { abilities } from "../helpers/abilities.js";
@@ -44,6 +47,19 @@ router.put(
   validateJWT,isRolValid(abilities.updateUser),
   UserController.updateUser
 );
+
+router.put('/:id/password', 
+  isIdIntMiddleware, 
+  passwordMiddleware, 
+  UserController.updatePassword
+);
+router.put('/:id/uploadPic',
+  fileValidator,
+  UserController.updateProfilePic
+);
+router.delete("/:id", isIdIntMiddleware, UserController.deleteUser);
+
 router.delete("/:id", isIdIntMiddleware,
   validateJWT,isRolValid(abilities.deleteUser), UserController.deleteUser);
+
 router.post('/massive', csvMiddleware, UserController.storeUsersCsv);

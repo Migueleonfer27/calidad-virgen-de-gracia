@@ -48,7 +48,6 @@ export class FormUserDialogComponent {
       leave_date: [''],
       email: ['', [Validators.required, Validators.email]],
       corporate_email: ['', [Validators.required]],
-      password: [''],
       phone: ['', Validators.required],
       profile_picture: [''],
       roles: [[]]

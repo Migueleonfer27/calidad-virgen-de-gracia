@@ -110,6 +110,20 @@ export const messages = {
     },
   },
 
+
+  file: {
+    success: {
+      upload: "Archivo subido correctamente.",
+      delete: "Archivo eliminado con éxito."
+    },
+    error: {
+      upload: "Error al subir el archivo.",
+      delete: "Error al eliminar el archivo.",
+      extension: "La extensión no es permitida.",
+      notFound: "Archivo no encontrado."
+    }
+  },
+
   abilities: {
     success: {
       indexAbilities: 'Abilities obtenidas correctamente.',
@@ -125,6 +139,7 @@ export const messages = {
       notHaveRolUser: 'El usuario no tiene el rol asociado.',
       abilityNotCreated: "Las abilities asociadas al rol no existen en el sistema"
     },
+
   }
 };
 

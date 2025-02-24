@@ -35,7 +35,7 @@ export class TokenService {
     }
     try {
       const decodeToken = jwtDecode<JwtPayload>(token)
-      console.log(decodeToken)
+      // console.log(decodeToken)
       return decodeToken
     } catch (error) {
       console.error('Error al decodificar el token', error)
@@ -81,6 +81,6 @@ export class TokenService {
 
   getSessionActive(): boolean {
     const sessionActiveString = this.cookieService.get('sessionActive');
-    return sessionActiveString ? JSON.parse(sessionActiveString) : false; 
+    return sessionActiveString ? JSON.parse(sessionActiveString) : false;
   }
 }

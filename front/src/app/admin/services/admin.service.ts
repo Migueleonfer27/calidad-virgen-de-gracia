@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf } from '../interfaces/user.interfaces';
+import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf, ProfileResponse } from '../interfaces/user.interfaces';
 import { Response, ResponseAbilities, ResponseInsertAbilities } from '../interfaces/abilities.interfaces';
 import { Observable } from 'rxjs';
 
@@ -27,7 +27,11 @@ export class AdminService {
     return this.http.get<ApiResponse>(`${this.urlUsers}/${id}`);
   }
 
-  getUserForFillPdf(id: number): Observable<ApiResponseForFillPdf> { // PRUEBA RELLENAR PDF
+  getUserForProfile(id: number): Observable<ProfileResponse> {
+    return this.http.get<ProfileResponse>(`${this.urlUsers}/${id}`);
+  }
+
+  getUserForFillPdf(id: number): Observable<ApiResponseForFillPdf> { // PRUEBA RELLENAR PDF
     return this.http.get<ApiResponseForFillPdf>(`${this.urlUsers}/${id}`);
   }
 
@@ -77,6 +81,18 @@ export class AdminService {
     return this.http.post<any>(`${this.urlUsers}/massive`, formData);
   }
 
+
+  uploadUserProfilePicture(idUser: number, formData: FormData) {
+    return this.http.put<{ data: { profile_picture: string } }>(
+      `${this.urlUsers}/${idUser}/uploadPic`,
+      formData
+    );
+  }
+
+  updateUserPassword(idUser: number, password: string) {
+    const url = `${this.urlUsers}/${idUser}/password`;
+    return this.http.put<{ msg: string; data: number }>(url, { password }.password)
+  }
   getAllAbilities(): Observable<ResponseAbilities> {
     return this.http.get<ResponseAbilities>(this.urlAbilities);
   }
@@ -91,5 +107,6 @@ export class AdminService {
 
   assignAbilitiesToRole(idRole: number, abilities: Number[]) {
     return this.http.post<ResponseInsertAbilities>(`${this.urlAbilities}/addAbilities`, { id_rol: idRole, abilities });
+
   }
 }

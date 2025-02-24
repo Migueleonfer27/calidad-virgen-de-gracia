@@ -1,4 +1,4 @@
-/**Miguel */
+/**Miguel y Daniel*/
 
 
 const messages = {
@@ -36,12 +36,20 @@ const messages = {
       url: 'La url tiene un formato inválido.'
     }
   },
+
+
+  fileMiddleware: {
+    error: {
+      notFound: "No se encontraron archivos que subir."
+    }
+  },
   abilitiesMiddleware: {
     unauthorized:"Su rol no está autorizado para esta opción",
     roleless: "Su usuario no tiene rol asignado"
   },
   taskMiddleware: {
     unauthorized:"El evento solo puede ser manipulado por el usuario asignado a él"
+
   }
 };
 

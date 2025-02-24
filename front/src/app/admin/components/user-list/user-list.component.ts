@@ -12,6 +12,7 @@ import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialo
 import { MatDialog } from '@angular/material/dialog';
 import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../../environments/environment.development';
 
 @Component({
   selector: 'app-user-list',
@@ -28,7 +29,7 @@ export class UserListComponent implements AfterViewInit {
 
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
-
+  private _uploadUrl: string = environment.uploadUrl;
   displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'last_name', 'corporate_email', 'roles', 'actions'];
 
 
@@ -201,5 +202,11 @@ export class UserListComponent implements AfterViewInit {
         }
       })
     }
+  }
+
+  getprofilePicUrl(user: UserList): string {
+    return user.profile_picture
+      ? `${this._uploadUrl}${user.profile_picture}`
+      : 'img-user.png';
   }
 }
