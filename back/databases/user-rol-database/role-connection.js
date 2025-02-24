@@ -1,3 +1,4 @@
+/**Miguel */
 import { Roles } from "../../models/associations.js";
 
 class RoleConnection {

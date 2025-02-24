@@ -39,6 +39,7 @@ class Server {
         createParentPath: true,
       })
     );
+    this.app.use('/uploads', express.static('uploads'));
   }
 
   routes() {

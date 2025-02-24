@@ -1,0 +1,14 @@
+<div class="upload-container p-4">
+  <h4 class="d-flex align-items-center justify-content-center gap-2 m-0">
+    <mat-icon>perm_media</mat-icon> Seleccionar nueva imagen
+  </h4>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control my-4">
+  <div class="button-group d-flex justify-content-center gap-3">
+    <button mat-raised-button color="primary" (click)="uploadImage()" [disabled]="!selectedFile">
+      <mat-icon>upload</mat-icon> Subir
+    </button>
+    <button mat-raised-button (click)="close()">
+      Cancelar
+    </button>
+  </div>
+</div>

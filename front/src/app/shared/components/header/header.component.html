@@ -9,13 +9,14 @@
     <div class="col-4 col-md-6 text-end">
      <!--<div *ngIf="!isUserLoggedIn()">-->
         <button mat-raised-button [matMenuTriggerFor]="userMenu">
-          Mi cuenta
+          <mat-icon>menu</mat-icon> Menú principal
         </button>
         <mat-menu #userMenu="matMenu">
-          <button mat-menu-item routerLink="/admin">Administración</button>
-          <button mat-menu-item routerLink="/task">Calidad</button>
-          <button mat-menu-item routerLink="/kanban">Kanban</button>
-          <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+          <button mat-menu-item routerLink="/profile"><mat-icon>account_circle</mat-icon> Mi perfil</button>
+          <button mat-menu-item routerLink="/kanban"><mat-icon>view_column</mat-icon> Mis tareas</button>
+          <button mat-menu-item routerLink="/task"><mat-icon>content_paste</mat-icon> Calidad</button>
+          <button mat-menu-item routerLink="/admin"><mat-icon>settings</mat-icon> Administración</button>
+          <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon> Cerrar sesión</button>
         </mat-menu>
       <!--</div>-->
     </div>

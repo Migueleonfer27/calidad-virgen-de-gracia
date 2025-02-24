@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf } from '../interfaces/user.interfaces';
+import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf, ProfileResponse } from '../interfaces/user.interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class AdminService {
 
   getUser(id: number): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(`${this.urlUsers}/${id}`);
+  }
+
+  getUserForProfile(id: number): Observable<ProfileResponse> {
+    return this.http.get<ProfileResponse>(`${this.urlUsers}/${id}`);
   }
 
   getUserForFillPdf(id: number): Observable<ApiResponseForFillPdf> { // PRUEBA RELLENAR PDF
@@ -71,5 +75,17 @@ export class AdminService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<any>(`${this.urlUsers}/massive`, formData);
+  }
+
+  uploadUserProfilePicture(idUser: number, formData: FormData) {
+    return this.http.put<{ data: { profile_picture: string } }>(
+      `${this.urlUsers}/${idUser}/uploadPic`,
+      formData
+    );
+  }
+
+  updateUserPassword(idUser: number, password: string) {
+    const url = `${this.urlUsers}/${idUser}/password`;
+    return this.http.put<{ msg: string; data: number }>(url, { password }.password)
   }
 }

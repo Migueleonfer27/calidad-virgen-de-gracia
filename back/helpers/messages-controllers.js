@@ -109,6 +109,19 @@ export const messages = {
       notFound: "Error al intentar autorrellenar el pdf: ",
     },
   },
+
+  file: {
+    success: {
+      upload: "Archivo subido correctamente.",
+      delete: "Archivo eliminado con éxito."
+    },
+    error: {
+      upload: "Error al subir el archivo.",
+      delete: "Error al eliminar el archivo.",
+      extension: "La extensión no es permitida.",
+      notFound: "Archivo no encontrado."
+    }
+  }
 };
 
 export default messages;

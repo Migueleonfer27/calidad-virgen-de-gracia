@@ -24,10 +24,12 @@ const routes: Routes = [
     loadChildren: () => import('./task/task.module').then(m => m.TaskModule)
   },
   {
-
     path: 'kanban',
     loadChildren: () => import('./kanban/kanban.module').then(m => m.KanbanModule)
-
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
   },
   {
     path: '**',

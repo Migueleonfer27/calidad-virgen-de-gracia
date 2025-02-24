@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content class="py-0">
+  <p>{{ data.message }}</p>
+</div>
+<hr>
+<form [formGroup]="changePassForm">
+  <mat-dialog-content class="d-flex flex-column gap-2 justify-content-center">
+    <mat-form-field class="w-100">
+      <mat-label>Nueva contraseña</mat-label>
+      <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" minlength="8" (input)="onInput('password')">
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility('password')">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>Confirma tu nueva contraseña</mat-label>
+      <input matInput formControlName="confirmPassword" [type]="hidePassword ? 'password' : 'text'" minlength="8" (input)="onInput('confirmPassword')">
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility('confirmPassword')">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-error *ngIf="changePassForm.invalid && (changePassForm.get('password')?.dirty || changePassForm.get('confirmPassword')?.dirty)">
+      La contraseña debe incluir al menos:
+      <ul>
+        <li>8 caracteres.</li>
+        <li>Una letra mayúscula.</li>
+        <li>Una letra minúscula.</li>
+        <li>Un número.</li>
+        <li>Un carácter especial.</li>
+      </ul>
+    </mat-error>
+
+    <mat-error *ngIf="changePassForm.errors?.['passwordsMismatch']">
+      Ambos campos de contraseña deben coincidir.
+    </mat-error>
+
+    <div class="d-flex gap-2 justify-content-end">
+      <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="save()" [disabled]="changePassForm.invalid"
+        [ngClass]="{'text-secondary': changePassForm.invalid}">{{ data.button }}</button>
+    </div>
+  </mat-dialog-content>
+</form>
