@@ -110,6 +110,7 @@ export const messages = {
     },
   },
 
+
   file: {
     success: {
       upload: "Archivo subido correctamente.",
@@ -121,6 +122,24 @@ export const messages = {
       extension: "La extensión no es permitida.",
       notFound: "Archivo no encontrado."
     }
+  },
+
+  abilities: {
+    success: {
+      indexAbilities: 'Abilities obtenidas correctamente.',
+      indexRol: 'Permisos del rol obtenidos correctamente.',
+      indexUser: 'Permisos del usuario obtenidos correctamente.',
+    },
+    error: {
+      indexAbilities: 'Error al intentar obtener las abilities',
+      indexRol: 'Error al obtener los permisos del rol.',
+      indexUser: 'Error al obtener los permisos del usuario.',
+      notHaveAbilities: 'No hay listado abilities.',
+      notHaveAbilityRol: 'No hay permisos del asociados al rol.',
+      notHaveRolUser: 'El usuario no tiene el rol asociado.',
+      abilityNotCreated: "Las abilities asociadas al rol no existen en el sistema"
+    },
+
   }
 };
 

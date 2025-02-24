@@ -1,0 +1,32 @@
+//Gema
+
+export const abilities = {
+  deleteCategory: "Borrar categoría",
+  updateCategory: "Editar categoría",
+  createCategory: "Crear categoría",
+  deleteSubcategory: "Borrar subcategoría",
+  updateSubcategory: "Editar subcategoría",
+  createSubcategory: "Crear subcategoría",
+  deleteDocument: "Borrar documento",
+  updateDocument: "Editar documento",
+  createDocument: "Crear documento",
+  downloadDocument: "Descargar documento autorrellenado",
+  deleteTask: "Borrar eventos",
+  updateTask: "Editar eventos",
+  createTask: "Crear eventos",
+  updateStateTask: "Cambiar estado de eventos",
+  getTasks: "Ver tareas",
+  getMyTask: "Ver mis eventos",
+  deleteMyTask:"Borrar mis eventos",
+  getUsers: "Ver usuarios",
+  deleteUser: "Borrar usuario",
+  updateUser: "Editar usuario",
+  createUser: "Crear usuario",
+  getRoles: "Ver roles",
+  deleteRol: "Borrar rol",
+  updateRol: "Editar rol",
+  createRol: "Crear rol",
+  getAbilitiesByRol:"Ver los permisos de un rol",
+  getAbilitiesByUser: "Ver los permisos de un usuario",
+  addAbilities: "Añadir permisos a un rol"
+};

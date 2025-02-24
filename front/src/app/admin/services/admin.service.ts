@@ -1,7 +1,10 @@
+// Miguel
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf, ProfileResponse } from '../interfaces/user.interfaces';
+import { Response, ResponseAbilities, ResponseInsertAbilities } from '../interfaces/abilities.interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,6 +15,7 @@ export class AdminService {
   private urlUsers: string = `${environment.apiUrl}/users`;
   private urlRoles: string = `${environment.apiUrl}/roles`;
   private urlUserRoles: string = `${environment.apiUrl}/users/roles`;
+  private urlAbilities: string = `${environment.apiUrl}/abilities`;
 
   constructor(private http: HttpClient) { }
 
@@ -77,6 +81,7 @@ export class AdminService {
     return this.http.post<any>(`${this.urlUsers}/massive`, formData);
   }
 
+
   uploadUserProfilePicture(idUser: number, formData: FormData) {
     return this.http.put<{ data: { profile_picture: string } }>(
       `${this.urlUsers}/${idUser}/uploadPic`,
@@ -87,5 +92,21 @@ export class AdminService {
   updateUserPassword(idUser: number, password: string) {
     const url = `${this.urlUsers}/${idUser}/password`;
     return this.http.put<{ msg: string; data: number }>(url, { password }.password)
+  }
+  getAllAbilities(): Observable<ResponseAbilities> {
+    return this.http.get<ResponseAbilities>(this.urlAbilities);
+  }
+
+  getAbilitiesByRole(idRole: number): Observable<Response> {
+    return this.http.get<Response>(`${this.urlAbilities}/${idRole}`);
+  }
+
+  getAbilitiesByUser(idUser: number, idRole: number): Observable<Response> {
+    return this.http.get<Response>(`${this.urlAbilities}/${idUser}/${idRole}`);
+  }
+
+  assignAbilitiesToRole(idRole: number, abilities: Number[]) {
+    return this.http.post<ResponseInsertAbilities>(`${this.urlAbilities}/addAbilities`, { id_rol: idRole, abilities });
+
   }
 }

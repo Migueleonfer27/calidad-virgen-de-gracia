@@ -1,3 +1,5 @@
+// Miguel
+
 import { Component, ViewChild } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { Role, UserList } from '../../interfaces/user.interfaces';
@@ -8,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormRoleComponent } from '../form-role-dialog/form-role-dialog.component';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AbilitiesDialogComponent } from '../abilities-dialog/abilities-dialog.component';
 
 @Component({
   selector: 'app-role-list',
@@ -21,6 +24,7 @@ export class RoleListComponent {
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
   dataSource: MatTableDataSource<Role> = new MatTableDataSource<Role>([]);
+  idUser: number = Number(localStorage.getItem('user_id'));
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -99,7 +103,7 @@ export class RoleListComponent {
       width: '350px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { message: '¿Estás seguro de que deseas eliminar este rol?', button: 'Eliminar', closeBtn: 'Cancelar'}
+      data: { message: '¿Estás seguro de que deseas eliminar este rol?', button: 'Eliminar', closeBtn: 'Cancelar' }
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
@@ -114,6 +118,33 @@ export class RoleListComponent {
           }
         });
       }
+    });
+  }
+
+  showMenuAbilities(idRole: number) {
+    this.adminService.getAbilitiesByRole(idRole).subscribe((roleResponse) => {
+      const roleAbilities = roleResponse.data.abilities.map(ability => ability.description);
+      this.adminService.getAllAbilities().subscribe((allResponse) => {
+        const allAbilities = allResponse.data.map(ability => ({
+          id: ability.id,
+          description: ability.description,
+          checked: roleAbilities.includes(ability.description)
+        }));
+        allAbilities.sort((a, b) => (a.checked === b.checked) ? 0 : a.checked ? -1 : 1);
+        this.dialog.open(AbilitiesDialogComponent, {
+          width: '1000px',
+          data: { abilities: allAbilities, roleId: idRole },
+          enterAnimationDuration: '300ms',
+          exitAnimationDuration: '300ms'
+        });
+      });
+    });
+  }
+
+  // Usar para guards
+  showAbilitiesByUser(idUser: number, idRole: number) {
+    this.adminService.getAbilitiesByUser(idUser, idRole).subscribe((response) => {
+      console.log(response.data.Roles.map(role => role.abilities.map(abilities => abilities.description)));
     });
   }
 }

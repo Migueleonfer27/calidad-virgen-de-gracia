@@ -1,5 +1,6 @@
 /**Miguel y Daniel*/
 
+
 const messages = {
   userMiddleware: {
     isInt: "El ID es requerido y debe ser un número entero.",
@@ -36,10 +37,19 @@ const messages = {
     }
   },
 
+
   fileMiddleware: {
     error: {
       notFound: "No se encontraron archivos que subir."
     }
+  },
+  abilitiesMiddleware: {
+    unauthorized:"Su rol no está autorizado para esta opción",
+    roleless: "Su usuario no tiene rol asignado"
+  },
+  taskMiddleware: {
+    unauthorized:"El evento solo puede ser manipulado por el usuario asignado a él"
+
   }
 };
 

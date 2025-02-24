@@ -7,6 +7,9 @@ import Document from "./document.js"
 import TaskUser from "./task-user.js";
 import Task from "./task.js";
 import TaskDocument from "./task-document.js";
+import Ability from "./ability.js";
+import AbilityRole from "./ability-role.js";
+
 
 Users.belongsToMany(Roles, {
   through: UsersRoles,
@@ -68,5 +71,16 @@ Task.belongsToMany(Document, {
   otherKey: "id_document",
 });
 
-export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument};
+Roles.belongsToMany(Ability, {
+  through: AbilityRole,
+  foreignKey: "id_rol",
+  otherKey: "id_ability",
+})
 
+Ability.belongsToMany(Roles, {
+  through: AbilityRole,
+  foreignKey: "id_ability",
+  otherKey: "id_rol",
+})
+
+export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole };

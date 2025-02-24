@@ -2,7 +2,9 @@ import jwt from 'jsonwebtoken'
 import {blacklistedTokens} from '../controllers/auth-controller.js'
 
 const validateJWT = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]
+    console.log(req.headers)
+    const token = req.header('authorization')
+    console.log(token)
     if (!token) {
         return res.status(401).json({ message: 'Token no proveído' })
     }
