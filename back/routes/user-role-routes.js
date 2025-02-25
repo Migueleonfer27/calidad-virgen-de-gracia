@@ -16,13 +16,16 @@ router.post(
   "/",
   userRoleIdRequiredMiddleware,
   userRoleIdIntMiddleware,
-  validateJWT,isRolValid(abilities.updateUser),
+  validateJWT,
+  isRolValid(abilities.updateUser),
   UserRoleController.addUserRole
 );
+
 router.delete(
   "/:user_id/:role_id",
   userRoleIdParamsRequiredMiddleware,
   isUserIdAndRoleIdIntMiddleware,
-  validateJWT,isRolValid(abilities.updateUser),
+  validateJWT,
+  isRolValid(abilities.updateUser),
   UserRoleController.deleteUserRole
 );

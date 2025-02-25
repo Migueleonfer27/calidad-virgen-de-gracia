@@ -28,5 +28,8 @@ export const abilities = {
   createRol: "Crear rol",
   getAbilitiesByRol:"Ver los permisos de un rol",
   getAbilitiesByUser: "Ver los permisos de un usuario",
-  addAbilities: "Añadir permisos a un rol"
+  addAbilities: "Añadir permisos a un rol",
+  uploadPicture: "Cargar foto",
+  updatePassword: "Actualizar contraseña",
+  createMassiveUser: "Importar csv",
 };
