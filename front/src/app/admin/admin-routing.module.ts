@@ -6,7 +6,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { SubcategoryTableComponent } from '../subcategory/components/subcategory-table/subcategory-table.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
 import { DocumentTableComponent } from '../document/components/document-table/document-table.component';
-
+import { AbilitiesGuard } from '../auth/guards/abilities.guard';
 
 const routes: Routes = [
   {
@@ -19,11 +19,15 @@ const routes: Routes = [
       },
       {
         path: 'usersList',
-        component: UserListComponent
+        component: UserListComponent,
+        canActivate: [AbilitiesGuard],
+        data: { abilities: ['Ver usuarios'] }
       },
       {
         path: 'roles',
-        component: RoleListComponent
+        component: RoleListComponent,
+        canActivate: [AbilitiesGuard],
+        data: { abilities: ['Ver roles'] }
       },
       {
         path: 'documents',
