@@ -1,3 +1,5 @@
+import { Role } from "./role.interface"
+
 // Jaime Ortega
 export interface LoginForm {
   email: string
@@ -21,5 +23,5 @@ export interface AuthResponse {
 
 export interface JwtPayload {
   uid: number,
-  roles: string[]
+  roles: Role[]
 }

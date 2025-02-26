@@ -17,7 +17,7 @@ export class RolesCardComponent {
 
   selectRole(role: Role): void {
     this.tokenService.setSelectedRole(role)
-    localStorage.setItem('rol', JSON.stringify(role))
+    localStorage.setItem('role', JSON.stringify(role.position))
     window.location.href = 'http://localhost:4200'
   }
 }
