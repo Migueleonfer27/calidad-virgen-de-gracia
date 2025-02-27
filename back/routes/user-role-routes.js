@@ -14,8 +14,6 @@ export const router = Router();
 
 router.post(
   "/",
-  userRoleIdRequiredMiddleware,
-  userRoleIdIntMiddleware,
   validateJWT,
   isRolValid(abilities.updateUser),
   UserRoleController.addUserRole
