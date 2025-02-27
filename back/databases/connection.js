@@ -5,7 +5,7 @@ dotenv.config();
 export let db;
 
 if (!db) {
-  console.log("Conexión establecida correctamente.");
+  console.log("✅ Conexión establecida correctamente.");
   db = new Sequelize(
     process.env.DB_DEV,
     process.env.DB_USER,
@@ -27,7 +27,7 @@ if (!db) {
 process.on("SIGINT", () => {
   db.close()
     .then(() => {
-      console.log("Conexión cerrada correctamente.");
+      console.log("❌ Conexión cerrada correctamente.");
       process.exit(0);
     })
     .catch((error) => {

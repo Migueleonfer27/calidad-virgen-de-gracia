@@ -94,4 +94,4 @@ Message.belongsTo(Users, {
   foreignKey: 'userId'
 })
 
-export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole };
+export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole, Message };

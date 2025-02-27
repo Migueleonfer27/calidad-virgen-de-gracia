@@ -2,7 +2,7 @@
 import { response, request } from 'express';
 import { CategoryConnection } from '../databases/categories-connection/category-connection.js'
 import { messages as msg } from '../helpers/messages-controllers.js';
-import { DocumentConnection } from '../databases/documents/documents-connection.js'
+import { DocumentConnection } from '../databases/document-connection/documents-connection.js'
 
 const connection = new CategoryConnection();
 const docuementConnection = new DocumentConnection()
