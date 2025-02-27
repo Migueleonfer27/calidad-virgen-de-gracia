@@ -1,11 +1,11 @@
 <mat-accordion hideToggle>
-  <mat-expansion-panel class="py-3" *ngFor="let category of categories" [routerLink]="['/category', category.id]" routerLinkActive="active">
-    <mat-expansion-panel-header class="py-3">
+  <mat-expansion-panel class="py-3" *ngFor="let category of categories">
+    <mat-expansion-panel-header class="py-3" (click)="navigateToCategory(category.id!)">
       <mat-panel-title> {{ category.name }} </mat-panel-title>
     </mat-expansion-panel-header>
     <ul class="list-group">
       <li
-      *ngFor="let subcategory of subcategories" [routerLink]="['/subcategory/details', subcategory.id]" routerLinkActive="active"
+      *ngFor="let subcategory of subcategories" (click)="navigateToSubcategory(subcategory.id!)"
       class="list-group-item py-3">
         {{ subcategory.name }}
       </li>
