@@ -50,6 +50,7 @@ export class MessageConnection {
     insertMessage = async (message) => {
         try {
             const newMessage = await Message.create({
+                subject: message.subject,
                 message: message.message,
                 userId: message.userId,
             });

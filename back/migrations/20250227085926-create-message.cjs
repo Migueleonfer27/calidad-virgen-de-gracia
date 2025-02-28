@@ -1,3 +1,4 @@
+// Daniel Cruz
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -9,10 +10,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      message: {
+      subject: {
+        allowNull: false,
         type: Sequelize.STRING
       },
+      message: {
+        allowNull: false,
+        type: Sequelize.STRING(1000)
+      },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'Users', 

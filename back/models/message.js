@@ -1,3 +1,4 @@
+// Daniel Cruz
 'use strict';
 import { DataTypes, Model } from 'sequelize';
 import { db as conexion } from '../databases/connection.js';
@@ -19,6 +20,7 @@ export class Message extends Model{
       primaryKey: true,
       autoIncrement: true,
     },
+    subject: DataTypes.STRING,
     message: DataTypes.STRING,
     userId: {
       type: DataTypes.INTEGER,

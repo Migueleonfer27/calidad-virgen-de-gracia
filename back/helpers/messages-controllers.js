@@ -138,8 +138,23 @@ export const messages = {
       notHaveAbilityRol: 'No hay permisos del asociados al rol.',
       notHaveRolUser: 'El usuario no tiene el rol asociado.',
       abilityNotCreated: "Las abilities asociadas al rol no existen en el sistema"
-    },
+    }
+  },
 
+  message: {
+    success: {
+      index: "Mensajes obtenidos correctamente.",
+      show: "Mensaje obtenido correctamente.",
+      create: "Mensaje creado correctamente.",
+      delete: "Mensaje eliminado correctamente.",
+    },
+    error: {
+      index: "Error al obtener los mensajes.",
+      show: "Error al obtener el mensaje.",
+      notFound: "No se encontraron mensajes disponibles.",
+      create: "Error al crear el mensaje.",
+      delete: "Error al eliminar el mensaje.",
+    }
   }
 };
 

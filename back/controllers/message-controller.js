@@ -1,6 +1,7 @@
 // Daniel Cruz
 import { request, response } from "express";
 import { MessageConnection as Connection } from '../databases/message-connection/message-connection.js';
+import { messages as msg } from "../helpers/messages-controllers.js";
 
 const connection = new Connection();
 
@@ -11,19 +12,19 @@ export const messageController = {
             .then(data => {
                 if (data.length > 0) {
                     res.status(200).json({
-                        'msg': 'Mensajes obtenidos correctamente',
+                        'msg': msg.message.success.index,
                         'data': data
                     });
                 } else {
                     res.status(203).json({
-                        'msg': 'No se encontraron mensajes.',
+                        'msg': msg.message.error.notFound,
                         'data': data
                     })
                 }
             })
             .catch( err => {
                 res.status(500).json({
-                    'msg': 'Error al obtener los mensajes.'
+                    'msg': msg.message.error.index
                 })
             })
     },
@@ -34,13 +35,13 @@ export const messageController = {
         connection.getMessage(id)
             .then(data => {
                 res.status(200).json({
-                    'msg': 'Mensaje obtenido correctamente.',
+                    'msg': msg.message.success.show,
                     'data': data
                 });
             })
             .catch( err => {
                 res.status(500).json({
-                    'msg': 'Error al obtener el mensaje.'
+                    'msg': msg.message.error.show
                 })
             })
     },
@@ -56,6 +57,7 @@ export const messageController = {
                     const messages = data.map(message => {
                         return {
                             id: message.id,
+                            subject: message.subject,
                             message: message.message,
                             createdAt: message.createdAt,
                             updatedAt: message.updatedAt,
@@ -64,7 +66,7 @@ export const messageController = {
                     });
 
                     res.status(200).json({
-                        'msg': 'Mensajes obtenidos correctamente.',
+                        'msg': msg.message.success.index,
                         'data': {
                             user: userData,
                             messages: messages
@@ -72,14 +74,14 @@ export const messageController = {
                     });
                 } else {
                     res.status(203).json({
-                        'msg': 'No se encontraron mensajes para este usuario.',
+                        'msg': msg.message.error.notFound,
                         'data': []
                     });
                 }
             })
             .catch(err => {
                 res.status(500).json({
-                    'msg': 'Error al obtener los mensajes.'
+                    'msg': msg.message.error.index
                 });
             });
     },
@@ -89,13 +91,13 @@ export const messageController = {
         connection.insertMessage(message)
             .then(data => {
                 res.status(201).json({
-                    'msg': 'Mensaje insertado correctamente.',
+                    'msg': msg.message.success.create,
                     'data': data
                 })
             })
             .catch( err => {
                 res.status(500).json({
-                    'msg': 'Error al insertar el mensaje.'
+                    'msg': msg.message.error.create
                 })
             })
     },
@@ -105,13 +107,13 @@ export const messageController = {
         connection.deleteMessage(id)
             .then(data => {
                 res.status(200).json({
-                    'msg': 'Mensaje borrado correctamente.',
+                    'msg': msg.message.success.delete,
                     'data': data
                 })
             })
             .catch( err => {
                 res.status(500).json({
-                    'msg': 'Error al borrar el mensaje.'
+                    'msg': msg.message.error.delete
                 })
             })
     }
