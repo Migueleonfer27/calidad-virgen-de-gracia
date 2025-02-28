@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home/pages/home-page/home-page.component';
 import { ErrorComponent } from './error/error.component';
+import { AbilitiesGuard } from './auth/guards/abilities.guard';
+import { abilities } from './utils/abilities';
 
 const routes: Routes = [
   {
@@ -10,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'category',
-    loadChildren: () => import('./home/home.module').then( m => m.HomeModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomeModule),
+
   },
   {
     path: 'subcategory',
@@ -30,7 +33,9 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+    canMatch: [AbilitiesGuard],
+    data: { abilities: [abilities.uploadPicture,abilities.updatePassword,abilities.updateCategory] }
   },
   {
     path: '**',

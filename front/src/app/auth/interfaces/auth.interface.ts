@@ -18,3 +18,20 @@ export interface AuthResponse {
   user: User
   token: string
 }
+
+export interface ResultAbilities {
+  message: string;
+  data:    Data;
+}
+
+export interface Data {
+  id:        number;
+  position:  string;
+  abilities: Ability[];
+}
+
+export interface Ability {
+  id:          number;
+  description: string;
+}
+

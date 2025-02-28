@@ -15,18 +15,18 @@ export class AbilityRoleConnection {
     // Miguel
     getAbilityRole = async (idRole) => {
         try {
-            return await Roles.findOne({
-                where: { id: idRole },
+            return  await Roles.findOne({
                 attributes: ['id', 'position'],
+                where: { id: idRole }, 
                 include: [
                     {
                         model: Ability,
                         as: "abilities",
                         attributes: ['id', 'description'],
-                        through: { attributes: [] }
                     }
                 ]
             });
+           
         } catch (error) {
             throw error;
         }

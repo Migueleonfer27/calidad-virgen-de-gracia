@@ -4,42 +4,46 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router,
+  CanMatch,
+  GuardResult,
+  MaybeAsync,
+  Route,
+  UrlSegment,
 } from '@angular/router';
-import { AdminService } from '../../admin/services/admin.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../services/auth.service';
+import { Ability } from '../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AbilitiesGuard implements CanActivate {
-  constructor(private router: Router, private adminService: AdminService, private matSnackBar: MatSnackBar) {}
+export class AbilitiesGuard implements CanMatch {
+  constructor(private router: Router, private authService: AuthService, private matSnackBar: MatSnackBar) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): Observable<boolean> {
-    const requiredAbilities: string[] = route.data['abilities'] || [];
 
-    return this.adminService.getAbilitiesByRole(2).pipe( // CAMBIAR EL NÚMERO POR EL ID DEL ROL DEL LOCALSTORAGE
-      map((response) => {
-        const rolAbilities = response.data.abilities.map(
-          (ability) => ability.description
-        );
+  canMatch(route: Route, segments: UrlSegment[]): boolean | Observable<boolean> {
+    return this.checkAbilities(route);
+  }
 
-        console.log('Abilities del usuario:', rolAbilities);
-        console.log('Abilities requeridas:', requiredAbilities);
+   checkAbilities(route: Route): Observable<boolean> {
+    let requiredAbilities: String[] = route?.data?.['abilities'] || [];
 
-        const hasAbility = requiredAbilities.some((ability) =>
-          rolAbilities.includes(ability)
-        );
+     return this.authService.getAbilitiesByRole(6).pipe(
+      map(result => {
+        const abilitiesRol = result.data.abilities;
+         console.log(abilitiesRol)
+         console.log(requiredAbilities)
+        const hasAbilities = abilitiesRol.filter(ability =>requiredAbilities.includes(ability.description));
 
-        if (hasAbility) return true;
+        if (hasAbilities.length==0) {
+          this.matSnackBar.open('No estás autorizado.', 'Cerrar', { duration: 3000 });
+          //this.router.navigate(['/']);
+          return false;
+        }
 
-        this.matSnackBar.open('No estás autorizado.', 'Cerrar', { duration: 3000 });
-
-        return false;
+        return true;
       })
     );
   }

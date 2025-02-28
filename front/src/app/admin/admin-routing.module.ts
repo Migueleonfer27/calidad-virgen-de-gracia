@@ -7,6 +7,7 @@ import { SubcategoryTableComponent } from '../subcategory/components/subcategory
 import { RoleListComponent } from './components/role-list/role-list.component';
 import { DocumentTableComponent } from '../document/components/document-table/document-table.component';
 import { AbilitiesGuard } from '../auth/guards/abilities.guard';
+import {abilities} from '../utils/abilities'
 
 const routes: Routes = [
   {
@@ -15,31 +16,32 @@ const routes: Routes = [
     children: [
       {
         path: 'categories',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.createCategory,abilities.deleteCategory,abilities.updateCategory] }
       },
       {
         path: 'usersList',
         component: UserListComponent,
-        canActivate: [AbilitiesGuard],
-        data: { abilities: ['Ver usuarios'] }
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.getUsers,abilities.deleteUser,abilities.updateUser,abilities.createUser] }
       },
       {
         path: 'roles',
         component: RoleListComponent,
-        canActivate: [AbilitiesGuard],
-        data: { abilities: ['Ver roles'] }
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.getRoles,abilities.deleteRol,abilities.updateRol,abilities.createRol,abilities.getAbilitiesByRol,abilities.getAbilitiesByUser,abilities.addAbilities,] }
       },
       {
         path: 'documents',
-        component: DocumentTableComponent
-      },
-      {
-        path: '',
-        redirectTo: 'usersList',
-        pathMatch: 'full'
+        component: DocumentTableComponent,
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.createDocument,abilities.deleteDocument,abilities.updateDocument] }
       },
       { path: 'subcategory-table/:id/:name',
-        component: SubcategoryTableComponent }
+        component: SubcategoryTableComponent,
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.createSubcategory,abilities.deleteSubcategory,abilities.updateSubcategory] }}
     ]
   }
 ];
