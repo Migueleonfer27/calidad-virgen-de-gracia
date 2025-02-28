@@ -1,23 +1,78 @@
 <header class="header container-fluid w-100 shadow py-4 px-4">
   <div class="row align-items-center">
-
-    <div class="col-8 col-md-6 d-flex align-items-center logo-section" routerLink="/">
-      <img src="/img/001-logo-cifpvdg.png" alt="Logo-CIFP-VirgenDeGracia" title="CIFP Virgen de Gracia" class="logo-img img-fluid">
+    <div
+      class="col-8 col-md-6 d-flex align-items-center logo-section"
+      routerLink="/"
+    >
+      <img
+        src="/img/001-logo-cifpvdg.png"
+        alt="Logo-CIFP-VirgenDeGracia"
+        title="CIFP Virgen de Gracia"
+        class="logo-img img-fluid"
+      />
       <h1 class="mx-3 mb-0 text-light title-text">Departamento de Calidad</h1>
     </div>
 
     <div class="col-4 col-md-6 text-end">
-     <!--<div *ngIf="!isUserLoggedIn()">-->
-        <button mat-raised-button [matMenuTriggerFor]="userMenu">
-          <mat-icon>menu</mat-icon> Menú principal
+      <!--<div *ngIf="!isUserLoggedIn()">-->
+      <button mat-raised-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>menu</mat-icon> Menú principal
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button
+          mat-menu-item
+          *ngIf="canBeSeen(['uploadPicture', 'updatePassword'])"
+          routerLink="/profile"
+        >
+          <mat-icon>account_circle</mat-icon> Mi perfil
         </button>
-        <mat-menu #userMenu="matMenu">
-          <button mat-menu-item routerLink="/profile"><mat-icon>account_circle</mat-icon> Mi perfil</button>
-          <button mat-menu-item routerLink="/kanban"><mat-icon>view_column</mat-icon> Mis tareas</button>
-          <button mat-menu-item routerLink="/task"><mat-icon>content_paste</mat-icon> Calidad</button>
-          <button mat-menu-item routerLink="/admin"><mat-icon>settings</mat-icon> Administración</button>
-          <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon> Cerrar sesión</button>
-        </mat-menu>
+        <button
+          mat-menu-item
+          *ngIf="
+            canBeSeen([
+              'getTasks',
+              'getMyTask',
+              'deleteMyTask',
+              'deleteTask',
+              'updateTask',
+              'createTask',
+              'updateStateTask'
+            ])
+          "
+          routerLink="/kanban"
+        >
+          <mat-icon>view_column</mat-icon> Mis tareas
+        </button>
+        <button
+          *ngIf="
+            canBeSeen([
+              'getTasks',
+              'getMyTask',
+              'deleteMyTask',
+              'deleteTask',
+              'updateTask',
+              'createTask',
+              'updateStateTask'
+            ])
+          "
+          mat-menu-item
+          routerLink="/task"
+        >
+          <mat-icon>content_paste</mat-icon> Calidad
+        </button>
+        <button
+          *ngIf="
+            canBeSeen(['getUsers', 'createUser', 'updateUser', 'deleteUser'])
+          "
+          mat-menu-item
+          routerLink="/admin"
+        >
+          <mat-icon>settings</mat-icon> Administración
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon> Cerrar sesión
+        </button>
+      </mat-menu>
       <!--</div>-->
     </div>
   </div>

@@ -30,7 +30,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   verAbilities() {
-    return this.authService.getAbilitiesByRole(6).pipe(
+    return this.authService.getAbilitiesByRole(1).pipe(
       map((response: ResultAbilities) => {
 
         const userAbilities: string[] = response.data.abilities.map(ability => ability.description);
