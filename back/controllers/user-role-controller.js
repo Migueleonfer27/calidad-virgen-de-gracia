@@ -9,15 +9,22 @@ const userRoleConnection = new UserRoleConnection();
 const UserRoleController = {
   addUserRole: async (req, res = response) => {
     try {
-      if (await userRoleConnection.haveRole(req.body.user_id, req.body.role_id)) {
+      const { user_id, role_ids } = req.body;
+      const existingRoles = await userRoleConnection.haveRole(user_id, role_ids);
+
+      if (existingRoles.length > 0) {
         return res.status(400).json({
           message: messages.userRole.error.alreadyHave,
+          existingRoles: existingRoles.map((role) => role.role_id),
         });
       }
-      const userRole = await userRoleConnection.addUserRole(req.body);
+
+      const rolesToAdd = role_ids.map((role_id) => ({ user_id, role_id }));
+      const userRoles = await userRoleConnection.addUserRoles(rolesToAdd);
+
       res.status(201).json({
         message: messages.userRole.success.add,
-        data: userRole,
+        data: userRoles,
       });
     } catch (error) {
       res.status(500).json({

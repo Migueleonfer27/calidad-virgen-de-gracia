@@ -85,6 +85,9 @@
           <button (click)="showUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Información usuario'">
             <mat-icon class="text-secondary">info</mat-icon>
           </button>
+          <button (click)="addRole(row.id)" mat-icon-button matSuffix [matTooltip]="'Añadir roles'">
+            <mat-icon class="text-success">health_and_safety</mat-icon>
+          </button>
           <button (click)="editUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Editar usuario'">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>

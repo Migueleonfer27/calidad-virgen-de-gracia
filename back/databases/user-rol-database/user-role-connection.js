@@ -2,9 +2,9 @@
 import { UsersRoles } from "../../models/associations.js";
 
 class UserRoleConnection {
-  async addUserRole(userRole) {
+  async addUserRoles(userRoles) {
     try {
-      return await UsersRoles.create(userRole);
+      return await UsersRoles.bulkCreate(userRoles);
     } catch (error) {
       throw error;
     }
@@ -21,7 +21,7 @@ class UserRoleConnection {
   }
 
   async haveRole(idUser, idRole) {
-    return await UsersRoles.findOne({
+    return await UsersRoles.findAll({
       where: { user_id: idUser, role_id: idRole },
     });
   }

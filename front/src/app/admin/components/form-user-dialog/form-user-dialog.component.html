@@ -4,13 +4,6 @@
 </div>
 <form [formGroup]="userForm">
   <mat-dialog-content class="d-flex flex-wrap gap-2 justify-content-center">
-    <mat-form-field *ngIf="data.id && data.button !== 'Info'" class="w-100">
-      <mat-label class="text-primary">Roles</mat-label>
-      <mat-select formControlName="roles">
-        <mat-option *ngFor="let role of roles" [value]="role.id">{{ role.position }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
     <mat-form-field class="w-100">
       <mat-label>Código</mat-label>
       <input matInput formControlName="code" [readonly]="data.button === 'Info'">
