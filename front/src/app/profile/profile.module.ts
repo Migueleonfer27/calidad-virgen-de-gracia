@@ -7,8 +7,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { UploadProfilePicComponent } from './components/upload-profile-pic/upload-profile-pic.component';
 import { PhoneFormatPipe } from '../pipes/phone-format.pipe';
 import { UpdatePassFormDialogComponent } from './components/update-pass-form-dialog/update-pass-form-dialog.component';
-
-
+import { UserMessagesComponent } from './components/user-messages/user-messages.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,8 @@ import { UpdatePassFormDialogComponent } from './components/update-pass-form-dia
     UserProfileComponent,
     UploadProfilePicComponent,
     PhoneFormatPipe,
-    UpdatePassFormDialogComponent
+    UpdatePassFormDialogComponent,
+    UserMessagesComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +26,10 @@ import { UpdatePassFormDialogComponent } from './components/update-pass-form-dia
   exports: [
     UserPageComponent,
     UserProfileComponent,
-    UploadProfilePicComponent
+    UploadProfilePicComponent,
+    PhoneFormatPipe,
+    UpdatePassFormDialogComponent,
+    UserMessagesComponent
   ]
 })
 export class ProfileModule { }

@@ -1,8 +1,11 @@
 <div class="border rounded shadow">
   <div class="notification-nav d-flex bg-light justify-content-end align-items-center px-3 py-2">
-    <h5 class="m-0">
-      <mat-icon matBadge="3" aria-hidden="false">notifications_active</mat-icon> Notificaciones
-    </h5>
+    <button type="button" mat-button routerLink="/profile/userMessages">
+      <mat-icon [matBadge]="badgeCount > 0 ? badgeCount : ''"  aria-hidden="false">
+        {{ iconName }}
+      </mat-icon>
+      Mensajes
+    </button>
   </div>
   <router-outlet></router-outlet>
 </div>
