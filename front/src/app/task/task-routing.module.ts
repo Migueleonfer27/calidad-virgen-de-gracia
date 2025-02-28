@@ -4,6 +4,8 @@ import { UserTaskComponent } from './components/user-task/user-task.component';
 import { TaskPageComponent } from './pages/task-page/task-page.component';
 import { TaskTableComponent } from './components/task-table/task-table.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { AbilitiesGuard } from '../auth/guards/abilities.guard';
+import { abilities } from '../utils/abilities';
 
 
 const routes: Routes = [
@@ -13,15 +15,21 @@ const routes: Routes = [
     children: [
       {
         path: 'user-task',
-        component: UserTaskComponent
+        component: UserTaskComponent,
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.getTasks]}
       },
       {
         path: 'create-task',
-        component: CreateTaskComponent
+        component: CreateTaskComponent,
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.createTask]}
       },
       {
         path: 'task-table',
-        component: TaskTableComponent
+        component: TaskTableComponent,
+        canMatch: [AbilitiesGuard],
+        data: { abilities: [abilities.getTasks]}
       },
       {
         path: '',

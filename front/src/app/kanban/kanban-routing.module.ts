@@ -8,8 +8,8 @@ const routes: Routes = [
   {
     path: '',
     component: KanbanPageComponent,
-     canMatch: [AbilitiesGuard],
-            data: { abilities: [abilities.getMyTask,abilities.updateStateTask,abilities.deleteMyTask] }
+    canMatch: [AbilitiesGuard],
+    data: { abilities: [abilities.getMyTask,abilities.updateStateTask,abilities.deleteMyTask] }
   }
 ];
 

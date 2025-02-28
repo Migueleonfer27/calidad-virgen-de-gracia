@@ -39,7 +39,7 @@ export class AbilitiesGuard implements CanMatch {
 
         if (hasAbilities.length==0) {
           this.matSnackBar.open('No estás autorizado.', 'Cerrar', { duration: 3000 });
-          //this.router.navigate(['/']);
+          this.router.navigate(['/']);
           return false;
         }
 
