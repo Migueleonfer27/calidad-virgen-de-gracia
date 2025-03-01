@@ -29,9 +29,10 @@ export class AbilitiesGuard implements CanMatch {
 
    checkAbilities(route: Route): Observable<boolean> {
     let requiredAbilities: String[] = route?.data?.['abilities'] || [];
+    const rol = JSON.parse(localStorage.getItem("rol")!);
+    const roleId = rol?.role_id;
 
-
-     return this.authService.getAbilitiesByRole(2).pipe(
+     return this.authService.getAbilitiesByRole(roleId).pipe(
 
       map(result => {
         const abilitiesRol = result.data.abilities;

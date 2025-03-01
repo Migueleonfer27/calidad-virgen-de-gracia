@@ -9,7 +9,8 @@ import { abilities } from '../../utils/abilities';
 })
 export class PermissionViewService {
   private abilitiesByRole: string[] = [];
-  private rolId = 2; // CAMBIAR POR VALOR LOCAL STORAGE
+  private rol = JSON.parse(localStorage.getItem("rol")!);
+  private rolId = this.rol?.role_id;
 
   constructor(
     private adminService: AdminService
