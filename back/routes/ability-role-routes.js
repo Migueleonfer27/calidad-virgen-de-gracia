@@ -11,7 +11,9 @@ export const router = Router();
 // Gema
 router.post(
   "/addAbilities",
-  [check("id_rol", "El rol es obligatorio").not().isEmpty(), validarCampos],
+  [check("id_rol", "El rol es obligatorio").not().isEmpty(), validarCampos,
+    check("abilities[0]", "Las abilities son obligatorio").not().isEmpty(), validarCampos
+  ],
   validateJWT,
   isRolValid(abilities.addAbilities),
   abilitiesController.addAbilities
