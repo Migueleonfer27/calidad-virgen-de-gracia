@@ -8,14 +8,9 @@
         <strong>{{ mensaje.user.first_name }} {{ mensaje.user.last_name }}:</strong>
         {{ mensaje.message }}
         <button type="button" class="bg-light d-flex justify-content-center align-items-center" mat-icon-button matSuffix [matTooltip]="'Marcar como leído'" (click)="marcarMensajeLeido(mensaje.id)">
-          <mat-icon class="text-success">mark_email_read</mat-icon>
+          <mat-icon class="text-info">mark_email_read</mat-icon>
         </button>
       </div>
-    </div>
-
-    <div class="input-container">
-      <input [(ngModel)]="mensaje" placeholder="Escribe un mensaje..." (keyup.enter)="enviarMensaje()" />
-      <button (click)="enviarMensaje()" class="btn btn-primary">Enviar</button>
     </div>
   </div>
 </div>

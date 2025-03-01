@@ -85,6 +85,9 @@
           <button (click)="showUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Información usuario'">
             <mat-icon class="text-secondary">info</mat-icon>
           </button>
+          <button *ngIf="row.id !== userId" (click)="sendMessage(row)" mat-icon-button matSuffix [matTooltip]="'Enviar mensaje'">
+            <mat-icon class="text-info">chat</mat-icon>
+          </button>
           <button (click)="editUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Editar usuario'">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>
