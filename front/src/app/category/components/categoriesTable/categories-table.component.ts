@@ -19,6 +19,7 @@ import { PermissionViewService } from '../../../shared/services/permission-view.
 
 
 
+
 @Component({
   selector: 'app-categories-table',
   standalone: false,
@@ -35,6 +36,7 @@ export class CategoriesComponent implements AfterViewInit {
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
   abilities=abilities
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
