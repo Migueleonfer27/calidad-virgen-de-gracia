@@ -106,13 +106,15 @@ export class UserListComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe((message) => {
-      const newMessage = {
-        subject: message.subject,
-        message: message.message,
-        userId: user.id
+      if (message) {
+        const newMessage = {
+          subject: message.subject,
+          message: message.message,
+          userId: user.id
+        }
+        this.webSocketService.emit('enviar-mensaje', newMessage);
       }
-      this.webSocketService.emit('enviar-mensaje', newMessage);
-    })
+    });
   }
 
   editUser(id: number) {

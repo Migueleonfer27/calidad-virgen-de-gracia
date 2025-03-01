@@ -12,8 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserMessagesComponent implements OnInit {
 
-  mensajesRecibidos: any[] = []; // Almacena los mensajes recibidos
-  mensaje: string = '';
+  mensajesRecibidos: any[] = [];
   userId: number = Number(localStorage.getItem('user_id'));
 
   constructor(
@@ -44,20 +43,6 @@ export class UserMessagesComponent implements OnInit {
     });
   }
 
-  enviarMensaje(): void {
-    if (this.mensaje.trim()) {
-      const payload = {
-        subject: 'Asunto del mensaje',
-        message: this.mensaje,
-        userId: 2
-      };
-
-      // Enviar el mensaje al servidor
-      this.webSocketService.emit('enviar-mensaje', payload);
-      this.mensaje = '';
-    }
-  }
-
   marcarMensajeLeido(messageId: number): void {
     this.webSocketService.emit('marcar-mensaje-leido', messageId, (response: any) => {
       if (response.status === 'success') {
@@ -66,6 +51,7 @@ export class UserMessagesComponent implements OnInit {
         // Actualizar la lista de mensajes en el frontend
         this.mensajesRecibidos = this.mensajesRecibidos.filter(msg => msg.id !== messageId);
         this.messagesService.updateMessages(this.mensajesRecibidos);
+
       } else {
         console.error('Error al marcar el mensaje como leído:', response.error);
       }
@@ -73,6 +59,9 @@ export class UserMessagesComponent implements OnInit {
   }
 
   mostrarNotificacion(mensaje: any): void {
+    const audio = new Audio('/audio/notification.mp3');
+    audio.play();
+
     this.snackBar.open(mensaje, 'Cerrar', {
       duration: 5500,
       horizontalPosition: 'end',
