@@ -12,6 +12,8 @@ import { abilities } from '../../../utils/abilities';
 export class TaskPageComponent {
   abilities=abilities
   constructor( private permissionView: PermissionViewService){}
+
+  
   canViewElement(abilitiesKeys: string[]): boolean {
     return this.permissionView.canAccess(abilitiesKeys);
   }
