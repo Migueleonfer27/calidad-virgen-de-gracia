@@ -21,49 +21,27 @@
       <mat-menu #userMenu="matMenu">
         <button
           mat-menu-item
-          *ngIf="canBeSeen(['uploadPicture', 'updatePassword'])"
+          *ngIf="canViewElement(abiltiesProfile)"
           routerLink="/profile"
         >
           <mat-icon>account_circle</mat-icon> Mi perfil
         </button>
         <button
           mat-menu-item
-          *ngIf="
-            canBeSeen([
-              'getTasks',
-              'getMyTask',
-              'deleteMyTask',
-              'deleteTask',
-              'updateTask',
-              'createTask',
-              'updateStateTask'
-            ])
-          "
+          *ngIf="canViewElement(abiltiesProfile)"
           routerLink="/kanban"
         >
           <mat-icon>view_column</mat-icon> Mis tareas
         </button>
         <button
-          *ngIf="
-            canBeSeen([
-              'getTasks',
-              'getMyTask',
-              'deleteMyTask',
-              'deleteTask',
-              'updateTask',
-              'createTask',
-              'updateStateTask'
-            ])
-          "
+          *ngIf="canViewElement(abiltiesTask)"
           mat-menu-item
           routerLink="/task"
         >
           <mat-icon>content_paste</mat-icon> Calidad
         </button>
         <button
-          *ngIf="
-            canBeSeen(['getUsers', 'createUser', 'updateUser', 'deleteUser'])
-          "
+          *ngIf="canViewElement(abiltiesAdmin)"
           mat-menu-item
           routerLink="/admin"
         >

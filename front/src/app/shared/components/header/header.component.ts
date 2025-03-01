@@ -1,35 +1,64 @@
-// JAIME, DAN Y MIGUEL
+// Jaime Ortega y Miguel
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../../../../login/front/src/app/auth/services/token.service';
 import { abilities } from '../../../utils/abilities';
-import { AdminService } from '../../../admin/services/admin.service';
+import { PermissionViewService } from '../../services/permission-view.service';
 
 @Component({
   selector: 'shared-header',
   standalone: false,
+
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnInit {
-  abilitiesByRole: string[] = [];
+export class HeaderComponent {
+  public abiltiesProfile: (keyof typeof abilities)[] = [
+    'uploadPicture',
+    'updatePassword',
+  ];
+  public abiltiesTask: (keyof typeof abilities)[] = [
+    'getTasks',
+    'getMyTask',
+    'deleteMyTask',
+    'deleteTask',
+    'updateTask',
+    'createTask',
+    'updateStateTask',
+  ];
+  public abiltiesQuality: (keyof typeof abilities)[] = [
+    'getTasks',
+    'getMyTask',
+    'deleteMyTask',
+    'deleteTask',
+    'updateTask',
+    'createTask',
+    'updateStateTask',
+  ];
+  public abiltiesAdmin: (keyof typeof abilities)[] = [
+    'getUsers',
+    'createUser',
+    'updateUser',
+    'deleteUser',
+  ];
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private adminService: AdminService
+    private permissionView: PermissionViewService
   ) {}
 
+  isUserLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
   ngOnInit(): void {
+    this.permissionView.loadAbilitiesByRole();
     const role = this.tokenService.getSelectedRole();
     if (role) {
-      this.adminService.getAbilitiesByRole(1).subscribe(response => { // CAMBIAR POR EL ID DEL ROL
-        this.abilitiesByRole = response.data.abilities.map(ability => ability.description);
-        console.log('Abilities del rol:', this.abilitiesByRole);
-      });
+      localStorage.setItem('rol', JSON.stringify(role));
     }
-
     const token = this.tokenService.getToken();
     if (token) {
       localStorage.setItem('token', token);
@@ -46,10 +75,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  isUserLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
-  }
-
   logout(): void {
     this.tokenService.setSessionActive(false);
     this.tokenService.removeToken();
@@ -60,8 +85,7 @@ export class HeaderComponent implements OnInit {
     window.location.href = 'http://localhost:4300';
   }
 
-  canBeSeen(abilitiesKeys: (keyof typeof abilities)[]): boolean {
-    const abilityValues = abilitiesKeys.map(key => abilities[key]);
-    return abilityValues.some(value => this.abilitiesByRole.includes(value));
+  canViewElement(abilitiesKeys: (keyof typeof abilities)[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
   }
 }
