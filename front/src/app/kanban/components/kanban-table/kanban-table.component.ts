@@ -11,6 +11,8 @@ import { DocumentsDialogComponent } from '../documents-dialog/documents-dialog.c
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { Document } from '../../../task/interfaces/task.interface';
+import { abilities } from '../../../utils/abilities';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
 
 @Component({
   selector: 'app-kanban-table',
@@ -22,8 +24,8 @@ import { Document } from '../../../task/interfaces/task.interface';
 export class KanbanTableComponent {
   todo: Task[] = [];
   done: Task[] = [];
-
-  constructor(private kanbanService: KanbanService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  abilities=abilities
+  constructor(private permissionView: PermissionViewService, private kanbanService: KanbanService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     const userId = Number(localStorage.getItem('user_id'));
@@ -98,4 +100,9 @@ export class KanbanTableComponent {
       data: { title: 'Documentos anexos', button: 'Cerrar', message: 'Esta es la documentación anexa que tienes que completar para rellenar la tarea.', dataDocs: { document } }
     });
   }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
+  }
+
 }

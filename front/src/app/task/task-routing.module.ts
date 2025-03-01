@@ -12,6 +12,8 @@ const routes: Routes = [
   {
     path: '',
     component: TaskPageComponent,
+    canMatch: [AbilitiesGuard],
+    data: { abilities: [abilities.getTasks]},
     children: [
       {
         path: 'user-task',

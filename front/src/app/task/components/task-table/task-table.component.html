@@ -36,11 +36,11 @@
           (click)="documentAssigned(element.Documents, element)"  matTooltip="Documentos adjuntos">
           <mat-icon class="text-success">description</mat-icon>
         </button>
-          <button mat-icon-button aria-label="Example icon button with a delete icon"  matTooltip="Editar evento"
+          <button  *ngIf="canViewElement([abilities.updateTask])" mat-icon-button aria-label="Example icon button with a delete icon"  matTooltip="Editar evento"
             (click)="edit( element)" title="Editar evento">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Example icon button with a delete icon"  matTooltip="Borrar evento"
+          <button  *ngIf="canViewElement([abilities.deleteTask])" mat-icon-button aria-label="Example icon button with a delete icon"  matTooltip="Borrar evento"
           (click)="delet( element)" title="Eliminar evento">
           <mat-icon class="text-danger">delete</mat-icon>
         </button>

@@ -14,33 +14,46 @@ import { PermissionViewService } from '../../services/permission-view.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  public abiltiesProfile: (keyof typeof abilities)[] = [
-    'uploadPicture',
-    'updatePassword',
+  public abiltiesProfile= [
+    abilities.uploadPicture,
+    abilities.updatePassword,
+
   ];
-  public abiltiesTask: (keyof typeof abilities)[] = [
-    'getTasks',
-    'getMyTask',
-    'deleteMyTask',
-    'deleteTask',
-    'updateTask',
-    'createTask',
-    'updateStateTask',
+  public abiltiesKanba= [
+    abilities.downloadDocument,
+    abilities.getMyTask,
+    abilities.deleteMyTask,
+    abilities.updateStateTask
   ];
-  public abiltiesQuality: (keyof typeof abilities)[] = [
-    'getTasks',
-    'getMyTask',
-    'deleteMyTask',
-    'deleteTask',
-    'updateTask',
-    'createTask',
-    'updateStateTask',
+  public abiltiesQuality= [
+    abilities.getTasks,
+    abilities.deleteTask,
+    abilities.updateTask,
+    abilities.createTask,
+    abilities.updateStateTask,
   ];
-  public abiltiesAdmin: (keyof typeof abilities)[] = [
-    'getUsers',
-    'createUser',
-    'updateUser',
-    'deleteUser',
+  public abiltiesAdmin= [
+    abilities.getUsers,
+    abilities.createUser,
+    abilities.updateUser,
+    abilities.deleteUser,
+    abilities.createCategory,
+    abilities.updateCategory,
+    abilities.deleteCategory,
+    abilities.createSubcategory,
+    abilities.updateSubcategory,
+    abilities.deleteSubcategory,
+    abilities.createDocument,
+    abilities.updateDocument,
+    abilities.deleteDocument,
+    abilities.createRol,
+    abilities.updateRol,
+    abilities.deleteRol,
+    abilities.getAbilitiesByRol,
+    abilities.getAbilitiesByUser,
+    abilities.getRoles,
+    abilities.createMassiveUser,
+
   ];
 
   constructor(
@@ -85,7 +98,7 @@ export class HeaderComponent {
     window.location.href = 'http://localhost:4300';
   }
 
-  canViewElement(abilitiesKeys: (keyof typeof abilities)[]): boolean {
+  canViewElement(abilitiesKeys:string []): boolean {
     return this.permissionView.canAccess(abilitiesKeys);
   }
 }

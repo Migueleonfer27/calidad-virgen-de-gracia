@@ -34,6 +34,7 @@ export class UserListComponent implements AfterViewInit {
 
   myColor: string = '#A5B8DB';
   hoveredRow: any = null;
+  abilities=abilities
   private _uploadUrl: string = environment.uploadUrl;
   displayedColumns: string[] = [
     '#',
@@ -50,7 +51,8 @@ export class UserListComponent implements AfterViewInit {
     private adminService: AdminService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private permissionView: PermissionViewService
+    private permissionView: PermissionViewService,
+
   ) {
     this.adminService.getUsers().subscribe((response) => {
       if (response.data) {
@@ -309,7 +311,7 @@ export class UserListComponent implements AfterViewInit {
       : 'img-user.png';
   }
 
-  canViewElement(abilitiesKeys: (keyof typeof abilities)[]): boolean {
+  canViewElement(abilitiesKeys: string[]): boolean {
     return this.permissionView.canAccess(abilitiesKeys);
   }
 }

@@ -2,7 +2,7 @@
   <div
     class=" mb-3 subnav-admin w-100  container d-flex justify-content-between align-items-center text-align-center  p-3 rounded-3 mb-3">
     <h1>{{name}}</h1>
-    <button class="p-3 addCategoryBtn" mat-raised-button matSuffix aria-label="Añadir Categoría"
+    <button  *ngIf="canViewElement([abilities.createSubcategory])" class="p-3 addCategoryBtn" mat-raised-button matSuffix aria-label="Añadir Categoría"
       (click)="addSubcategory()">
       <mat-icon class="text-primary ">add</mat-icon>Añadir subcategoría
     </button>
@@ -35,11 +35,11 @@
               aria-label="row actions">Acciones</th>
             <td class="text-center align-middle gap-2" mat-cell *matCellDef="let row">
 
-              <button class="border-0 bg-light me-2" mat-icon-button matSuffix (click)="editSubcategory(row)"
+              <button  *ngIf="canViewElement([abilities.updateSubcategory])" class="border-0 bg-light me-2" mat-icon-button matSuffix (click)="editSubcategory(row)"
               matTooltip="Editar subcategoría">
                 <mat-icon class="text-primary">edit</mat-icon>
               </button>
-              <button class="border-0 bg-light" mat-icon-button matSuffix (click)="deletSubcategory(row)"
+              <button  *ngIf="canViewElement([abilities.deleteSubcategory])" class="border-0 bg-light" mat-icon-button matSuffix (click)="deletSubcategory(row)"
               matTooltip="Borrar subcategoría">
                 <mat-icon class="text-danger">delete</mat-icon>
               </button>

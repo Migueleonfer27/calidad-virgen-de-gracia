@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { TaskDocumentDialogComponent } from '../task-document-dialog/task-document-dialog.component';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
+import { abilities } from '../../../utils/abilities';
 
 @Component({
   selector: 'app-task-table',
@@ -24,8 +26,8 @@ export class TaskTableComponent {
   dataSource = new MatTableDataSource<Task>([]);
   rolesOption: Role[] = [];
   filteredData: Task[] = [];
-
-  constructor(private taskService: TaskService, private router: Router, private adminService: AdminService, private dialog: MatDialog, private snackBar: MatSnackBar) {
+  abilities=abilities
+  constructor(private permissionView: PermissionViewService,private taskService: TaskService, private router: Router, private adminService: AdminService, private dialog: MatDialog, private snackBar: MatSnackBar) {
     this.adminService.getRoles().subscribe((res) => {
       this.rolesOption = res.data;
     });
@@ -169,6 +171,11 @@ export class TaskTableComponent {
           });
         });
       }
+
+      canViewElement(abilitiesKeys: string[]): boolean {
+        return this.permissionView.canAccess(abilitiesKeys);
+      }
+
 
 }
 

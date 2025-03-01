@@ -10,6 +10,8 @@ import { EditDocFormDialogComponent } from '../edit-doc-form-dialog/edit-doc-for
 import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
+import { abilities } from '../../../utils/abilities';
 
 @Component({
   selector: 'app-document-table',
@@ -22,11 +24,12 @@ export class DocumentTableComponent implements OnInit {
   displayedColumns: string[] = ['#', 'name', 'code', 'subcategory', 'autofilled', 'actions'];
   documents = new MatTableDataSource<Document>([]);
   subcategoryFilterControl = new FormControl('');
-
+  abilities=abilities
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
+    private permissionView: PermissionViewService,
     private documentService: DocumentService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar) { }
@@ -172,5 +175,9 @@ export class DocumentTableComponent implements OnInit {
         }
       });
     });
+  }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
   }
 }

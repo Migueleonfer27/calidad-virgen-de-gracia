@@ -2,12 +2,12 @@
   class="d-flex justify-content-between align-items-center subnav-admin p-3 rounded-3 mb-3 nav-admin flex-column flex-md-row text-center text-md-start">
   <h1 class="text-white">Usuarios</h1>
   <div class="d-flex gap-2">
-    <button mat-raised-button color="primary" *ngIf="canViewElement(['createUser'])" (click)="createUser()">
+    <button mat-raised-button color="primary" *ngIf="canViewElement([abilities.createUser])" (click)="createUser()">
       <mat-icon>add</mat-icon>
       Añadir usuario
     </button>
     <input type="file" #fileInput accept=".csv" (change)="onFileInputCsv($event)" hidden />
-    <button mat-raised-button color="primary" (click)="fileInput.click()">
+    <button mat-raised-button color="primary" *ngIf="canViewElement([abilities.createMassiveUser])" (click)="fileInput.click()">
       <mat-icon>file_upload</mat-icon>
       Importar CSV
     </button>
@@ -65,7 +65,7 @@
             <span *ngFor="let role of row.Roles"
               class="badge bg-light text-dark border border-secondary shadow-sm d-flex align-items-center gap-1 px-2 py-1 rounded-pill text-wrap">
               {{ role.position }}
-              <button mat-icon-button matSuffix class="p-0 h-auto" matTooltip="Eliminar"
+              <button mat-icon-button matSuffix class="p-0 h-auto" *ngIf="canViewElement([abilities.updateUser])" matTooltip="Eliminar"
                 (click)="removeAssignedRole(row.id, role.id)">
                 <mat-icon class="text-danger align-middle">remove</mat-icon>
               </button>
@@ -85,13 +85,13 @@
           <button (click)="showUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Información usuario'">
             <mat-icon class="text-secondary">info</mat-icon>
           </button>
-          <button (click)="addRole(row.id)" mat-icon-button matSuffix [matTooltip]="'Añadir roles'">
+          <button *ngIf="canViewElement([abilities.updateUser])" (click)="addRole(row.id)"  mat-icon-button matSuffix [matTooltip]="'Añadir roles'">
             <mat-icon class="text-success">health_and_safety</mat-icon>
           </button>
-          <button (click)="editUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Editar usuario'">
+          <button *ngIf="canViewElement([abilities.updateUser])" (click)="editUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Editar usuario'">
             <mat-icon class="text-primary">edit</mat-icon>
           </button>
-          <button (click)="deleteUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Borrar usuario'">
+          <button *ngIf="canViewElement([abilities.deleteUser])" (click)="deleteUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Borrar usuario'">
             <mat-icon class="text-danger">delete</mat-icon>
           </button>
         </div>

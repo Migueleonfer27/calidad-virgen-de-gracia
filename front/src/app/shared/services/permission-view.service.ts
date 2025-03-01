@@ -9,7 +9,7 @@ import { abilities } from '../../utils/abilities';
 })
 export class PermissionViewService {
   private abilitiesByRole: string[] = [];
-  private rolId = 1; // CAMBIAR POR VALOR LOCAL STORAGE
+  private rolId = 2; // CAMBIAR POR VALOR LOCAL STORAGE
 
   constructor(
     private adminService: AdminService
@@ -21,8 +21,8 @@ export class PermissionViewService {
     });
   }
 
-  canAccess(abilitiesKeys: (keyof typeof abilities)[]): boolean {
-    const abilityValues = abilitiesKeys.map((key) => abilities[key]);
-    return abilityValues.some((value) => this.abilitiesByRole.includes(value));
+  canAccess(abilitiesKeys: string[]): boolean {
+
+    return abilitiesKeys.some((value) => this.abilitiesByRole.includes(value));
   }
 }
