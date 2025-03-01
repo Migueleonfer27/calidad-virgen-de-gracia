@@ -14,6 +14,8 @@ import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.co
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../../environments/environment.development';
 import { RolesDialogComponent } from '../roles-dialog/roles-dialog.component';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
+import { abilities } from '../../../utils/abilities';
 
 @Component({
   selector: 'app-user-list',
@@ -32,6 +34,7 @@ export class UserListComponent implements AfterViewInit {
 
   myColor: string = '#A5B8DB';
   hoveredRow: any = null;
+  abilities=abilities
   private _uploadUrl: string = environment.uploadUrl;
   displayedColumns: string[] = [
     '#',
@@ -47,7 +50,9 @@ export class UserListComponent implements AfterViewInit {
   constructor(
     private adminService: AdminService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private permissionView: PermissionViewService,
+
   ) {
     this.adminService.getUsers().subscribe((response) => {
       if (response.data) {
@@ -304,5 +309,9 @@ export class UserListComponent implements AfterViewInit {
     return user.profile_picture
       ? `${this._uploadUrl}${user.profile_picture}`
       : 'img-user.png';
+  }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
   }
 }

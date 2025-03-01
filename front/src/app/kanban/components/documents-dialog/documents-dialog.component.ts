@@ -4,6 +4,8 @@ import { Document } from '../../../task/interfaces/task.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PdfService } from '../../services/pdf.service';
 import { AdminService } from '../../../admin/services/admin.service';
+import { abilities } from '../../../utils/abilities';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
 
 @Component({
   selector: 'app-documents-dialog',
@@ -15,8 +17,10 @@ import { AdminService } from '../../../admin/services/admin.service';
 export class DocumentsDialogComponent {
   documents: Document[] = [];
   user: any; // PRUEBA PDF
+  abilities=abilities
 
   constructor(
+    private permissionView: PermissionViewService,
     private userService: AdminService,
     private pdfService: PdfService,
     private matSnackbar: MatSnackBar,
@@ -54,5 +58,9 @@ export class DocumentsDialogComponent {
 
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
   }
 }

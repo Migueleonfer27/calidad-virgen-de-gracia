@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between align-items-center subnav-admin p-3 rounded-3 mb-3">
   <h1 class="text-white">Roles</h1>
   <div class="d-flex gap-2">
-    <button mat-raised-button color="primary" class="w-100 w-md-auto" (click)="createRole()">
+    <button mat-raised-button color="primary" *ngIf="canViewElement([abilities.createRol])" class="w-100 w-md-auto" (click)="createRole()">
       <mat-icon>add</mat-icon>
       Añadir rol
     </button>
@@ -46,14 +46,14 @@
       <th mat-header-cell *matHeaderCellDef class="bg-header-table text-end align-middle"> Acciones </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-center gap-2 justify-content-md-center">
-          <button mat-icon-button [matTooltip]="'Gestionar permisos'">
+          <button *ngIf="canViewElement([abilities.addAbilities])"  mat-icon-button [matTooltip]="'Gestionar permisos'">
             <mat-icon class="text-success" (click)="showMenuAbilities(row.id)">receipt_long</mat-icon>
           </button>
           <button mat-icon-button [matTooltip]="'Editar rol'">
-            <mat-icon class="text-primary" (click)="editRole(row.id)">edit</mat-icon>
+            <mat-icon class="text-primary"  *ngIf="canViewElement([abilities.updateRol])" (click)="editRole(row.id)">edit</mat-icon>
           </button>
           <button mat-icon-button [matTooltip]="'Borrar rol'">
-            <mat-icon class="text-danger" (click)="deleteRole(row.id)">delete</mat-icon>
+            <mat-icon class="text-danger"  *ngIf="canViewElement([abilities.deleteRol])" (click)="deleteRole(row.id)">delete</mat-icon>
           </button>
         </div>
       </td>

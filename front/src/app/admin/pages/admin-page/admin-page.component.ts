@@ -4,6 +4,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { map } from 'rxjs';
 import { ResultAbilities } from '../../../auth/interfaces/auth.interface';
 import { abilities } from '../../../utils/abilities';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -14,8 +15,8 @@ import { abilities } from '../../../utils/abilities';
 })
 export class AdminPageComponent implements OnInit {
 
-
-  constructor(private router: Router, private authService: AuthService) { }
+  abilities=abilities
+  constructor( private permissionView: PermissionViewService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -30,7 +31,9 @@ export class AdminPageComponent implements OnInit {
   }
 
   verAbilities() {
-    return this.authService.getAbilitiesByRole(1).pipe(
+
+    return this.authService.getAbilitiesByRole(2).pipe(
+
       map((response: ResultAbilities) => {
 
         const userAbilities: string[] = response.data.abilities.map(ability => ability.description);
@@ -49,6 +52,11 @@ export class AdminPageComponent implements OnInit {
       })
     );
   }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
+  }
+
 
 }
 

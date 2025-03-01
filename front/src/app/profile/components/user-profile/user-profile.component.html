@@ -1,6 +1,6 @@
 <div id="profileContainer" class="bg-light mx-auto p-4">
   <div class="text-center mb-4">
-    <div class="profile-pic-container" (click)="openBottomSheet()">
+    <div  *ngIf="canViewElement([abilities.uploadPicture])" class="profile-pic-container" (click)="openBottomSheet()">
       <img [src]="profilePicUrl" alt="Foto de perfil" class="profile-pic img-fluid rounded-circle shadow">
       <div class="overlay">
         <mat-icon>photo_camera</mat-icon>
@@ -13,7 +13,7 @@
   <div class="row d-flex flex-column justify-content-center">
     <div class="col-md-3 mx-auto">
       <div class="text-center mb-4">
-        <button mat-fab extended class="py-4" (click)="onChangePassword()">
+        <button  *ngIf="canViewElement([abilities.updatePassword])" mat-fab extended class="py-4" (click)="onChangePassword()">
           <mat-icon>manage_accounts</mat-icon> Cambiar Contraseña
         </button>
       </div>

@@ -67,12 +67,12 @@ export class AbilityRoleConnection {
         try {
             const deleted=await this.resetRole(idRol)
             
-            for (const abilityId of abilities) {
-                const abilityRole = new AbilityRole();
-                abilityRole.id_rol = idRol;
-                abilityRole.id_ability = abilityId;
-                await abilityRole.save();
-            };
+            const abilityRoles = abilities.map(abilityId => ({
+                id_rol: idRol,
+                id_ability: abilityId,
+               
+            }));
+            await AbilityRole.bulkCreate(abilityRoles);
             result = { id_rol: idRol, abilities: abilities };
         } catch (error) {
             result = error;
