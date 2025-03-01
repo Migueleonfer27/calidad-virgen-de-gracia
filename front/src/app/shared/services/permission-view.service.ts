@@ -9,12 +9,15 @@ import { abilities } from '../../utils/abilities';
 })
 export class PermissionViewService {
   private abilitiesByRole: string[] = [];
-  private rol = JSON.parse(localStorage.getItem("rol")!);
-  private rolId = this.rol?.role_id;
+
+  private rolId = 0
 
   constructor(
     private adminService: AdminService
-  ) { }
+  ) {
+    const rol = JSON.parse(localStorage.getItem("rol")!);
+    this.rolId=rol?.role_id;
+   }
 
   loadAbilitiesByRole(): void {
     console.log(this.rolId)
