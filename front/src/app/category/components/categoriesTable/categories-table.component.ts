@@ -12,6 +12,7 @@ import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialo
 import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
 import { Subcategory } from '../../../subcategory/interfaces/subcategory.interface';
 import { catchError, map, Observable } from 'rxjs';
+import { abilities } from '../../../utils/abilities';
 
 
 
@@ -32,6 +33,7 @@ export class CategoriesComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Category> = new MatTableDataSource<Category>([])
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 

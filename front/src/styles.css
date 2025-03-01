@@ -45,6 +45,10 @@ app-root {
   font-size: 16px !important;
 }
 
+.bg-color-soft {
+  background-color: #A5B7DB
+}
+
 .mdc-snackbar__label{
   background-color:  #a5b8dbc2 !important;
   color: rgb(14, 5, 98) !important;

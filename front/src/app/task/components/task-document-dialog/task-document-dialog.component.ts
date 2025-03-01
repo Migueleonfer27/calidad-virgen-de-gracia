@@ -13,11 +13,13 @@ export class TaskDocumentDialogComponent {
   task: Task;
   documents: Document[];
 
+
  constructor(private dialogRef: MatDialogRef<TaskDocumentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { task: Task; documents: Document[] }){
+    @Inject(MAT_DIALOG_DATA) public data: { task: Task; documents: Document[],info:String }){
 
       this.task=data.task
       this.documents=data.documents
+      
     }
 
     close() {

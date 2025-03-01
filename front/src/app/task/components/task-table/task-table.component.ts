@@ -68,10 +68,11 @@ export class TaskTableComponent {
    // this.taskService.saveDocuments(documents, task)
     //this.router.navigate(['/task', 'document-task']);
     console.log(documents, task)
+    const info="Relación de documentos asignados a este evento"
     const dialog = this.dialog.open(TaskDocumentDialogComponent, {
       height: 'auto',
       width: 'auto',
-      data: { task,documents},
+      data: { task,documents,info},
       enterAnimationDuration: '400ms',
       exitAnimationDuration: '400ms'
     });
@@ -88,6 +89,7 @@ export class TaskTableComponent {
   }
 
   edit(task: EditedTask) {
+
     const dialog = this.dialog.open(TaskEditDialogComponent, {
       width: '350px',
       data: { ...task },

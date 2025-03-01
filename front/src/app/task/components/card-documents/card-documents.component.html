@@ -1,16 +1,19 @@
-<mat-card class="card border border-primary d-flex p-3 m-2 align-middle" appearance="outlined">
+<div class="border-5 rounded  p-1 m-1"  style="border: 5px solid  #A5B7DB">
+  <mat-card class="card  border-3  d-flex p-3 m-2 align-middle"  style="border: 3px solid  #A5B7DB" appearance="outlined" >
 
-  <mat-card-header>
-    <div>
-      <a href={{docu.url}} target="_blank">
-       <img mat-card-image src='/icono-pdf.png'>
-     </a>
-   </div>
-    <mat-card-subtitle class="text-start">{{ docu.code }}</mat-card-subtitle>
-    <mat-card-subtitle class="text-start">{{ docu.name }}</mat-card-subtitle>
+    <mat-card-header>
+      <div class="ms-2">
+        <a href={{docu.url}} target="_blank">
+         <img mat-card-image src='/icono-pdf.png'>
+       </a>
+     </div>
+      <mat-card-subtitle class="text-start">{{ docu.code }}</mat-card-subtitle>
+      <mat-card-subtitle class="text-start">{{ docu.name }}</mat-card-subtitle>
 
-  </mat-card-header>
+    </mat-card-header>
 
 
 
-</mat-card>
+  </mat-card>
+</div>
+
