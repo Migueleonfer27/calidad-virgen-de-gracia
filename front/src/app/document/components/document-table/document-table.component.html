@@ -2,7 +2,7 @@
   <div
     class=" mb-3 subnav-admin w-100  container d-flex justify-content-between align-items-center text-align-center  p-3 rounded-3 mb-3">
     <h1>Documentos</h1>
-    <button class="p-3 addCategoryBtn" mat-raised-button matSuffix aria-label="Añadir Categoría" (click)="onNewDocument()">
+    <button  *ngIf="canViewElement([abilities.createDocument])" class="p-3 addCategoryBtn" mat-raised-button matSuffix aria-label="Añadir Categoría" (click)="onNewDocument()">
       <mat-icon>note_add</mat-icon>Añadir documento
     </button>
   </div>
@@ -40,13 +40,13 @@
         <th mat-header-cell *matHeaderCellDef class="text-center">Acciones</th>
         <td mat-cell *matCellDef="let document">
           <div  class="d-flex justify-content-center gap-2 justify-content-md-center">
-            <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Abrir documento'" (click)="openDocument(document.url)">
+            <button  class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Abrir documento'" (click)="openDocument(document.url)">
               <mat-icon class="text-success">file_open</mat-icon>
             </button>
-            <button class="border-0 bg-light " mat-icon-button matSuffix [matTooltip]="'Editar documento'" (click)="onUpdate(document)">
+            <button  *ngIf="canViewElement([abilities.updateDocument])" class="border-0 bg-light " mat-icon-button matSuffix [matTooltip]="'Editar documento'" (click)="onUpdate(document)">
               <mat-icon class="text-primary">edit</mat-icon>
             </button>
-            <button class="border-0 bg-light" mat-icon-button matSuffix [matTooltip]="'Borrar documento'" (click)="onDelete(document)">
+            <button class="border-0 bg-light"  *ngIf="canViewElement([abilities.deleteDocument])" mat-icon-button matSuffix [matTooltip]="'Borrar documento'" (click)="onDelete(document)">
               <mat-icon class="text-danger">delete</mat-icon>
             </button>
           </div>

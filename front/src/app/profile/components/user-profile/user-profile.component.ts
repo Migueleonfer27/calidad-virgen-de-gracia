@@ -7,6 +7,8 @@ import { UploadProfilePicComponent } from '../upload-profile-pic/upload-profile-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdatePassFormDialogComponent } from '../update-pass-form-dialog/update-pass-form-dialog.component';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
+import { abilities } from '../../../utils/abilities';
 
 @Component({
   selector: 'user-profile',
@@ -20,8 +22,9 @@ export class UserProfileComponent implements OnInit {
   idUsuario: number = Number(localStorage.getItem('user_id'));
   private _uploadUrl: string = environment.uploadUrl;
   private _bottomSheet = inject(MatBottomSheet);
-
+  abilities=abilities
   constructor(
+    private permissionView: PermissionViewService,
     private adminService: AdminService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
@@ -97,5 +100,9 @@ export class UserProfileComponent implements OnInit {
           })
         }
       });
+    }
+
+    canViewElement(abilitiesKeys: string[]): boolean {
+      return this.permissionView.canAccess(abilitiesKeys);
     }
 }

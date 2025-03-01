@@ -2,7 +2,9 @@
   <div
     class=" mb-3 subnav-admin w-100  container d-flex justify-content-between align-items-center text-align-center  p-3 rounded-3 mb-3">
     <h1>Categorías</h1>
-    <button class="p-3 addCategoryBtn" mat-raised-button matSuffix aria-label="Añadir" (click)="add()">
+
+    <button class="p-3 addCategoryBtn"  *ngIf="canViewElement([abilities.createCategory])" mat-raised-button matSuffix aria-label="Añadir" (click)="add()">
+
       <mat-icon class="text-primary ">add</mat-icon>Añadir Categoría
     </button>
 
@@ -31,10 +33,10 @@
                 <button class="border-0 bg-light" mat-icon-button matSuffix [routerLink]="['/admin/subcategory-table', row.id, row.name]" matTooltip="Ver detalle">
                   <mat-icon class="text-secondary">info</mat-icon>
                 </button>
-                <button class="border-0 bg-light " mat-icon-button matSuffix (click)="edit(row)"  matTooltip="Editar categoría">
+                <button  *ngIf="canViewElement([abilities.updateCategory])" class="border-0 bg-light " mat-icon-button matSuffix (click)="edit(row)"  matTooltip="Editar categoría">
                   <mat-icon class="text-primary">edit</mat-icon>
                 </button>
-                <button class="border-0 bg-light" mat-icon-button matSuffix (click)="delet(row)"  matTooltip="Borrar categoría">
+                <button  *ngIf="canViewElement([abilities.deleteCategory])" class="border-0 bg-light" mat-icon-button matSuffix (click)="delet(row)"  matTooltip="Borrar categoría">
                   <mat-icon class="text-danger">delete</mat-icon>
                 </button>
               </div>

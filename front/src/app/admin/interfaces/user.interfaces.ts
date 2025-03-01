@@ -66,3 +66,14 @@ export interface ProfileResponse {
   message: string;
   data: User;
 }
+
+export interface ApiResponseAddRoles {
+  message: string;
+  data: UserRoles[];
+}
+
+export interface UserRoles {
+  id: number;
+  user_id: number;
+  role_id: number;
+}

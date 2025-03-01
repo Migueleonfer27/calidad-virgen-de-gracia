@@ -1,19 +1,19 @@
 <div class="d-flex nav-admin justify-content-between align-items-center p-3 rounded-3 mb-3 flex-column flex-md-row text-center text-md-start">
   <h1 class="text-white title-text mb-3 mb-md-0">Administrador</h1>
   <div class="d-flex gap-2 gap-md-3 flex-wrap justify-content-center">
-    <button mat-raised-button color="primary" [routerLink]="['/admin', 'usersList']">
+    <button  *ngIf="canViewElement([abilities.getUsers])" mat-raised-button color="primary" [routerLink]="['/admin', 'usersList']">
       <mat-icon>person</mat-icon>
       Gestión Usuarios
     </button>
-    <button mat-raised-button color="primary" [routerLink]="['/admin', 'roles']">
+    <button  *ngIf="canViewElement([abilities.getRoles])" mat-raised-button color="primary" [routerLink]="['/admin', 'roles']">
       <mat-icon>security</mat-icon>
       Gestión de Roles
     </button>
-    <button mat-raised-button color="primary" [routerLink]="['/admin', 'categories']">
+    <button  *ngIf="canViewElement([abilities.createCategory, abilities.deleteCategory, abilities.updateCategory])" mat-raised-button color="primary" [routerLink]="['/admin', 'categories']">
       <mat-icon>category</mat-icon>
       Gestión de Categorías
     </button>
-    <button mat-raised-button color="primary" [routerLink]="['/admin', 'documents']">
+    <button  *ngIf="canViewElement([abilities.createDocument, abilities.updateDocument, abilities.deleteDocument])" mat-raised-button color="primary" [routerLink]="['/admin', 'documents']">
       <mat-icon>description</mat-icon>
       Gestión de Documentos
     </button>

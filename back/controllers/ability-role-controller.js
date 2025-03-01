@@ -35,7 +35,7 @@ export const abilitiesController = {
             const abilitiesByRole = await connection.getAbilityRole(
                 req.params.idRole
             );
-
+            console.log(JSON.stringify(abilitiesByRole));
             if (abilitiesByRole.dataValues.abilities.length <= 0) {
                 return res.status(200).json({
                     message: messages.abilities.error.notHaveAbilityRol,
