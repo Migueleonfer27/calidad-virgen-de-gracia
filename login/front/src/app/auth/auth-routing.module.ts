@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RolesPageComponent } from './pages/roles-page/roles-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,8 +12,14 @@ const routes: Routes = [
   },
   {
     path: 'roles',
-    component: RolesPageComponent
+    component: RolesPageComponent,
+    canActivate: [AuthGuard]
   },
+  {
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

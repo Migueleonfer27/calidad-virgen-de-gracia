@@ -9,11 +9,18 @@ export const generateJWT = (uid = '') => {
 }
 
 export const generateJWT_roles = (uid = '', roles = []) => {
-    let token = jwt.sign({ uid, roles }, process.env.SECRETORPRIVATEKEY, {
+    const formattedRoles = roles.map(role => ({
+        role_id: role.id || role.role_id, 
+        position: role.position 
+    }))
+
+    let token = jwt.sign({ uid, roles: formattedRoles }, process.env.SECRETORPRIVATEKEY, {
         expiresIn: '4h'
     })
+
     return token
 }
+
 
 export const getRolesToken = (token) => {
     try {

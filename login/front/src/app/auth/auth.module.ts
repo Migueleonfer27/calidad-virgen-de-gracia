@@ -12,8 +12,8 @@ import { MatCardModule } from '@angular/material/card'
 import { AuthRoutingModule } from './auth-routing.module'
 import { resetPasswordComponent } from './components/reset-password/reset-password.component'
 import { MatDialogModule } from '@angular/material/dialog'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RolesPageComponent } from './pages/roles-page/roles-page.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { RolesPageComponent } from './pages/roles-page/roles-page.component'
 import { RolesCardComponent } from './components/roles-card/roles-card.component'
 
 @NgModule({

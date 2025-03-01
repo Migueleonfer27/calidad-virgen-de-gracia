@@ -1,4 +1,4 @@
-// Jaime Ortega
+// src/app/services/token.service.ts
 import { Injectable } from '@angular/core'
 import { jwtDecode } from 'jwt-decode'
 import { Role } from '../interfaces/role.interface'
@@ -10,22 +10,24 @@ import { JwtPayload } from '../interfaces/auth.interface'
 })
 export class TokenService {
   private TOKEN = 'token'
-  private ROLE = 'rol'
+  private ROLE = 'role'
+  private ROLE_ID = 'role_id'
 
   constructor(private cookieService: CookieService) { }
 
   clearSession(): void {
     this.removeToken()
-    localStorage.removeItem('token')
-    localStorage.removeItem('rol')
+    localStorage.removeItem(this.TOKEN)
+    localStorage.removeItem(this.ROLE)
+    localStorage.removeItem(this.ROLE_ID)
   }
 
   setToken(token: string): void {
-    this.cookieService.set('token', token, { path: '/' })
+    this.cookieService.set(this.TOKEN, token, { path: '/' })
   }
 
   getToken(): string | null {
-    return this.cookieService.get('token')
+    return this.cookieService.get(this.TOKEN)
   }
 
   decodeToken(): JwtPayload | null {
@@ -35,7 +37,7 @@ export class TokenService {
     }
     try {
       const decodeToken = jwtDecode<JwtPayload>(token)
-      // console.log(decodeToken)
+      console.log('Decoded Token:', decodeToken)
       return decodeToken
     } catch (error) {
       console.error('Error al decodificar el token', error)
@@ -44,9 +46,13 @@ export class TokenService {
   }
 
   getUserRoles(): Role[] {
-    const decodedToken: any = this.decodeToken()
-    const roles = decodedToken?.roles || []
-    return roles.map((role: Role) => ({position: role}))
+    const decodedToken = this.decodeToken();
+    if (!decodedToken?.roles || !Array.isArray(decodedToken.roles)) return [];
+
+    return decodedToken.roles.map((role) => ({
+      role_id: role.role_id,
+      position: role.position
+    }));
   }
 
   isTokenExpired(): boolean {
@@ -67,20 +73,20 @@ export class TokenService {
   }
 
   getSelectedRole(): Role | null {
-    const roleString = this.cookieService.get(this.ROLE);
+    const roleString = this.cookieService.get(this.ROLE)
     if (roleString) {
         const decodedRole = decodeURIComponent(roleString)
         return JSON.parse(decodedRole) as Role
     }
-    return null;
+    return null
   }
 
   setSessionActive(isActive: boolean): void {
-    this.cookieService.set('sessionActive', JSON.stringify(isActive), { path: '/' });
+    this.cookieService.set('sessionActive', JSON.stringify(isActive), { path: '/' })
   }
 
   getSessionActive(): boolean {
-    const sessionActiveString = this.cookieService.get('sessionActive');
-    return sessionActiveString ? JSON.parse(sessionActiveString) : false;
+    const sessionActiveString = this.cookieService.get('sessionActive')
+    return sessionActiveString ? JSON.parse(sessionActiveString) : false
   }
 }
