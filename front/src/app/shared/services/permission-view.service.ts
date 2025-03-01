@@ -17,6 +17,7 @@ export class PermissionViewService {
   ) { }
 
   loadAbilitiesByRole(): void {
+    console.log(this.rolId)
     this.adminService.getAbilitiesByRole(this.rolId).subscribe(response => {
       this.abilitiesByRole = response.data.abilities.map(ability => ability.description);
     });

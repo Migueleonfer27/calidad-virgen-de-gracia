@@ -33,6 +33,7 @@ export class AdminPageComponent implements OnInit {
   verAbilities() {
     const rol = JSON.parse(localStorage.getItem("rol")!);
     const roleId = rol?.role_id;
+    console.log(roleId);
     return this.authService.getAbilitiesByRole(roleId).pipe(
 
       map((response: ResultAbilities) => {

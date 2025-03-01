@@ -16,6 +16,7 @@ const UserController = {
         data: users,
       });
     } catch (error) {
+      console.log(error)
       res.status(500).json({
         message: messages.user.error.index,
         error: error.message,

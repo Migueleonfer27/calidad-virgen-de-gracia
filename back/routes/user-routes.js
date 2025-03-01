@@ -31,7 +31,6 @@ router.get(
   "/:id",
   isIdIntMiddleware,
   validateJWT,
-  isRolValid(abilities.getUsers),//cambiar por getUser
   UserController.showUser
 );
 

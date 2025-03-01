@@ -148,7 +148,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          description: abilities.addAbilities,
+          description: abilities.getAllAbilities,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

@@ -29,8 +29,7 @@ router.get(
     check("idRole", "El rol es obligatorio").not().isEmpty().isNumeric(),
     validarCampos,
   ],
-  /*validateJWT,
-  /*isRolValid(abilities.getAbilitiesByRol)*/
+  validateJWT,
   abilitiesController.getAbilitiesByRole
 );
 
