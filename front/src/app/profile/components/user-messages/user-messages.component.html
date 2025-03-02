@@ -4,7 +4,7 @@
   </button>
   <div class="container w-50 border p-5 rounded shadow">
     <div class="mensajes">
-      <div *ngFor="let mensaje of mensajesRecibidos" class="mensaje d-flex justify-content-between align-items-center">
+      <div *ngFor="let mensaje of mensajesRecibidos$ | async" class="mensaje d-flex justify-content-between align-items-center">
         <strong>{{ mensaje.user.first_name }} {{ mensaje.user.last_name }}:</strong>
         {{ mensaje.message }}
         <button type="button" class="bg-light d-flex justify-content-center align-items-center" mat-icon-button matSuffix [matTooltip]="'Marcar como leído'" (click)="marcarMensajeLeido(mensaje.id)">

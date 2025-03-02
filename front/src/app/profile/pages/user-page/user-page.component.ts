@@ -9,16 +9,15 @@ import { MessageStateService } from '../../services/messages.service';
 })
 export class UserPageComponent implements OnInit {
 
-  mensajesRecibidos: any[] = [];
   badgeCount: number = 0;
   iconName: string = 'notifications';
 
   constructor(private messagesService: MessageStateService) {}
 
   ngOnInit(): void {
+    // Suscribirse a los mensajes globales
     this.messagesService.messages$.subscribe((messages) => {
-      this.mensajesRecibidos = messages;
-      this.badgeCount = this.mensajesRecibidos.length;
+      this.badgeCount = messages.length;
       this.iconName = this.badgeCount > 0 ? 'notifications_active' : 'notifications';
     });
   }
