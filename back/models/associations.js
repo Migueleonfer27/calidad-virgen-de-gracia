@@ -85,14 +85,28 @@ Ability.belongsToMany(Roles, {
   otherKey: "id_rol",
 })
 
+// Relación: Un usuario tiene muchos mensajes como receptor
 Users.hasMany(Message, {
-  as: 'messages',
-  foreignKey: 'userId'
-})
+  as: 'receivedMessages', // Mensajes recibidos
+  foreignKey: 'userId',
+});
 
+// Relación: Un mensaje pertenece a un usuario (receptor)
 Message.belongsTo(Users, {
-  as: 'user',
-  foreignKey: 'userId'
-})
+  as: 'receiver', // Alias para el receptor
+  foreignKey: 'userId',
+});
+
+// Relación: Un usuario tiene muchos mensajes como remitente
+Users.hasMany(Message, {
+  as: 'sentMessages', // Mensajes enviados
+  foreignKey: 'senderId',
+});
+
+// Relación: Un mensaje pertenece a un usuario (remitente)
+Message.belongsTo(Users, {
+  as: 'sender', // Alias para el remitente
+  foreignKey: 'senderId',
+});
 
 export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole, Message };

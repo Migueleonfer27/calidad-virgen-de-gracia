@@ -15,7 +15,6 @@ export class UserPageComponent implements OnInit {
   constructor(private messagesService: MessageStateService) {}
 
   ngOnInit(): void {
-    // Suscribirse a los mensajes globales
     this.messagesService.messages$.subscribe((messages) => {
       this.badgeCount = messages.length;
       this.iconName = this.badgeCount > 0 ? 'notifications_active' : 'notifications';

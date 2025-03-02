@@ -1,20 +1,17 @@
-// Miguel
-
+//Miguel y Daniel
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { ApiResponse, Role, UserList, User } from '../../interfaces/user.interfaces';
-import { AdminService } from '../../services/admin.service';
-import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { environment } from '../../../../environments/environment.development';
-import { MessageFormDialogComponent } from '../message-form-dialog/message-form-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { WebSocketService } from '../../../webSocket/web-socket.service';
+import { Role, User, UserList } from '../../interfaces/user.interfaces';
+import { AdminService } from '../../services/admin.service';
+import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
+import { MessageFormDialogComponent } from '../message-form-dialog/message-form-dialog.component';
 
 @Component({
   selector: 'app-user-list',
@@ -33,8 +30,7 @@ export class UserListComponent implements AfterViewInit {
   hoveredRow: any = null;
   private _uploadUrl: string = environment.uploadUrl;
   displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'last_name', 'corporate_email', 'roles', 'actions'];
-  userId: number = Number(localStorage.getItem('user_id'));
-
+  senderId: number = Number(localStorage.getItem('user_id'));
 
   constructor(
     private adminService: AdminService,
@@ -110,7 +106,8 @@ export class UserListComponent implements AfterViewInit {
         const newMessage = {
           subject: message.subject,
           message: message.message,
-          userId: user.id
+          userId: user.id,
+          senderId: this.senderId
         }
         this.webSocketService.emit('enviar-mensaje', newMessage);
       }

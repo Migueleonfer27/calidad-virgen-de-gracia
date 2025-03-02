@@ -30,6 +30,15 @@ export class Message extends Model{
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE'
+    },
+    senderId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Users',
+        key: 'id'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE'
     }
   }, {
     sequelize:conexion,

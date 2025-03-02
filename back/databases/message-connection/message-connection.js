@@ -35,7 +35,12 @@ export class MessageConnection {
             include: [
                 {
                     model: Users,
-                    as: 'user',
+                    as: 'receiver',
+                    attributes: ['id', 'first_name', 'last_name']
+                },
+                {
+                    model: Users,
+                    as: 'sender',
                     attributes: ['id', 'first_name', 'last_name']
                 }
             ]
@@ -53,13 +58,19 @@ export class MessageConnection {
                 subject: message.subject,
                 message: message.message,
                 userId: message.userId,
+                senderId: message.senderId
             });
 
             return await Message.findByPk(newMessage.id, {
                 include: [
                     {
                         model: Users,
-                        as: 'user',
+                        as: 'receiver',
+                        attributes: ['id', 'first_name', 'last_name']
+                    },
+                    {
+                        model: Users,
+                        as: 'sender',
                         attributes: ['id', 'first_name', 'last_name']
                     }
                 ]
@@ -75,7 +86,12 @@ export class MessageConnection {
             include: [
                 {
                     model: Users,
-                    as: 'user',
+                    as: 'receiver',
+                    attributes: ['id', 'first_name', 'last_name']
+                },
+                {
+                    model: Users,
+                    as: 'sender',
                     attributes: ['id', 'first_name', 'last_name']
                 }
             ]

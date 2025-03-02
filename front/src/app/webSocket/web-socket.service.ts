@@ -16,13 +16,15 @@ export class WebSocketService {
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 2000,
-      transports: ['websocket', 'polling'] 
+      transports: ['websocket', 'polling']
     });
 
     this.socket.on('recibir-mensaje', (payload: any) => {
       const userId = Number(localStorage.getItem('user_id'));
       if (payload.userId === userId) {
         const currentMessages = this.messageStateService.getMessages();
+        console.log('currentMessages:',currentMessages)
+        console.log('payload', payload)
         this.messageStateService.updateMessages([...currentMessages, payload]);
         this.mostrarNotificacion('🔔 ¡Tienes un nuevo mensaje!');
       }

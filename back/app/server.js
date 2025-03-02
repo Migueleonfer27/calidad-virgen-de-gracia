@@ -12,7 +12,6 @@ import { router as taskRoutes } from "../routes/task-routes.js";
 import { router as downloadRoutes } from "../routes/donwload-routes.js"
 import { router as documentRoutes } from "../routes/document-routes.js";
 import { router as abilityRoleRoutes} from "../routes/ability-role-routes.js";
-import { router as messageRoutes } from "../routes/message-routes.js";
 import { socketController } from "../controllers/websocket-controller.js";
 import { createServer } from 'http';
 import { Server } from 'socket.io';
@@ -31,7 +30,6 @@ class MiServer {
     this.downloadPath = "/api/download";
     this.documentPath = "/api/documents";
     this.abilitiesPath= "/api/abilities";
-    this.messagePath = "/api/message";
 
     this.serverExpress = createServer(this.app);
     this.serverWebSocket = createServer(this.app);
@@ -75,7 +73,6 @@ class MiServer {
     this.app.use(this.documentPath, documentRoutes);
     this.app.use(this.downloadPath, downloadRoutes);
     this.app.use(this.abilitiesPath, abilityRoleRoutes);
-    this.app.use(this.messagePath, messageRoutes);
   }
 
   sockets(){
