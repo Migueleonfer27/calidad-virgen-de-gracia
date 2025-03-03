@@ -8,6 +8,7 @@ import { UploadProfilePicComponent } from './components/upload-profile-pic/uploa
 import { PhoneFormatPipe } from '../pipes/phone-format.pipe';
 import { UpdatePassFormDialogComponent } from './components/update-pass-form-dialog/update-pass-form-dialog.component';
 import { UserMessagesComponent } from './components/user-messages/user-messages.component';
+import { OpenMsgDialogComponent } from './components/open-msg-dialog/open-msg-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UserMessagesComponent } from './components/user-messages/user-messages.
     UploadProfilePicComponent,
     PhoneFormatPipe,
     UpdatePassFormDialogComponent,
-    UserMessagesComponent
+    UserMessagesComponent,
+    OpenMsgDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { UserMessagesComponent } from './components/user-messages/user-messages.
     UploadProfilePicComponent,
     PhoneFormatPipe,
     UpdatePassFormDialogComponent,
-    UserMessagesComponent
+    UserMessagesComponent,
+    OpenMsgDialogComponent
   ]
 })
 export class ProfileModule { }

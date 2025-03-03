@@ -43,7 +43,8 @@ export class MessageConnection {
                     as: 'sender',
                     attributes: ['id', 'first_name', 'last_name']
                 }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         });
 
         if (!resultado) {

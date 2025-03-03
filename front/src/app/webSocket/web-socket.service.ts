@@ -30,7 +30,7 @@ export class WebSocketService {
         const currentMessages = this.messageStateService.getMessages();
         console.log('currentMessages:',currentMessages)
         console.log('payload', payload)
-        this.messageStateService.updateMessages([...currentMessages, payload]);
+        this.messageStateService.updateMessages([payload, ...currentMessages]);
         this.mostrarNotificacion('🔔 ¡Tienes un nuevo mensaje!');
       }
     });
