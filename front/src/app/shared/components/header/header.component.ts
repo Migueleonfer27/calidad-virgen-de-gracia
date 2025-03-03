@@ -67,7 +67,7 @@ export class HeaderComponent {
   }
 
   ngOnInit(): void {
-    this.permissionView.loadAbilitiesByRole();
+
     const role = this.tokenService.getSelectedRole();
     if (role) {
       localStorage.setItem('rol', JSON.stringify(role));
@@ -79,6 +79,7 @@ export class HeaderComponent {
       if (decodeToken) {
         localStorage.setItem('user_id', decodeToken.uid.toString());
         localStorage.setItem('roles', JSON.stringify(decodeToken.roles));
+        this.permissionView.loadAbilitiesByRole();
       } else {
         console.error('El token no se pudo decodificar o no contiene uid');
       }
@@ -99,6 +100,7 @@ export class HeaderComponent {
   }
 
   canViewElement(abilitiesKeys:string []): boolean {
+
     return this.permissionView.canAccess(abilitiesKeys);
   }
 }
