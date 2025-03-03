@@ -35,7 +35,7 @@ class MiServer {
     this.serverWebSocket = createServer(this.app);
     this.io = new Server(this.serverWebSocket, {
         cors: {
-            // origin: 'http://localhost:4200', // En caso de que necesitemos otros dominios
+            // origin: 'http://localhost:4200', 
             origin: '*',    //Permitimos el acceso a todos los dominios.
             methods: ['GET', 'POST'],   //Permitimos los métodos GET y POST.
             allowedHeaders: ['Content-Type'],   //Permitimos el header 'Content-Type

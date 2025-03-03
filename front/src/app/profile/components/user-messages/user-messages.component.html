@@ -11,7 +11,7 @@
         <span matListItemTitle><strong>{{ mensaje.subject }}</strong></span>
         <span matListItemLine class="text-secondary">{{ mensaje.sender.first_name }} {{ mensaje.sender.last_name }} | {{ mensaje.createdAt | date:'HH:mm - dd/MM/YY' }}</span>
         <span matListItemLine>{{ mensaje.message }}</span>
-        <button matListItemMeta type="button" class="customBtn d-flex justify-content-center align-items-center" mat-icon-button matSuffix [matTooltip]="'Marcar como leído'" (click)="marcarMensajeLeido(mensaje.id)">
+        <button matListItemMeta type="button" class="customBtn d-flex justify-content-center align-items-center" mat-icon-button matSuffix [matTooltip]="'Marcar como leído'" (click)="marcarMensajeLeido($event, mensaje.id)">
           <mat-icon class="icon2">mark_email_read</mat-icon>
         </button>
       </mat-list-item>

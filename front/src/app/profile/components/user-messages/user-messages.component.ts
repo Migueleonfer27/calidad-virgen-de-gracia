@@ -23,10 +23,10 @@ export class UserMessagesComponent {
     public dialog: MatDialog
   ){
     this.mensajesRecibidos$ = this.messagesService.messages$;
-    console.log(this.mensajesRecibidos$.source._value)
   }
 
-  marcarMensajeLeido(messageId: number): void {
+  marcarMensajeLeido(event: Event, messageId: number): void {
+    event.stopPropagation();
     this.webSocketService.emit('marcar-mensaje-leido', messageId, (response: any) => {
       if (response.status === 'success') {
         const currentMessages = this.messagesService.getMessages().filter((msg) => msg.id !== messageId);

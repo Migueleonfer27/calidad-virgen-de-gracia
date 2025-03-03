@@ -17,11 +17,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const userId = Number(localStorage.getItem('user_id'));
     if (userId) {
-      // Cargar mensajes al iniciar la aplicación
       this.webSocketService.loadUserMessages(userId).subscribe({
         next: (response) => {
-          console.log('Mensajes cargados al iniciar la app:', response);
-          // Actualizar el estado con los mensajes cargados
           this.messageStateService.updateMessages(response.mensajes);
         },
         error: (err) => console.error('Error al cargar mensajes:', err),

@@ -28,8 +28,6 @@ export class WebSocketService {
       const userId = Number(localStorage.getItem('user_id'));
       if (payload.userId === userId) {
         const currentMessages = this.messageStateService.getMessages();
-        console.log('currentMessages:',currentMessages)
-        console.log('payload', payload)
         this.messageStateService.updateMessages([payload, ...currentMessages]);
         this.mostrarNotificacion('🔔 ¡Tienes un nuevo mensaje!');
       }
