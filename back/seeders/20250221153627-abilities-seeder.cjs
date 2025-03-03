@@ -6,176 +6,23 @@ module.exports = {
     const { abilities } = await import("../helpers/abilities.js");
 
     try {
-      const abilitiesData = [
-        {
-          description: abilities.deleteCategory,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updateCategory,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.createCategory,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.deleteSubcategory,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updateSubcategory,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.createSubcategory,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.deleteDocument,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updateDocument,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.createDocument,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.downloadDocument,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.deleteTask,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.deleteMyTask,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.getMyTask,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updateTask,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.createTask,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.getTasks,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updateStateTask,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.getUsers,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.deleteUser,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updateUser,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.createUser,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.getRoles,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.deleteRol,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updateRol,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.createRol,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.getAbilitiesByRol,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.getAbilitiesByUser,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.addAbilities,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.getAllAbilities,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.uploadPicture,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.updatePassword,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          description: abilities.createMassiveUser,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ];
+      const generateAbilityData = (description) => ({
+        description,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+
+      const abilitiesData = Object.values(abilities).map((description) =>
+        generateAbilityData(description)
+      );
 
       await queryInterface.bulkInsert("abilities", abilitiesData, {});
-
-      console.log("Ability creada con éxito.");
     } catch (error) {
-      console.error("Error al crear la Ability:", error);
+      console.error("Error al crear las Abilities:", error);
+      throw error;
     }
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete("abilities", null, {});
   },
