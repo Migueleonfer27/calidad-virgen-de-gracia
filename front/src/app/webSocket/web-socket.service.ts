@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { MessageStateService } from '../profile/services/messages.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ export class WebSocketService {
 
   private socket: Socket;
 
-  constructor(private messageStateService: MessageStateService, private snackBar: MatSnackBar) {
+  constructor(
+    private messageStateService: MessageStateService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {
     this.socket = io('http://localhost:8090', {
       reconnection: true,
       reconnectionAttempts: 5,
@@ -35,12 +40,13 @@ export class WebSocketService {
     const audio = new Audio('/audio/notification.mp3');
     audio.play();
 
-    this.snackBar.open(mensaje, 'Cerrar', {
+    this.snackBar.open(mensaje, 'Ir al mensaje', {
       duration: 5500,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
-      panelClass: ['snackbar-notificacion'],
-    });
+    }).onAction().subscribe(() => {
+      this.router.navigate(['/profile/userMessages'])
+    })
   }
 
   public listen(eventName: string): Observable<any> {

@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { WebSocketService } from '../../../webSocket/web-socket.service';
 import { MessageStateService } from '../../services/messages.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'user-messages',
@@ -15,9 +15,9 @@ export class UserMessagesComponent {
   userId: number = Number(localStorage.getItem('user_id'));
 
   constructor(
-    private location: Location,
     private webSocketService: WebSocketService,
-    private messagesService: MessageStateService
+    private messagesService: MessageStateService,
+    private snackBar: MatSnackBar
   ){
     this.mensajesRecibidos$ = this.messagesService.messages$;
   }
@@ -27,11 +27,12 @@ export class UserMessagesComponent {
       if (response.status === 'success') {
         const currentMessages = this.messagesService.getMessages().filter((msg) => msg.id !== messageId);
         this.messagesService.updateMessages(currentMessages);
+        this.snackBar.open('Mensaje marcado como leído correctamente.', 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+        })
       }
     });
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 }
