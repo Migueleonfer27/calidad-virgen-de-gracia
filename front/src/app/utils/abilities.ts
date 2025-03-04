@@ -32,4 +32,5 @@ export const abilities = {
   uploadPicture: "Cargar foto",
   updatePassword: "Actualizar contraseña",
   createMassiveUser: "Importar csv",
+  sendMessage:"Enviar mensajes"
 };
