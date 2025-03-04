@@ -89,7 +89,7 @@
             <button (click)="showUser(row.id)" mat-menu-item>
               <mat-icon class="text-secondary">info</mat-icon> Información usuario
             </button>
-            <button *ngIf="row.id !== senderId" (click)="sendMessage(row)" mat-menu-item>
+            <button *ngIf="row.id !== senderId && canViewElement([abilities.sendMessage])" (click)="sendMessage(row)" mat-menu-item>
               <mat-icon class="text-info">chat</mat-icon> Enviar mensaje
             </button>
             <button *ngIf="canViewElement([abilities.updateUser])" (click)="addRole(row.id)"  mat-menu-item>

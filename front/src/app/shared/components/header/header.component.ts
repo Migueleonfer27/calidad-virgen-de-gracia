@@ -30,7 +30,7 @@ export class HeaderComponent {
     abilities.deleteTask,
     abilities.updateTask,
     abilities.createTask,
-    
+
   ];
   public abiltiesAdmin= [
     abilities.getUsers,
@@ -53,6 +53,7 @@ export class HeaderComponent {
     abilities.getAbilitiesByUser,
     abilities.getRoles,
     abilities.createMassiveUser,
+    abilities.sendMessage
 
   ];
 
