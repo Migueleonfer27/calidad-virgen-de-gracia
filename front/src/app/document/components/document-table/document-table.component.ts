@@ -98,7 +98,7 @@ export class DocumentTableComponent implements OnInit {
             this.snackBar.open('Documento añadido correctamente.', 'Cerrar', { duration: 3000 });
           },
           error: (error) => {
-            this.snackBar.open('Ha ocurrido un error. No se ha podido añadir el documento.', 'Cerrar', { duration: 3000 });
+            this.snackBar.open('Ha ocurrido un error al añadir el documento.', 'Cerrar', { duration: 3000 });
           }
         });
       }
@@ -166,7 +166,7 @@ export class DocumentTableComponent implements OnInit {
             panelClass: ['main-snackbar']
           });
         } else {
-          this.snackBar.open('Ha ocurrido un error. El documento no se ha podido eliminar.', 'Cerrar', {
+          this.snackBar.open('Ha ocurrido un error al eliminar el documento.', 'Cerrar', {
             duration: 3000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',

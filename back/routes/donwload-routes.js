@@ -14,3 +14,10 @@ router.post(
   isRolValid(abilities.downloadDocument),
   DownloadController.donwloadPdf
 );
+
+router.post(
+  "/isAutofilled", 
+  // urlValidate,
+  // validateJWT,
+  // isRolValid(abilities.createDocument),
+  DownloadController.isAutofilledDoc);

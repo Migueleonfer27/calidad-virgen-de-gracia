@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { Document, EditResult, Result } from '../interfaces/document.interface';
+import { AutofilledResult, Document, EditResult, Result } from '../interfaces/document.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +43,12 @@ export class DocumentService {
   deleteDocument(document: Document) {
     const url = `${this._documentUrl}${this._documentPath}/delete/${document.id}`;
     return this.http.delete<EditResult>(url);
+  }
+
+  isAutofilledDoc(documentName: string): Observable<AutofilledResult> {
+    const url = `${this._documentUrl}/download/isAutofilled`;
+    return this.http.post<AutofilledResult>(url, {
+      documentName: documentName
+    });
   }
 }

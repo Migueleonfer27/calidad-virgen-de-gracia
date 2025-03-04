@@ -16,7 +16,7 @@ export class PermissionViewService {
   constructor(
     private adminService: AdminService
   ) {
-    
+
    }
 
   loadAbilitiesByRole(): void {
