@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DocumentService } from '../../services/document.service';
 
 @Component({
   selector: 'edit-doc-form-dialog',
@@ -10,12 +11,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class EditDocFormDialogComponent {
   editDocsForm: FormGroup;
+  isAutofilled: boolean = false;
 
   constructor(
     private fb: FormBuilder,
+    private documentService: DocumentService,
     public dialogRef: MatDialogRef<EditDocFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ){
+
     this.editDocsForm = this.fb.group({
       name: [
         this.data.document.name,
@@ -30,7 +34,7 @@ export class EditDocFormDialogComponent {
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(6)
+          Validators.maxLength(20)
         ]
       ],
       url: [
@@ -43,6 +47,12 @@ export class EditDocFormDialogComponent {
         ]
       ],
       autofilled: [this.data.document.autofilled]
+    })
+
+    const documentName = this.editDocsForm.controls['name'].value;
+
+    this.documentService.isAutofilledDoc(documentName).subscribe((response) => {
+      this.isAutofilled = response.status
     })
   }
 
@@ -62,10 +72,19 @@ export class EditDocFormDialogComponent {
 
   onInput(controlName: string) {
     const control = this.editDocsForm.get(controlName);
+
     if (control) {
       control.markAsTouched();
       control.updateValueAndValidity();
     }
-  }
 
+    const documentName = this.editDocsForm.controls['name'].value;
+
+    this.documentService.isAutofilledDoc(documentName).subscribe((response) => {
+      this.isAutofilled = response.status;
+      if (!this.isAutofilled) {
+        this.editDocsForm.get('autofilled')?.setValue(false);
+      }
+    })
+  }
 }

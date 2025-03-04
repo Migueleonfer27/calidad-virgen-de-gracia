@@ -103,7 +103,10 @@ export class AddDocFormDialogComponent implements OnInit {
     const documentName = this.addDocsForm.controls['name'].value;
 
     this.documentService.isAutofilledDoc(documentName).subscribe((response) => {
-      this.isAutofilled = response.status
+      this.isAutofilled = response.status;
+      if (!this.isAutofilled) {
+        this.addDocsForm.get('autofilled')?.setValue(false);
+      }
     })
   }
 }
