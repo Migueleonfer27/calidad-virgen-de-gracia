@@ -70,7 +70,7 @@ export class CategoriesComponent implements AfterViewInit {
 
   edit(category: Category) {
     const dialog = this.dialog.open(EditDialogComponent, {
-      width: '250px',
+      width: '500px',
       data: { ...category },
       enterAnimationDuration: '400ms',
       exitAnimationDuration: '400ms'

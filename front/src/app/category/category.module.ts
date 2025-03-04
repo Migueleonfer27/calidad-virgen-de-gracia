@@ -21,6 +21,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { CategoriesComponent } from './components/categoriesTable/categories-table.component';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSnackBarModule,
     MatTableModule,
     MatRippleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatToolbarModule
 
   ],
   exports: [
