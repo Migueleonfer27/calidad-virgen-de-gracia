@@ -22,12 +22,12 @@
       class="w-100"
       [ngClass]="{'mb-3': addDocsForm.get('code')?.invalid && (addDocsForm.get('code')?.touched || addDocsForm.get('code')?.dirty)}">
       <mat-label>Código</mat-label>
-      <input matInput formControlName="code" minlength="2" maxlength="7" (input)="onInput('code')">
+      <input matInput formControlName="code" minlength="2" maxlength="21" (input)="onInput('code')">
       <mat-error class="d-flex flex-column" *ngIf="addDocsForm.get('code')?.invalid">
         <ul>
           <li *ngIf="addDocsForm.get('code')?.hasError('required')">El código es obligatorio.</li>
           <li *ngIf="addDocsForm.get('code')?.hasError('minlength')">Debe tener al menos 2 caracteres.</li>
-          <li *ngIf="addDocsForm.get('code')?.hasError('maxlength')">Debe tener un máximo de 6 caracteres.</li>
+          <li *ngIf="addDocsForm.get('code')?.hasError('maxlength')">Debe tener un máximo de 20 caracteres.</li>
         </ul>
       </mat-error>
     </mat-form-field>
@@ -58,7 +58,7 @@
         La elección de subcategoría es obligatoria.
       </mat-error>
     </mat-form-field>
-    <mat-checkbox class="w-100" formControlName="autofilled">¿Va a ser el documento autorrellenable?</mat-checkbox>
+    <mat-checkbox *ngIf="isAutofilled" class="w-100" formControlName="autofilled">¿Va a ser el documento autorrellenable?</mat-checkbox>
     <div class="d-flex gap-2 justify-content-end w-100">
       <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
       <button mat-raised-button color="primary" (click)="save()" [disabled]="addDocsForm.invalid"

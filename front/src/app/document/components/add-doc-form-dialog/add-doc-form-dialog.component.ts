@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CategoryService } from '../../../category/services/category.service';
 import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
 import { Subcategory } from '../../interfaces/document.interface';
+import { DocumentService } from '../../services/document.service';
 
 @Component({
   selector: 'add-doc-form-dialog',
@@ -16,15 +17,16 @@ export class AddDocFormDialogComponent implements OnInit {
   addDocsForm: FormGroup;
   categories: any[] = [];
   subcategories: { [key: number]: Subcategory[] } = {};
+  isAutofilled: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private subcategoryService: SubcategoryService,
+    private documentService: DocumentService,
     public dialogRef: MatDialogRef<AddDocFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
     this.addDocsForm = this.fb.group({
       name: [
         '',
@@ -39,7 +41,7 @@ export class AddDocFormDialogComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(6)
+          Validators.maxLength(20)
         ]
       ],
       url: [
@@ -92,9 +94,16 @@ export class AddDocFormDialogComponent implements OnInit {
 
   onInput(controlName: string) {
     const control = this.addDocsForm.get(controlName);
+
     if (control) {
       control.markAsTouched();
       control.updateValueAndValidity();
     }
+
+    const documentName = this.addDocsForm.controls['name'].value;
+
+    this.documentService.isAutofilledDoc(documentName).subscribe((response) => {
+      this.isAutofilled = response.status
+    })
   }
 }
