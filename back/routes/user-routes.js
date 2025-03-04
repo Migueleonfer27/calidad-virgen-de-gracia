@@ -21,10 +21,10 @@ import { abilities } from "../helpers/abilities.js";
 export const router = Router();
 
 router.get("/",
-  // validateJWT,isRolValid(abilities.getUsers), 
+  validateJWT,isRolValid(abilities.getUsers), 
   UserController.indexUsers);
 router.get("/:id", isIdIntMiddleware,
-  // validateJWT,isRolValid(abilities.getUsers), 
+  validateJWT,isRolValid(abilities.getUsers), 
   UserController.showUser);
 router.post(
   "/",
