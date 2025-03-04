@@ -27,6 +27,7 @@ import { AbilitiesDialogComponent } from './components/abilities-dialog/abilitie
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MessageFormDialogComponent } from './components/message-form-dialog/message-form-dialog.component';
 import { RolesDialogComponent } from './components/roles-dialog/roles-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -63,6 +64,7 @@ import { RolesDialogComponent } from './components/roles-dialog/roles-dialog.com
     DocumentModule,
     MatTooltip,
     MatCheckboxModule,
+    MatMenuModule
   ],
   exports:[
     AdminPageComponent,

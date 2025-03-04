@@ -82,21 +82,26 @@
       <th mat-header-cell *matHeaderCellDef class="bg-header-table text-center align-middle"> Acciones </th>
       <td mat-cell *matCellDef="let row">
         <div class="d-flex justify-content-center gap-2 justify-content-md-center">
-          <button (click)="showUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Información usuario'">
-            <mat-icon class="text-secondary">info</mat-icon>
+          <button mat-icon-button [matMenuTriggerFor]="menu" [matTooltip]="'Ver opciones'">
+            <mat-icon class="icon">more_vert</mat-icon>
           </button>
-          <button *ngIf="row.id !== senderId" (click)="sendMessage(row)" mat-icon-button matSuffix [matTooltip]="'Enviar mensaje'">
-            <mat-icon class="text-info">chat</mat-icon>
-          </button>
-          <button *ngIf="canViewElement([abilities.updateUser])" (click)="addRole(row.id)"  mat-icon-button matSuffix [matTooltip]="'Añadir roles'">
-            <mat-icon class="text-success">health_and_safety</mat-icon>
-          </button>
-          <button *ngIf="canViewElement([abilities.updateUser])" (click)="editUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Editar usuario'">
-            <mat-icon class="text-primary">edit</mat-icon>
-          </button>
-          <button *ngIf="canViewElement([abilities.deleteUser])" (click)="deleteUser(row.id)" mat-icon-button matSuffix [matTooltip]="'Borrar usuario'">
-            <mat-icon class="text-danger">delete</mat-icon>
-          </button>
+          <mat-menu #menu="matMenu" xPosition="after">
+            <button (click)="showUser(row.id)" mat-menu-item>
+              <mat-icon class="text-secondary">info</mat-icon> Información usuario
+            </button>
+            <button *ngIf="row.id !== senderId" (click)="sendMessage(row)" mat-menu-item>
+              <mat-icon class="text-info">chat</mat-icon> Enviar mensaje
+            </button>
+            <button *ngIf="canViewElement([abilities.updateUser])" (click)="addRole(row.id)"  mat-menu-item>
+              <mat-icon class="text-success">health_and_safety</mat-icon> Añadir roles
+            </button>
+            <button *ngIf="canViewElement([abilities.updateUser])" (click)="editUser(row.id)" mat-menu-item>
+              <mat-icon class="text-primary">edit</mat-icon> Editar usuario
+            </button>
+            <button *ngIf="canViewElement([abilities.deleteUser])" (click)="deleteUser(row.id)" mat-menu-item>
+              <mat-icon class="text-danger">delete</mat-icon> Borrar usuario
+            </button>
+          </mat-menu>
         </div>
       </td>
     </ng-container>
