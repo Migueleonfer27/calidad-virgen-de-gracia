@@ -110,7 +110,7 @@ export class SubcategoryTableComponent {
 
   editSubcategory(subcategory: SubcategoryIns) {
     const dialog = this.dialog.open(EditSubcategoryDialogComponent, {
-      width: '250px',
+      width: '500px',
       data: { ...subcategory },
       enterAnimationDuration: '400ms',
       exitAnimationDuration: '400ms'
