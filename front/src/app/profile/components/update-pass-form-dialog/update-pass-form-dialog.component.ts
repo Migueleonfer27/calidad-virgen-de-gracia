@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-update-pass-form-dialog',
+  selector: 'update-pass-form-dialog',
   standalone: false,
   templateUrl: './update-pass-form-dialog.component.html',
   styleUrl: './update-pass-form-dialog.component.css'

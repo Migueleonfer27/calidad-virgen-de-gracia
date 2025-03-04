@@ -1,0 +1,35 @@
+.icon {
+  color: #193e7a !important;
+}
+
+.icon2 {
+  color: #c8d8f6 !important;
+}
+
+.customBtn {
+  background-color: #193e7a;
+}
+
+#message-container {
+  border-radius: 0 0 0.3rem 0.3rem;
+}
+
+.messages-list {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-color: #193e7a #FFF;
+}
+
+.message {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.message:hover {
+  transform: scale(1.01);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.no-msg {
+  background-color: rgba(200, 216, 246, 0.5);
+}

@@ -1,18 +1,17 @@
-// Miguel
-
+//Miguel y Daniel
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { ApiResponse, Role, UserList } from '../../interfaces/user.interfaces';
-import { AdminService } from '../../services/admin.service';
-import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { environment } from '../../../../environments/environment.development';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { WebSocketService } from '../../../webSocket/web-socket.service';
+import { Role, User, UserList } from '../../interfaces/user.interfaces';
+import { AdminService } from '../../services/admin.service';
+import { FormUserDialogComponent } from '../form-user-dialog/form-user-dialog.component';
+import { MessageFormDialogComponent } from '../message-form-dialog/message-form-dialog.component';
 
 @Component({
   selector: 'app-user-list',
@@ -31,9 +30,14 @@ export class UserListComponent implements AfterViewInit {
   hoveredRow: any = null;
   private _uploadUrl: string = environment.uploadUrl;
   displayedColumns: string[] = ['#', 'photo', 'dni', 'first_name', 'last_name', 'corporate_email', 'roles', 'actions'];
+  senderId: number = Number(localStorage.getItem('user_id'));
 
-
-  constructor(private adminService: AdminService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(
+    private adminService: AdminService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private webSocketService: WebSocketService
+  ) {
     this.adminService.getUsers().subscribe(
       (response) => {
         if (response.data) {
@@ -86,6 +90,27 @@ export class UserListComponent implements AfterViewInit {
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
       data: { id, title: 'Información del usuario', button: 'Info', closeBtn: 'Cerrar', message: 'Listado completo de la información del usuario.' }
+    });
+  }
+
+  sendMessage(user: User) {
+    const dialogRef = this.dialog.open(MessageFormDialogComponent, {
+      width: '500px',
+      enterAnimationDuration: '300ms',
+      exitAnimationDuration: '300ms',
+      data: { title: 'Enviar mensaje', button: 'Enviar', closeBtn: 'Cerrar', message: `Destinatario: ${user.first_name} ${user.last_name}` }
+    });
+
+    dialogRef.afterClosed().subscribe((message) => {
+      if (message) {
+        const newMessage = {
+          subject: message.subject,
+          message: message.message,
+          userId: user.id,
+          senderId: this.senderId
+        }
+        this.webSocketService.emit('enviar-mensaje', newMessage);
+      }
     });
   }
 

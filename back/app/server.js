@@ -11,9 +11,12 @@ import { router as mailRoutes } from "../routes/mail-routes.js";
 import { router as taskRoutes } from "../routes/task-routes.js";
 import { router as downloadRoutes } from "../routes/donwload-routes.js"
 import { router as documentRoutes } from "../routes/document-routes.js";
-import { router as abilityRoleRoutes} from "../routes/ability-role-routes.js"
+import { router as abilityRoleRoutes} from "../routes/ability-role-routes.js";
+import { socketController } from "../controllers/websocket-controller.js";
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
-class Server {
+class MiServer {
   constructor() {
     this.app = express();
     this.usersPath = "/api/users";
@@ -26,9 +29,23 @@ class Server {
     this.taskPath = "/api/task";
     this.downloadPath = "/api/download";
     this.documentPath = "/api/documents";
-    this.abilitiesPath= "/api/abilities"
+    this.abilitiesPath= "/api/abilities";
+
+    this.serverExpress = createServer(this.app);
+    this.serverWebSocket = createServer(this.app);
+    this.io = new Server(this.serverWebSocket, {
+        cors: {
+            // origin: 'http://localhost:4200', 
+            origin: '*',    //Permitimos el acceso a todos los dominios.
+            methods: ['GET', 'POST'],   //Permitimos los métodos GET y POST.
+            allowedHeaders: ['Content-Type'],   //Permitimos el header 'Content-Type
+            credentials: true   //Permitimos las credenciales.
+        }
+    });
+
     this.middlewares();
     this.routes();
+    this.sockets();
   }
 
   middlewares() {
@@ -58,11 +75,19 @@ class Server {
     this.app.use(this.abilitiesPath, abilityRoleRoutes);
   }
 
+  sockets(){
+    this.io.on('connection', socketController);
+  }
+
   listen() {
-    this.app.listen(process.env.PORT, () => {
-      console.log(`Servidor escuchando en: ${process.env.PORT}`);
+    this.serverExpress.listen(process.env.PORT, () => {
+      console.log(`🌍 Servidor Express escuchando en: ${process.env.PORT}`);
+    });
+
+    this.serverWebSocket.listen(process.env.WEBSOCKETPORT, () => {
+      console.log(`🌐 Servidor de WebSockets escuchando en: ${process.env.WEBSOCKETPORT}`);
     });
   }
 }
 
-export { Server };
+export { MiServer };

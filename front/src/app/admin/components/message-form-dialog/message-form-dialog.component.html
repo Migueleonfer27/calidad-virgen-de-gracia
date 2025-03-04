@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content class="py-0">
+  <p class="text-muted">{{ data.message }}</p>
+</div>
+<form [formGroup]="messageForm">
+  <mat-dialog-content class="d-flex flex-wrap gap-2 justify-content-center">
+    <mat-form-field class="w-100">
+      <mat-label>Asunto</mat-label>
+      <input type="text" matInput formControlName="subject" (input)="onInput('subject')">
+      <mat-error *ngIf="messageForm.get('subject')?.hasError('required')">
+        El asunto del mensaje es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Mensaje</mat-label>
+      <textarea matInput formControlName="message" (input)="onInput('message')"></textarea>
+      <mat-error *ngIf="messageForm.get('message')?.hasError('required')">
+        El cuerpo del mensaje es obligatorio.
+      </mat-error>
+    </mat-form-field>
+    <div class="d-flex gap-2 justify-content-end w-100">
+      <button mat-raised-button (click)="closeDialog()">Cancelar</button>
+      <button mat-raised-button (click)="send()" [disabled]="messageForm.invalid"
+        [ngClass]="{'text-secondary': messageForm.invalid}">
+        <mat-icon>send</mat-icon> {{ data.button }}
+      </button>
+    </div>
+  </mat-dialog-content>
+</form>

@@ -1,7 +1,7 @@
 // Daniel Cruz
 import { request, response } from "express";
 import { messages as msg } from '../helpers/messages-controllers.js';
-import { DocumentConnection as Connection } from '../databases/documents/documents-connection.js'
+import { DocumentConnection as Connection } from '../databases/document-connection/documents-connection.js'
 
 const connection = new Connection();
 
