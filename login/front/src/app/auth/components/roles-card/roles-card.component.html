@@ -1,6 +1,11 @@
 <!-- Jaime Ortega -->
-<mat-card class="card p-3 m-2 justify-content-center" appearance="outlined" (click)="selectRole(role)">
-  <mat-card-content>
-    <h3 class="text-center">{{ role.position }}</h3>
-  </mat-card-content>
-</mat-card>
+
+<div class="col d-flex justify-content-center mt-2">
+  <mat-card class="card pt-2 h-100 d-flex flex-column justify-content-between text-center shadow"  appearance="outlined" (click)="selectRole(role)">
+    <img mat-card-image class="img-fluid mx-auto" src="role-img.png" alt="Photo of a Shiba Inu" style="width: 30%; height: auto;" />
+
+    <mat-card-content class="mt-3 border border-secondary rounded bg-header">
+      <h3 class="mt-3 text-truncate text-light">{{ role.position }}</h3>
+    </mat-card-content>
+  </mat-card>
+</div>
