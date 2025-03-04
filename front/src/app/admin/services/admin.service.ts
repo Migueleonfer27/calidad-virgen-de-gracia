@@ -107,6 +107,5 @@ export class AdminService {
 
   assignAbilitiesToRole(idRole: number, abilities: Number[]) {
     return this.http.post<ResponseInsertAbilities>(`${this.urlAbilities}/addAbilities`, { id_rol: idRole, abilities });
-
   }
 }
