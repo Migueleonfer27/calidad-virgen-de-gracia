@@ -52,7 +52,7 @@ export class RoleListComponent {
 
   createRole() {
     const dialogRef = this.dialog.open(FormRoleComponent, {
-      width: '350px',
+      width: '450px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
       data: { id: null, title: 'Crear rol', button: 'Crear', message: 'Complete el formulario para crear un nuevo rol.' }
@@ -74,10 +74,10 @@ export class RoleListComponent {
 
   editRole(id: number) {
     const dialogRef = this.dialog.open(FormRoleComponent, {
-      width: '350px',
+      width: '450px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { id, title: 'Editar rol', button: 'Editar', message: 'Complete el formulario para editar el rol.' }
+      data: { id, title: 'Editar rol', button: 'Editar', message: 'En este menú puedes editar los datos del rol.' }
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

@@ -133,7 +133,7 @@ export class UserListComponent implements AfterViewInit {
         title: 'Editar usuario',
         button: 'Editar',
         closeBtn: 'Cancelar',
-        message: '¿Estás seguro de que deseas editar este usuario?',
+        message: 'En este menú puedes cambiar los datos del usuario.',
       },
     });
 
