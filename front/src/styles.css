@@ -37,3 +37,12 @@ app-root {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
+
+
+
+.bg-color-soft {
+  background-color: #A5B7DB
+}
+
+
+

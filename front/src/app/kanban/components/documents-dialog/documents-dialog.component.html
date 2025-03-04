@@ -23,9 +23,10 @@
                   <img src="icono-pdf.png" alt="img-pdf" matTooltip="Ver documento" class="img-fluid" style="max-width: 40px;">
                 </a>
                 <button
-                *ngIf="item.autofilled"
+                *ngIf="item.autofilled && canViewElement([abilities.createCategory])"
                 mat-icon-button matSuffix
                 (click)="downloadPdf(item)"
+
                 matTooltip="Descargar y autorrellenar">
                   <mat-icon class="text-primary">download</mat-icon>
                 </button>

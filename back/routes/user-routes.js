@@ -11,7 +11,7 @@ import {
   birthDateMiddleware,
   genderMiddleware,
   csvMiddleware,
-  passwordMiddleware
+  passwordMiddleware,
 } from "../middlewares/user-middleware.js";
 import { fileValidator } from "../middlewares/file-middleware.js";
 import { validateJWT } from "../middlewares/auth-middleware.js";
@@ -20,12 +20,21 @@ import { abilities } from "../helpers/abilities.js";
 
 export const router = Router();
 
-router.get("/",
-  validateJWT,isRolValid(abilities.getUsers), 
-  UserController.indexUsers);
-router.get("/:id", isIdIntMiddleware,
-  validateJWT,isRolValid(abilities.getUsers), 
-  UserController.showUser);
+
+router.get(
+  "/",
+  validateJWT,
+  isRolValid(abilities.getUsers),
+  UserController.indexUsers
+);
+
+router.get(
+  "/:id",
+  isIdIntMiddleware,
+  validateJWT,
+  UserController.showUser
+);
+
 router.post(
   "/",
   dniMiddleware,
@@ -35,9 +44,11 @@ router.post(
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
-  validateJWT,isRolValid(abilities.createUser),
+  validateJWT,
+  isRolValid(abilities.createUser),
   UserController.storeUser
 );
+
 router.put(
   "/:id",
   isIdIntMiddleware,
@@ -48,22 +59,40 @@ router.put(
   phoneMiddleware,
   birthDateMiddleware,
   genderMiddleware,
-  validateJWT,isRolValid(abilities.updateUser),
+  validateJWT,
+  isRolValid(abilities.updateUser),
   UserController.updateUser
 );
 
-router.put('/:id/password', 
-  isIdIntMiddleware, 
-  passwordMiddleware, 
+router.put(
+  "/:id/password",
+  isIdIntMiddleware,
+  passwordMiddleware,
+  validateJWT,
+  isRolValid(abilities.updatePassword),
   UserController.updatePassword
 );
-router.put('/:id/uploadPic',
+
+router.put(
+  "/:id/uploadPic",
+  validateJWT,
   fileValidator,
+  isRolValid(abilities.uploadPicture),
   UserController.updateProfilePic
 );
-router.delete("/:id", isIdIntMiddleware, UserController.deleteUser);
 
-router.delete("/:id", isIdIntMiddleware,
-  validateJWT,isRolValid(abilities.deleteUser), UserController.deleteUser);
+router.delete(
+  "/:id",
+  validateJWT,
+  isIdIntMiddleware,
+  isRolValid(abilities.deleteUser),
+  UserController.deleteUser
+);
 
-router.post('/massive', csvMiddleware, UserController.storeUsersCsv);
+router.post(
+  "/massive",
+  validateJWT,
+  isRolValid(abilities.createMassiveUser),
+  csvMiddleware,
+  UserController.storeUsersCsv
+);

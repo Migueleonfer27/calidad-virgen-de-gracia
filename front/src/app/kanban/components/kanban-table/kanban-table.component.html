@@ -50,7 +50,7 @@
                   Ver documentos
                 </button>
                 <button mat-button class="text-danger" (click)="deleteTask(item.id)">
-                  <mat-icon class="text-danger">delete</mat-icon>
+                  <mat-icon  *ngIf="canViewElement([abilities.deleteMyTask])" class="text-danger">delete</mat-icon>
                   Eliminar
                 </button>
               </mat-card-actions>

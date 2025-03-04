@@ -12,6 +12,9 @@ import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialo
 import { SubcategoryService } from '../../../subcategory/services/subcategory.service';
 import { Subcategory } from '../../../subcategory/interfaces/subcategory.interface';
 import { catchError, map, Observable } from 'rxjs';
+import { abilities } from '../../../utils/abilities';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
+
 
 
 
@@ -32,10 +35,12 @@ export class CategoriesComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Category> = new MatTableDataSource<Category>([])
   myColor: string = '#A5B8DB'
   hoveredRow: any = null;
+  abilities=abilities
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private categoriesService: CategoryService,private subcategoryService:SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor( private permissionView: PermissionViewService, private categoriesService: CategoryService,private subcategoryService:SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
   }
 
@@ -199,6 +204,8 @@ export class CategoriesComponent implements AfterViewInit {
       }
     )
   }
-
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
+  }
 
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../environments/environment.development'
 import { Observable, tap, BehaviorSubject } from 'rxjs'
-import { AuthResponse, LoginForm, User } from '../interfaces/auth.interface'
+import { AuthResponse, LoginForm, ResultAbilities, User } from '../interfaces/auth.interface'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}`
   private _currentUser = new BehaviorSubject<User | null>(null)
   public currentUser$ = this._currentUser.asObservable()
-
+  private urlAbilities: string = `${environment.apiUrl}/abilities`;
   constructor(private http: HttpClient) {
     this.checkToken()
   }
@@ -58,5 +58,9 @@ export class AuthService {
           console.log('Password reset requested:', response)
         })
       )
+  }
+
+  getAbilitiesByRole(idRole: number) {
+    return this.http.get<ResultAbilities>(`${this.urlAbilities}/${idRole}`);
   }
 }

@@ -11,6 +11,8 @@ import { FormRoleComponent } from '../form-role-dialog/form-role-dialog.componen
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AbilitiesDialogComponent } from '../abilities-dialog/abilities-dialog.component';
+import { abilities } from '../../../utils/abilities';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
 
 @Component({
   selector: 'app-role-list',
@@ -25,13 +27,13 @@ export class RoleListComponent {
   hoveredRow: any = null;
   dataSource: MatTableDataSource<Role> = new MatTableDataSource<Role>([]);
   idUser: number = Number(localStorage.getItem('user_id'));
-
+  abilities=abilities
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns: string[] = ['#', 'code', 'year', 'position', 'description', 'actions'];
 
-  constructor(private adminService: AdminService, public dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor( private permissionView: PermissionViewService, private adminService: AdminService, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.adminService.getRoles().subscribe((res) => {
       this.dataSource.data = res.data;
     });
@@ -50,7 +52,7 @@ export class RoleListComponent {
 
   createRole() {
     const dialogRef = this.dialog.open(FormRoleComponent, {
-      width: '350px',
+      width: '450px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
       data: { id: null, title: 'Crear rol', button: 'Crear', message: 'Complete el formulario para crear un nuevo rol.' }
@@ -72,10 +74,10 @@ export class RoleListComponent {
 
   editRole(id: number) {
     const dialogRef = this.dialog.open(FormRoleComponent, {
-      width: '350px',
+      width: '450px',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { id, title: 'Editar rol', button: 'Editar', message: 'Complete el formulario para editar el rol.' }
+      data: { id, title: 'Editar rol', button: 'Editar', message: 'En este menú puedes editar los datos del rol.' }
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -146,5 +148,9 @@ export class RoleListComponent {
     this.adminService.getAbilitiesByUser(idUser, idRole).subscribe((response) => {
       console.log(response.data.Roles.map(role => role.abilities.map(abilities => abilities.description)));
     });
+  }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
   }
 }

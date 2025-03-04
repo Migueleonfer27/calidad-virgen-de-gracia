@@ -1,4 +1,4 @@
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -11,11 +11,13 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { TaskModule } from './task/task.module';
 import { MatPaginatorEs } from './utils/paginator-espanol';
-
+import { ErrorComponent } from './error/error.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,12 @@ import { MatPaginatorEs } from './utils/paginator-espanol';
     provideHttpClient(),
     provideNativeDateAdapter(),
     {
-      provide: MatPaginatorIntl, useClass: MatPaginatorEs
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: MatPaginatorIntl, useClass: MatPaginatorEs,
     }
   ],
   bootstrap: [AppComponent]

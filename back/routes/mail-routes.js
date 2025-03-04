@@ -1,7 +1,7 @@
-// Jaime Ortega 
-import { Router } from 'express'
-import { sendMail } from '../controllers/mail-controller.js'
+// Jaime Ortega
+import { Router } from "express";
+import { sendMail } from "../controllers/mail-controller.js";
 
-export const router = Router()
+export const router = Router();
 
-router.post('/reset-password', sendMail)
+router.post("/reset-password", sendMail);

@@ -26,6 +26,8 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { AbilitiesDialogComponent } from './components/abilities-dialog/abilities-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MessageFormDialogComponent } from './components/message-form-dialog/message-form-dialog.component';
+import { RolesDialogComponent } from './components/roles-dialog/roles-dialog.component';
+
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { MessageFormDialogComponent } from './components/message-form-dialog/mes
     FormRoleComponent,
     AbilitiesDialogComponent,
     MessageFormDialogComponent,
+    RolesDialogComponent,
   ],
   imports: [
     CategoryModule,
