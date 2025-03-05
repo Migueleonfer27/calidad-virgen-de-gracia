@@ -98,9 +98,9 @@ export class HeaderComponent {
     this.tokenService.clearSession()
     this.tokenService.setSessionActive(false)
     window.location.href = 'http://localhost:4300'
+  }
 
   canViewElement(abilitiesKeys:string []): boolean {
-
     return this.permissionView.canAccess(abilitiesKeys);
   }
 }
