@@ -64,7 +64,7 @@ export class HeaderComponent {
   ) {}
 
   isUserLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    return !!this.tokenService.getSessionActive()
   }
 
   ngOnInit(): void {
@@ -85,20 +85,19 @@ export class HeaderComponent {
         console.error('El token no se pudo decodificar o no contiene uid');
       }
     } else {
-      this.tokenService.clearSession();
-      console.error('No se encontró el token');
+      this.tokenService.clearSession()
+      // console.error('No se encontró el token')
     }
   }
 
-  logout(): void {
-    this.tokenService.setSessionActive(false);
-    this.tokenService.removeToken();
-    localStorage.removeItem('token');
-    localStorage.removeItem('rol');
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('roles');
-    window.location.href = 'http://localhost:4300';
+  changeRole(): void {
+    window.location.href = 'http://localhost:4300/auth/roles'
   }
+
+  logout(): void {
+    this.tokenService.clearSession()
+    this.tokenService.setSessionActive(false)
+    window.location.href = 'http://localhost:4300'
 
   canViewElement(abilitiesKeys:string []): boolean {
 

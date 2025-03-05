@@ -1,0 +1,7 @@
+mark {
+  background-color: rgba(110, 180, 255, 0.30);
+  color: rgb(13, 110, 253);
+  text-decoration: underline;
+  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 4px;
+}

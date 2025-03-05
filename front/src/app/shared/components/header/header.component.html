@@ -14,7 +14,7 @@
     </div>
 
     <div class="col-4 col-md-6 text-end">
-      <!--<div *ngIf="!isUserLoggedIn()">-->
+     <div *ngIf="isUserLoggedIn()">
       <button mat-raised-button [matMenuTriggerFor]="userMenu">
         <mat-icon>menu</mat-icon> Menú principal
       </button>
@@ -47,11 +47,19 @@
         >
           <mat-icon>settings</mat-icon> Administración
         </button>
+        
+        <button 
+          mat-menu-item 
+          (click)="changeRole()"
+        >
+          <mat-icon>repeat</mat-icon> Cambiar rol
+        </button>
+        
         <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon> Cerrar sesión
         </button>
       </mat-menu>
-      <!--</div>-->
+     </div>
     </div>
   </div>
 </header>

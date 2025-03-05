@@ -5,6 +5,7 @@ import { Router } from '@angular/router'
 import { AuthService } from '../../services/auth.service'
 import { MatDialog } from '@angular/material/dialog'
 import { resetPasswordComponent } from '../reset-password/reset-password.component'
+import { TokenService } from '../../services/token.service'
 
 @Component({
   selector: 'login-form',
@@ -21,7 +22,8 @@ export class LoginFormComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tokenService: TokenService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -48,5 +50,11 @@ export class LoginFormComponent {
       width: '400px',
       disableClose: true
     });
+  }
+
+  enterAsGuest(): void {
+    this.tokenService.clearSession()
+    this.tokenService.setSessionActive(false)
+    window.location.href = 'http://localhost:4200'
   }
 }
