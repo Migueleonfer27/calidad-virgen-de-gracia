@@ -36,8 +36,12 @@ export class HeaderComponent {
       }
     } else {
       this.tokenService.clearSession()
-      // console.error('No se encontró el token') 
+      // console.error('No se encontró el token')
     }
+  }
+
+  changeRole(): void {
+    window.location.href = 'http://localhost:4300/auth/roles'
   }
 
   logout(): void {

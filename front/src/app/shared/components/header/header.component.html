@@ -16,6 +16,7 @@
           <button mat-menu-item routerLink="/kanban"><mat-icon>view_column</mat-icon> Mis tareas</button>
           <button mat-menu-item routerLink="/task"><mat-icon>content_paste</mat-icon> Calidad</button>
           <button mat-menu-item routerLink="/admin"><mat-icon>settings</mat-icon> Administración</button>
+          <button mat-menu-item (click)="changeRole()"><mat-icon>repeat</mat-icon> Cambiar rol</button>
           <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon> Cerrar sesión</button>
         </mat-menu>
       </div>
