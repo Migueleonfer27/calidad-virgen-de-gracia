@@ -7,4 +7,17 @@ import { abilities } from "../helpers/abilities.js";
 
 export const router = Router();
 
-router.post("/", urlValidate,validateJWT,isRolValid(abilities.downloadDocument), DownloadController.donwloadPdf);
+router.post(
+  "/",
+  urlValidate,
+  validateJWT,
+  isRolValid(abilities.downloadDocument),
+  DownloadController.donwloadPdf
+);
+
+router.post(
+  "/isAutofilled", 
+  // urlValidate,
+  // validateJWT,
+  // isRolValid(abilities.createDocument),
+  DownloadController.isAutofilledDoc);

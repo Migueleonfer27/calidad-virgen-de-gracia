@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CategorySidebarComponent } from '../home/components/category-sidebar/category-sidebar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDialogModule,
     MatSelectModule,
     MatTooltipModule,
+    MatToolbarModule
   ],
   exports: [
     SubcategoryCardListComponent,

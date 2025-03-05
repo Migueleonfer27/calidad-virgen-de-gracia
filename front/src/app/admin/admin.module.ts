@@ -25,6 +25,10 @@ import { DocumentModule } from '../document/document.module';
 import { MatTooltip } from '@angular/material/tooltip';
 import { AbilitiesDialogComponent } from './components/abilities-dialog/abilities-dialog.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MessageFormDialogComponent } from './components/message-form-dialog/message-form-dialog.component';
+import { RolesDialogComponent } from './components/roles-dialog/roles-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 @NgModule({
@@ -35,6 +39,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     RoleListComponent,
     FormRoleComponent,
     AbilitiesDialogComponent,
+    MessageFormDialogComponent,
+    RolesDialogComponent,
   ],
   imports: [
     CategoryModule,
@@ -58,12 +64,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     DocumentModule,
     MatTooltip,
     MatCheckboxModule,
+    MatMenuModule
   ],
   exports:[
     AdminPageComponent,
     UserListComponent,
     FormUserDialogComponent,
-
+    MessageFormDialogComponent
   ]
 
 })

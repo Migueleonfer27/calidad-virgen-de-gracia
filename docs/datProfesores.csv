@@ -1,9 +1,9 @@
-code;last_name;first_name;nrp;dni;abbreviation;birth_date;gender;title;address;city;postal_code;province;phone_rp;specialty;body;department;admission_date;leave_date;email;corporate_email;password;phone
-42142;León;Miguel;321;84723458R;MIG;1999-09-02;H;Estudiante;C/Aprisco;Puertollano;13500;Ciudad Real;483929394;Special;Operario;Informatica;10/20/2019;;miguel@gmail.com;miguel@gmail.com;jeknadf3;439235938
-53251;García;Ana;654;12345678A;ANA;5/15/98;M;Doctora;C/Mayor;Madrid;28001;Madrid;612345678;Cardiología;Doctor;Medicina;2020-12-08;;ana.garcia@gmail.com;ana.garcia@hospital.com;dlcmdo93;612345678
-64532;Pérez;Javier;987;87654321B;JAV;11/23/95;H;Ingeniero;C/Ferrocarril;Barcelona;8002;Barcelona;623456789;Informática;Operario;IT;2018-03-01;;javier.perez@gmail.com;javier.perez@empresa.com;qwerty;623456789
-75891;Rodríguez;Elena;321;23456789C;ELE;1997-08-03;M;Abogada;C/Real;Sevilla;41001;Sevilla;634567890;Derecho;Asesora;Legal;06/15/2021;;elena.rodriguez@gmail.com;elena.rodriguez@bufete.com;abc123;634567890
-86942;Fernández;Carlos;852;34567890D;CAR;9/14/94;H;Profesor;C/Central;Valencia;46001;Valencia;645678901;Educación;Docente;Universidad;2016-10-09;;carlos.fernandez@gmail.com;carlos.fernandez@uni.com;pass123;645678901
-97351;Gómez;Laura;147;45678901E;LAU;7/29/96;M;Enfermera;C/Sol;Málaga;29001;Málaga;656789012;Enfermería;Salud;Hospital;02/20/2019;;laura.gomez@gmail.com;laura.gomez@hospital.com;medpass;656789012
-10846;Martínez;David;369;56789012F;DAV;1992-05-12;H;Arquitecto;C/Plaza;Granada;18001;Granada;667890123;Arquitectura;Diseño;Construcción;05/25/2015;;david.martinez@gmail.com;david.martinez@arquitectos.com;davpass;667890123
-21957;López;Sandra;753;67890123G;SAN;6/18/99;M;Periodista;C/Noticias;Murcia;30001;Murcia;678901234;Comunicación;Medios;Prensa;2022-11-07;;sandra.lopez@gmail.com;sandra.lopez@news.com;journal123;678901234
+code;last_name;first_name;nrp;dni;abbreviation;birth_date;gender;title;address;city;postal_code;province;phone_rp;specialty;body;department;admission_date;leave_date;email;corporate_email;phone
+53251;García;Ana;654;12345678A;ANA;5/15/98;M;Doctora;C/Mayor;Madrid;28001;Madrid;612345678;Cardiología;Doctor;Medicina;8/12/20;;ana.garcia@gmail.com;ana.garcia@hospital.com;612345678
+42142;León;Miguel;321;84723458R;MIG;2/9/99;H;Estudiante;C/Aprisco;Puertollano;13500;Ciudad Real;483929394;Special;Operario;Informatica;10/20/2019;;miguelbasura12345@gmail.com;miguel@gmail.com;439235938
+64532;Pérez;Javier;987;87654321B;JAV;11/23/95;H;Ingeniero;C/Ferrocarril;Barcelona;8002;Barcelona;623456789;Informática;Operario;IT;1/3/18;;javier.perez@gmail.com;javier.perez@empresa.com;623456789
+75891;Rodríguez;Elena;321;23456789C;ELE;3/8/97;M;Abogada;C/Real;Sevilla;41001;Sevilla;634567890;Derecho;Asesora;Legal;06/15/2021;;elena.rodriguez@gmail.com;elena.rodriguez@bufete.com;634567890
+86942;Fernández;Carlos;852;34567890D;CAR;9/14/94;H;Profesor;C/Central;Valencia;46001;Valencia;645678901;Educación;Docente;Universidad;9/10/16;;carlos.fernandez@gmail.com;carlos.fernandez@uni.com;645678901
+97351;Gómez;Laura;147;45678901E;LAU;7/29/96;M;Enfermera;C/Sol;Málaga;29001;Málaga;656789012;Enfermería;Salud;Hospital;02/20/2019;;laura.gomez@gmail.com;laura.gomez@hospital.com;656789012
+10846;Martínez;David;369;56789012F;DAV;12/5/92;H;Arquitecto;C/Plaza;Granada;18001;Granada;667890123;Arquitectura;Diseño;Construcción;05/25/2015;;david.martinez@gmail.com;david.martinez@arquitectos.com;667890123
+21957;López;Sandra;753;67890123G;SAN;6/18/99;M;Periodista;C/Noticias;Murcia;30001;Murcia;678901234;Comunicación;Medios;Prensa;7/11/22;;sandra.lopez@gmail.com;sandra.lopez@news.com;678901234

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title class="d-flex align-items-center gap-2 pt-4 pb-0 m-0"><mat-icon>mail</mat-icon> {{ data.title }}</h1>
+<hr>
+<div class="d-flex flex-column px-5">
+  <h5 class="d-flex gap-2"><strong>{{ data.message.subject }}</strong></h5>
+  <span class="d-flex align-items-center gap-2 text-secondary"><mat-icon>person</mat-icon>{{ data.message.sender.first_name }} {{ data.message.sender.last_name }}</span>
+  <span class="d-flex align-items-center gap-2 text-secondary"><mat-icon>schedule</mat-icon>{{ data.message.createdAt | date:'HH:mm - dd/MM/YY' }}</span>
+  <hr>
+  <p class="message">{{ data.message.message }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">{{ data.closeBtn }}</button>
+</div>

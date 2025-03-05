@@ -1,38 +1,88 @@
-import { Component } from '@angular/core'
-import { Router } from '@angular/router'
-import { TokenService } from '../../../../../../login/front/src/app/auth/services/token.service'
+// Jaime Ortega y Miguel
 
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from '../../../../../../login/front/src/app/auth/services/token.service';
+import { abilities } from '../../../utils/abilities';
+import { PermissionViewService } from '../../services/permission-view.service';
 
 @Component({
   selector: 'shared-header',
   standalone: false,
 
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  constructor(private router: Router, private tokenService: TokenService) { }
+  public abiltiesProfile= [
+    abilities.uploadPicture,
+    abilities.updatePassword,
+
+  ];
+  public abiltiesKanba= [
+    abilities.downloadDocument,
+    abilities.getMyTask,
+    abilities.deleteMyTask,
+    abilities.updateStateTask
+  ];
+  public abiltiesQuality= [
+    abilities.getTasks,
+    abilities.deleteTask,
+    abilities.updateTask,
+    abilities.createTask,
+
+  ];
+  public abiltiesAdmin= [
+    abilities.getUsers,
+    abilities.createUser,
+    abilities.updateUser,
+    abilities.deleteUser,
+    abilities.createCategory,
+    abilities.updateCategory,
+    abilities.deleteCategory,
+    abilities.createSubcategory,
+    abilities.updateSubcategory,
+    abilities.deleteSubcategory,
+    abilities.createDocument,
+    abilities.updateDocument,
+    abilities.deleteDocument,
+    abilities.createRol,
+    abilities.updateRol,
+    abilities.deleteRol,
+    abilities.getAbilitiesByRol,
+    abilities.getAbilitiesByUser,
+    abilities.getRoles,
+    abilities.createMassiveUser,
+    abilities.sendMessage
+
+  ];
+
+  constructor(
+    private router: Router,
+    private tokenService: TokenService,
+    private permissionView: PermissionViewService
+  ) {}
 
   isUserLoggedIn(): boolean {
     return !!this.tokenService.getSessionActive()
   }
 
-  // Jaime Ortega
   ngOnInit(): void {
-    const role = this.tokenService.getSelectedRole()
-    if (role) {
-      localStorage.setItem('rol', JSON.stringify(role))
-    }
-    const token = this.tokenService.getToken()
-    if (token) {
-      localStorage.setItem('token', token)
-      const decodeToken = this.tokenService.decodeToken()
-      if (decodeToken) {
 
-        localStorage.setItem('user_id', decodeToken.uid.toString())
-        localStorage.setItem('roles', JSON.stringify(decodeToken.roles))
+    const role = this.tokenService.getSelectedRole();
+    if (role) {
+      localStorage.setItem('rol', JSON.stringify(role));
+    }
+    const token = this.tokenService.getToken();
+    if (token) {
+      localStorage.setItem('token', token);
+      const decodeToken = this.tokenService.decodeToken();
+      if (decodeToken) {
+        localStorage.setItem('user_id', decodeToken.uid.toString());
+        localStorage.setItem('roles', JSON.stringify(decodeToken.roles));
+        this.permissionView.loadAbilitiesByRole();
       } else {
-        console.error('El token no se pudo decodificar o no contiene uid')
+        console.error('El token no se pudo decodificar o no contiene uid');
       }
     } else {
       this.tokenService.clearSession()
@@ -48,5 +98,9 @@ export class HeaderComponent {
     this.tokenService.clearSession()
     this.tokenService.setSessionActive(false)
     window.location.href = 'http://localhost:4300'
+
+  canViewElement(abilitiesKeys:string []): boolean {
+
+    return this.permissionView.canAccess(abilitiesKeys);
   }
 }

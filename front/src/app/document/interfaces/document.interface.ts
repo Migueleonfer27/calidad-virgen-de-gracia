@@ -8,6 +8,11 @@ export interface EditResult {
   data: Document;
 }
 
+export interface AutofilledResult {
+  status: boolean;
+  msg: string;
+}
+
 export interface Document {
   id:          number;
   name:        string;

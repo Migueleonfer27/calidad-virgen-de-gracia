@@ -10,6 +10,8 @@ import { EditDocFormDialogComponent } from '../edit-doc-form-dialog/edit-doc-for
 import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
+import { abilities } from '../../../utils/abilities';
 
 @Component({
   selector: 'app-document-table',
@@ -22,11 +24,12 @@ export class DocumentTableComponent implements OnInit {
   displayedColumns: string[] = ['#', 'name', 'code', 'subcategory', 'autofilled', 'actions'];
   documents = new MatTableDataSource<Document>([]);
   subcategoryFilterControl = new FormControl('');
-
+  abilities=abilities
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
+    private permissionView: PermissionViewService,
     private documentService: DocumentService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar) { }
@@ -95,7 +98,7 @@ export class DocumentTableComponent implements OnInit {
             this.snackBar.open('Documento añadido correctamente.', 'Cerrar', { duration: 3000 });
           },
           error: (error) => {
-            this.snackBar.open('Ha ocurrido un error. No se ha podido añadir el documento.', 'Cerrar', { duration: 3000 });
+            this.snackBar.open('Ha ocurrido un error al añadir el documento.', 'Cerrar', { duration: 3000 });
           }
         });
       }
@@ -163,7 +166,7 @@ export class DocumentTableComponent implements OnInit {
             panelClass: ['main-snackbar']
           });
         } else {
-          this.snackBar.open('Ha ocurrido un error. El documento no se ha podido eliminar.', 'Cerrar', {
+          this.snackBar.open('Ha ocurrido un error al eliminar el documento.', 'Cerrar', {
             duration: 3000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
@@ -172,5 +175,9 @@ export class DocumentTableComponent implements OnInit {
         }
       });
     });
+  }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
   }
 }

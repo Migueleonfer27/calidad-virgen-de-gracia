@@ -1,8 +1,10 @@
-<h1 mat-dialog-title class="text-primary">{{ data.title }}</h1>
-<div mat-dialog-content class="py-0">
-  <p>{{ data.message }}</p>
-</div>
-<hr>
+<h1 mat-dialog-title class="text-light mb-4 fs-2 bg-color p-4">{{ data.title }}</h1>
+<mat-dialog-content>
+  <div class="d-flex align-items-center bg-color-soft text-white p-3 rounded fs-6 shadow me-3">
+    <mat-icon class="text-light pe-4">info</mat-icon>
+    <p class="mb-0 ps-2">{{ data.message }}</p>
+  </div>
+</mat-dialog-content>
 <form [formGroup]="editDocsForm">
   <mat-dialog-content class="d-flex flex-column gap-2 justify-content-center">
     <mat-form-field
@@ -20,12 +22,12 @@
     <mat-form-field
       [ngClass]="{'mb-3': editDocsForm.get('code')?.invalid && (editDocsForm.get('code')?.touched || editDocsForm.get('code')?.dirty)}">
       <mat-label>Código</mat-label>
-      <input matInput formControlName="code" minlength="2" maxlength="7" (input)="onInput('code')">
+      <input matInput formControlName="code" minlength="2" maxlength="21" (input)="onInput('code')">
       <mat-error class="d-flex flex-column" *ngIf="editDocsForm.get('code')?.invalid">
         <ul>
           <li *ngIf="editDocsForm.get('code')?.hasError('required')">El código es obligatorio.</li>
           <li *ngIf="editDocsForm.get('code')?.hasError('minlength')">Debe tener al menos 2 caracteres.</li>
-          <li *ngIf="editDocsForm.get('code')?.hasError('maxlength')">Debe tener un máximo de 6 caracteres.</li>
+          <li *ngIf="editDocsForm.get('code')?.hasError('maxlength')">Debe tener un máximo de 20 caracteres.</li>
         </ul>
       </mat-error>
     </mat-form-field>
@@ -42,7 +44,7 @@
         </ul>
       </mat-error>
     </mat-form-field>
-    <mat-checkbox formControlName="autofilled">¿Va a ser el documento autorrellenable?</mat-checkbox>
+    <mat-checkbox *ngIf="isAutofilled" formControlName="autofilled">¿Va a ser el documento autorrellenable?</mat-checkbox>
     <hr>
     <div class="d-flex gap-2 justify-content-end">
       <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>

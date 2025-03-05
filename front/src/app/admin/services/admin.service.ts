@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf, ProfileResponse } from '../interfaces/user.interfaces';
+import { UserList, ApiResponse, User, Role, ApiResponseRoles, ApiResponseForFillPdf, ProfileResponse, ApiResponseAddRoles } from '../interfaces/user.interfaces';
 import { Response, ResponseAbilities, ResponseInsertAbilities } from '../interfaces/abilities.interfaces';
 import { Observable } from 'rxjs';
 
@@ -51,8 +51,8 @@ export class AdminService {
     return this.http.get<ApiResponseRoles>(this.urlRoles);
   }
 
-  addRole(user_id: number, role_id: number): Observable<Role> {
-    return this.http.post<Role>(`${this.urlUserRoles}`, { user_id, role_id });
+  addRole(user_id: number, role_ids: number[]): Observable<ApiResponseAddRoles> {
+    return this.http.post<ApiResponseAddRoles>(`${this.urlUserRoles}`, { user_id, role_ids });
   }
 
   removeAssignedRole(user_id: number, role_id: number): Observable<Role> {
@@ -107,6 +107,5 @@ export class AdminService {
 
   assignAbilitiesToRole(idRole: number, abilities: Number[]) {
     return this.http.post<ResponseInsertAbilities>(`${this.urlAbilities}/addAbilities`, { id_rol: idRole, abilities });
-
   }
 }

@@ -1,10 +1,16 @@
 <div class="dialog-container">
-  <div></div>
-  <h2 mat-dialog-title class="text-center">
-    Evento
-  </h2>
+  <mat-toolbar  class="text-white justify-content-center p-4 bg-header-dialog">
+    <span class="h4">{{ task.description }}</span>
+  </mat-toolbar>
+    <p
+    class="px-2 py-3 m-3 text-white rounded-3 d-flex text-center align-items-center bg-color-soft"
+  >
+    <mat-icon class="text-light">info</mat-icon>
+    Edita el evento {{task.description}}
+  </p>
 
   <div class="d-flex justify-content-center flex-column " mat-dialog-content>
+
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Descripción</mat-label>
       <input matInput [(ngModel)]="task.description" placeholder="Ingrese el nombre de la categoría" #nombre="ngModel"

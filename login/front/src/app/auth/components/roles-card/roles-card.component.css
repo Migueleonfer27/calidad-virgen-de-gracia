@@ -1,4 +1,37 @@
 /* Jaime Ortega */
 mat-card {
   cursor: pointer;
+  min-height: 200px;
+  max-height: 320px;
+  max-width: 70%;
+  width: 70%;
+
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.text-colour{
+  color: rgb(58, 56, 75)
+}
+mat-card-content {
+  background-color: #12356f;
+}
+h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: none;
+}
+
+
+.card:hover h3 {
+  white-space: normal;
+  overflow: visible;
 }

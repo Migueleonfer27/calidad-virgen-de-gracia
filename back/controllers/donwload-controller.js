@@ -31,6 +31,22 @@ export const DownloadController = {
         .json({ message: messages.download.error.notFound, error: error });
     }
   },
+  isAutofilledDoc: async (req = request, res = response) => {
+    const { documentName } = req.body;
+    const templatesPdf = new TemplatesPdf();
+    const template = templatesPdf.getTemplate(documentName);
+    if (template) {
+      res.status(200).json({
+        'status': true,
+        'msg': 'El PDF sí es autorrellenable.'
+      })
+    } else {
+      res.status(200).json({
+        'status': false,
+        'msg': 'El PDF no es autorrellenable.'
+      })
+    }
+  }
 };
 
 const generarPdfDesdeUrl = async (

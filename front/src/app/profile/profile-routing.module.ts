@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserMessagesComponent } from './components/user-messages/user-messages.component';
+
 
 const routes: Routes = [
   {
@@ -10,7 +12,12 @@ const routes: Routes = [
     children: [
       {
         path: 'userProfile',
-        component: UserProfileComponent
+        component: UserProfileComponent,
+
+      },
+      {
+        path: 'userMessages',
+        component: UserMessagesComponent
       },
       {
         path: '',

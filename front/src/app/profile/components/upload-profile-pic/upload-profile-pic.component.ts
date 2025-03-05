@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
-  selector: 'app-upload-profile-pic',
+  selector: 'upload-profile-pic',
   standalone: false,
   templateUrl: './upload-profile-pic.component.html',
   styleUrl: './upload-profile-pic.component.css'
@@ -18,7 +18,7 @@ export class UploadProfilePicComponent {
 
   uploadImage() {
     if (this.selectedFile) {
-      this._bottomSheetRef.dismiss(this.selectedFile) 
+      this._bottomSheetRef.dismiss(this.selectedFile)
     }
   }
 

@@ -13,6 +13,8 @@ import { EditSubcategoryDialogComponent } from '../edit-subcategory-dialog/edit-
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { CategoryService } from '../../../category/services/category.service';
 import { Category } from '../../../category/interfaces/category';
+import { abilities } from '../../../utils/abilities';
+import { PermissionViewService } from '../../../shared/services/permission-view.service';
 
 
 @Component({
@@ -30,8 +32,9 @@ export class SubcategoryTableComponent {
   categories:Category[]=[]
   hoveredRow: any = null;
   displayedColumns: string[] = ['#','name', 'star'];
+  abilities=abilities
   dataSource: MatTableDataSource<Subcategory> = new MatTableDataSource<Subcategory>([]);
-  constructor(private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar, private categoryService:CategoryService) { }
+  constructor( private permissionView: PermissionViewService,private route: ActivatedRoute, private subcategoryService: SubcategoryService, private dialog: MatDialog, private snackBar: MatSnackBar, private categoryService:CategoryService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -107,7 +110,7 @@ export class SubcategoryTableComponent {
 
   editSubcategory(subcategory: SubcategoryIns) {
     const dialog = this.dialog.open(EditSubcategoryDialogComponent, {
-      width: '250px',
+      width: '500px',
       data: { ...subcategory },
       enterAnimationDuration: '400ms',
       exitAnimationDuration: '400ms'
@@ -166,4 +169,9 @@ export class SubcategoryTableComponent {
     })
 
   }
+
+  canViewElement(abilitiesKeys: string[]): boolean {
+    return this.permissionView.canAccess(abilitiesKeys);
+  }
+
 }

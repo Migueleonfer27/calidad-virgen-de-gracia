@@ -13,23 +13,48 @@ import { validateJWT } from "../middlewares/auth-middleware.js";
 
 export const router = Router();
 
-router.get("/", validateJWT,isRolValid(abilities.getRoles), RoleController.indexRoles);
-router.get("/:id", isIdIntMiddleware, validateJWT,isRolValid(abilities.getRoles), RoleController.showRole);
+router.get(
+  "/",
+  validateJWT,
+  isRolValid(abilities.getRoles),
+  RoleController.indexRoles
+);
+
+router.get(
+  "/:id",
+  isIdIntMiddleware,
+  validateJWT,
+  isRolValid(abilities.getRoles),
+  RoleController.showRole
+);
+
 router.post(
   "/",
   positionMiddleware,
   codeMiddleware,
   yearMiddleware,
-  descriptionMiddleware,validateJWT,isRolValid(abilities.createRol),
+  descriptionMiddleware,
+  validateJWT,
+  isRolValid(abilities.createRol),
   RoleController.storeRole
 );
+
 router.put(
   "/:id",
   isIdIntMiddleware,
   positionMiddleware,
   codeMiddleware,
   yearMiddleware,
-  descriptionMiddleware,validateJWT,isRolValid(abilities.updateRol),
+  descriptionMiddleware,
+  validateJWT,
+  isRolValid(abilities.updateRol),
   RoleController.updateRole
 );
-router.delete("/:id", isIdIntMiddleware,validateJWT,isRolValid(abilities.deleteRol), RoleController.deleteRole);
+
+router.delete(
+  "/:id",
+  isIdIntMiddleware,
+  validateJWT,
+  isRolValid(abilities.deleteRol),
+  RoleController.deleteRole
+);
