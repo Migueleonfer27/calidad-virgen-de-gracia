@@ -19,32 +19,41 @@ import { PermissionViewService } from '../../../shared/services/permission-view.
   standalone: false,
 
   templateUrl: './kanban-table.component.html',
-  styleUrl: './kanban-table.component.css'
+  styleUrl: './kanban-table.component.css',
 })
 export class KanbanTableComponent {
   todo: Task[] = [];
   done: Task[] = [];
-  abilities=abilities
-  constructor(private permissionView: PermissionViewService, private kanbanService: KanbanService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  abilities = abilities;
+  constructor(
+    private permissionView: PermissionViewService,
+    private kanbanService: KanbanService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     const userId = Number(localStorage.getItem('user_id'));
     //localStorage.setItem('user_id', '2'); // CAMBIAR CUANDO TENGAMOS LOGIN
 
-    this.kanbanService.getTasksById(userId).subscribe(response => {
+    this.kanbanService.getTasksById(userId).subscribe((response) => {
       console.log(response);
-      const formattedData = response.data.map(task => ({
+      const formattedData = response.data.map((task) => ({
         ...task,
-        end_date: task.end_date.split(' ')[0].split('-').reverse().join('/')
+        end_date: task.end_date.split(' ')[0].split('-').reverse().join('/'),
       }));
-      this.todo = formattedData.filter(task => task.TaskUser.state === 1);
-      this.done = formattedData.filter(task => task.TaskUser.state === 2);
+      this.todo = formattedData.filter((task) => task.TaskUser.state === 1);
+      this.done = formattedData.filter((task) => task.TaskUser.state === 2);
     });
   }
 
   drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       const userId = Number(localStorage.getItem('user_id'));
       const task = event.previousContainer.data[event.previousIndex];
@@ -58,9 +67,12 @@ export class KanbanTableComponent {
             event.previousIndex,
             event.currentIndex
           );
-          this.snackBar.open(`Tarea actualizada con éxito`, 'Cerrar', { duration: 3000 })
+          this.snackBar.open(`Tarea actualizada con éxito`, 'Cerrar', {
+            duration: 3000,
+          });
         },
-        error: (err) => this.snackBar.open('Error actualizando la tarea: ' + err)
+        error: (err) =>
+          this.snackBar.open('Error actualizando la tarea: ' + err),
       });
     }
   }
@@ -73,20 +85,27 @@ export class KanbanTableComponent {
       data: {
         message: '¿Estás seguro de que deseas eliminar esta tarea?',
         button: 'Eliminar',
-        closeBtn: 'Cancelar'
-      }
+        closeBtn: 'Cancelar',
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         const userId = Number(localStorage.getItem('user_id'));
         this.kanbanService.deleteTask(id_task, userId).subscribe({
           next: () => {
-            this.todo = this.todo.filter(task => task.id !== id_task);
-            this.done = this.done.filter(task => task.id !== id_task);
-            this.snackBar.open('Tarea eliminada con éxito.', 'Cerrar', { duration: 3000 });
+            this.todo = this.todo.filter((task) => task.id !== id_task);
+            this.done = this.done.filter((task) => task.id !== id_task);
+            this.snackBar.open('Tarea eliminada con éxito.', 'Cerrar', {
+              duration: 3000,
+            });
           },
-          error: (err) => this.snackBar.open('Error al intentar eliminar la tarea.', 'Cerrar', { duration: 3000 })
+          error: (err) =>
+            this.snackBar.open(
+              'Error al intentar eliminar la tarea.',
+              'Cerrar',
+              { duration: 3000 }
+            ),
         });
       }
     });
@@ -97,12 +116,17 @@ export class KanbanTableComponent {
       width: 'auto',
       enterAnimationDuration: '300ms',
       exitAnimationDuration: '300ms',
-      data: { title: 'Documentos anexos', button: 'Cerrar', message: 'Esta es la documentación anexa que tienes que completar para rellenar la tarea.', dataDocs: { document } }
+      data: {
+        title: 'Documentos anexos',
+        button: 'Cerrar',
+        message:
+          'Esta es la documentación anexa que tienes que completar para rellenar la tarea. Arrastra la tarea para terminarla o para ponerla en pendientes otra vez.',
+        dataDocs: { document },
+      },
     });
   }
 
   canViewElement(abilitiesKeys: string[]): boolean {
     return this.permissionView.canAccess(abilitiesKeys);
   }
-
 }

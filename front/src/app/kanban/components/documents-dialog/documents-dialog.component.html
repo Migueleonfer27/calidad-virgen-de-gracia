@@ -1,7 +1,12 @@
-<div class="container px-4 py-4">
-  <h2 mat-dialog-title class="text-primary mb-4">{{ data.title }}</h2>
+<h1 mat-dialog-title class="text-light fs-2 bg-color p-4">{{ data.title }}</h1>
+<div class="container px-4 py-3">
   <div mat-dialog-content class="mb-4">
-    <p class="text-secondary mb-4">{{ data.message }}</p>
+    <div
+      class="d-flex align-items-center bg-color-soft text-white p-3 rounded fs-6 shadow mb-4"
+    >
+      <mat-icon class="text-light pe-4">info</mat-icon>
+      <p class="mb-0 ps-2">{{ data.message }}</p>
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered table-hover">
         <thead class="table-primary">
@@ -18,16 +23,28 @@
             <td class="align-middle">{{ item.name }}</td>
             <td class="align-middle">{{ item.code }}</td>
             <td class="text-center align-middle">
-              <div class="d-flex justify-content-center align-items-center gap-2">
+              <div
+                class="d-flex justify-content-center align-items-center gap-2"
+              >
                 <a [href]="item.url" target="_blank" class="d-inline-block">
-                  <img src="icono-pdf.png" alt="img-pdf" matTooltip="Ver documento" class="img-fluid" style="max-width: 40px;">
+                  <img
+                    src="icono-pdf.png"
+                    alt="img-pdf"
+                    matTooltip="Ver documento"
+                    class="img-fluid"
+                    style="max-width: 40px"
+                  />
                 </a>
                 <button
-                *ngIf="item.autofilled && canViewElement([abilities.createCategory])"
-                mat-icon-button matSuffix
-                (click)="downloadPdf(item)"
-
-                matTooltip="Descargar y autorrellenar">
+                  *ngIf="
+                    item.autofilled &&
+                    canViewElement([abilities.createCategory])
+                  "
+                  mat-icon-button
+                  matSuffix
+                  (click)="downloadPdf(item)"
+                  matTooltip="Descargar y autorrellenar"
+                >
                   <mat-icon class="text-primary">download</mat-icon>
                 </button>
               </div>
