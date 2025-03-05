@@ -17,9 +17,7 @@ export class TokenService {
 
   clearSession(): void {
     this.removeToken()
-    localStorage.removeItem(this.TOKEN)
-    localStorage.removeItem(this.ROLE)
-    localStorage.removeItem(this.ROLE_ID)
+    localStorage.clear()
   }
 
   setToken(token: string): void {

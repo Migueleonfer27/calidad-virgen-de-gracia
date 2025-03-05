@@ -53,6 +53,7 @@ export class LoginFormComponent {
   }
 
   enterAsGuest(): void {
+    this.tokenService.clearSession()
     this.tokenService.setSessionActive(false)
     window.location.href = 'http://localhost:4200'
   }

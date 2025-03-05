@@ -14,7 +14,7 @@ export class HeaderComponent {
   constructor(private router: Router, private tokenService: TokenService) { }
 
   isUserLoggedIn(): boolean {
-    return !!localStorage.getItem('token')
+    return !!this.tokenService.getSessionActive()
   }
 
   // Jaime Ortega
@@ -28,7 +28,7 @@ export class HeaderComponent {
       localStorage.setItem('token', token)
       const decodeToken = this.tokenService.decodeToken()
       if (decodeToken) {
-        
+
         localStorage.setItem('user_id', decodeToken.uid.toString())
         localStorage.setItem('roles', JSON.stringify(decodeToken.roles))
       } else {
@@ -36,17 +36,13 @@ export class HeaderComponent {
       }
     } else {
       this.tokenService.clearSession()
-      console.error('No se encontró el token')
+      // console.error('No se encontró el token') 
     }
   }
 
   logout(): void {
+    this.tokenService.clearSession()
     this.tokenService.setSessionActive(false)
-    this.tokenService.removeToken()
-    localStorage.removeItem('token')
-    localStorage.removeItem('rol')
-    localStorage.removeItem('user_id')
-    localStorage.removeItem('roles')
     window.location.href = 'http://localhost:4300'
   }
 }
