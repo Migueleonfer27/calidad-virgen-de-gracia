@@ -1,7 +1,6 @@
 // Jaime Ortega
 import { Router } from 'express'
 import { AuthController } from '../controllers/auth-controller.js'
-import { isIdIntMiddleware, emailMiddleware, passwordMiddleware } from '../middlewares/user-middleware.js'
 import { validateJWT } from '../middlewares/auth-middleware.js'
 
 export const router = Router()

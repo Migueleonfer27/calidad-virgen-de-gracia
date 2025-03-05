@@ -11,7 +11,10 @@ import { router as mailRoutes } from "../routes/mail-routes.js";
 import { router as taskRoutes } from "../routes/task-routes.js";
 import { router as downloadRoutes } from "../routes/donwload-routes.js"
 import { router as documentRoutes } from "../routes/document-routes.js";
-import { router as abilityRoleRoutes} from "../routes/ability-role-routes.js"
+import { router as abilityRoleRoutes } from "../routes/ability-role-routes.js"
+import { router as surveyRoutes } from '../routes/survey-routes.js'
+import { router as surveyResponseRoutes } from '../routes/survey-response-routes.js'
+import { router as questionRoutes } from '../routes/question-routes.js'
 
 class Server {
   constructor() {
@@ -26,7 +29,10 @@ class Server {
     this.taskPath = "/api/task";
     this.downloadPath = "/api/download";
     this.documentPath = "/api/documents";
-    this.abilitiesPath= "/api/abilities"
+    this.abilitiesPath = "/api/abilities"
+    this.surveyPath = '/api/survey'
+    this.surveyResponsePath = '/api/survey-response'
+    this.questionPath = '/api/question'
     this.middlewares();
     this.routes();
   }
@@ -56,6 +62,9 @@ class Server {
     this.app.use(this.documentPath, documentRoutes);
     this.app.use(this.downloadPath, downloadRoutes);
     this.app.use(this.abilitiesPath, abilityRoleRoutes);
+    this.app.use(this.surveyPath, surveyRoutes);
+    this.app.use(this.surveyResponsePath, surveyResponseRoutes);
+    this.app.use(this.questionPath, questionRoutes);
   }
 
   listen() {
