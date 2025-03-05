@@ -3,6 +3,7 @@
 import request from "supertest";
 import express from "express";
 import { router } from "../routes/user-routes.js";
+import { generateJWT_rolesTest } from "../helpers/generate-jwt.js";
 
 const app = express();
 app.use(express.json());
@@ -12,25 +13,7 @@ let authToken;
 let idUser = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
 
 beforeAll(async () => {
-  try {
-    const loginResponse = await fetch("http://localhost:9091/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: "calidad.nodemailer@gmail.com",
-        password: "12345",
-      }),
-    });
-
-    if (!loginResponse.ok) {
-      throw new Error(`Error en login: ${loginResponse.status}`);
-    }
-
-    const data = await loginResponse.json();
-    authToken = data.token;
-  } catch (error) {
-    console.error("Error obteniendo el token:", error);
-  }
+  authToken = generateJWT_rolesTest(1, [{ id: 1, position: "ADMINISTRADOR" }]);
 });
 
 describe("Test GET user routes", () => {
