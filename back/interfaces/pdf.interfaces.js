@@ -37,22 +37,44 @@ class TemplatesPdf {
             `${new Date().getFullYear() - 1}/${new Date().getFullYear()}`,
         },
       },
+
       "RRHH10 Modelo asuntos propios retribuidos.pdf": {
         mappings: {
-          "APELLIDOS": (user) => `${user.last_name}`,
-          "NOMBRE":(user) => `${user.first_name}`,
-          "NIF": (user) => `${user.dni}`,
-          "Fecha Nacimiento" :(user) =>`${user.birth_date}`,
-          "CUERPO O ESCALA" :(user) =>`${user.body}`,
-          "ESPECIALIDAD" :(user) =>`${user.specialty}`,
-          "LOCALIDAD" :(user) =>`${user.city}`,
-          "PROVINCIA" :(user) =>`${user.province}`,
-          "C. POSTAL" :(user) =>`${user.postal_code}`,
-          "Teléfono móvil" :(user) =>`${user.phone}`,
-          "Teléfono fijo" :(user) =>`${user.phone_rp}`,
-          "Curso": () =>
+          APELLIDOS: (user) => `${user.last_name}`,
+          NOMBRE: (user) => `${user.first_name}`,
+          NIF: (user) => `${user.dni}`,
+          "Fecha Nacimiento": (user) => `${user.birth_date}`,
+          "CUERPO O ESCALA": (user) => `${user.body}`,
+          ESPECIALIDAD: (user) => `${user.specialty}`,
+          LOCALIDAD: (user) => `${user.city}`,
+          PROVINCIA: (user) => `${user.province}`,
+          "C. POSTAL": (user) => `${user.postal_code}`,
+          "Teléfono móvil": (user) => `${user.phone}`,
+          "Teléfono fijo": (user) => `${user.phone_rp}`,
+          Curso: () =>
             `${new Date().getFullYear() - 1}/${new Date().getFullYear()}`,
-        
+        },
+      },
+
+      "ACT05  Parte disciplinario alumno.pdf": {
+        mappings: {
+          DOCENTE: (user) => `${user.first_name} ${user.last_name}`,
+          Fdo: (user) => `${user.first_name} ${user.last_name}`,
+          Fecha: () => `${new Date().toLocaleDateString("es-ES")}`,
+        },
+      },
+
+      "SQR02 Hoja de SQR.pdf": {
+        mappings: {
+          "FECHA de Entrada": () => `${new Date().getFullYear()}`,
+          "NOMBRE Y APELLIDOS": (user) =>
+            `${user.first_name} ${user.last_name}`,
+          DIRECCIÓN: (user) => `${user.address}`,
+          LOCALIDAD: (user) => `${user.city}`,
+          PROVINCIA: (user) => `${user.province}`,
+          "CÓDIGO POSTAL": (user) => `${user.postal_code}`,
+          TLFNO: (user) => `${user.phone}`,
+          email: (user) => `${user.email}`,
         },
       },
     };
