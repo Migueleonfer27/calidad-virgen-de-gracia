@@ -55,6 +55,28 @@ class TemplatesPdf {
             `${new Date().getFullYear() - 1}/${new Date().getFullYear()}`,
         },
       },
+
+      "ACT05  Parte disciplinario alumno.pdf": {
+        mappings: {
+          DOCENTE: (user) => `${user.first_name} ${user.last_name}`,
+          Fdo: (user) => `${user.first_name} ${user.last_name}`,
+          Fecha: () => `${new Date().toLocaleDateString("es-ES")}`,
+        },
+      },
+
+      "SQR02 Hoja de SQR.pdf": {
+        mappings: {
+          "FECHA de Entrada": () => `${new Date().getFullYear()}`,
+          "NOMBRE Y APELLIDOS": (user) =>
+            `${user.first_name} ${user.last_name}`,
+          DIRECCIÓN: (user) => `${user.address}`,
+          LOCALIDAD: (user) => `${user.city}`,
+          PROVINCIA: (user) => `${user.province}`,
+          "CÓDIGO POSTAL": (user) => `${user.postal_code}`,
+          TLFNO: (user) => `${user.phone}`,
+          email: (user) => `${user.email}`,
+        },
+      },
     };
   }
 

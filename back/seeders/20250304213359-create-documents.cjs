@@ -1,10 +1,11 @@
+// MIGUEL
+
 "use strict";
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     const documents = [
-      // subcategory 1
       {
         name: "Acta informe reunión",
         code: "DYC06",
@@ -23,7 +24,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 2
       {
         name: "Aviso previo a pérdida de evaluación continua",
         code: "ACT03",
@@ -34,7 +34,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: "ACT05 Parte disciplinario alumno.pdf", // AUTORELLENAAAAAAAAAAAAAAAAAAAAAR
+        name: "ACT05  Parte disciplinario alumno.pdf",
         code: "ACT05",
         url: "https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FACTIVIDADES%2DAULA%2FACT05%20%20Parte%20disciplinario%20alumno%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FACTIVIDADES%2DAULA&p=true&ga=1",
         id_subcategory: 2,
@@ -42,7 +42,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 3
       {
         name: "Acta de evaluación",
         code: "EVA05",
@@ -61,7 +60,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 4
       {
         name: "Hoja firmas información alumnado",
         code: "FEM04",
@@ -80,7 +78,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 5
       {
         name: "Autorización inclusión bolsa de trabajo",
         code: "ORI04",
@@ -99,7 +96,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 6
       {
         name: "Reservar aulas APE-ATECA",
         code: "PROG13",
@@ -118,9 +114,8 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 7
       {
-        name: "TUT02 Aviso de anulacion matricula.pdf", // AUTORELLENABLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        name: "TUT02 Aviso de anulacion matricula.pdf",
         code: "TUT02",
         url: "https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FTUTORIA%2FTUT02%20Aviso%20de%20anulacion%20matricula%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FENSENANZA%2DAPRENDIZAJE%2FTUTORIA&p=true&ga=1",
         id_subcategory: 7,
@@ -137,7 +132,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 8
       {
         name: "Asignación de tareas de emergencia",
         code: "PRL03",
@@ -156,9 +150,8 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 9
       {
-        name: "RRHH02 Ficha datos personales profesorado.pdf", // AUTORELLENABLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        name: "RRHH02 Ficha datos personales profesorado.pdf",
         code: "RRHH02",
         url: "https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH%2FRRHH02%20Ficha%20datos%20personales%20profesorado%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH&p=true&ga=1",
         id_subcategory: 9,
@@ -167,7 +160,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: "RRHH10 Modelo asuntos propios retribuidos.pdf", // AUTORELLENABLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        name: "RRHH10 Modelo asuntos propios retribuidos.pdf",
         code: "RRHH10",
         url: "https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH%2FRRHH10%20Modelo%20asuntos%20propios%20retribuidos%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FGESTION%2FRRHH&p=true&ga=1",
         id_subcategory: 9,
@@ -175,7 +168,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 10
       {
         name: "Préstamo de equipo informático",
         code: "RMAT07",
@@ -194,7 +186,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 11
       {
         name: "Plan de auditoría interna",
         code: "AUD02",
@@ -213,7 +204,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 12
       {
         name: "Memoria anual de módulo",
         code: "MEM02",
@@ -232,7 +222,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 13
       {
         name: "ACT registro partes alumnado",
         code: "REG11",
@@ -251,9 +240,8 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      // subcategory 14
       {
-        name: "SQR02 Hoja de SQR.pdf", // AUTORELLENABLEEEEEEEEEEEEEEEEEEEEEEEE
+        name: "SQR02 Hoja de SQR.pdf",
         code: "SQR02",
         url: "https://crfpcastilla.sharepoint.com/sites/EPT13002691E03-SGC/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FMEDICION%20y%20MEJORA%2FSQR%2FSQR02%20Hoja%20de%20SQR%2Epdf&parent=%2Fsites%2FEPT13002691E03%2DSGC%2FDocumentos%20compartidos%2FSGC%2FSGC%2Dweb%2FMEDICION%20y%20MEJORA%2FSQR&p=true&ga=1",
         id_subcategory: 14,
