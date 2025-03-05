@@ -9,6 +9,9 @@ import Task from "./task.js";
 import TaskDocument from "./task-document.js";
 import Ability from "./ability.js";
 import AbilityRole from "./ability-role.js";
+import Survey from "./survey.js";
+import SurveyResponse from "./survey-response.js";
+import Question from "./question.js";
 
 
 Users.belongsToMany(Roles, {
@@ -83,4 +86,28 @@ Ability.belongsToMany(Roles, {
   otherKey: "id_rol",
 })
 
-export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole };
+Users.hasMany(Survey, {
+  foreignKey: 'user_id',
+})
+
+Survey.belongsTo(Users, {
+  foreignKey: 'user_id',
+})
+
+Survey.hasMany(SurveyResponse, {
+  foreignKey: 'survey_id',
+})
+
+SurveyResponse.belongsTo(Survey, {
+  foreignKey: 'survey_id',
+})
+
+Question.hasMany(SurveyResponse, {
+  foreignKey: 'question_id',
+})
+
+SurveyResponse.belongsTo(Question, {
+  foreignKey: 'question_id',
+})
+
+export { Users, Roles, UsersRoles, Category, Subcategory, Document, Task, TaskUser, TaskDocument, Ability, AbilityRole, Survey, SurveyResponse, Question };
