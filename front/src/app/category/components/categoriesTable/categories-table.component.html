@@ -30,7 +30,7 @@
             <th class="text-center align-middle gap-2 bg-header-table" mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
             <td class=" text-center align-middle gap-2" mat-cell *matCellDef="let row" >
               <div  class="d-flex justify-content-center gap-2 justify-content-md-center">
-                <button class="border-0 bg-light" mat-icon-button matSuffix [routerLink]="['/admin/subcategory-table', row.id, row.name]" matTooltip="Ver detalle">
+                <button *ngIf="canViewElement([abilities.updateSubcategory,abilities.createSubcategory,abilities.deleteSubcategory])" class="border-0 bg-light" mat-icon-button matSuffix [routerLink]="['/admin/subcategory-table', row.id, row.name]" matTooltip="Ver detalle">
                   <mat-icon class="text-secondary">info</mat-icon>
                 </button>
                 <button  *ngIf="canViewElement([abilities.updateCategory])" class="border-0 bg-light " mat-icon-button matSuffix (click)="edit(row)"  matTooltip="Editar categoría">

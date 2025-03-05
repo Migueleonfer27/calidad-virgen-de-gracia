@@ -8,24 +8,26 @@ export const generateJWT = (uid = "") => {
   return token;
 };
 
-export const generateJWT_roles = (uid = "", roles = []) => {
-  let token = jwt.sign({ uid, roles }, process.env.SECRETORPRIVATEKEY, {
-    expiresIn: "4h",
-  });
-  return token;
-};
 
-export const generateJWT_rolesTest = (uid = "", roles = []) => {
-  const formattedRoles = roles.map((role) => ({
-    role_id: role.id || 1,
-    position: role.position || role,
-  }));
+export const generateJWT_roles = (uid = '', roles = []) => {
+    let token = jwt.sign({ uid, roles }, process.env.SECRETORPRIVATEKEY, {
+        expiresIn: '4h'
+    })
+    return token
+}
 
-  let token = jwt.sign(
-    { uid, roles: formattedRoles },
-    process.env.SECRETORPRIVATEKEY,
-    { expiresIn: "4h" }
-  );
+export const generateJWT_rolesTest = (uid = '', roles = []) => {
+    const formattedRoles = roles.map(role => ({
+        role_id: role.id || 1,  
+        position: role.position || role 
+    }));
 
-  return token;
+    let token = jwt.sign(
+        { uid, roles: formattedRoles },
+        process.env.SECRETORPRIVATEKEY,
+        { expiresIn: '4h' }
+    );
+
+    return token;
+
 };
