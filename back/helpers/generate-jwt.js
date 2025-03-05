@@ -14,3 +14,18 @@ export const generateJWT_roles = (uid = '', roles = []) => {
     })
     return token
 }
+
+export const generateJWT_rolesTest = (uid = '', roles = []) => {
+    const formattedRoles = roles.map(role => ({
+        role_id: role.id || 1,  
+        position: role.position || role 
+    }));
+
+    let token = jwt.sign(
+        { uid, roles: formattedRoles },
+        process.env.SECRETORPRIVATEKEY,
+        { expiresIn: '4h' }
+    );
+
+    return token;
+};

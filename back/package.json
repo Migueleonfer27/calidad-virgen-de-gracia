@@ -4,7 +4,7 @@
   "main": "app/app.js",
   "type": "module",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "keywords": [],
   "author": "",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^9.4.0",
+    "cross-env": "^7.0.3",
     "uuid": "^11.0.5",
     "validator": "^13.12.0"
   }
