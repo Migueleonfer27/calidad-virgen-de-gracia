@@ -14,7 +14,7 @@
     </div>
 
     <div class="col-6 col-md-4 text-end">
-      <div *ngIf="isUserLoggedIn()">
+      <div *ngIf="isUserLoggedIn();else iniciarSesion">
         <button mat-raised-button class="img-menu py-2" [matMenuTriggerFor]="userMenu">
           <div class="d-flex align-items-center">
             <img [src]="profilePicture" class="img-fluid rounded-circle" alt="Foto de perfil">
@@ -66,4 +66,9 @@
       </div>
     </div>
   </div>
+  <ng-template #iniciarSesion>
+    <button mat-raised-button (click)="goToLogin()">
+      <mat-icon>login</mat-icon>Iniciar sesión
+    </button>
+  </ng-template>
 </header>

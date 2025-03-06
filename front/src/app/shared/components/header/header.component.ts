@@ -3,12 +3,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../../../../login/front/src/app/auth/services/token.service';
+import { environment } from '../../../../environments/environment.development';
+import { User } from '../../../admin/interfaces/user.interfaces';
+import { AdminService } from '../../../admin/services/admin.service';
+import { ProfilePicService } from '../../../profile/services/profile-pic.service';
 import { abilities } from '../../../utils/abilities';
 import { PermissionViewService } from '../../services/permission-view.service';
-import { AdminService } from '../../../admin/services/admin.service';
-import { User } from '../../../admin/interfaces/user.interfaces';
-import { environment } from '../../../../environments/environment.development';
-import { ProfilePicService } from '../../../profile/services/profile-pic.service';
 
 @Component({
   selector: 'shared-header',
@@ -136,5 +136,9 @@ export class HeaderComponent {
 
   canViewElement(abilitiesKeys:string []): boolean {
     return this.permissionView.canAccess(abilitiesKeys);
+  }
+
+  goToLogin() {
+    window.location.href = 'http://localhost:4300';
   }
 }
