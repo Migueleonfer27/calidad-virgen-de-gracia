@@ -16,8 +16,7 @@ router.post(
 );
 
 router.post(
-  "/isAutofilled", 
-  // urlValidate,
-  // validateJWT,
-  // isRolValid(abilities.createDocument),
+  "/isAutofilled",
+  validateJWT,
+  isRolValid(abilities.createDocument),
   DownloadController.isAutofilledDoc);

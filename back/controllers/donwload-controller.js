@@ -72,7 +72,7 @@ const generarPdfDesdeUrl = async (
       downloadPath: downloadPath,
     });
 
-    // Navegar a la URL proporcionada
+    
     await page.goto(url, { waitUntil: "networkidle2", timeout: 90000 });
 
     const botonSelector = "button#downloadCommand";

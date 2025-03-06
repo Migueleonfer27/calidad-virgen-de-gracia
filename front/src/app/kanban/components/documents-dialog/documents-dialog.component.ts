@@ -30,8 +30,8 @@ export class DocumentsDialogComponent {
     this.documents = data.dataDocs.document;
   }
 
-  ngOnInit() { // PRUEBA RELLENAR PDF
-    this.userService.getUserForFillPdf(2).subscribe({
+  ngOnInit() {
+    this.userService.getUserForFillPdf(Number(localStorage.getItem('user_id'))).subscribe({
       next: (response) => {
         if (response && response.data) {
           this.user = response.data;
