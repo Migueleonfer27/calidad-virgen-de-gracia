@@ -2,6 +2,7 @@
 import { Component } from '@angular/core'
 import { Role } from '../../interfaces/role.interface'
 import { TokenService } from '../../services/token.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'roles-page',
@@ -12,9 +13,14 @@ import { TokenService } from '../../services/token.service';
 export class RolesPageComponent {
   public roles: Role[] = []
 
-  constructor(private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService, private router: Router) {}
 
   ngOnInit() {
     this.roles = this.tokenService.getUserRoles();
+  }
+
+  navigateToLogin() {
+    localStorage.clear();
+    this.router.navigate(['auth/login']);
   }
 }
