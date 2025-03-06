@@ -78,6 +78,7 @@ module.exports = {
           assignedAbilities = [
             abilities.getTasks,
             abilities.createTask,
+            abilities.getRoles,
             abilities.updateTask,
             abilities.deleteTask,
             abilities.deleteMyTask,
@@ -91,13 +92,23 @@ module.exports = {
 
         case "COORDINADOR DE PREVENCIÓN":
           assignedAbilities = [
+            abilities.deleteMyTask,
+            abilities.getMyTask,
+            abilities.updateStateTask,
             abilities.downloadDocument,
             abilities.uploadPicture,
             abilities.updatePassword,];
           break;
 
         case "COORDINADOR/A DE FORMACIÓN Y TRANSFORMACIÓN DIGITAL":
-          assignedAbilities = [abilities.downloadDocument];
+          assignedAbilities = [
+            abilities.deleteMyTask,
+            abilities.getMyTask,
+            abilities.updateStateTask,
+            abilities.downloadDocument,
+            abilities.uploadPicture,
+            abilities.updatePassword,
+          ];
           break;
 
         case "DIRECTOR/A":
@@ -107,6 +118,7 @@ module.exports = {
             abilities.updateUser,
             abilities.deleteUser,
             abilities.getRoles,
+            abilities.getUsers,
             abilities.deleteRol,
             abilities.updateRol,
             abilities.createRol,
@@ -128,7 +140,7 @@ module.exports = {
         case "COORDINADOR/A DE AULA PROFESIONAL DE EMPRENDIMIENTO":
           assignedAbilities = [
             abilities.getUsers,
-            abilities.createUser, 
+            abilities.createUser,
             abilities.updateUser];
           break;
       }

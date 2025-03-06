@@ -49,11 +49,11 @@
           <button *ngIf="canViewElement([abilities.addAbilities])"  mat-icon-button [matTooltip]="'Gestionar permisos'">
             <mat-icon class="text-success" (click)="showMenuAbilities(row.id)">receipt_long</mat-icon>
           </button>
-          <button mat-icon-button [matTooltip]="'Editar rol'">
-            <mat-icon class="text-primary"  *ngIf="canViewElement([abilities.updateRol])" (click)="editRole(row.id)">edit</mat-icon>
+          <button *ngIf="canViewElement([abilities.updateRol])" mat-icon-button [matTooltip]="'Editar rol'">
+            <mat-icon class="text-primary"   (click)="editRole(row.id)">edit</mat-icon>
           </button>
-          <button mat-icon-button [matTooltip]="'Borrar rol'">
-            <mat-icon class="text-danger"  *ngIf="canViewElement([abilities.deleteRol])" (click)="deleteRole(row.id)">delete</mat-icon>
+          <button *ngIf="canViewElement([abilities.deleteRol])" mat-icon-button [matTooltip]="'Borrar rol'">
+            <mat-icon class="text-danger"   (click)="deleteRole(row.id)">delete</mat-icon>
           </button>
         </div>
       </td>
