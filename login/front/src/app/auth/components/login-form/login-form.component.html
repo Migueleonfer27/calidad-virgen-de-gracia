@@ -1,7 +1,7 @@
 <!-- Jaime Ortega -->
-<div class="card">
+<div class="card bg-light shadow p-3">
   <div class="card-body">
-    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+    <h2 class="text-center mb-4">Iniciar sesión</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="w-100 mb-3">
@@ -31,19 +31,19 @@
       </div>
 
       <button mat-raised-button color="primary" class="w-100" type="submit" [disabled]="loginForm.invalid">
-        Iniciar Sesión
+        <mat-icon>login</mat-icon> Iniciar sesión
       </button>
 
       <div class="text-center mt-3">
         <a href="javascript:void(0)" (click)="resetPasswordDialog()" class="text-primary text-decoration-none">
-          ¿Olvidaste tu contraseña?
+          ¿Has olvidado tu contraseña?
         </a>
       </div>
-
+      <hr>
       <div class="text-center mt-3">
-        <a href="javascript:void(0)" (click)="enterAsGuest()">
-          <mark>Entrar como invitado</mark>
-        </a>
+        <button mat-raised-button (click)="enterAsGuest()">
+          Entrar como invitado
+        </button>
       </div>
     </form>
   </div>
