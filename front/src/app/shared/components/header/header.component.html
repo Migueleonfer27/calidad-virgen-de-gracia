@@ -1,7 +1,7 @@
-<header class="header container-fluid w-100 shadow py-4 px-4">
-  <div class="row align-items-center">
+<header class="header container-fluid w-100 shadow py-5 px-4">
+  <div class="row align-items-center justify-content-between">
     <div
-      class="col-8 col-md-6 d-flex align-items-center logo-section"
+      class="col-6 col-md-6 d-flex align-items-center logo-section"
       routerLink="/"
     >
       <img
@@ -10,15 +10,18 @@
         title="CIFP Virgen de Gracia"
         class="logo-img img-fluid"
       />
-      <h1 class="mx-3 mb-0 text-light title-text">Departamento de Calidad</h1>
+      <h1 class="mx-3 mb-0 text-light title-text">CIFP Virgen de Gracia · Departamento de Calidad</h1>
     </div>
 
-    <div class="col-4 col-md-6 text-end">
+    <div class="col-6 col-md-4 text-end">
       <div *ngIf="isUserLoggedIn()">
-        <button mat-raised-button [matMenuTriggerFor]="userMenu">
-          <mat-icon>menu</mat-icon> Menú principal
+        <button mat-raised-button class="img-menu py-2" [matMenuTriggerFor]="userMenu">
+          <div class="d-flex align-items-center">
+            <img [src]="profilePicture" class="img-fluid rounded-circle" alt="Foto de perfil">
+            <span class="mx-2 d-flex">{{ usuario.first_name }} {{ usuario.last_name }} <mat-icon>arrow_drop_down</mat-icon></span>
+          </div>
         </button>
-        <mat-menu #userMenu="matMenu">
+        <mat-menu #userMenu="matMenu" xPosition="before">
           <button
             mat-menu-item
             *ngIf="canViewElement(abiltiesProfile)"
