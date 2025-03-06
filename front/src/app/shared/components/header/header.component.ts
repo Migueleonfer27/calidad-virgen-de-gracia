@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { TokenService } from '../../../../../../login/front/src/app/auth/services/token.service';
 import { abilities } from '../../../utils/abilities';
 import { PermissionViewService } from '../../services/permission-view.service';
+import { AdminService } from '../../../admin/services/admin.service';
+import { User } from '../../../admin/interfaces/user.interfaces';
+import { environment } from '../../../../environments/environment.development';
+import { ProfilePicService } from '../../../profile/services/profile-pic.service';
 
 @Component({
   selector: 'shared-header',
@@ -57,10 +61,16 @@ export class HeaderComponent {
 
   ];
 
+  usuario: User = {} as User;
+  profilePicture = ''
+  private _uploadUrl: string = environment.uploadUrl;
+
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private permissionView: PermissionViewService
+    private permissionView: PermissionViewService,
+    private adminService: AdminService,
+    private profilePicService: ProfilePicService
   ) {}
 
   isUserLoggedIn(): boolean {
@@ -88,10 +98,34 @@ export class HeaderComponent {
       this.tokenService.clearSession()
       // console.error('No se encontró el token')
     }
+
+    const idUsuario: number = Number(localStorage.getItem('user_id'));
+
+    if (idUsuario) {
+      this.adminService.getUserForProfile(idUsuario)
+        .subscribe((response) => {
+          this.usuario = response.data;
+          this.profilePicService.updateProfilePic(this.profilePicUrl);
+      });
+
+    } else {
+      console.error("ID de usuario no válido");
+    }
+
+    this.profilePicService.profilePic$.subscribe((url) => {
+      this.profilePicture = url;
+    });
+
   }
 
   changeRole(): void {
     window.location.href = 'http://localhost:4300/auth/roles'
+  }
+
+  get profilePicUrl() {
+    return this.usuario?.profile_picture
+      ? `${this._uploadUrl}${this.usuario.profile_picture}`
+      : 'img-user.png';
   }
 
   logout(): void {

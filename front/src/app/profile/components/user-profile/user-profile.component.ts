@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UpdatePassFormDialogComponent } from '../update-pass-form-dialog/update-pass-form-dialog.component';
 import { PermissionViewService } from '../../../shared/services/permission-view.service';
 import { abilities } from '../../../utils/abilities';
+import { ProfilePicService } from '../../services/profile-pic.service';
 
 @Component({
   selector: 'user-profile',
@@ -27,7 +28,8 @@ export class UserProfileComponent implements OnInit {
     private permissionView: PermissionViewService,
     private adminService: AdminService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private profilePicService: ProfilePicService
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class UserProfileComponent implements OnInit {
       this.adminService.getUserForProfile(this.idUsuario)
         .subscribe((response) => {
           this.usuario = response.data;
+          this.profilePicService.updateProfilePic(this.profilePicUrl);
       });
 
     } else {
@@ -65,6 +68,7 @@ export class UserProfileComponent implements OnInit {
     this.adminService.uploadUserProfilePicture(this.idUsuario!, formData).subscribe(
       (response) => {
         this.usuario.profile_picture = response.data.profile_picture;
+        this.profilePicService.updateProfilePic(this.profilePicUrl);
         this.snackBar.open('Imagen modificada correctamente.', 'Cerrar', { duration: 3000 });
       },
       (error) => {

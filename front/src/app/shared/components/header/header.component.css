@@ -29,6 +29,22 @@
   border-radius: 15px;
 }
 
+.img-menu {
+  width: fit-content;
+  height: fit-content;
+  color: #193e7a !important;
+  border-radius: 15px;
+}
+
+.img-menu img {
+  width: 55px;
+}
+
+.img-menu span {
+  color: #193e7a !important;
+  font-size: 1rem;
+}
+
 @media (max-width: 768px) {
   .logo-img {
     height: 40px;
