@@ -244,6 +244,19 @@ export class TaskConnection {
         return result
     }
 
+    getTaskById=async(id_task)=>{
+        let result;
+
+        result = await Task.findByPk(id_task)
+        console.log(result)
+        if (result == null) {
+            throw error
+        }
+      
+
+        return result
+    }
+
 
 
 

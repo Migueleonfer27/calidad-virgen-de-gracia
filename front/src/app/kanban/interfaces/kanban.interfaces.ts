@@ -2,6 +2,7 @@ export interface Task {
   id: number;
   description: string;
   end_date: string;
+  type?:number;
   TaskUser: {
     state: number;
     id_user: number;

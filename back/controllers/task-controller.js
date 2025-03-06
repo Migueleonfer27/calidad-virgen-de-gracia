@@ -139,25 +139,35 @@ export const taskController = {
     },
 
 
-    deleteFromUser: (req = request, res = response) =>{
+    deleteFromUser: async (req = request, res = response) =>{
 
         let result
         console.log(req.body)
-        connection.deleteTaskFromUser(req.body.id_task, req.body.id_user)   
-        
-        .then( data => {
+        const myTask=connection.getTaskById(req.body.id_task)
+        if(myTask.type==null){
             result=1
+            const data=await connection.deleteTask(req.body.id_task)
             console.log('Tarea borrada correctamente')
             res.status(201).json({cod:result,
                                     data:data});
-        })
-        .catch( err => {
-            result=0
-            console.log('sin resultados!'+err);
-            res.status(203).json({cod:result,
-                                error:err  
-                                });
-        });
+        }else{
+            connection.deleteTaskFromUser(req.body.id_task, req.body.id_user)   
+        
+            .then( data => {
+                result=1
+                console.log('Tarea borrada correctamente')
+                res.status(201).json({cod:result,
+                                        data:data});
+            })
+            .catch( err => {
+                result=0
+                console.log('sin resultados!'+err);
+                res.status(203).json({cod:result,
+                                    error:err  
+                                    });
+            });
+        }
+      
     },
 
     delete: (req = request, res = response) =>{
