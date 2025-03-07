@@ -56,7 +56,7 @@ class SurveyResponseConnection {
 
     async postSurveyResponse(survey) {
         try {
-            return await SurveyResponse.create(survey)
+            return await SurveyResponse.bulkCreate(survey)
         } catch (error) {
             throw error
         }

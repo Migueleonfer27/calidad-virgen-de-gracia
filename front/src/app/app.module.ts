@@ -11,6 +11,7 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { TaskModule } from './task/task.module';
 import { MatPaginatorEs } from './utils/paginator-espanol';
+import { SurveyModule } from './survey/survey.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatPaginatorEs } from './utils/paginator-espanol';
     BrowserAnimationsModule,
     HttpClientModule,
     TaskModule,
+    SurveyModule,
 ],
   providers: [
     provideAnimationsAsync(),
