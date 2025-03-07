@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-title>Encuesta</mat-card-title>
+  <mat-card-content>
+    <mat-stepper orientation="vertical" linear>
+      <mat-step
+        *ngFor="let question of questions; let i = index" [completed]="question.selectedAnswer !== undefined">
+        <ng-template matStepLabel>{{ question.text }}</ng-template>
+
+        <mat-radio-group [(ngModel)]="question.selectedAnswer">
+          <mat-radio-button *ngFor="let option of question.options" [value]="option">
+            {{ option }}
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <div *ngIf="question.showError" class="error-message">
+          <p>Por favor, selecciona una opción.</p>
+        </div>
+
+        <div>
+          <button mat-button matStepperNext
+                  [disabled]="!question.selectedAnswer"
+                  *ngIf="i === 0">
+            Siguiente
+          </button>
+
+          <div *ngIf="i > 0" style="display: flex; justify-content: space-between;">
+            <button mat-button matStepperPrevious *ngIf="i > 0">
+              Anterior
+            </button>
+            <button mat-button matStepperNext
+                    [disabled]="!question.selectedAnswer">
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Finalizar</ng-template>
+        <p>¡Has completado la encuesta!</p>
+        <button mat-button (click)="submitSurvey()">Enviar</button>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>
